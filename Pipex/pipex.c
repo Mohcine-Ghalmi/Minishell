@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/01/25 19:22:53 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/07 18:27:00 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ int	openfile(char *filename, int mode)
 	if (mode == STDIN_FILENO)
 	{
 		if (access(filename, F_OK))
-		{
-			write(STDERR_FILENO, filename, ft_strchr1(filename, 0));
-			write(STDERR_FILENO, ": No such file or directory\n", 28);
 			return (-1);
-		}
 		return (open(filename, O_RDONLY));
 	}
 	else
@@ -68,23 +64,47 @@ void	exec(char *cmd, char **env)
 	}
 }
 
+void one_cmd(int argc, char *cmd, char **env)
+{
+	if (argc == 2)
+			exec(cmd, env);
+}
+
 int	main(int argc, char **av, char **env)
 {
 	int	infile;
 	int	outfile;
+	int cmd2;
 
-	if (argc == 5)
+	if (argc >= 2)
 	{
-		if (ft_strspace(av[2]) > 0 || ft_strspace(av[3]) > 0)
+		if (ft_strspace(av[1]) > 0)
 		{
 			write(STDERR_FILENO, "Missing Command\n", 17);
 			return (0);
 		}
-		infile = openfile(av[1], STDIN_FILENO);
-		outfile = openfile(av[4], STDOUT_FILENO);
-		dup2(infile, STDIN_FILENO);
-		dup2(outfile, STDOUT_FILENO);
-		pipex1(av[2], av[3], env);
+		one_cmd(argc, av[1], env);
+		cmd2 = 2;
+		infile = openfile(av[2], STDIN_FILENO);
+		if (infile != -1)
+		{
+			cmd2 = 3;
+			dup2(infile, STDIN_FILENO);
+		}
+		if (av[cmd2] && ft_strspace(av[cmd2]) > 0)
+		{
+			write(STDERR_FILENO, "Missing Command\n", 17);
+			return (0);
+		}
+		if (!av[4])
+		{
+			outfile = openfile(av[4], STDOUT_FILENO);
+			if (outfile != -1)
+				dup2(outfile, STDOUT_FILENO);
+		}
+		if (argc == 3)
+			exec(av[1], env);
+		pipex1(av[1], av[cmd2], env);
 		exit(0);
 	}
 	write(STDERR_FILENO, "Invalid number of arguments.\n", 29);
