@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:12:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/01/23 14:56:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/10 18:30:22 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*new_line(int fd, char *static_buffer)
 	if (!buffer)
 		return (NULL);
 	size = 1;
-	while (!ft_strchr(static_buffer, '\n') && size != 0)
+	while (!ft_strchr2(static_buffer, '\n') && size != 0)
 	{
 		size = read(fd, buffer, BUFFER_SIZE);
 		if (size == -1)
@@ -31,7 +31,7 @@ char	*new_line(int fd, char *static_buffer)
 			return (NULL);
 		}
 		buffer[size] = '\0';
-		static_buffer = ft_strjoin(static_buffer, buffer);
+		static_buffer = ft_strjoin1(static_buffer, buffer);
 	}
 	free(buffer);
 	return (static_buffer);
@@ -79,7 +79,7 @@ char	*next_line(char *static_buffer)
 		free(static_buffer);
 		return (NULL);
 	}
-	tab = malloc(sizeof(char) * (ft_strlen(static_buffer) - i + 1));
+	tab = malloc(sizeof(char) * (ft_strlen1(static_buffer) - i + 1));
 	if (!tab)
 		return (NULL);
 	i++;

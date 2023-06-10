@@ -6,13 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:40:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/01/22 22:22:49 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/10 18:30:07 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_strjoin(char *left_str, char *buff)
+char	*ft_strjoin1(char *left_str, char *buff)
 {
 	size_t	i;
 	size_t	j;
@@ -25,7 +25,7 @@ char	*ft_strjoin(char *left_str, char *buff)
 	}
 	if (!left_str || !buff)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(left_str) + ft_strlen(buff)) + 1));
+	str = malloc(sizeof(char) * ((ft_strlen1(left_str) + ft_strlen1(buff)) + 1));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
@@ -35,11 +35,11 @@ char	*ft_strjoin(char *left_str, char *buff)
 			str[i] = left_str[i];
 	while (buff[j] != '\0')
 		str[i++] = buff[j++];
-	str[ft_strlen(left_str) + ft_strlen(buff)] = '\0';
+	str[ft_strlen1(left_str) + ft_strlen1(buff)] = '\0';
 	return (str);
 }
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen1(char *s)
 {
 	size_t	i;
 
@@ -51,7 +51,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strchr(char *s, int c)
+char	*ft_strchr2(char *s, int c)
 {
 	int	i;
 
@@ -59,7 +59,7 @@ char	*ft_strchr(char *s, int c)
 	if (!s)
 		return (0);
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
+		return ((char *)&s[ft_strlen1(s)]);
 	while (s[i] != '\0')
 	{
 		if (s[i] == (char) c)
