@@ -14,8 +14,8 @@ t_data    *struct_args(char *cmd, int infile, int outfile)
 
     new = malloc(sizeof(t_data));
     new->av = cmd;
-    new->infile = 0;
-    new->outfile = 1;
+    new->infile = infile;
+    new->outfile = outfile;
     new->next = NULL;
     return new;
 }
@@ -55,12 +55,14 @@ void execution(t_data *new, char **envp)
 int main(int argc, char **argv, char **envp)
 {
     t_data *new;
+    char    *stock;
 
     (void)argc;
     (void)argv;
-    new = struct_args("ls -la", 0, 1);
-    new->next = struct_args("cat -e", 0, 1);
-    new->next->next = struct_args("top", 0, 1);
+    // stock = readline("$ ");
+    new = struct_args(stock, 0, 1);
+    // new->next = struct_args("pwd", 0, 1);
+    // new->next->next = struct_args("top", 0, 1);
     execution(new, envp);
     free(new);
     return 0;

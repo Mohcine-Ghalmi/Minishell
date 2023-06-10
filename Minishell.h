@@ -6,5 +6,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include "Pipex/pipex.h"
+#include <readline/readline.h>
+#include <readline/history.h>
 
 #endif
