@@ -7,10 +7,7 @@ char **environment(char **envp)
 
     size = 0;
     while (envp[size])
-    {
-        envp[size];
         size++;
-    }
     new_envp = ft_calloc(sizeof(char *), size + 1);
     if (!new_envp)
         return (NULL);
@@ -23,10 +20,13 @@ char **environment(char **envp)
     return new_envp;
 }
 
-int main(int argc, char **argv, char **envp)
-{
-    char **arr;
+// int main(int argc, char **argv, char **envp)
+// {
+//     char **arr;
+//     int i;
 
-    arr = environment(envp);
-    printf("%s", arr[1]);
-}
+//     i = 0;
+//     arr = environment(envp);
+//     while (arr[i])
+//         printf("%s\n", arr[i++]);
+// }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:12:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/10 18:30:12 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/10 21:24:03 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ char	*get_next_line(int fd);
 char	*ft_strjoin1(char *left_str, char *buff);
 size_t	ft_strlen1(char *s);
 char	*ft_strchr2(char *s, int c);
-char	*ft_strdup(char *s1);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif

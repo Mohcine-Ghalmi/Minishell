@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/10 11:48:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/10 18:35:21 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/06/10 21:18:54 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/06/10 21:18:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	*ft_strdup(const char *s1)
 {
 	char	*cp;
-	size_t		i;
+	int		i;
 
 	i = ft_strlen(s1);
 	cp = (char *) malloc((sizeof(char) * i + 1));

@@ -57,13 +57,14 @@ int main(int argc, char **argv, char **envp)
     t_data *new;
     char    *stock;
     int main_fork;
+    char **new_envp;
 
     (void)argc;
     (void)argv;
     while (1)
     {
         stock = readline("$ ");
-        envp = environment();
+        new_envp = environment(envp);
         new = struct_args(stock, 0, 1);
         // new->next = struct_args("pwd", 0, 1);
         // new->next->next = struct_args("top", 0, 1);
@@ -71,10 +72,13 @@ int main(int argc, char **argv, char **envp)
             exit(1);
         main_fork = fork();
         if (!main_fork)
-            execution(new, envp);
+        {
+            execution(new, new_envp);
+            exit(1);
+        }
         waitpid(main_fork, NULL, 0);
     }
     free(new);
-    free(envp);
+    free(new_envp);
     return 0;
 }
