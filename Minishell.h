@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/10 14:34:24 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/10 20:57:29 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,16 @@ typedef struct e_lexer
 	char	append[2];
 	char	in;
 	char	out;
-	char	dollar;
 	char	heredoc;
 }				t_lexer;
 
-typdef struct data
+typedef struct e_cmnd
+{
+	
+	
+}				t_cmnd;
+
+typedef struct data
 {
 	char *av;
 	int infile;
