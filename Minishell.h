@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/10 18:31:02 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/11 14:56:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"
+
+typedef struct data
+{
+    char *av;
+    int infile;
+    int outfile;
+    struct data *next;
+}       t_data;
 
 char **environment(char **envp);
 

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:13:45 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/07 18:21:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/11 15:35:54 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	pipex1(char *cmd1, char *cmd2, char **env)
 	if (pid2 == -1 || pid1 == -1)
 		exit(1);
 	if (pid2 == 0)
-	{		
+	{
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);
 		if (cmd2)

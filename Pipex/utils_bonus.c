@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 22:10:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/01/26 16:11:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/11 13:49:12 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	here_doc(char **av, int infile)
 
 	if (infile < 0)
 		exit(1);
-	end = ft_strjoin(av[2], "\n");
+	end = ft_strjoin1(av[2], "\n");
 	str = get_next_line(STDIN_FILENO);
 	if (!str)
 		exit(1);

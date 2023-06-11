@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/09 20:10:22 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/11 15:48:40 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	exec(char *cmd, char **env)
 // 		}
 // 		infile = openfile(av[2], STDIN_FILENO);
 // 		dup2(infile, STDIN_FILENO);
-// 		outfile = openfile(av[4], STDOUT_FILENO);
+// 		outfile = openfile(av[4], STDOUT_FILENO); 
 // 		dup2(outfile, STDOUT_FILENO);
 // 		pipex1(av[1], av[3], env);
 // 		exit(0);

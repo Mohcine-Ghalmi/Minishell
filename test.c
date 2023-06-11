@@ -1,13 +1,5 @@
 #include "Minishell.h"
 
-typedef struct data
-{
-    char *av;
-    int infile;
-    int outfile;
-    struct data *next;
-}       t_data;
-
 t_data    *struct_args(char *cmd, int infile, int outfile)
 {
     t_data *new;
@@ -32,6 +24,21 @@ void	wl(int argc, char **env, char **av, int outfile)
 	exit(1);
 }
 
+int	ft_lstsize(t_data *lst)
+{
+	int	len;
+
+	if (!lst)
+		return (0);
+	len = 0;
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	return (len);
+}
+
 void execution(t_data *new, char **envp)
 {
     dup2(new->infile, STDIN_FILENO);
@@ -40,7 +47,8 @@ void execution(t_data *new, char **envp)
         dup2(new->outfile, STDOUT_FILENO);
         exec(new->av, envp);
         return ;
-    }
+    }else if (ft_lstsize(new) == 2)
+        pipex1(new->av, new->next->av, envp);
     else
     {
         while (new->next)
@@ -51,6 +59,7 @@ void execution(t_data *new, char **envp)
         exec(new->av, envp);
     }
 }
+
 
 int main(int argc, char **argv, char **envp)
 {
@@ -65,8 +74,8 @@ int main(int argc, char **argv, char **envp)
     {
         stock = readline("$ ");
         new_envp = environment(envp);
-        new = struct_args(stock, 0, 1);
-        // new->next = struct_args("pwd", 0, 1);
+        // new = struct_args("cat", 0, 1);
+        // new->next = struct_args("ls", 0, 1);
         // new->next->next = struct_args("top", 0, 1);
         if (!ft_strncmp(stock, "exit", 5))
             exit(1);
