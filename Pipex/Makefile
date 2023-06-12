@@ -6,13 +6,13 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 15:18:51 by mghalmi           #+#    #+#              #
-#    Updated: 2023/06/12 21:13:09 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/06/12 21:28:20 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-NAMEB = pipex_bonus
+NAMEB = pipex.a
 
 CC = clang
 
@@ -37,11 +37,11 @@ bonus: $(OBJB) $(HEADER)
 	ar rc $(NAMEB) $(OBJB)
 
 clean:
-	rm -f $(OBJ) $(OBJB)
+	rm -rvf $(OBJ) $(OBJB)
 
 fclean:
-	rm -f $(OBJ) $(OBJB)
-	rm -f $(NAME) $(NAMEB) bonus
+	rm -rvf $(OBJ) $(OBJB)
+	rm -rvf $(NAME) $(NAMEB)
 
 re: fclean all
 

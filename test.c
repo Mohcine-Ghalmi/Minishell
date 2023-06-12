@@ -12,18 +12,6 @@ t_data    *struct_args(char *cmd, int infile, int outfile)
     return new;
 }
 
-void	wl(int argc, char **env, char **av, int outfile)
-{
-	int	i;
-
-	i = 3;
-	while (i < argc - 2)
-		pipex(av[i++], env);
-	dup2(outfile, STDOUT_FILENO);
-	exec(av[i], env);
-	exit(1);
-}
-
 int	ft_lstsize(t_data *lst)
 {
 	int	len;
@@ -60,12 +48,11 @@ void execution(t_data *new, char **envp)
     }
 }
 
-
 int main(int argc, char **argv, char **envp)
 {
-    t_data *new;
+    // t_data *new;
     char    *stock;
-    int main_fork;
+    // int main_fork;
     char **new_envp;
 
     (void)argc;
@@ -79,15 +66,16 @@ int main(int argc, char **argv, char **envp)
         // new->next->next = struct_args("top", 0, 1);
         if (!ft_strncmp(stock, "exit", 5))
             exit(1);
-        main_fork = fork();
-        if (!main_fork)
-        {
-            execution(new, new_envp);
-            exit(1);
-        }
-        waitpid(main_fork, NULL, 0);
+        // main_fork = fork();
+        // if (!main_fork)
+        // {
+            // execution(new, new_envp);
+            exec(stock, new_envp);
+            // exit(1);
+        // }
+        // waitpid(main_fork, NULL, 0);
     }
-    free(new);
+    // free(new);
     free(new_envp);
     return 0;
 }
