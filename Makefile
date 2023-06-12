@@ -4,7 +4,7 @@ HEADER = Minishell.h
 
 HEADER_PIPEX = Pipex/pipex.h
 
-HEADER_LIBFT = libf/libft.h
+HEADER_LIBFT = libft/libft.h
 
 LIBFT_DIR = libft/
 
@@ -12,23 +12,23 @@ PIPEX_DIR = Pipex/
 
 SRC = test.c environment.c
 
-# OBJ = $(SRC:%.c=%.o)
+OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(HEADER) $(HEADER_PIPEX)
+$(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror -lreadline libft/libft.a Pipex/pipex.a $(SRC)
+	cc -Wall -Wextra -Werror -lreadline libft/libft.a Pipex/pipex.a $(OBJ) -o $(NAME)
 
 clean:
 	make clean -C $(LIBFT_DIR)
 	make clean -C $(PIPEX_DIR)
-	# rm -rf $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
 	make fclean -C $(LIBFT_DIR)
 	make fclean -C $(PIPEX_DIR)
-	re -rfv $(NAME)
+	rm -rfv $(NAME)
 
 re: fclean all
