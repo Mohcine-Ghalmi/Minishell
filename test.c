@@ -50,32 +50,31 @@ void execution(t_data *new, char **envp)
 
 int main(int argc, char **argv, char **envp)
 {
-    // t_data *new;
+    t_data *new;
     char    *stock;
     // int main_fork;
     char **new_envp;
 
     (void)argc;
     (void)argv;
-    while (1)
-    {
-        stock = readline("$ ");
+    // while (1)
+    // {
+        // stock = readline("$ ");
         new_envp = environment(envp);
-        // new = struct_args("cat", 0, 1);
-        // new->next = struct_args("ls", 0, 1);
+        new = struct_args("cat", 0, 1);
+        new->next = struct_args("ls", 0, open("a", O_RDONLY));
         // new->next->next = struct_args("top", 0, 1);
-        if (!ft_strncmp(stock, "exit", 5))
-            exit(1);
+        // if (!ft_strncmp(stock, "exit", 5))
+        //     exit(1);
         // main_fork = fork();
         // if (!main_fork)
         // {
-            // execution(new, new_envp);
-            exec(stock, new_envp);
+            execution(new, new_envp);
             // exit(1);
         // }
         // waitpid(main_fork, NULL, 0);
-    }
-    // free(new);
+    // }
+    free(new);
     free(new_envp);
     return 0;
 }

@@ -3,7 +3,8 @@
         "pipex.h": "c",
         "libft.h": "c",
         "stdlib.h": "c",
-        "locale": "c"
+        "locale": "c",
+        "get_next_line.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

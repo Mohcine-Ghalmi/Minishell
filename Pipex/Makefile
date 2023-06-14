@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 15:18:51 by mghalmi           #+#    #+#              #
-#    Updated: 2023/06/12 21:40:16 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/06/13 15:23:36 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,7 @@ $(NAME): $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 bonus: $(OBJB) $(HEADER)
-	ar rc $(NAMEB) $(OBJB)
+	$(CC) $(CFLAGS) -o $(NAMEB) $(OBJB)
 
 clean:
 	rm -rvf $(OBJ) $(OBJB)
