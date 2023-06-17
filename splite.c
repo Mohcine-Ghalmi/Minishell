@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/09 15:24:19 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/09 15:24:39 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:01:51 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	*ft_free(char **split)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**str;
 	int		i;

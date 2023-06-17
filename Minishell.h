@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/10 20:57:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/17 17:01:48 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include<unistd.h>
 # include<stdlib.h>
 # include <stdio.h>
+# include<string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -30,18 +31,17 @@ typedef struct e_lexer
 	char	heredoc;
 }				t_lexer;
 
-typedef struct e_cmnd
-{
-	
-	
-}				t_cmnd;
-
 typedef struct data
 {
 	char *av;
 	int infile;
 	int outfile;
 	struct data *next;
-}		t_cmds;
+}		t_data;
 
+void	ft_token(char *str, t_lexer *token);
+int		qudes(char *str);
+void	parsing_token(char *str, t_lexer *token);
+char	*ft_strjoin(char *s1, char *s2);
+char	**ft_split(char *s, char c);
 #endif
