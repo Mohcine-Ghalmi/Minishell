@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 15:18:51 by mghalmi           #+#    #+#              #
-#    Updated: 2023/06/13 15:23:36 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/06/19 18:40:42 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = pipex
 
 NAMEB = pipex.a
 
-CC = clang
+CC = cc
 
 CFLAGS = -Wall -Wextra -Werror 
 
@@ -34,7 +34,7 @@ $(NAME): $(OBJ) $(HEADER)
 	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 bonus: $(OBJB) $(HEADER)
-	$(CC) $(CFLAGS) -o $(NAMEB) $(OBJB)
+	ar rc $(NAMEB) $(OBJB)
 
 clean:
 	rm -rvf $(OBJ) $(OBJB)

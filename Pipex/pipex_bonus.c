@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/13 15:29:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/19 18:40:48 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,29 +78,29 @@ void	here_doc2(char **av, int infile, int outfile, char **env)
 	unlink("tmp.txt");
 }
 
-int	main(int argc, char **av, char **env)
-{
-	int	infile;
-	int	outfile;
+// int	main(int argc, char **av, char **env)
+// {
+// 	int	infile;
+// 	int	outfile;
 
-	if (argc >= 5)
-	{
-		check_space(av, argc);
-		outfile = openfile(av[argc - 1], STDOUT_FILENO);
-		if (ft_strncmp(av[1], "here_doc", 9) == 0)
-		{
-			infile = open("tmp.txt", O_CREAT | O_RDWR | O_APPEND, 0777);
-			here_doc2(av, infile, outfile, env);
-			exit(1);
-		}
-		infile = openfile(av[2], STDIN_FILENO);
-		if (infile == -1)
-			infile = 0;
-		// if (infile == -1)
-		// 	exit(1);
-		dup2(infile, STDIN_FILENO);
-		pipex(av[1], env);
-		wl(argc, env, av, outfile);
-	}
-	write(STDERR_FILENO, "Invalid number of arguments.\n", 29);
-}
+// 	if (argc >= 5)
+// 	{
+// 		check_space(av, argc);
+// 		outfile = openfile(av[argc - 1], STDOUT_FILENO);
+// 		if (ft_strncmp(av[1], "here_doc", 9) == 0)
+// 		{
+// 			infile = open("tmp.txt", O_CREAT | O_RDWR | O_APPEND, 0777);
+// 			here_doc2(av, infile, outfile, env);
+// 			exit(1);
+// 		}
+// 		infile = openfile(av[2], STDIN_FILENO);
+// 		if (infile == -1)
+// 			infile = 0;
+// 		// if (infile == -1)
+// 		// 	exit(1);
+// 		dup2(infile, STDIN_FILENO);
+// 		pipex(av[1], env);
+// 		wl(argc, env, av, outfile);
+// 	}
+// 	write(STDERR_FILENO, "Invalid number of arguments.\n", 29);
+// }
