@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 12:47:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/12 13:39:55 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/20 16:48:31 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(char *string)
 	char	*ptr;
 
 	i = 0;
-	ptr = (char *)malloc(sizeof(char) * strlen(string) + 1);
+ptr = (char *)malloc(sizeof(char) * strlen(string) + 1);
 	if (!ptr)
 		return (NULL);
 	while (string[i])
