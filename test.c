@@ -61,8 +61,8 @@ int main(int argc, char **argv, char **envp)
     // {
         // stock = readline("$ ");
         new_envp = environment(envp);
-        new = struct_args("cat", 0, 1);
-        new->next = struct_args("ls", 0, open("a", O_RDONLY));
+        new = struct_args("ls", 0, 1);
+        // new->next = struct_args("ls", 0, open("a", O_RDONLY));
         // new->next->next = struct_args("top", 0, 1);
         // if (!ft_strncmp(stock, "exit", 5))
         //     exit(1);
