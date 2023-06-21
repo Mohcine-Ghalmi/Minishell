@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   addstruckt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/11 15:21:16 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/16 13:01:50 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/06/21 18:41:39 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include<Minishell.h>
+#include "Minishell.h"
 
 t_data	*ft_lstnew(char *arv,int infile, int outfile)
 {
