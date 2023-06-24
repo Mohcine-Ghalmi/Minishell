@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:13:45 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/22 17:27:17 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/24 13:30:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ void	pipex1(char *cmd1, char *cmd2, char **env)
 		dup2(pipefd[0], STDIN_FILENO);
 		if (cmd2)
 			exec(cmd2, env);
-	}
+	} 
 	closepipe(pipefd);
 	pidwait(pid1, pid2);
-}
-
+}                                                                                                                                                                                                                                     
 
 void	pipex(char *cmd1, char **env)
 {

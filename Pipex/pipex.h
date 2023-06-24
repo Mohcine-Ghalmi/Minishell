@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:37 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/22 17:27:22 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/24 15:17:35 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,7 @@ void	pipex(char *cmd1, char **env);
 void	pipex1(char *cmd1, char *cmd2, char **env);
 void	wl(int argc, char **env, char **av, int outfile);
 void	exec(char *cmd, char **env);
+void	closepipe(int pipefd[2]);
+int	openfile(char *filename, int mode);
 
 #endif

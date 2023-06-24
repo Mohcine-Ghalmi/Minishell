@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/06/24 23:36:16 by mghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Minishell.h"
 
-t_data    *struct_args(char *cmd, int infile, int outfile)
+t_data    *struct_args(char *cmd, char *infile, char *outfile)
 {
     t_data *new;
 
     new = malloc(sizeof(t_data));
     new->av = cmd;
-    new->infile = infile;
-    new->outfile = outfile;
+    new->infile = openfile(infile, 0);
+    new->outfile = openfile(outfile, 1);
     new->next = NULL;
     return new;
 }
@@ -27,26 +39,47 @@ int	ft_lstsize(t_data *lst)
 	return (len);
 }
 
+int    create_pipes(int pipes[2])
+{
+    if (pipe(pipes) < 2)
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
+}
+
+void	pipex_test(t_data *cmd, char **env)
+{
+	pid_t	pid;
+    int pipefd[2];
+
+    pipe(pipefd);
+	pid = fork();
+	if (pid)
+	{
+		close(pipefd[1]);
+        if (cmd->infile > 2)
+            dup2(cmd->infile, STDIN_FILENO);
+        else
+		    dup2(pipefd[0], STDIN_FILENO);
+		waitpid(pid, NULL, 0);
+	}
+	else
+	{
+		close(pipefd[0]);
+        if (cmd->outfile > 2)
+            dup2(cmd->outfile, STDOUT_FILENO);
+        else if (ft_lstsize(cmd) > 1)
+		    dup2(pipefd[1], STDOUT_FILENO);
+		exec(cmd->av, env);
+	}
+    closepipe(pipefd);
+}
+
 void execution(t_data *new, char **envp)
 {
-    if (new->infile != 0)
-        dup2(new->infile, STDIN_FILENO);
-    if (!new->next)
+    while  (new)
     {
-        if (new->outfile != 1)
-            dup2(new->outfile, STDOUT_FILENO);
-        exec(new->av, envp);
-    }
-    else if (ft_lstsize(new) == 2)
-        pipex1(new->av, new->next->av, envp);
-    else
-    {
-        while (new->next)
-        {
-            pipex1(new->av, new->next->av, envp);
-            new = new->next->next;
-        }
-        exec(new->av, envp);
+        pipex_test(new, envp);
+        new = new->next;
     }
 }
 
@@ -63,9 +96,9 @@ int main(int argc, char **argv, char **envp)
     // {
         // stock = readline("$ ");
         new_envp = environment(envp);
-        new = struct_args("cat", 0, 1);
-        new->next = struct_args("ls", 0, 1);
-        // new->next->next = struct_args("top", 0, 1);
+        new = struct_args("cat", NULL, NULL);
+        new->next = struct_args("ls", NULL, NULL);
+        new->next->next = struct_args("top", NULL, NULL);
         // if (!ft_strncmp(stock, "exit", 5))
         //     exit(1);
         // main_fork = fork();
