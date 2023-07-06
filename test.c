@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/06 17:09:34 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:08:50 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ int main(int argc, char **argv, char **envp)
     (void)argc;
     (void)argv;
     new_envp = environment(envp);
-    new = struct_args("ls", NULL, "a");
-    // new->next = struct_args("sort", NULL, NULL);
-    // new->next->next = struct_args("top", NULL, NULL);
+    new = struct_args("ls", NULL, NULL);
+    new->next = struct_args("sort", NULL, NULL);
+    new->next->next = struct_args("cat", NULL, NULL);
     execution(new, new_envp);
     free(new);
     free(new_envp);

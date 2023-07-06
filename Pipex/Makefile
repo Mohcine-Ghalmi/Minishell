@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 15:18:51 by mghalmi           #+#    #+#              #
-#    Updated: 2023/06/19 18:40:42 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/06 22:05:31 by sleeps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJB = $(SRCB:c=o)
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
+	# $(CC) $(CFLAGS) $(OBJ) -o $(NAME)
 
 bonus: $(OBJB) $(HEADER)
 	ar rc $(NAMEB) $(OBJB)
