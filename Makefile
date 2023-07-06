@@ -3,22 +3,22 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/05 18:33:20 by selhilal          #+#    #+#              #
-#    Updated: 2023/06/21 18:41:25 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/06 17:10:21 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Minishell
 
-SRC = addstruckt.c  ft_strjoin.c  main.c        splite.c      syntaxerror.c
+SRC = linkedlist.c   main.c  utilis.c 
 
 OBJ = $(SRC:%.c=%.o)
 
 all : $(NAME)
 
-$(NAME) : Minishell.h $(OBJ)
+$(NAME) : minishell.h $(OBJ)
 	gcc -Wall -Wextra -Werror -lreadline $(OBJ) -o $(NAME)
 
 clean: 

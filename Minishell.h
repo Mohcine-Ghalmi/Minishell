@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/06/17 17:01:48 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:11:19 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,26 +22,38 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-typedef struct e_lexer
-{
-	char	pipe;
-	char	append[2];
-	char	in;
-	char	out;
-	char	heredoc;
-}				t_lexer;
 
-typedef struct data
-{
-	char *av;
-	int infile;
-	int outfile;
-	struct data *next;
-}		t_data;
+#define PIPE 0
+#define WORD 1
+#define IN	2
+#define	OUT 3
+#define DOLLAR 4
+#define DOBLE_DOL 5
+#define VAR 6
+#define APPEND 7
+#define HEC 8
 
-void	ft_token(char *str, t_lexer *token);
-int		qudes(char *str);
-void	parsing_token(char *str, t_lexer *token);
-char	*ft_strjoin(char *s1, char *s2);
-char	**ft_split(char *s, char c);
+int		notword(int c);
+char	*ft_substr(char *s, unsigned int start, size_t len);
+
+typedef struct node
+{
+	char *cmd;
+	char *outfile;
+	char *infile;
+	int expandedfile;
+	struct node *next;
+}		t_node;
+
+typedef struct token
+{
+	char		*str;
+	int			type;
+	struct token *next;
+}			t_token;
+
+t_token	*ft_lstnew(char	*str);
+t_token	*ft_lstlast(t_token	*lst);
+void	ft_lstadd_back(t_token	**lst, t_token	*new);
+
 #endif
