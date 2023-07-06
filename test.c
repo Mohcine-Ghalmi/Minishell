@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/24 23:36:16 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/06 17:09:34 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	pipex_test(t_data *cmd, char **env)
             dup2(cmd->infile, STDIN_FILENO);
         else
 		    dup2(pipefd[0], STDIN_FILENO);
-		waitpid(pid, NULL, 0);
 	}
 	else
 	{
@@ -81,35 +80,21 @@ void execution(t_data *new, char **envp)
         pipex_test(new, envp);
         new = new->next;
     }
+    while (wait(NULL) != -1);
 }
 
 int main(int argc, char **argv, char **envp)
 {
     t_data *new;
-    // char    *stock;
-    // int main_fork;
     char **new_envp;
 
     (void)argc;
     (void)argv;
-    // while (1)
-    // {
-        // stock = readline("$ ");
-        new_envp = environment(envp);
-        new = struct_args("cat", NULL, NULL);
-        new->next = struct_args("ls", NULL, NULL);
-        new->next->next = struct_args("top", NULL, NULL);
-        // if (!ft_strncmp(stock, "exit", 5))
-        //     exit(1);
-        // main_fork = fork();
-        // if (!main_fork)
-        // {
-            execution(new, new_envp);
-            // exec(new->av, new_envp);
-            // exit(1);
-        // }
-        // waitpid(0, 0, 0);
-    // }
+    new_envp = environment(envp);
+    new = struct_args("ls", NULL, "a");
+    // new->next = struct_args("sort", NULL, NULL);
+    // new->next->next = struct_args("top", NULL, NULL);
+    execution(new, new_envp);
     free(new);
     free(new_envp);
     return 0;
