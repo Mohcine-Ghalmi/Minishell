@@ -10,7 +10,7 @@ LIBFT_DIR = libft/
 
 PIPEX_DIR = Pipex/
 
-SRC = test.c environment.c
+SRC = exec_pipes.c environment.c random_test.c
 
 OBJ = $(SRC:%.c=%.o)
 

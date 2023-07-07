@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/06 22:08:50 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/07 17:44:50 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-t_data    *struct_args(char *cmd, char *infile, char *outfile)
+t_data    *struct_args(char *cmd, char *infile, char *outfile, char *append)
 {
     t_data *new;
 
@@ -20,6 +20,7 @@ t_data    *struct_args(char *cmd, char *infile, char *outfile)
     new->av = cmd;
     new->infile = openfile(infile, 0);
     new->outfile = openfile(outfile, 1);
+    new->append = open(append, O_CREAT | O_RDWR | O_APPEND, 0777);
     new->next = NULL;
     return new;
 }
@@ -37,13 +38,6 @@ int	ft_lstsize(t_data *lst)
 		lst = lst->next;
 	}
 	return (len);
-}
-
-int    create_pipes(int pipes[2])
-{
-    if (pipe(pipes) < 2)
-        return (EXIT_FAILURE);
-    return (EXIT_SUCCESS);
 }
 
 void	pipex_test(t_data *cmd, char **env)
@@ -64,7 +58,9 @@ void	pipex_test(t_data *cmd, char **env)
 	else
 	{
 		close(pipefd[0]);
-        if (cmd->outfile > 2)
+        if  (cmd->append > 2)
+            dup2(cmd->append, STDOUT_FILENO);
+        else if (cmd->outfile > 2)
             dup2(cmd->outfile, STDOUT_FILENO);
         else if (ft_lstsize(cmd) > 1)
 		    dup2(pipefd[1], STDOUT_FILENO);
@@ -81,21 +77,4 @@ void execution(t_data *new, char **envp)
         new = new->next;
     }
     while (wait(NULL) != -1);
-}
-
-int main(int argc, char **argv, char **envp)
-{
-    t_data *new;
-    char **new_envp;
-
-    (void)argc;
-    (void)argv;
-    new_envp = environment(envp);
-    new = struct_args("ls", NULL, NULL);
-    new->next = struct_args("sort", NULL, NULL);
-    new->next->next = struct_args("cat", NULL, NULL);
-    execution(new, new_envp);
-    free(new);
-    free(new_envp);
-    return 0;
 }
