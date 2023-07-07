@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 17:25:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/07 17:27:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,21 @@ void execution(t_data *new, char **envp)
         new = new->next;
     }
     while (wait(NULL) != -1);
+}
+
+int main(int argc, char **argv, char **envp)
+{
+    t_data *new;
+    char **new_envp;
+
+    (void)argc;
+    (void)argv;
+    new_envp = environment(envp);
+    new = struct_args("ls", NULL, NULL);
+    new->next = struct_args("sort", NULL, NULL);
+    new->next->next = struct_args("cat", NULL, NULL);
+    execution(new, new_envp);
+    free(new);
+    free(new_envp);
+    return 0;
 }
