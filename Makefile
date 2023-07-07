@@ -19,8 +19,7 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
-	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a Pipex/pipex.a -o $(NAME)
+	cc -Wall -Wextra -Werror -lreadline libft/libft.a Pipex/pipex.a $(OBJ) -o $(NAME)
 
 clean:
 	make clean -C $(LIBFT_DIR)

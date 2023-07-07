@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 14:27:50 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/07 17:20:09 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct data
 	char *av;
 	int infile;
 	int outfile;
-	int	
 	struct data *next;
 }       t_data;
 
