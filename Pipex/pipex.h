@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:37 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/04 17:20:33 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/07 17:55:27 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ void	pipex1(char *cmd1, char *cmd2, char **env);
 void	wl(int argc, char **env, char **av, int outfile);
 void	exec(char *cmd, char **env);
 void	closepipe(int pipefd[2]);
-int	    openfile(char *filename, int mode);
+int		openfile(char *filename, int mode);
 
 #endif

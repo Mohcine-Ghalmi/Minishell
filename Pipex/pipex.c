@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/11 15:48:40 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/07 17:55:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*getpath(char *cmd, char **env)
 	i = 0;
 	while (env[i] && ft_strncmp(env[i], "PATH=", 5))
 		i++;
-	if (!env[i]) 
+	if (!env[i])
 		return (cmd);
 	path = env[i] + 5;
 	while (path && ft_strchr1(path, ':') > 0)
@@ -67,26 +67,3 @@ void	exec(char *cmd, char **env)
 		write(STDERR_FILENO, ": command not found\n", 20);
 	}
 }
-
-// int	main(int argc, char **av, char **env)
-// {
-// 	int	infile;
-// 	int	outfile;
-
-// 	if (argc >= 2)
-// 	{
-// 		if (ft_strspace(av[1]) > 0 || ft_strspace(av[3]) > 0)
-// 		{
-// 			write(STDERR_FILENO, "Missing Command\n", 17);
-// 			return (0);
-// 		}
-// 		infile = openfile(av[2], STDIN_FILENO);
-// 		dup2(infile, STDIN_FILENO);
-// 		outfile = openfile(av[4], STDOUT_FILENO); 
-// 		dup2(outfile, STDOUT_FILENO);
-// 		pipex1(av[1], av[3], env);
-// 		exit(0);
-// 	}
-// 	write(STDERR_FILENO, "Invalid number of arguments.\n", 29);
-// 	return (0);
-// }
