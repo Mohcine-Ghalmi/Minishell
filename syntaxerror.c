@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:18:35 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/06 18:27:47 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:24:30 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int	ft_strlen(char *str)
  	{
  		if (str[i] == '>' && str[i + 2] == '|'
  			|| str[i] == '<' && str[i + 2] == '|')
- 			return (1);
- 		if (str[i] == '|' && str[i + 2] == '>'
- 			||str[i] == '|' && str[i + 2] == '<')
+ 			return (2);
+		if (str[i] == '>' && str[i + 1] == '|'
+ 			|| str[i] == '<' && str[i + 1] == '|')
  			return (2);
  		if (str[i] == '>' && str[i + 2] == '>')
  			return (3);
@@ -87,18 +87,18 @@ int	ft_strlen(char *str)
  		if(str[i] == '\"')
  		{
  			i++;
- 			if(ft_strchr(str, '\"') % 2 != 0)
- 				return(2);
+ 			if(ft_strchr(str, '\"') % 2 == 0)
+ 				return(1);
  		}
  		if(str[i] == '\'')
  		{
  			i++;
- 			if(ft_strchr(str, '\'') % 2 != 0)
- 				return(2);
+ 			if(ft_strchr(str, '\'') % 2 == 0)
+ 				return(1);
  		}
  		i++;
  	}
- 	return(1);
+ 	return(2);
  }
  
  void	parsing_token(char *str)
@@ -149,5 +149,4 @@ int	ft_strlen(char *str)
  			printf("syntax error near unexpected token `|'");
  			exit(1);
  		}
-
- }
+}

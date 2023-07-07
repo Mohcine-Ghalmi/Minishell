@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/06 19:59:57 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:45:30 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct node
 	char *cmd;
 	char *outfile;
 	char *infile;
-	int expandedfile;
+	char *append;
 	struct node *next;
 }		t_node;
 
@@ -55,10 +55,10 @@ typedef struct token
 	struct token *next;
 }			t_token;
 
-t_node	*ft_lstnew2(char	*cmd, char *out, char *in);
-void	ft_lstadd_back2(t_node	**lst, t_node	*new);
+t_node	*ft_lstnew2(char	*cmd, char *out, char *in,char *append);
+void	ft_lstadd_front(t_node	**lst, t_node	*new);
 t_token	*ft_lstnew(char	*str, int type);
 t_token	*ft_lstlast(t_token	*lst);
 void	ft_lstadd_back(t_token	**lst, t_token	*new);
-
+void	ft_lstdelone(t_token	*lst);
 #endif

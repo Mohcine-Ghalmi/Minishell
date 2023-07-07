@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/06 20:06:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:21:43 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,27 @@ int main(void)
 {
 	char	*text;
 	t_token	*token;
+	t_node	*node;
+	char *tst;
 	char *test;
 	int 	i;
 	int		j = 0;
 	int		f = 0;
 	token = NULL;
+	node = NULL;
 	while(1)
 	{
-		text = readline("> ");
-		parsing(text);
+		tst = readline("> ");
+		parsing(tst);
+		int t = 0;
+		int n = 0;
+		while(tst[t] != '\0')
+		{
+			if(tst[t] != ' ')
+				text[n++] = tst[t];
+			t++;
+		}
+		text[n] = '\0';
 		i = 0;
 		while(text[i])
 		{
@@ -120,10 +132,65 @@ int main(void)
 				ft_lstadd_back(&token, ft_lstnew(ft_substr(text, j, f - j), SPACE));
 			}
 		}
-		//while(token->type != PIPE)
-		//{
-		//	printf("%s, %d\n",token->str, token->type);
-		//	token = token->next;
-		//}
+		while (token)
+		{
+			printf("%s\n",token->str);
+			token = token->next;
+		}
 	}
 }
+		// *cmd;
+		// *infile;
+		// *outfile;
+		// *append;
+		//e(token)
+		//
+		//cmd = NULL;
+		//infile = NULL;
+		//outfile = NULL;
+		//append = NULL;
+		//while(token &&  token->type != PIPE)
+		//{
+		//	if (token->type == WORD) 
+		//	{
+		//		cmd = token->str;
+		//		token = token->next;
+		//	}
+		//	if(token->type == IN)
+		//	{
+		//		if (token->next->type == WORD)
+		//		{
+		//			infile = token->next->str;
+		//			token = token->next->next;
+		//		}
+		//	}
+		//	if(token->type == OUT)
+		//	{
+		//		token = token->next->next;
+		//		if (token->type == WORD)
+		//		{
+		//			outfile = token->str;
+		//			token = token->next->next;
+		//		}
+		//	}
+		//	if(token->type == APPEND)
+		//	{
+		//		if (token->next->type == WORD)
+		//		{
+		//			append = token->next->str;
+		//			token = token->next->next;
+		//		}
+		//	}
+		//	if (token)
+		//		token = token->next;
+		//}
+			//printf("%s,%s,%s,%s\n", cmd, infile, outfile, append);
+			//ft_lstadd_front(&node, ft_lstnew2(cmd, outfile, infile, append));
+			//if (token)
+			//	token = token->next;
+		//}
+		//while (node)
+		//{
+		//	printf("%s,%s,%s,%s\n",node->cmd,node->infile,node->outfile,node->append);
+		//	node = node->next;
+		//}

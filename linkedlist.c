@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:12:17 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/06 20:01:14 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/07 16:44:50 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	ft_lstadd_back(t_token	**lst, t_token	*new)
 	ft_lstlast(*lst)->next = new;
 }
 
-t_node	*ft_lstnew2(char	*cmd, char *out, char *in)
+t_node	*ft_lstnew2(char	*cmd, char *out, char *in, char *append)
 {
 	t_node	*ptr;
 
@@ -63,7 +63,7 @@ t_node	*ft_lstnew2(char	*cmd, char *out, char *in)
 	return (ptr);
 }
 
-void	ft_lstadd_back2(t_node	**lst, t_node	*new)
+void	ft_lstadd_front(t_node	**lst, t_node	*new)
 {
 	if (!new)
 		return ;
@@ -72,5 +72,13 @@ void	ft_lstadd_back2(t_node	**lst, t_node	*new)
 		*lst = new;
 		return ;
 	}
-	ft_lstlast(*lst)->next = new;
+	new -> next = *lst;
+	*lst = new;
+}
+
+void	ft_lstdelone(t_token	*lst)
+{
+	if (!lst)
+		return ;
+	free(lst);
 }
