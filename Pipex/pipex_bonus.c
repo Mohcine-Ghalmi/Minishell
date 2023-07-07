@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/21 17:47:52 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/07 14:14:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	openfile(char *filename, int mode)
 	{
 		if (access(filename, F_OK))
 		{
-			// write(STDERR_FILENO, filename, ft_strchr1(filename, 0));
-			// write(STDERR_FILENO, ": No such file or directory\n", 28);
+			write(STDERR_FILENO, filename, ft_strchr1(filename, 0));
+			write(STDERR_FILENO, ": No such file or directory\n", 28);
 			return (-1);
 		}
 		return (open(filename, O_RDONLY));

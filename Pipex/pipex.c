@@ -6,27 +6,11 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/11 15:48:40 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/07 14:13:50 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-int	openfile(char *filename, int mode)
-{
-	if (mode == STDIN_FILENO)
-	{
-		if (access(filename, F_OK))
-		{
-			write(STDERR_FILENO, filename, ft_strchr1(filename, 0));
-			write(STDERR_FILENO, ": No such file or directory\n", 28);
-			return (-1);
-		}
-		return (open(filename, O_RDONLY));
-	}
-	else
-		return (open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644));
-}
 
 char	*getpath(char *cmd, char **env)
 {
