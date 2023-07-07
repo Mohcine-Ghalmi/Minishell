@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 17:20:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/06/11 14:56:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,12 @@
 
 typedef struct data
 {
-	char *av;
-	int infile;
-	int outfile;
-	struct data *next;
+    char *av;
+    int infile;
+    int outfile;
+    struct data *next;
 }       t_data;
 
-char	**environment(char **envp);
-t_data	*struct_args(char *cmd, char *infile, char *outfile);
-void	pipex_test(t_data *cmd, char **env);
-void	execution(t_data *new, char **envp);
-int	ft_lstsize(t_data *lst);
+char **environment(char **envp);
 
 #endif

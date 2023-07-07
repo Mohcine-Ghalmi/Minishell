@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 17:27:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/06 22:08:50 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Minishell.h"
+#include "Minishell.h"
 
 t_data    *struct_args(char *cmd, char *infile, char *outfile)
 {
@@ -37,6 +37,13 @@ int	ft_lstsize(t_data *lst)
 		lst = lst->next;
 	}
 	return (len);
+}
+
+int    create_pipes(int pipes[2])
+{
+    if (pipe(pipes) < 2)
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
 }
 
 void	pipex_test(t_data *cmd, char **env)

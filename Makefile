@@ -10,7 +10,7 @@ LIBFT_DIR = libft/
 
 PIPEX_DIR = Pipex/
 
-SRC = exec/exec.c exec/environment.c random_test.c
+SRC = test.c environment.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -19,7 +19,8 @@ all: $(NAME)
 $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror -lreadline libft/libft.a Pipex/pipex.a $(OBJ) -o $(NAME)
+	make -C $(PIPEX_DIR)
+	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a Pipex/pipex.a -o $(NAME)
 
 clean:
 	make clean -C $(LIBFT_DIR)
