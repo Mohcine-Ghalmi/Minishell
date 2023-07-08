@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 20:49:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/08 18:21:36 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*getpath(char *cmd, char **env)
 		dir = ft_strdup1(path, ft_strchr1(path, ':'));
 		bin = path_join(dir, cmd);
 		free(dir);
-		if (access(bin, F_OK) == 0)
+		if (!access(bin, F_OK))
 			return (bin);
 		free(bin);
 		path += ft_strchr1(path, ':') + 1;
@@ -56,6 +56,13 @@ void	exec(char *cmd, char **env)
 	char	*path;
 
 	args = ft_split(cmd, ' ');
+	if (ft_strchr1(args[0], '/'))
+	{
+		execve(NULL, args, env);
+		write(STDERR_FILENO, cmd, ft_strchr1(cmd, 0));
+		write(STDERR_FILENO, ": command not found\n", 20);
+		exit(1);
+	}
 	path = getpath(args[0], env);
 	if (execve(path, args, env) < 0)
 	{

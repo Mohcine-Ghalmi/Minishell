@@ -1,0 +1,9 @@
+check builtins cmnds
+
+1-cd
+2-pwd
+3-echo
+4-export
+5-unset
+6-exit
+7-env

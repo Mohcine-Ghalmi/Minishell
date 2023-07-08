@@ -10,9 +10,10 @@ LIBFT_DIR = libft/
 
 PIPEX_DIR = Pipex/
 
-SRC = exec_pipes.c environment.c random_test.c
+SRC = exec_pipes.c builtins/environment.c Minishell.c
 
 OBJ = $(SRC:%.c=%.o)
+
 
 all: $(NAME)
 

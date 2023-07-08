@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 20:49:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/08 18:53:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,29 @@ int	ft_lstsize(t_data *lst)
 	return (len);
 }
 
+int    check_builtins(char *cmd)
+{
+    char	*builtins[7] = {
+        "echo",
+        "cd",
+        "pwd",
+        "export",
+        "unset",
+        "env",
+        "exit"
+	};
+    int i;
+
+    i  = 0;
+    while (i < 7)
+    {
+        if (!ft_strncmp(builtins[i], cmd, ft_strlen1(cmd)))
+            return 1;
+        i++;
+    }
+    return 0;
+}
+
 void	pipex_test(t_data *cmd, char **env)
 {
 	pid_t	pid;
@@ -64,7 +87,10 @@ void	pipex_test(t_data *cmd, char **env)
             dup2(cmd->outfile, STDOUT_FILENO);
         else if (ft_lstsize(cmd) > 1)
 		    dup2(pipefd[1], STDOUT_FILENO);
-		exec(cmd->av, env);
+        if (check_builtins(cmd->av))
+            printf("builtins");
+        else
+		    exec(cmd->av, env);
 	}
     closepipe(pipefd);
 }
