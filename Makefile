@@ -1,19 +1,30 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
+#    Updated: 2023/07/09 14:16:18 by mghalmi          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = Minishell
 
 HEADER = Minishell.h
 
-HEADER_PIPEX = Pipex/pipex.h
+HEADER_PIPEX = exec/Pipex/pipex.h
 
 HEADER_LIBFT = libft/libft.h
 
 LIBFT_DIR = libft/
 
-PIPEX_DIR = Pipex/
+PIPEX_DIR = exec/Pipex/
 
-SRC = exec_pipes.c builtins/environment.c Minishell.c
+SRC = exec/exec_pipes.c builtins/environment.c exec/builtins_check.c Minishell.c
 
 OBJ = $(SRC:%.c=%.o)
-
 
 all: $(NAME)
 
@@ -21,7 +32,7 @@ $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a Pipex/pipex.a -o $(NAME)
+	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME)
 
 clean:
 	make clean -C $(LIBFT_DIR)

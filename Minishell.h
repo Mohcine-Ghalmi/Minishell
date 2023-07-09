@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/08 18:46:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/09 13:42:04 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
-#include "Pipex/pipex.h"
+#include "exec/exec.h"
 #include <readline/readline.h>
 #include <readline/history.h>
 #include "libft/libft.h"

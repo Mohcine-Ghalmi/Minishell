@@ -1,6 +1,6 @@
 NAME = libft.a
 
-SRC =  ft_bzero.c ft_calloc.c ft_strdup.c ft_strlen.c
+SRC =  ft_bzero.c ft_calloc.c ft_strdup.c ft_strlen.c ft_strnstr.c
 
 OBJ = $(SRC:%.c=%.o)
 

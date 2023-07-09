@@ -6,11 +6,12 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/08 18:53:24 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/09 14:15:51 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minishell.h"
+#include "../Minishell.h"
+#include "exec.h"
 
 t_data    *struct_args(char *cmd, char *infile, char *outfile, char *append)
 {
@@ -38,29 +39,6 @@ int	ft_lstsize(t_data *lst)
 		lst = lst->next;
 	}
 	return (len);
-}
-
-int    check_builtins(char *cmd)
-{
-    char	*builtins[7] = {
-        "echo",
-        "cd",
-        "pwd",
-        "export",
-        "unset",
-        "env",
-        "exit"
-	};
-    int i;
-
-    i  = 0;
-    while (i < 7)
-    {
-        if (!ft_strncmp(builtins[i], cmd, ft_strlen1(cmd)))
-            return 1;
-        i++;
-    }
-    return 0;
 }
 
 void	pipex_test(t_data *cmd, char **env)

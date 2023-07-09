@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:37 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 17:55:27 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/09 13:42:29 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <err.h>
 # include <stdio.h>
 # include <string.h>
-# include "../Minishell.h"
+# include "../../Minishell.h"
 # include "get_next_line/get_next_line.h"
 
 char	*path_join(char *path, char *bin);

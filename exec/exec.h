@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/09 16:26:46 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/09 13:38:31 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/09 13:47:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef EXEC_H
+# define EXEC_H
 
-# include <stdio.h>
-# include <stdlib.h>
+# include "../Minishell.h"
+# include "Pipex/pipex.h"
 
-void	ft_bzero(void *s, size_t n);
-char	*ft_strdup(const char *s1);
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
+typedef struct data t_data;
+
+t_data		*struct_args(char *cmd, char *infile, char *outfile, char *append);
+int			ft_lstsize(t_data *lst);
+int			check_builtins(char *cmd);
+void		pipex_test(t_data *cmd, char **env);
+void 		execution(t_data *new, char **envp);
 
 #endif

@@ -1,6 +1,10 @@
 check builtins cmnds
 
 1-cd
+work with chdir (path)
+chdir return 0 if path valid
+change OLDPWD  IN ENV
+and PWD
 2-pwd
 3-echo
 4-export

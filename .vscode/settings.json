@@ -5,7 +5,9 @@
         "stdlib.h": "c",
         "locale": "c",
         "get_next_line.h": "c",
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "stdio.h": "c",
+        "exec.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }
