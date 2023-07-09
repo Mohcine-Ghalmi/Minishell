@@ -6,13 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:12:17 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/07 16:44:50 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/08 18:51:21 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-
 
 t_token	*ft_lstnew(char	*str, int type)
 {
@@ -26,7 +24,6 @@ t_token	*ft_lstnew(char	*str, int type)
 	ptr -> next = NULL;
 	return (ptr);
 }
-
 
 t_token	*ft_lstlast(t_token	*lst)
 {
@@ -74,11 +71,4 @@ void	ft_lstadd_front(t_node	**lst, t_node	*new)
 	}
 	new -> next = *lst;
 	*lst = new;
-}
-
-void	ft_lstdelone(t_token	*lst)
-{
-	if (!lst)
-		return ;
-	free(lst);
 }

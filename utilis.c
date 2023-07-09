@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:11:59 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/06 17:40:47 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/09 14:30:07 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,64 +19,28 @@ int	notword(int c)
 	return (0);
 }
 
-int spaces(int c)
+int	ft_isalpha(int c)
 {
-	if(c == '\t' || c == '\v' || c == '\f' || c == '\r' || c == ' ')
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
 		return (1);
 	return (0);
 }
 
-size_t	ft_strlen1(char *s)
+int	ft_isdigit(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-	{
-		i++;
-	}
-	return (i);
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }
 
-char	*ft_strdup(char *string)
+int	ft_isalnum(int c)
 {
-	int		i;
-	char	*ptr;
-
-	i = 0;
-	ptr = (char *)malloc(sizeof(char) * ft_strlen1(string)+1);
-	if (!ptr)
-		return (NULL);
-	while (string[i])
-	{
-		ptr[i] = string[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	return (ft_isalpha(c) || ft_isdigit(c));
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+int	spaces(int c)
 {
-	char	*ptr;
-	size_t	i;
-
-	if (!s)
-		return (NULL);
-	if (start < ft_strlen1(s))
-	{
-		if ((ft_strlen1(s) - start) < len)
-			ptr = malloc(ft_strlen1(s) - start + 1);
-		else
-			ptr = malloc(len + 1);
-		if (!ptr)
-			return (NULL);
-		i = -1;
-		while (++i < len && s[start])
-			ptr[i] = s[start++];
-		ptr[i] = 0;
-		return (ptr);
-	}
-	ptr = ft_strdup("");
-	return (ptr);
+	if (c == '\t' || c == '\v' || c == '\f' || c == '\r' || c == ' ')
+		return (1);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/07 16:45:30 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/09 15:10:28 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,43 +22,48 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-
-#define PIPE 0
-#define WORD 1
-#define IN	2
-#define	OUT 3
-#define DOLLAR 4
-#define DOBLE_DOL 5
-#define VAR 6
-#define APPEND 7
-#define SPACE 8
-#define HEC 9
+# define PIPE 0
+# define WORD 1
+# define IN	2
+# define OUT 3
+# define DOLLAR 4
+# define DOBLE_DOL 5
+# define VAR 6
+# define APPEND 7
+# define DOBLE_QUDES 8
+# define SINGLE_QUDES 9
+# define HEC 10
 
 int		notword(int c);
-int 	spaces(int c);
+int		ft_isalnum(int c);
+int		spaces(int c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
-void	parsing_token(char *str);
+void	parsing_token(char	*str);
 int		qudes(char *str);
+int		ft_strchr(const char *str, int c, int i);
+int		secend_syntax(char *str, int i);
+int		first_syntax(char c);
+int		last_syntax(char c);
+int		ft_strlen(char *str);
 typedef struct node
 {
-	char *cmd;
-	char *outfile;
-	char *infile;
-	char *append;
-	struct node *next;
+	char		*cmd;
+	char		*outfile;
+	char		*infile;
+	char		*append;
+	struct node	*next;
 }		t_node;
 
 typedef struct token
 {
-	char		*str;
-	int			type;
-	struct token *next;
+	char			*str;
+	int				type;
+	struct token	*next;
 }			t_token;
 
-t_node	*ft_lstnew2(char	*cmd, char *out, char *in,char *append);
+t_node	*ft_lstnew2(char	*cmd, char *out, char *in, char *append);
 void	ft_lstadd_front(t_node	**lst, t_node	*new);
 t_token	*ft_lstnew(char	*str, int type);
 t_token	*ft_lstlast(t_token	*lst);
 void	ft_lstadd_back(t_token	**lst, t_token	*new);
-void	ft_lstdelone(t_token	*lst);
 #endif
