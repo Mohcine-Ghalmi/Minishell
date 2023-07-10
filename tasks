@@ -1,5 +1,5 @@
 check builtins cmnds
-
+check if there is options 
 1-cd
 work with chdir (path)
 chdir return 0 if path valid

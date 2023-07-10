@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/09 17:38:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/10 09:22:54 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,16 @@ char **environment(char **envp)
 	return new_envp;
 }
 
-char	**update_env(char **env)
+void	show_env(char **new_env)
 {
-	
+	int	i;
+
+	i = 0;
+	while (new_env[i])
+		printf("%s\n", new_env[i++]);
 }
+
+// char	**update_env(char **env)
+// {
+	
+// }

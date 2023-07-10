@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/09 14:16:18 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/10 09:31:43 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,10 @@ LIBFT_DIR = libft/
 
 PIPEX_DIR = exec/Pipex/
 
-SRC = exec/exec_pipes.c builtins/environment.c exec/builtins_check.c Minishell.c
+SRC = exec/exec_pipes.c \
+	builtins/environment.c \
+	exec/builtins_check.c \
+	Minishell.c \
 
 OBJ = $(SRC:%.c=%.o)
 

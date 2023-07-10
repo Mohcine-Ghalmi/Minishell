@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/09 13:42:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/10 10:37:41 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ t_data		*struct_args(char *cmd, char *infile, char *outfile, char *append);
 int			ft_lstsize(t_data *lst);
 void		pipex_test(t_data *cmd, char **env);
 void		execution(t_data *new, char **envp);
-int			check_builtins(char *cmd);
 
 #endif
