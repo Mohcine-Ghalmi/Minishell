@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 18:26:56 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:00:13 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,14 @@ int	main(void)
 	t_token	*token;
 	char	*tst;
 	int		i;
+	int		j;
+	int		f;
 
 	token = NULL;
 	while (1)
 	{
 		tst = readline("> ");
-		if (parsing(tst) == 0)
-			return (0);
+		parsing(tst);
 		text = make_spaces(tst);
 		text = rem_qudes(text);
 		i = 0;

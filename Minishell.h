@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 18:00:36 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 20:29:50 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct node
 	char		*outfile;
 	char		*infile;
 	char		*append;
+	char		*heredoc;
 	struct node	*next;
 }		t_node;
 
