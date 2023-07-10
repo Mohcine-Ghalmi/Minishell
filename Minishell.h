@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/09 15:10:28 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 10:59:40 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ int		secend_syntax(char *str, int i);
 int		first_syntax(char c);
 int		last_syntax(char c);
 int		ft_strlen(char *str);
+char	*rem_qudes(char *str);
+char	*ft_strdup(char *string);
 typedef struct node
 {
 	char		*cmd;

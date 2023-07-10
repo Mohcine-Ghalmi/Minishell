@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/09 17:10:55 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 11:38:32 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,13 +111,13 @@ int	main(void)
 		tst = readline("> ");
 		parsing(tst);
 		text = make_spaces(tst);
-		i = 0;
+		text = rem_qudes(text);
 		while (text[i])
 		{
 			if (notword(text[i]))
 			{
 				j = i;
-				while (text[i] && notword(text[i]) && !spaces(text[i]))
+				while (text[i] && notword(text[i]))
 					i++;
 				f = i;
 				test = ft_substr(text, j, f - j);
@@ -133,10 +133,10 @@ int	main(void)
 				ft_lstadd_back(&token, ft_lstnew(test, operator(test)));
 			}
 		}
-	}
-	while (token)
-	{
-		printf("%s,%d\n", token->str, token->type);
-			token = token->next;
+		while (token)
+		{
+			printf("%s,%d\n", token->str, token->type);
+				token = token->next;
+		}
 	}
 }
