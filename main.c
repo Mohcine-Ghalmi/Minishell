@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 11:38:32 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:26:56 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	operator(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|' && str[i + 1] == '\0')
+		if (str[i] == '|' && *str++ == '\0')
 			return (PIPE);
 		if (str[i] == '>' && str[i + 1] == '\0')
 			return (IN);
@@ -31,7 +31,7 @@ int	operator(char *str)
 			return (HEC);
 		if (str[i] == '$' && str[i + 1] == '\0')
 			return (DOLLAR);
-		if (str[i] == '$' && str[i + 1] == '$') 
+		if (str[i] == '$' && str[i + 1] == '$')
 			return (DOBLE_DOL);
 		if (str[i] == '$' && ft_isalnum(str[i + 1]))
 			return (VAR);
@@ -42,14 +42,16 @@ int	operator(char *str)
 	return (1);
 }
 
-void	parsing(char *text)
+int	parsing(char *text)
 {
-	parsing_token(text);
-	if (qudes(text) == 3)
+	if (!parsing_token(text))
+		return (0);
+	if (!qudes(text))
 	{
 		printf("syntax error");
-		exit(1);
+		return (0);
 	}
+	return (1);
 }
 
 char	*make_spaces(char *tst)
@@ -96,22 +98,22 @@ char	*make_spaces(char *tst)
 int	main(void)
 {
 	char	*text;
+	char	*test;
 	t_token	*token;
 	char	*tst;
-	char	*test;
 	int		i;
-	int		j;
-	int		f;
 
-	j = 0;
-	f = 0;
 	token = NULL;
 	while (1)
 	{
 		tst = readline("> ");
-		parsing(tst);
+		if (parsing(tst) == 0)
+			return (0);
 		text = make_spaces(tst);
 		text = rem_qudes(text);
+		i = 0;
+		j = 0;
+		f = 0;
 		while (text[i])
 		{
 			if (notword(text[i]))
@@ -119,8 +121,8 @@ int	main(void)
 				j = i;
 				while (text[i] && notword(text[i]))
 					i++;
-				f = i;
-				test = ft_substr(text, j, f - j);
+					f = i;
+					test = ft_substr(text, j, f - j);
 				ft_lstadd_back(&token, ft_lstnew(test, operator(test)));
 			}
 			if (!notword(text[i]))
@@ -135,8 +137,8 @@ int	main(void)
 		}
 		while (token)
 		{
-			printf("%s,%d\n", token->str, token->type);
-				token = token->next;
+			printf("%s\n", token->str);
+			token = token->next;
 		}
 	}
 }

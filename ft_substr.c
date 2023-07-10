@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:55:24 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/09 13:56:01 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:03:38 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		ptr[i] = 0;
 		return (ptr);
 	}
-	ptr = ft_strdup("");
 	return (ptr);
 }

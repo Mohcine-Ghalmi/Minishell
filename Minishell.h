@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:51 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 10:59:40 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/10 18:00:36 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		notword(int c);
 int		ft_isalnum(int c);
 int		spaces(int c);
 char	*ft_substr(char *s, unsigned int start, size_t len);
-void	parsing_token(char	*str);
+int		parsing_token(char	*str);
 int		qudes(char *str);
 int		ft_strchr(const char *str, int c, int i);
 int		secend_syntax(char *str, int i);
