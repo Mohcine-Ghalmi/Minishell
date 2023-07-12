@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 02:23:55 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 02:25:55 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int	main(void)
 		heredoc = NULL;
 		while (token && token->type != PIPE)
 		{
-			if (token->type == WORD) 
+			if (token->type == WORD)
 			{
 				cmd = token->str;
 			}
@@ -182,10 +182,9 @@ int	main(void)
 					token = token->next->next;
 			}
 			if (!token)
-				break;
+				break ;
 			token = token->next;
 		}
-			//printf("%s,%s,%s,%s\n", cmd, infile, outfile, append);
 			ft_lstadd_front(&node, ft_lstnew2(cmd, outfile, infile, append));
 			if (token)
 				token = token->next;
