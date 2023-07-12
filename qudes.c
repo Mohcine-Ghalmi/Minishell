@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 22:45:35 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 22:54:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:26:20 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*rem_qudes(char *str)
 	while (str[i])
 	{
 		if (str[i] == '\'' || str[i] == '\"')
-		str = dt_queds(str, &i);
+			str = dt_queds(str, &i);
 		i++;
 	}
 	return (str);

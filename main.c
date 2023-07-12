@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 23:22:32 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/13 00:28:42 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,16 @@ int	main(void)
 		}
 		my_token(&token, text);
 		node = struct_forM(token, node);
+		//while (node)
+		//{
+		//	printf("%s,%s\n",node->cmd, node->variable);
+		//	node = node->next;
+		//}
+		while (token)
+		{
+			printf("%s,%d\n",token->str, token->type);
+			token = token->next;
+		}
 		//clear_history();
 	}
 }
