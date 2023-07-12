@@ -6,48 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 22:07:41 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 18:21:49 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:55:11 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-void	strqudes(int *yes, int c)
-{
-	if (c == '\'')
-	{
-		if (*yes == 1)
-			*yes = 0;
-		else if (*yes == 0)
-			*yes = 1;
-	}
-	if (c == '\"')
-	{
-		if (*yes == 2)
-			*yes = 0;
-		else if (*yes == 0)
-			*yes = 2;
-	}
-}
-
-int	qudes(char *str)
-{
-	int	i;
-	int	yes;
-
-	i = 0;
-	yes = 0;
-	while (str[i])
-	{
-		strqudes(&yes, str[i]);
-		i++;
-	}
-	if (yes == 1)
-		return (0);
-	if (yes == 2)
-		return (0);
-	return (1);
-}
 
 int	secend_syn(char *str, int i)
 {

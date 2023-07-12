@@ -6,21 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:18:35 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/09 13:36:56 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:51:34 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-int	ft_strlen(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	i++;
-	return (i);
-}
 
 int	first_syntax(char c)
 {

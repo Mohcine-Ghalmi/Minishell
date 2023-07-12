@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 02:09:57 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 01:48:11 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 22:46:36 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,42 +34,5 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i++] = s2[j++];
 	str[ft_strlen(s1) + ft_strlen(s2) + 1] = '\0';
 	free(s1);
-	free(s2);
-	return (str);
-}
-
-char	*dt_queds(char *str, int *i)
-{
-	char	*table[2];
-	char	*ptr;
-	char	b;
-	int		j;
-
-	b = str[*i];
-	j = *i + 1;
-	while (str[j] != b)
-		j++;
-	table[0] = ft_substr(str, 0, *i);
-	table[1] = ft_substr(str, *i + 1, j - *i - 1);
-	ptr = ft_strjoin(table[0], table[1]);
-	*i = j - 2;
-	table[0] = ft_strjoin(ptr, str + j + 1);
-	str = ft_strdup(table[0]);
-	free(table[0]);
-	free(table[1]);
-	return (str);
-}
-
-char	*rem_qudes(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-		str = dt_queds(str, &i);
-		i++;
-	}
 	return (str);
 }

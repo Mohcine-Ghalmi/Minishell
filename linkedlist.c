@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 17:12:17 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 02:56:21 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 21:42:07 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,18 @@ void	ft_lstadd_back(t_token	**lst, t_token	*new)
 	ft_lstlast(*lst)->next = new;
 }
 
-t_node	*ft_lstnew2(char	*cmd, char *out, char *in, char *append, char *heredoc)
+t_node	*ft_lstnew2(t_node	*new)
 {
 	t_node	*ptr;
 
 	ptr = (t_node *)malloc(sizeof(t_node));
 	if (!ptr)
 		return (NULL);
-	ptr -> cmd = cmd;
-	ptr -> outfile = out;
-	ptr -> infile = in;
-	ptr -> append = append;
-	ptr -> heredoc = heredoc;
+	ptr -> cmd = new->cmd;
+	ptr -> outfile = new->outfile;
+	ptr -> infile = new->infile;
+	ptr -> append = new->append;
+	ptr -> heredoc = new->heredoc;
 	ptr -> next = NULL;
 	return (ptr);
 }
