@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 02:25:55 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 03:00:01 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ int	main(void)
 			if (token->type == WORD)
 			{
 				cmd = token->str;
+				token = token->next;
 			}
 			else if(token->type == IN)
 			{
@@ -168,7 +169,7 @@ int	main(void)
 			}
 			else if(token->type == OUT)
 			{
-					outfile = token->str;
+					outfile = token->next->str;
 					token = token->next->next;
 			}
 			else if(token->type == APPEND)
@@ -183,15 +184,14 @@ int	main(void)
 			}
 			if (!token)
 				break ;
-			token = token->next;
 		}
-			ft_lstadd_front(&node, ft_lstnew2(cmd, outfile, infile, append));
+		ft_lstadd_front(&node, ft_lstnew2(cmd, outfile, infile, append, heredoc));
 			if (token)
 				token = token->next;
-		//while (node)
-		//{
-		//	printf("%s,%s,%s,%s\n",node->cmd,node->infile,node->outfile,node->append);
-		//	node = node->next;
-		//}
+		while (node)
+		{
+			printf("%s,%s,%s,%s,%s\n",node->cmd,node->infile,node->outfile,node->append,node->heredoc);
+			node = node->next;
+		}
 	}
 }
