@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 02:09:57 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 11:29:11 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 01:48:11 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s1)
 		while (s1[++i])
 			str[i] = s1[i];
-	//str[i++] = ' ';
 	while (s2[j] != '\0')
 		str[i++] = s2[j++];
 	str[ft_strlen(s1) + ft_strlen(s2) + 1] = '\0';
 	free(s1);
+	free(s2);
 	return (str);
 }
 

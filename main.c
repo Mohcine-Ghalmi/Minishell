@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:31:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 20:00:13 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/12 02:23:55 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	operator(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '|' && *str++ == '\0')
+		if (str[i] == '|' && str[i + 1] == '\0')
 			return (PIPE);
 		if (str[i] == '>' && str[i + 1] == '\0')
 			return (IN);
@@ -31,8 +31,6 @@ int	operator(char *str)
 			return (HEC);
 		if (str[i] == '$' && str[i + 1] == '\0')
 			return (DOLLAR);
-		if (str[i] == '$' && str[i + 1] == '$')
-			return (DOBLE_DOL);
 		if (str[i] == '$' && ft_isalnum(str[i + 1]))
 			return (VAR);
 		else
@@ -48,7 +46,7 @@ int	parsing(char *text)
 		return (0);
 	if (!qudes(text))
 	{
-		printf("syntax error");
+		printf("syntax error\n");
 		return (0);
 	}
 	return (1);
@@ -100,18 +98,23 @@ int	main(void)
 	char	*text;
 	char	*test;
 	t_token	*token;
+	t_node	*node;
 	char	*tst;
 	int		i;
 	int		j;
 	int		f;
 
 	token = NULL;
+	node = NULL;
 	while (1)
 	{
 		tst = readline("> ");
-		parsing(tst);
+		add_history(tst);
+		if (parsing(tst) == 1)
+		{
 		text = make_spaces(tst);
 		text = rem_qudes(text);
+		}
 		i = 0;
 		j = 0;
 		f = 0;
@@ -136,10 +139,60 @@ int	main(void)
 				ft_lstadd_back(&token, ft_lstnew(test, operator(test)));
 			}
 		}
-		while (token)
+		//while (token)
+		//{
+		//	printf("%s,%d\n", token->str,token->type);
+		//	token = token->next;
+		//}
+		char 	*cmd;
+		char	*infile;
+		char	*outfile;
+		char	*append;
+		char	*heredoc;
+
+		cmd = NULL;
+		infile = NULL;
+		outfile = NULL;
+		append = NULL;
+		heredoc = NULL;
+		while (token && token->type != PIPE)
 		{
-			printf("%s\n", token->str);
+			if (token->type == WORD) 
+			{
+				cmd = token->str;
+			}
+			else if(token->type == IN)
+			{
+					infile = token->next->str;
+					token = token->next->next;
+			}
+			else if(token->type == OUT)
+			{
+					outfile = token->str;
+					token = token->next->next;
+			}
+			else if(token->type == APPEND)
+			{
+					append = token->next->str;
+					token = token->next->next;
+			}
+			else if(token->type == HEC)
+			{
+					heredoc = token->next->str;
+					token = token->next->next;
+			}
+			if (!token)
+				break;
 			token = token->next;
 		}
+			//printf("%s,%s,%s,%s\n", cmd, infile, outfile, append);
+			ft_lstadd_front(&node, ft_lstnew2(cmd, outfile, infile, append));
+			if (token)
+				token = token->next;
+		//while (node)
+		//{
+		//	printf("%s,%s,%s,%s\n",node->cmd,node->infile,node->outfile,node->append);
+		//	node = node->next;
+		//}
 	}
 }
