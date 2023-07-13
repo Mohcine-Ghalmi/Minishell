@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 02:13:10 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 15:22:58 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 # include "../Minishell.h"
 
 typedef struct data t_data;
@@ -33,5 +34,6 @@ void	*ft_memmove(void *dest, const void *src, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 t_env	*ft_lstlast(t_env *lst);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+int	    ft_lstsize_env(t_env *lst);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/08 18:21:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 13:31:21 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	exec(char *cmd, char **env)
 	args = ft_split(cmd, ' ');
 	if (ft_strchr1(args[0], '/'))
 	{
-		execve(NULL, args, env);
+		execve(cmd, args, env);
 		write(STDERR_FILENO, cmd, ft_strchr1(cmd, 0));
 		write(STDERR_FILENO, ": command not found\n", 20);
 		exit(1);

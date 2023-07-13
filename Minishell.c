@@ -4,7 +4,7 @@ t_data  *pipes_cmnds()
 {
     t_data *new;
 
-    new = struct_args("env      ", NULL, NULL, NULL);
+    new = struct_args("./ls", NULL, NULL, NULL);
     // new->next = struct_args("ls", NULL, NULL, NULL);
     // new->next->next = struct_args("ls", NULL, NULL, NULL);
     return new;

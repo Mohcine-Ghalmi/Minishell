@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 02:13:43 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 16:26:47 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,26 @@ t_env		*envirment(char **old_env)
 	return (new_env);
 }
 
+char	**env_exec(t_env *new_env)
+{
+	char	**envp;
+	int i;
+	t_env	*tmp;
+	
+	i = 0;
+	tmp = new_env;
+	envp = malloc(ft_lstsize_env(new_env));
+	while (tmp)
+	{
+		envp[i] = ft_strjoin1(envp[i], tmp->key);
+		envp[i] = ft_strjoin1(envp[i], tmp->value);
+		printf("%s\n", envp[i]);
+		tmp = tmp->next;
+		i++;
+	}
+	return (envp);
+}
+
 void	show_env(t_env *new_env)
 {
 	while (new_env)
@@ -55,5 +75,10 @@ int main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-	show_env(envirment(envp));	
+	char **env;
+	int i = 0;	
+
+	env = env_exec(envirment(envp));
+	while (env[i])
+		printf("%s\n", env[i++]);
 }
