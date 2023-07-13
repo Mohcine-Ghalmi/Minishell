@@ -11,3 +11,6 @@ and PWD
 5-unset
 6-exit
 7-env
+
+
+from struct env  to table for excution
