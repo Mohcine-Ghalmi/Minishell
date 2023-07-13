@@ -1,16 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd_clone.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_back_env.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 17:11:28 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/12 21:56:50 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/12 23:09:20 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/12 23:24:56 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    pwd_clone(char **env)
+#include "libft.h"
+
+void	ft_lstadd_back_env(t_env **list, t_env *new)
 {
-    
+	if (!*list)
+	{
+		*list = new;
+		return ;
+	}
+	ft_lstlast(*list)->next = new;
 }

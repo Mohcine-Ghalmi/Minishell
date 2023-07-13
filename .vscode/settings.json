@@ -7,7 +7,8 @@
         "get_next_line.h": "c",
         "minishell.h": "c",
         "stdio.h": "c",
-        "exec.h": "c"
+        "exec.h": "c",
+        "ctype.h": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

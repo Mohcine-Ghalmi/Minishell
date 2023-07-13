@@ -27,8 +27,8 @@ void    my_free(char **to_free)
 
 int main(int argc, char **argv, char **envp)
 {
-    t_data *new;
-    char **new_envp;
+    t_data  *new;
+    t_env   *new_envp;
     
     // atexit(fuck);
     (void)argc;

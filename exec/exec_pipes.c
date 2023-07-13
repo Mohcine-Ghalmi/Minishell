@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/10 10:39:05 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 02:09:59 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,10 @@ int	ft_lstsize(t_data *lst)
 	return (len);
 }
 
-void	pipex_test(t_data *cmd, char **env)
+void	piper(t_data *cmd, t_env *new_env)
 {
 	pid_t	pid;
+    char    **exec_enev;
     int pipefd[2];
 
     pipe(pipefd);
@@ -65,17 +66,17 @@ void	pipex_test(t_data *cmd, char **env)
             dup2(cmd->outfile, STDOUT_FILENO);
         else if (ft_lstsize(cmd) > 1)
 		    dup2(pipefd[1], STDOUT_FILENO);
-        check_builtins(cmd->av, env);
-		exec(cmd->av, env);
+        // check_builtins(cmd->av, exec_enev);
+		exec(cmd->av, exec_enev);
 	}
     closepipe(pipefd);
 }
 
-void execution(t_data *new, char **envp)
+void execution(t_data *new, t_env *envp)
 {
     while  (new)
     {
-        pipex_test(new, envp);
+        piper(new, envp);
         new = new->next;
     }
     while (wait(NULL) != -1);

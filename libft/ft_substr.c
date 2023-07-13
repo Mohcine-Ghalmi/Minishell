@@ -1,16 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd_clone.c                                        :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 17:11:28 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/12 21:56:50 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/13 02:13:03 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/13 02:13:04 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    pwd_clone(char **env)
+#include "libft.h"
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    
+	char	*result;
+
+	if (!s)
+		return (NULL);
+	if (ft_strlen(s) < start)
+		len = 0;
+	if (ft_strlen(s) - start < len)
+		len = ft_strlen(s) - start;
+	result = (char *)malloc(len + 1);
+	if (!result)
+		return (NULL);
+	result[len] = '\0';
+	result = ft_memmove(result, s + start, len);
+	return (result);
 }
