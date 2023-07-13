@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 18:00:11 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 23:07:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	check_options(char	*cmd)
 void    check_builtins(char *cmd, t_env *env)
 {
 	int i;
-	char	*builtins[8] = {
+	char	*builtins[7] = {
 		"echo",
 		"cd",
 		"pwd",

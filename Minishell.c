@@ -26,9 +26,9 @@ int main(int argc, char **argv, char **envp)
     (void)argv;
     new_envp = envirment(envp);
     input = readline("$ ");
-    // new = struct_args(input, NULL, NULL, NULL);
+    new = struct_args(input, NULL, NULL, NULL);
     for_dollars(input, new_envp);
-    // execution(new, new_envp);
+    execution(new, new_envp);
     free(new);
     ft_lstclear_env(&new_envp);
     return (0);
