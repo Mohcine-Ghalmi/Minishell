@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lststzie_env.c                                  :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:58:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 16:58:04 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/13 17:50:35 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/13 17:52:34 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize_env(t_env *lst)
+int	ft_tolower(int c)
 {
-	int	len;
+	if (c >= 65 && c <= 90)
+	c += 32;
+	return (c);
+}
 
-	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
+void    ft_tolower_str(char *str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+    {
+        str[i] = ft_tolower(str[i]);
+        i++;
+    }
 }

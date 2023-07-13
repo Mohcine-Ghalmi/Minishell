@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lststzie_env.c                                  :+:      :+:    :+:   */
+/*   ft_lstclear_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:58:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 16:58:04 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/13 16:58:06 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/13 17:24:36 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize_env(t_env *lst)
+void	ft_lstclear_env(t_env **lst)
 {
-	int	len;
+	t_env	*tmp;
 
 	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
+		return ;
+	tmp = *lst;
+	while (*lst)
 	{
-		len++;
-		lst = lst->next;
+		tmp = (*lst)->next;
+        free((*lst)->key);
+        free((*lst)->value);
+        free(*lst);
+		*lst = tmp;
 	}
-	return (len);
+    free(*lst);
+	free(tmp);
 }

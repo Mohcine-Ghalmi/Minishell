@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 02:09:59 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 19:56:52 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	piper(t_data *cmd, t_env *new_env)
     char    **exec_enev;
     int pipefd[2];
 
-    pipe(pipefd);
+    if (pipe(pipefd) < 0)
+        return ;
 	pid = fork();
 	if (pid)
 	{
@@ -66,7 +67,8 @@ void	piper(t_data *cmd, t_env *new_env)
             dup2(cmd->outfile, STDOUT_FILENO);
         else if (ft_lstsize(cmd) > 1)
 		    dup2(pipefd[1], STDOUT_FILENO);
-        // check_builtins(cmd->av, exec_enev);
+        check_builtins(cmd->av, new_env);
+        exec_enev = env_exec(new_env);
 		exec(cmd->av, exec_enev);
 	}
     closepipe(pipefd);

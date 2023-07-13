@@ -6,14 +6,14 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/10 11:00:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 18:00:11 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-void	shoose_builtins(char	*builtins, char *cmd, char **env)
+void	shoose_builtins(char	*builtins, char *cmd, t_env *env)
 {
 	if (ft_strnstr(cmd, "echo", ft_strlen1(cmd)))
 		printf("%s\n", cmd);
@@ -52,9 +52,10 @@ int	check_options(char	*cmd)
 	return (word);
 }
 
-void    check_builtins(char *cmd, char **env)
+void    check_builtins(char *cmd, t_env *env)
 {
-	char	*builtins[7] = {
+	int i;
+	char	*builtins[8] = {
 		"echo",
 		"cd",
 		"pwd",
@@ -63,7 +64,6 @@ void    check_builtins(char *cmd, char **env)
 		"env",
 		"exit"
 	};
-	int i;
 
 	i  = 0;
 	while (i < 7)

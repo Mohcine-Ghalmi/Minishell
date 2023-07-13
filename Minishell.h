@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 02:03:15 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 22:12:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,7 @@ typedef struct env
 t_env		*envirment(char **old_env);
 t_data		*struct_args(char *cmd, char *infile, char *outfile, char *append);
 int			ft_lstsize(t_data *lst);
+char		**env_exec(t_env *new_env);
+void		for_dollars(char *key, t_env *new_env);
 
 #endif

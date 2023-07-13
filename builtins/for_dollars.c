@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lststzie_env.c                                  :+:      :+:    :+:   */
+/*   for_dollars.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:58:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 16:58:04 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/13 20:15:36 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/13 22:16:25 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Minishell.h"
 
-int	ft_lstsize_env(t_env *lst)
+void    for_dollars(char *key, t_env *new_env)
 {
-	int	len;
+    t_env   *tmp;
+    int aff;
 
-	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
+    aff = 0;
+    tmp = new_env;
+    while (tmp)
+    {
+        if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
+        {
+            aff = 1;
+            printf("%s", tmp->value);
+            return ;
+        }
+        tmp = tmp->next;
+    }
+    if (!aff)
+        printf("");
 }

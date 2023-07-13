@@ -6,11 +6,15 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 17:11:28 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/12 21:56:50 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/13 17:48:00 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    pwd_clone(char **env)
+void    pwd_clone(t_env *env)
 {
-    
+    t_env   *tmp;
+    while (tmp)
+    {
+        if()
+    }
 }
