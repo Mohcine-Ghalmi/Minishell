@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:38:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 17:00:00 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 18:02:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int         check_builtins(char *cmd, t_env *env);
 void	    piper(t_data *cmd, t_env *new_env);
 void 		execution(t_data *new, t_env *envp);
 void	    show_env(t_env *new_env);
-
+void        free_double(char    **str);
 
 #endif

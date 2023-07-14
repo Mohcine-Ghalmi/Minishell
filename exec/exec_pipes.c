@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 17:47:43 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 18:19:00 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ int	ft_lstsize(t_data *lst)
 	}
 	return (len);
 }
-#include <signal.h>
+
 void	piper(t_data *cmd, t_env *new_env)
 {
 	pid_t	pid;
     char    **exec_enev;
     int pipefd[2];
 
-    if (ft_lstsize(cmd) == 1)
-        check_builtins(cmd->av, new_env);
     if (pipe(pipefd) < 0)
         return ;
 	pid = fork();
@@ -79,12 +77,16 @@ void	piper(t_data *cmd, t_env *new_env)
 
 void execution(t_data *new, t_env *envp)
 {
-    while  (new)
-    {
-        piper(new, envp);
-        new = new->next;
-    }
+    int ifcond;
+
+    ifcond = 0;
+    if (ft_lstsize(new) == 1)
+        ifcond = check_builtins(new->av, envp);
+    if (ifcond == 0)
+        while  (new)
+        {
+            piper(new, envp);
+            new = new->next;
+        }
     while (wait(NULL) != -1);
-    // int pid = waitpid(-1, 0, 0);
-    // kill(pid, SIGKILL);
 }
