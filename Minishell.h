@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 16:24:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 18:38:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ int			ft_lstsize(t_data *lst);
 char		**env_exec(t_env *new_env);
 void		out_dollars(char *key, t_env *new_env);
 void    	pwd_clone(char  **cmd, t_env *new_env);
+char    	*pwd_env(t_env   *new_env);
 
 #endif
