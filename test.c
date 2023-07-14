@@ -1,6 +1,16 @@
 #include "Minishell.h"
 
+void    f()
+{
+    system("leaks a.out");
+}
+
 int main(void)
 {
-    printf("%d", chdir("/Users/mghalmi/Desktop/Minishell/builtins/"));
+    char    *ret;
+
+    atexit(f);
+    ret = getcwd(NULL, 0);
+    printf("%s\n",  ret);
+    free(ret);
 }

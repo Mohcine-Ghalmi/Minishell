@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 23:06:24 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 17:47:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,15 @@ int	ft_lstsize(t_data *lst)
 	}
 	return (len);
 }
-
+#include <signal.h>
 void	piper(t_data *cmd, t_env *new_env)
 {
 	pid_t	pid;
     char    **exec_enev;
     int pipefd[2];
 
+    if (ft_lstsize(cmd) == 1)
+        check_builtins(cmd->av, new_env);
     if (pipe(pipefd) < 0)
         return ;
 	pid = fork();
@@ -67,9 +69,10 @@ void	piper(t_data *cmd, t_env *new_env)
             dup2(cmd->outfile, STDOUT_FILENO);
         else if (ft_lstsize(cmd) > 1)
 		    dup2(pipefd[1], STDOUT_FILENO);
-        check_builtins(cmd->av, new_env);
         exec_enev = env_exec(new_env);
-		exec(cmd->av, exec_enev);
+        if (check_builtins(cmd->av, new_env))
+            exit(1);
+        exec(cmd->av, exec_enev);
 	}
     closepipe(pipefd);
 }
@@ -82,4 +85,6 @@ void execution(t_data *new, t_env *envp)
         new = new->next;
     }
     while (wait(NULL) != -1);
+    // int pid = waitpid(-1, 0, 0);
+    // kill(pid, SIGKILL);
 }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 17:50:35 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 17:52:34 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 15:38:05 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,18 @@ int	ft_tolower(int c)
 	return (c);
 }
 
-void    ft_tolower_str(char *str)
+char    *ft_tolower_str(char *str)
 {
-    int i;
+    int     i;
+    char    *new;
 
+    new = malloc(ft_strlen1(str) + 1);
     i = 0;
     while (str[i])
     {
-        str[i] = ft_tolower(str[i]);
+        new[i] = ft_tolower(str[i]);
         i++;
     }
+    new[i] ='\0';
+    return (new);
 }

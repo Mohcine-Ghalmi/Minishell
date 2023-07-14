@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 17:52:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 15:45:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_env	*ft_lstlast(t_env *lst);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int	    ft_lstsize_env(t_env *lst);
 void	ft_lstclear_env(t_env **lst);
-void    ft_tolower_str(char *str);
+char    *ft_tolower_str(char *str);
+char	*ft_strchr(const char *s, int c);
 
 #endif

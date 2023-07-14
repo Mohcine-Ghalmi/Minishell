@@ -6,76 +6,66 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 23:07:38 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/14 16:59:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-void	shoose_builtins(char	*builtins, char *cmd, t_env *env)
+void	shoose_builtins(char	*builtins, char **cmd, t_env *env)
 {
-	if (ft_strnstr(cmd, "echo", ft_strlen1(cmd)))
-		printf("%s\n", cmd);
-	else if (ft_strnstr(cmd, "cd", ft_strlen1(cmd)))
-		printf("%s\n", cmd);
-	else if (ft_strnstr(cmd, "pwd", ft_strlen1(cmd)))
-		printf("%s\n", cmd);
-	else if (ft_strnstr(cmd, "export", ft_strlen1(cmd)))
-		printf("%s\n", cmd);
-	else if (ft_strnstr(cmd, "unset", ft_strlen1(cmd)))
-		printf("%s\n", cmd);
-	else if (ft_strnstr(cmd, "env", ft_strlen1(cmd)))
+	if (ft_strnstr(cmd[0], "cd", ft_strlen1(cmd[0])))
+		printf("builtins %s\n", cmd[0]);
+	else if (ft_strnstr(cmd[0], "export", ft_strlen1(cmd[0])))
+		printf("builtins %s\n", cmd[0]);
+	else if (ft_strnstr(cmd[0], "unset", ft_strlen1(cmd[0])))
+		printf("builtins %s\n", cmd[0]);
+	else if (ft_strnstr(cmd[0], "exit", ft_strlen1(cmd[0])))
+		printf("builtins %s\n", cmd[0]);
+	else if (ft_strnstr(cmd[0], "pwd", ft_strlen1(cmd[0])))
+		pwd_clone(cmd, env);
+	else if (ft_strnstr(cmd[0], "env", ft_strlen1(cmd[0])))
 		show_env(env);
-	else if (ft_strnstr(cmd, "exit", ft_strlen1(cmd)))
-		printf("%s\n", cmd);
+	else if (ft_strnstr(cmd[0], "echo", ft_strlen1(cmd[0])))
+		printf("builtins %s\n", cmd[0]);
 }
 
-int	check_options(char	*cmd)
+void    free_double(char    **str)
 {
-	int	i;
-	int	word;
+    int i;
 
-	i = 0;
-	word = 0;
-	if (ft_strnstr(cmd, "cd", ft_strlen1(cmd)))
-		return 1;
-	while (cmd[i])
-	{
-		while (cmd[i] && cmd[i] == ' ')
-			i++;
-		if (cmd[i] != ' ' && cmd[i])
-			word++;
-		while (cmd[i] != ' ' && cmd[i])
-			i++;
-	}
-	return (word);
+    i  = 0;
+    while (str[i])
+        free(str[i++]);
+    free(str);
 }
 
-void    check_builtins(char *cmd, t_env *env)
+int    check_builtins(char *cmd, t_env *env)
 {
-	int i;
+	int 	i;
+	char	**builts_args;
 	char	*builtins[7] = {
-		"echo",
 		"cd",
-		"pwd",
 		"export",
 		"unset",
+		"exit",
 		"env",
-		"exit"
+		"echo",
+		"pwd",
 	};
-
+	builts_args = ft_split(cmd, ' ');
 	i  = 0;
 	while (i < 7)
 	{
-		if (ft_strnstr(cmd, builtins[i], ft_strlen1(cmd)))
+		if (ft_strnstr(builts_args[0], builtins[i], ft_strlen1(cmd)))
 		{
-			if (check_options(cmd) == 1)
-				shoose_builtins(builtins[i], cmd, env);
-			else
-				printf("error");
-			exit(0);
+			shoose_builtins(builtins[i], builts_args, env);
+			free_double(builts_args);
+			return (1);
 		}
 		i++;
 	}
+	free_double(builts_args);
+	return (0);
 }

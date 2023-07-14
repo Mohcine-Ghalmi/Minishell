@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   for_dollars.c                                      :+:      :+:    :+:   */
+/*   ft_strchr_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 20:15:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 12:50:40 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/14 15:45:03 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/14 15:45:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../Minishell.h"
+#include "libft.h"
 
-void    out_dollars(char *key, t_env *new_env)
+char	*ft_strchr(const char *s, int c)
 {
-    t_env   *tmp;
-    int aff;
+	int		i;
+	char	find;
 
-    aff = 0;
-    tmp = new_env;
-    while (tmp)
-    {
-        if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
-        {
-            aff = 1;
-            printf("%s", tmp->value);
-            return ;
-        }
-        tmp = tmp->next;
-    }
-    if (!aff)
-        printf("");
+	find = (char)c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == find)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == find)
+		return ((char *)s + i);
+	return (NULL);
 }

@@ -1,34 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   for_dollars.c                                      :+:      :+:    :+:   */
+/*   pwd_clone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 20:15:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 12:50:40 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/14 16:44:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-void    out_dollars(char *key, t_env *new_env)
+void    pwd_env(t_env   *new_env)
 {
     t_env   *tmp;
-    int aff;
 
-    aff = 0;
     tmp = new_env;
-    while (tmp)
+    while(tmp)
     {
-        if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
-        {
-            aff = 1;
-            printf("%s", tmp->value);
-            return ;
-        }
+        if (ft_strnstr(tmp->key, "env", ft_strlen1(tmp->key)))
+            printf("%s\n", tmp->value);
         tmp = tmp->next;
     }
-    if (!aff)
-        printf("");
+}
+
+void    pwd_clone(char  **cmd, t_env *new_env)
+{
+    char    *ret;
+
+    ret = getcwd(NULL, 0);
+    if (cmd[1] && cmd[1][0] == '-')
+    {
+        printf("pwd with no options\n");
+        free(ret);
+        return ;
+    }
+    if (ret !=  NULL)
+        printf("%s\n",  ret);
+    else
+        pwd_env(new_env);
+    free(ret);
 }
