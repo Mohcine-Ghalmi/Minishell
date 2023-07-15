@@ -6,42 +6,46 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 18:47:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/15 16:58:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-void    find_and_replace(t_env  *env, char *key, char *value)
+int    find_and_replace(t_env  **env, char *key, char *value)
 {
     t_env   *tmp;
 
-    tmp = env;
+    tmp = *env;
     while (tmp)
     {
         if (ft_strncmp(tmp->key, key, ft_strlen1(key)))
         {
             free(tmp->value);
-            tmp->value  = ft_strdup1(value);
+            tmp->value  = ft_strdup(value);
+            return 1;
         }
+        tmp = tmp->next;
     }
+    return 0;
 }
 
-void    cd_clone(char *cmd, t_env *env)
+void    cd_clone(char **cmd, t_env *env)
 {
-    char **args;
     char    *oldpwd;
 
-    args = ft_split(cmd, ' ');
-    if (args[2] != NULL)
+    if (cmd[2] != NULL)
     {
         printf("error");
         return;
     }
-    oldpwd = pwd_env(env);
-    if (!chdir(args[1]))
+    oldpwd = pwd_env(env, 0);
+    if (!chdir(cmd[1]))
     {
-        find_and_replace(env, "OLDPWD", oldpwd);
-        find_and_replace(env, "PWD", getcwd(NULL, 0));
+        if (!find_and_replace(&env, "OLDPWD", oldpwd))
+            ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("OLDPWD"), oldpwd));
+        find_and_replace(&env, "PWD", getcwd(NULL, 0));
     }
+    else
+        printf("minishell: cd: %s: No such file or directory\n",  cmd[1]);
 }

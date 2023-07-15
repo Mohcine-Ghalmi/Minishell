@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 18:19:00 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/15 18:09:05 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,11 @@ void	piper(t_data *cmd, t_env *new_env)
             dup2(cmd->outfile, STDOUT_FILENO);
         else if (ft_lstsize(cmd) > 1)
 		    dup2(pipefd[1], STDOUT_FILENO);
-        exec_enev = env_exec(new_env);
+        exec_enev = env_exec(new_env);  
         if (check_builtins(cmd->av, new_env))
             exit(1);
-        exec(cmd->av, exec_enev);
+        else
+            exec(cmd->av, exec_enev);
 	}
     closepipe(pipefd);
 }
@@ -78,15 +79,22 @@ void	piper(t_data *cmd, t_env *new_env)
 void execution(t_data *new, t_env *envp)
 {
     int ifcond;
+    int main_fork;
 
     ifcond = 0;
     if (ft_lstsize(new) == 1)
         ifcond = check_builtins(new->av, envp);
-    if (ifcond == 0)
+    main_fork = fork();
+    if (!main_fork)
+    {
+        if (ifcond == 0)
         while  (new)
         {
             piper(new, envp);
             new = new->next;
         }
+    }
+    else
+        exit(1);
     while (wait(NULL) != -1);
 }

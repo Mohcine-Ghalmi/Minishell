@@ -6,11 +6,11 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/14 15:00:24 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/15 10:29:27 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Minishell
+NAME = minishell
 
 HEADER = Minishell.h
 
@@ -25,6 +25,7 @@ PIPEX_DIR = exec/Pipex/
 SRC = exec/exec_pipes.c \
 	builtins/environment.c \
 	builtins/pwd_clone.c \
+	builtins/cd_clone.c \
 	exec/builtins_check.c \
 	builtins/for_dollars.c \
 	Minishell.c \

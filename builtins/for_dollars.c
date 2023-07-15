@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 20:15:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 12:50:40 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/15 14:59:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void    out_dollars(char *key, t_env *new_env)
         if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
         {
             aff = 1;
-            printf("%s", tmp->value);
+            printf("%s\n", tmp->value);
             return ;
         }
         tmp = tmp->next;
     }
     if (!aff)
-        printf("");
+        printf("\n");
 }

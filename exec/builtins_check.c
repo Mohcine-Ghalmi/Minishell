@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 16:59:38 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/15 17:32:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 
 void	shoose_builtins(char	*builtins, char **cmd, t_env *env)
 {
-	if (ft_strnstr(cmd[0], "cd", ft_strlen1(cmd[0])))
+	if (!ft_strncmp(cmd[0], "cd", ft_strlen1(cmd[0])))
+		cd_clone(cmd, env);
+	else if (!ft_strncmp(cmd[0], "export", ft_strlen1(cmd[0])))
 		printf("builtins %s\n", cmd[0]);
-	else if (ft_strnstr(cmd[0], "export", ft_strlen1(cmd[0])))
+	else if (!ft_strncmp(cmd[0], "unset", ft_strlen1(cmd[0])))
 		printf("builtins %s\n", cmd[0]);
-	else if (ft_strnstr(cmd[0], "unset", ft_strlen1(cmd[0])))
+	else if (!ft_strncmp(cmd[0], "exit", ft_strlen1(cmd[0])))
 		printf("builtins %s\n", cmd[0]);
-	else if (ft_strnstr(cmd[0], "exit", ft_strlen1(cmd[0])))
-		printf("builtins %s\n", cmd[0]);
-	else if (ft_strnstr(cmd[0], "pwd", ft_strlen1(cmd[0])))
+	else if (!ft_strncmp(cmd[0], "pwd", ft_strlen1(cmd[0])))
 		pwd_clone(cmd, env);
-	else if (ft_strnstr(cmd[0], "env", ft_strlen1(cmd[0])))
+	else if (!ft_strncmp(cmd[0], "env", ft_strlen1(cmd[0])))
 		show_env(env);
-	else if (ft_strnstr(cmd[0], "echo", ft_strlen1(cmd[0])))
+	else if (!ft_strncmp(cmd[0], "echo", ft_strlen1(cmd[0])))
 		printf("builtins %s\n", cmd[0]);
 }
 
@@ -58,7 +58,7 @@ int    check_builtins(char *cmd, t_env *env)
 	i  = 0;
 	while (i < 7)
 	{
-		if (ft_strnstr(builts_args[0], builtins[i], ft_strlen1(cmd)))
+		if (!ft_strncmp(builts_args[0], builtins[i], ft_strlen1(cmd)))
 		{
 			shoose_builtins(builtins[i], builts_args, env);
 			free_double(builts_args);

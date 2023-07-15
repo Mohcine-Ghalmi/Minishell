@@ -6,22 +6,23 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 18:38:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/15 18:09:30 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-char    *pwd_env(t_env   *new_env)
+char    *pwd_env(t_env   *new_env, int ret)
 {
     t_env   *tmp;
 
     tmp = new_env;
     while(tmp)
     {
-        if (ft_strnstr(tmp->key, "env", ft_strlen1(tmp->key)))
+        if (ft_strnstr(tmp->key, "PWD", ft_strlen1(tmp->key)))
         {
-            printf("%s\n", tmp->value);
+            if (ret == 1)
+                printf("%s\n", tmp->value);
             break;
         }
         tmp = tmp->next;
@@ -36,13 +37,13 @@ void    pwd_clone(char  **cmd, t_env *new_env)
     ret = getcwd(NULL, 0);
     if (cmd[1] && cmd[1][0] == '-')
     {
-        printf("pwd with no options\n");
+        printf("pwd with no options");
         free(ret);
         return ;
     }
     if (ret !=  NULL)
-        printf("%s\n",  ret);
+        printf("%s",  ret);
     else
-        pwd_env(new_env);
+        pwd_env(new_env, 1);
     free(ret);
 }
