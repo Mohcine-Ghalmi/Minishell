@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 00:18:32 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 00:47:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,43 +21,35 @@ void    print_bdash(char *str, int i)
         printf("%c", str[j++]);
 }
 
-void    checking_dash(char **cmd)
+int    checking_dash(char *cmd)
 {
-    int     i;
-    int     j;
+    int i;
 
-    j = 2;
-    if (!cmd[1])
-        while (cmd[j])
+    i = 0;
+    while (i < first_equale(cmd))
+    {
+        if (cmd[i] == '-')
         {
-            i = 0;
-            while (i < first_equale(cmd[1]))
-            {
-                if (cmd[1][i] == '-')
-                {
-                    printf("export: not valid in this context:");
-                    print_bdash(cmd[1], i);
-                }
-                i++;
-            }
-            j++;
+            printf("export: not valid in this context:");
+            print_bdash(cmd, i);
+            return (i);
         }
+        i++;
+    }
+    return (0);
 }
 
 int     size_double(char **cmd)
 {
     int i;
 
-    i = 0;    
+    i = 0;
     while (cmd[i])
-    {
-        printf("%d %s\n", i, cmd[i]);
         i++;
-    }
     return (i);
 }
 
-void    show_export(char **cmd, t_env *env, int showen)
+int    show_export(char **cmd, t_env *env, int showen)
 {
     t_env	*tmp;
 	int     i;
@@ -73,33 +65,31 @@ void    show_export(char **cmd, t_env *env, int showen)
             i++;
 	    }
     }
+    return (i);
 }
 
 void    export_clone(char   **cmd, t_env *env, int *showen)
 {
+    int     i;
     char    *key;
     char    *value;
-    int     i;
-
     
-    i = 0;
-    show_export(cmd, env, *showen);
-    if (ft_strchr1(cmd[1], '='))
+    i = 1;
+    if (!show_export(cmd, env, *showen))
     {
-        while (i < first_equale(cmd[1]))
+        while (cmd[i])
         {
-            if (cmd[1][i] == '-')
+            if (ft_strchr1(cmd[i], '='))
             {
-                printf("export: not valid in this context:");
-                print_bdash(cmd[1], i);
-                return ;
+                if (checking_dash(cmd[i]))
+                {
+                    key = ft_substr(cmd[i], 0, first_equale(cmd[i]));
+                    value = ft_substr(cmd[i], first_equale(cmd[i]), ft_strlen1(cmd[i]));
+                    ft_lstadd_back_env(&env, ft_lstnew_env(key, value));
+                    *showen += 1;
+                }
             }
             i++;
         }
-        key = ft_substr(cmd[1], 0, first_equale(cmd[1]));
-		value = ft_substr(cmd[1], first_equale(cmd[1]), ft_strlen1(cmd[1]));
-		ft_lstadd_back_env(&env, ft_lstnew_env(key, value));
-        *showen += 1;
     }
-   checking_dash(cmd);
 }
