@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:58:06 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/15 13:44:50 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/16 20:58:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_lstclear_struct(t_data **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-        free((*lst)->av);
+        // free((*lst)->av);
         free(*lst);
 		*lst = tmp;
 	}

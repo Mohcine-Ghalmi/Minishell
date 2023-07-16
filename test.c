@@ -1,16 +1,7 @@
 #include "Minishell.h"
+#include <string.h>
 
-void    f()
+int main(int argc, char **argv, char **envp)
 {
-    system("leaks a.out");
-}
-
-int main(void)
-{
-    char    *ret;
-
-    atexit(f);
-    ret = getcwd(NULL, 0);
-    printf("%s\n",  ret);
-    free(ret);
+    printf("%lu\n",  strlen(envp));
 }

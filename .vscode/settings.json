@@ -26,7 +26,11 @@
         "system_error": "c",
         "tuple": "c",
         "type_traits": "c",
-        "vector": "c"
+        "vector": "c",
+        "__hash_table": "c",
+        "__string": "c",
+        "string_view": "c",
+        "unordered_map": "c"
     },
     "C_Cpp.errorSquiggles": "disabled"
 }

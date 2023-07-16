@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/15 16:58:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/16 21:19:54 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ int    find_and_replace(t_env  **env, char *key, char *value)
     tmp = *env;
     while (tmp)
     {
-        if (ft_strncmp(tmp->key, key, ft_strlen1(key)))
+        if (!ft_strncmp(tmp->key, key, ft_strlen1(key)))
         {
-            free(tmp->value);
-            tmp->value  = ft_strdup(value);
+            tmp->value  = value;
             return 1;
         }
         tmp = tmp->next;
@@ -43,7 +42,7 @@ void    cd_clone(char **cmd, t_env *env)
     if (!chdir(cmd[1]))
     {
         if (!find_and_replace(&env, "OLDPWD", oldpwd))
-            ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("OLDPWD"), oldpwd));
+            ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd));
         find_and_replace(&env, "PWD", getcwd(NULL, 0));
     }
     else

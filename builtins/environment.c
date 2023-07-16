@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 18:45:25 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/16 22:26:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,20 @@ int	first_equale(char *string)
 	return -1;
 }
 
-t_env		*envirment(char **old_env)
+t_env	*empty_env(char	**envp, int *showen)
+{
+	t_env	*env;
+	
+	env = NULL;
+	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PWD="), ft_strdup(getcwd(NULL, 0))));
+	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("SHLVL="), ft_strdup("1")));
+	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("_="), ft_strdup("/user/bin/env")));
+	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PATH="), ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:.")));
+	*showen = 3;
+	return (env);
+}
+
+t_env		*envirment(char **old_env, int *showen)
 {
 	int 	i;
 	char	*key;
@@ -39,6 +52,9 @@ t_env		*envirment(char **old_env)
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value));
 		i++;
 	}
+	*showen = i;
+	if (i == 0)
+		new_env = empty_env(old_env, showen);
 	return (new_env);
 }
 
@@ -61,14 +77,17 @@ char	**env_exec(t_env *new_env)
 	return (envp);
 }
 
-void	show_env(t_env *new_env)
+void	show_env(t_env *new_env, int showen)
 {
 	t_env	*tmp;
+	int i;
 
+	i = 0;
 	tmp = new_env;
-	while (tmp)
+	while ((tmp && i < showen) && i <= showen - 1)
 	{
 		printf("%s%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
+		i++;
 	}
 }

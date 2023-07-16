@@ -1,16 +1,12 @@
 check builtins cmnds
 check if there is options 
-1-cd
-work with chdir (path)
-chdir return 0 if path valid
-change OLDPWD  IN ENV
-and PWD
-2-pwd
-3-echo
-4-export
+1-cd : done 
+2-pwd : done
+7-env : env env env env 
+3-echo ask siham about either the dollar will be showen on her code or mine
+4-export done 
 5-unset
 6-exit
-7-env
 
 
 from struct env  to table for excution

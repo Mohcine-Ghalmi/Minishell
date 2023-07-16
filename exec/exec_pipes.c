@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 18:40:59 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/16 23:43:59 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-t_data    *struct_args(char *cmd, char *infile, char *outfile, char *append)
+t_data    *struct_args(char **cmd, char *infile, char *outfile, char *append)
 {
     t_data *new;
 
@@ -41,12 +41,23 @@ int	ft_lstsize(t_data *lst)
 	return (len);
 }
 
-void	piper(t_data *cmd, t_env *new_env)
+void    piper_norm(t_data *cmd, int pipefd[2])
+{
+    close(pipefd[0]);
+    if  (cmd->append > 2)
+        dup2(cmd->append, STDOUT_FILENO);
+    else if (cmd->outfile > 2)
+        dup2(cmd->outfile, STDOUT_FILENO);
+    else if (ft_lstsize(cmd) > 1)
+	    dup2(pipefd[1], STDOUT_FILENO);
+}
+
+void	piper(t_data *cmd, t_env *new_env, int *showen)
 {
 	pid_t	pid;
     char    **exec_enev;
     int pipefd[2];
-        int i = 0;
+    int i = 0;
 
     if (pipe(pipefd) < 0)
         return ;
@@ -61,32 +72,26 @@ void	piper(t_data *cmd, t_env *new_env)
 	}
 	else
 	{
-		close(pipefd[0]);
-        if  (cmd->append > 2)
-            dup2(cmd->append, STDOUT_FILENO);
-        else if (cmd->outfile > 2)
-            dup2(cmd->outfile, STDOUT_FILENO);
-        else if (ft_lstsize(cmd) > 1)
-		    dup2(pipefd[1], STDOUT_FILENO);
+        piper_norm(cmd, pipefd);
         exec_enev = env_exec(new_env);
-        if (check_builtins(cmd->av, new_env))
+        if (check_builtins(cmd->av, new_env, showen))
             exit(1);
-        exec(cmd->av, exec_enev);
+        exec(cmd->av[0], exec_enev);
 	}
     closepipe(pipefd);
 }
 
-void execution(t_data *new, t_env *envp)
+void execution(t_data *new, t_env *envp, int *showen)
 {
     int ifcond;
 
     ifcond = 0;
     if (ft_lstsize(new) == 1)
-        ifcond = check_builtins(new->av, envp);
+        ifcond = check_builtins(new->av, envp, showen);
     if (ifcond == 0)
         while  (new)
         {
-            piper(new, envp);
+            piper(new, envp, showen);
             new = new->next;
         }
     while (wait(NULL) != -1);

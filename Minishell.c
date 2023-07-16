@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 18:34:38 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/17 00:14:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-t_data  *pipes_cmnds()
-{
-    t_data *new;
-
-    new = struct_args("env", NULL, NULL, NULL);
-    // new->next = struct_args("sort", NULL, NULL, NULL);
-    // new->next->next = struct_args("ls", NULL, NULL, NULL);
-    return new;
-}
 
 void    fuck(void)
 {
@@ -31,24 +21,24 @@ int main(int argc, char **argv, char **envp)
 {
     t_data  *new;
     t_env   *new_envp;
-    char    *input;
-    // int main_fork;
+    char    *av[1];
+    char    *av1[1];
+    int     showen;
     
     (void)argc;
     (void)argv;
-    new_envp = envirment(envp);
-    // while(1)
-    // {
-        input = readline("$ ");
-        new = struct_args(input, NULL, NULL, NULL);
-        // main_fork = fork();
-        // if (!main_fork)
-            execution(new, new_envp);
-        // else
-            // exit(1);
-        ft_lstclear_struct(&new);
-        // waitpid(0, 0, 0);
-    // }
+    av[0] = "export";
+    // av[1] = "env";
+    av1[0] = "env";
+    showen = 0;
+    new_envp = envirment(envp, &showen);
+    new = struct_args(av, NULL, NULL, NULL);
+    execution(new, new_envp, &showen);
+    // ft_lstclear_struct(&new);
+    // puts("\n---------------------------------------------");
+    // new = struct_args(av1, NULL, NULL, NULL);
+    // execution(new, new_envp, &showen);
+    ft_lstclear_struct(&new);
     ft_lstclear_env(&new_envp);
     // atexit(fuck);
     return (0);

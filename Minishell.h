@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/15 16:58:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/16 23:36:51 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 typedef struct data
 {
-	char *av;
+	char **av;
 	int infile;
 	int outfile;
 	int append;
@@ -39,13 +39,15 @@ typedef struct env
 	struct env *next;
 }		t_env;
 
-t_env		*envirment(char **old_env);
-t_data		*struct_args(char *cmd, char *infile, char *outfile, char *append);
+t_env		*envirment(char **old_env, int *showen);
+t_data		*struct_args(char **cmd, char *infile, char *outfile, char *append);
 int			ft_lstsize(t_data *lst);
 char		**env_exec(t_env *new_env);
 void		out_dollars(char *key, t_env *new_env);
 void    	pwd_clone(char  **cmd, t_env *new_env);
 char    	*pwd_env(t_env   *new_env, int ret);
 void    	cd_clone(char **cmd, t_env *env);
+void    	export_clone(char   **cmd, t_env *env, int *showen);
+int			first_equale(char *string);
 
 #endif

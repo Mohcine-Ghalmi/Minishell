@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/15 17:06:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/16 23:43:44 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void	exec(char *cmd, char **env)
 	char	**args;
 	char	*path;
 
-	puts("here");
 	args = ft_split(cmd, ' ');
 	path = getpath(args[0], env);
 	execve(path, args, env);
