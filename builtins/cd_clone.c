@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_clone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 21:19:54 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 15:01:56 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void    cd_clone(char **cmd, t_env *env)
     if (!chdir(cmd[1]))
     {
         if (!find_and_replace(&env, "OLDPWD", oldpwd))
-            ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd));
+            ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
         find_and_replace(&env, "PWD", getcwd(NULL, 0));
     }
     else

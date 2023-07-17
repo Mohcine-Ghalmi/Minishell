@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 23:25:11 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/15 16:47:30 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:55:14 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_env	*ft_lstnew_env(char *key, char *value)
+t_env	*ft_lstnew_env(char *key, char *value, int option)
 {
 	t_env	*new;
 
@@ -21,6 +21,7 @@ t_env	*ft_lstnew_env(char *key, char *value)
 		return (NULL);
 	new->key = key;
     new->value = value;
+	new->option = option;
 	new->next = NULL;
 	return (new);
 }

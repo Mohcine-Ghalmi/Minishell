@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/14 18:13:28 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 14:57:16 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	**ft_split(char const *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_lstadd_back_env(t_env **list, t_env *new);
-t_env	*ft_lstnew_env(char *key, char *value);
+t_env	*ft_lstnew_env(char *key, char *value, int option);
 void	*ft_memmove(void *dest, const void *src, size_t len);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
 t_env	*ft_lstlast(t_env *lst);

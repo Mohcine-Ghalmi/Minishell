@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/16 23:12:07 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/17 15:49:34 by sleeps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC = exec/exec_pipes.c \
 	builtins/pwd_clone.c \
 	builtins/cd_clone.c \
 	builtins/export_clone.c \
+	builtins/export_clone_utils.c \
 	exec/builtins_check.c \
 	builtins/for_dollars.c \
 	Minishell.c \

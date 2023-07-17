@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:26:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/01/23 15:34:42 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 17:35:32 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		return (0);
 	str1 = (unsigned char *)s1;
 	str2 = (unsigned char *)s2;
+	if (!str1)
+		return (0);
 	while (str1[i] && str2[i] && str1[i] == str2[i] && --n)
 		++i;
 	return (str1[i] - str2[i]);
