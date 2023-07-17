@@ -4,7 +4,7 @@ check if there is options
 2-pwd : done
 7-env : env env env env 
 3-echo ask siham about either the dollar will be showen on her code or mine
-4-export done 
+4-export always add the path at the after adding in envirement
 5-unset
 6-exit
 

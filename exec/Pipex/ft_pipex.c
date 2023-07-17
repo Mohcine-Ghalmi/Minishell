@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:13:45 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/07 17:54:52 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 02:03:38 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	pipex1(char *cmd1, char *cmd2, char **env)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
-		exec(cmd1, env);
+		exec1(cmd1, env);
 	}
 	pid2 = fork();
 	if (pid2 == -1 || pid1 == -1)
@@ -55,7 +55,7 @@ void	pipex1(char *cmd1, char *cmd2, char **env)
 		close(pipefd[1]);
 		dup2(pipefd[0], STDIN_FILENO);
 		if (cmd2)
-			exec(cmd2, env);
+			exec1(cmd2, env);
 	}
 	closepipe(pipefd);
 	pidwait(pid1, pid2);
@@ -78,7 +78,7 @@ void	pipex(char *cmd1, char **env)
 	{
 		close(pipefd[0]);
 		dup2(pipefd[1], STDOUT_FILENO);
-		exec(cmd1, env);
+		exec1(cmd1, env);
 	}
 	closepipe(pipefd);
 }

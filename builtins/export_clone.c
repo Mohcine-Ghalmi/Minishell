@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 00:47:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 03:12:53 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ int    show_export(char **cmd, t_env *env, int showen)
     {
         while ((tmp && i < showen) && i <= showen - 1)
 	    {
-            printf("declare -x %s\"%s\"\n", tmp->key, tmp->value);
+            if (!ft_strncmp(tmp->value, "-1", 2))
+                printf("declare -x %s\n", tmp->key);
+            else
+                printf("declare -x %s\"%s\"\n", tmp->key, tmp->value);
             tmp = tmp->next;
             i++;
 	    }
@@ -73,7 +76,7 @@ void    export_clone(char   **cmd, t_env *env, int *showen)
     int     i;
     char    *key;
     char    *value;
-    
+
     i = 1;
     if (!show_export(cmd, env, *showen))
     {
@@ -81,7 +84,7 @@ void    export_clone(char   **cmd, t_env *env, int *showen)
         {
             if (ft_strchr1(cmd[i], '='))
             {
-                if (checking_dash(cmd[i]))
+                 if (!checking_dash(cmd[i]))
                 {
                     key = ft_substr(cmd[i], 0, first_equale(cmd[i]));
                     value = ft_substr(cmd[i], first_equale(cmd[i]), ft_strlen1(cmd[i]));
@@ -89,6 +92,13 @@ void    export_clone(char   **cmd, t_env *env, int *showen)
                     *showen += 1;
                 }
             }
+            else
+                if (!checking_dash(cmd[i]))
+                {
+                    key = ft_strdup(cmd[i]);
+                    value = ft_strdup("-1");
+                    ft_lstadd_back_env(&env, ft_lstnew_env(key, value));
+                }
             i++;
         }
     }

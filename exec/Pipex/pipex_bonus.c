@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 23:43:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 02:04:37 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	*getpath(char *cmd, char **env)
 	return (cmd);
 }
 
-void	exec(char *cmd, char **env)
+void	exec1(char *cmd, char **env)
 {
 	char	**args;
 	char	*path;

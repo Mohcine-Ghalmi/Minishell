@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 23:43:59 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 02:56:48 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	piper(t_data *cmd, t_env *new_env, int *showen)
         exec_enev = env_exec(new_env);
         if (check_builtins(cmd->av, new_env, showen))
             exit(1);
-        exec(cmd->av[0], exec_enev);
+        exec(cmd->av, exec_enev);
 	}
     closepipe(pipefd);
 }

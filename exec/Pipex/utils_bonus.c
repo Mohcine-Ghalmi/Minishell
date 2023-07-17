@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 22:10:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/06/11 13:49:12 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 02:05:05 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,6 @@ void	wl(int argc, char **env, char **av, int outfile)
 	while (i < argc - 2)
 		pipex(av[i++], env);
 	dup2(outfile, STDOUT_FILENO);
-	exec(av[i], env);
+	exec1(av[i], env);
 	exit(1);
 }

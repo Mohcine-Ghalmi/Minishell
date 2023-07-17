@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/16 22:26:38 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/17 02:59:54 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,8 @@ void	show_env(t_env *new_env, int showen)
 	tmp = new_env;
 	while ((tmp && i < showen) && i <= showen - 1)
 	{
-		printf("%s%s\n", tmp->key, tmp->value);
+		if (ft_strncmp(tmp->value, "-1", 3))
+			printf("%s%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 		i++;
 	}

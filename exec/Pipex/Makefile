@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/23 15:18:51 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/08 16:34:38 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/17 02:07:53 by sleeps           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ HEADER = pipex.h
 
 SRC = pipex.c utils.c ft_split.c  ft_pipex.c
 
-SRCB = pipex_bonus.c utils.c ft_split.c ft_pipex.c get_next_line/get_next_line_utils.c get_next_line/get_next_line.c utils_bonus.c
+SRCB = pipex.c pipex_bonus.c utils.c ft_split.c ft_pipex.c get_next_line/get_next_line_utils.c get_next_line/get_next_line.c utils_bonus.c
 
 OBJ = $(SRC:c=o)
 
