@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:54:40 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/18 14:05:44 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-void	shoose_builtins(char	*builtins, char **cmd, t_env *env)
+void	shoose_builtins(char **cmd, t_env *env)
 {
 	if (!ft_strncmp(cmd[0], "cd", ft_strlen1(cmd[0])))
 		cd_clone(cmd, env);
@@ -58,7 +58,7 @@ int    check_builtins(char **cmd, t_env *env)
 	{
 		if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
 		{
-			shoose_builtins(builtins[i], cmd, env);
+			shoose_builtins(cmd, env);
 			return (1);
 		}
 		i++;

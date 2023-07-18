@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 18:26:18 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:13:06 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ int main(int argc, char **argv, char **envp)
     
     (void)argc;
     (void)argv;
-    av[0] = "export";
-    av[1] = "PWD=";
+    av[0] = "lsa";
+    av[1] = NULL;
     av[2] = NULL;
 
-    av1[0] = "export";
+    av1[0] = "env";
     av1[1] = NULL;
     new_envp = envirment(envp);
     new = struct_args(av, NULL, NULL, NULL);

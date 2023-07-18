@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 17:26:41 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/18 14:05:19 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ char    	*pwd_env(t_env   *new_env, int ret);
 void    	cd_clone(char **cmd, t_env *env);
 void    	export_clone(char   **cmd, t_env *env);
 int			first_equale(char *string);
-int    option_replace(char *key, t_env *env);
+int    		option_replace(char *key, t_env *env);
 
 #endif

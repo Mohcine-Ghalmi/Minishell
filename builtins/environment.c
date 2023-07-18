@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 18:26:00 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:05:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	first_equale(char *string)
 	return -1;
 }
 
-t_env	*empty_env(char	**envp)
+t_env	*empty_env()
 {
 	t_env	*env;
 	
@@ -52,7 +52,7 @@ t_env		*envirment(char **old_env)
 		i++;
 	}
 	if (i == 0)
-		new_env = empty_env(old_env);
+		new_env = empty_env();
 	return (new_env);
 }
 
@@ -82,7 +82,7 @@ void	show_env(t_env *new_env, char **cmd)
 	tmp = new_env;
 	if (cmd[1])
 	{
-		printf("env with no options");
+		printf("env with no options\n");
         return ;
 	}
 	while (tmp)

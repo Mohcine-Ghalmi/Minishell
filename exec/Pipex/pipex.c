@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 02:10:17 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/18 16:13:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,13 @@ void	exec(char **cmd, char **env)
 
 	args = cmd;
 	path = getpath(args[0], env);
-	execve(path, args, env);
+	if (execve(path, args, env) < 0)
+	{
+		write(STDERR_FILENO, "minishell: ", 12);
+		write(STDERR_FILENO, cmd[0], ft_strchr1(cmd[0], 0));
+		write(STDERR_FILENO, ": command not found\n", 20);
+		exit(1);
+	}
 }
 
 void	exec1(char *cmd, char **env)

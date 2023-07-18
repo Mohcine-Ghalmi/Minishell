@@ -3,23 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 18:27:37 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/18 15:38:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
-
-void    print_bdash(char *str, int i)
-{
-    int j;
-
-    j = 0;
-    while (j <= i)
-        printf("%c", str[j++]);
-}
 
 int    checking_dash(char *cmd)
 {
@@ -28,10 +19,10 @@ int    checking_dash(char *cmd)
     i = 0;
     while (i < first_equale(cmd))
     {
-        if (cmd[i] == '-')
+        if (cmd[i] == '=' || cmd[i] == '/' || cmd[i] == '%'
+            || cmd[i] == '+' || cmd[i] == '-')
         {
-            printf("export: not valid in this context:");
-            print_bdash(cmd, i);
+            printf("minishell: export: `%s` not valid in this context:", cmd);
             return (i);
         }
         i++;
@@ -62,7 +53,9 @@ int    show_export(char **cmd, t_env *env)
 	    {
             if (!ft_strncmp(tmp->value, "-1", 2))
                 printf("declare -x %s\n", tmp->key);
-            else if (ft_strncmp(tmp->value, "-2", 2))
+            else if (!ft_strncmp(tmp->value, "-2", 2))
+                printf("declare -x %s\"\"\n", tmp->key);
+            else
                 printf("declare -x %s\"%s\"\n", tmp->key, tmp->value);
             tmp = tmp->next;
             i++;
@@ -83,6 +76,7 @@ void    export_clone(char   **cmd, t_env *env)
         while (cmd[i])
         {
             if (!option_replace(cmd[i], env))
+            {
                 if (ft_strchr1(cmd[i], '='))
                 {
                     if (!checking_dash(cmd[i]))
@@ -99,6 +93,7 @@ void    export_clone(char   **cmd, t_env *env)
                         value = ft_strdup("-1");
                         ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 0));
                     }
+            }
             i++;
         }
     }

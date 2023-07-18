@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+         #
+#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/17 15:49:34 by sleeps           ###   ########.fr        #
+#    Updated: 2023/07/18 14:16:26 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,10 @@ $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME)
+	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) #-g -fsanitize=address
+
+# %.o: %.c $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
+# 		cc -Wall -Wextra -Werror -c $< -o $@ -g -fsanitize=address
 
 clean:
 	make clean -C $(LIBFT_DIR)

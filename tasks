@@ -1,6 +1,6 @@
 1-cd : done 
-2-pwd : done
-4-export : fix export PATH= should make the path empty 
+2-pwd : done watch ODLPWD at the first is empty 
+4-export : done
 7-env : done
 5-unset : 
 3-echo ask siham about either the dollar will be showen on her code or mine
