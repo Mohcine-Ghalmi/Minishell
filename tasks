@@ -1,10 +1,9 @@
+chenghe the builtins function inside the dup2 
+
 1-cd : done 
 2-pwd : done watch ODLPWD at the first is empty 
 4-export : done
 7-env : done
-5-unset : 
-3-echo ask siham about either the dollar will be showen on her code or mine
-6-exit : 
-
-
-from struct env  to table for excution
+5-unset : change pointers
+3-echo : just print the next  args
+6-exit : exit value add to envirment but never show up neither  "export / env"
