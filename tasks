@@ -1,4 +1,4 @@
-chenghe the builtins function inside the dup2 
+change the builtins function inside the dup2 
 
 1-cd : done 
 2-pwd : done watch ODLPWD at the first is empty 
@@ -7,3 +7,7 @@ chenghe the builtins function inside the dup2
 5-unset : change pointers
 3-echo : just print the next  args
 6-exit : exit value add to envirment but never show up neither  "export / env"
+
+-------------------test's--------------------------
+- if there is a builtins at the end of commands should not  change anything on the env
+- if cd ti a dir and delete it in an other terminal
