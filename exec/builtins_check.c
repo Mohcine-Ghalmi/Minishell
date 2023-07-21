@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/18 14:05:44 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/21 15:40:26 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	shoose_builtins(char **cmd, t_env *env)
 	else if (!ft_strncmp(cmd[0], "export", ft_strlen1(cmd[0])))
 		export_clone(cmd, env);
 	else if (!ft_strncmp(cmd[0], "unset", ft_strlen1(cmd[0])))
-		printf("builtins %s\n", cmd[0]);
+		unset_clone(env, cmd);
 	else if (!ft_strncmp(cmd[0], "exit", ft_strlen1(cmd[0])))
 		printf("builtins %s\n", cmd[0]);
 	else if (!ft_strncmp(cmd[0], "pwd", ft_strlen1(cmd[0])))

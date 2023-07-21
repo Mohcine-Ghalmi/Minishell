@@ -15,7 +15,7 @@ void	heredoc_file(char *limiter, int outfile)
 	{
 		ft_putstr_fd(str, outfile);
 		free(str);
-		str = readline("\n>");
+		str = readline(">");
 	}
 	free(end);
 	close(outfile);
@@ -32,14 +32,5 @@ void	heredoc(char *limiter, int infile, int outfile)
 	heredoc_file(limiter, out);
 	dup2(infile, STDIN_FILENO);
 	dup2(outfile, STDOUT_FILENO);
-	// unlink("tmp.txt");
-}
-
-int main(void)
-{
-    heredoc("hey", 0, 1);
-    puts("done 1");
-    heredoc("you", 0, 1);
-    puts("done 2");
-    heredoc("me", 0, 1);
+	unlink("tmp.txt");
 }

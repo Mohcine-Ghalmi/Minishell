@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 14:57:16 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/21 15:40:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void	ft_lstclear_env(t_env **lst);
 char    *ft_tolower_str(char *str);
 char	*ft_strchr(const char *s, int c);
 void	ft_lstclear_struct(t_data **lst);
+void	ft_lstdelone(t_env *lst);
 
 #endif

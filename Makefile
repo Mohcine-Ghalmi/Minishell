@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+         #
+#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/20 14:59:10 by sleeps           ###   ########.fr        #
+#    Updated: 2023/07/21 15:41:10 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,12 @@ SRC = exec/exec_pipes.c \
 	builtins/pwd_clone.c \
 	builtins/cd_clone.c \
 	builtins/export_clone.c \
+	builtins/unset_clone.c \
 	builtins/export_clone_utils.c \
 	exec/builtins_check.c \
-	exec/hereDoc.c \
 	builtins/for_dollars.c \
-	# Minishell.c \
+	Minishell.c \
+	# exec/hereDoc.c \
 
 OBJ = $(SRC:%.c=%.o)
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/20 13:30:33 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/21 17:26:55 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int main(int argc, char **argv, char **envp)
     
     (void)argc;
     (void)argv;
-    av[0] = "cd";
-    av[1] = NULL;
+    av[0] = "unset";
+    av[1] = "PWD=";
     av[2] = NULL;
 
     av1[0] = "env";

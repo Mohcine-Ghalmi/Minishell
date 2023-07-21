@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_clone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/20 15:04:12 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/21 14:44:12 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,32 @@ int    find_and_replace(t_env  **env, char *key, char *value)
     return 0;
 }
 
+char    *return_value(t_env *env, char *key)
+{
+    t_env   *tmp;
+
+    tmp = env;
+    while (tmp)
+    {
+        if (!ft_strncmp(tmp->key, key, ft_strlen1(key)))
+            return ft_strdup(tmp->value);
+        tmp = tmp->next;
+    }
+    return NULL;
+}
+
 void    cd_clone(char **cmd, t_env *env)
 {
     char    *oldpwd;
 
-    if (cmd[2] != NULL)
+    oldpwd = pwd_env(env, 0);
+    if (cmd[1] == NULL)
     {
-        printf("error");
+        if (!find_and_replace(&env, "OLDPWD", oldpwd))
+            ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
+        find_and_replace(&env, "PWD", return_value(env, "HOME"));
         return;
     }
-    oldpwd = pwd_env(env, 0);
     if (!chdir(cmd[1]))
     {
         if (!find_and_replace(&env, "OLDPWD", oldpwd))
