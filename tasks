@@ -4,8 +4,8 @@ change the builtins function inside the dup2
 2-pwd : done watch ODLPWD at the first is empty 
 4-export : done
 7-env : done
-5-unset : change pointers
-3-echo : just print the next  args
+5-unset : done
+3-echo : done
 6-exit : exit value add to envirment but never show up neither  "export / env"
 
 -------------------test's--------------------------

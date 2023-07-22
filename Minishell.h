@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/21 15:39:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/22 13:10:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void    	export_clone(char   **cmd, t_env *env);
 int			first_equale(char *string);
 int    		option_replace(char *key, t_env *env);
 void    	unset_clone(t_env *env, char **cmd);
+void    	echo_clone(char **cmd);
 
 #endif

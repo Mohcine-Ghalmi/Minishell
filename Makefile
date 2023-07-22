@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/21 15:41:10 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/22 13:11:45 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = exec/exec_pipes.c \
 	builtins/export_clone.c \
 	builtins/unset_clone.c \
 	builtins/export_clone_utils.c \
+	builtins/echo_clone.c \
 	exec/builtins_check.c \
 	builtins/for_dollars.c \
 	Minishell.c \

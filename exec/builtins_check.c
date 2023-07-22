@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/21 15:40:26 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/22 13:10:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	shoose_builtins(char **cmd, t_env *env)
 	else if (!ft_strncmp(cmd[0], "env", ft_strlen1(cmd[0])))
 		show_env(env, cmd);
 	else if (!ft_strncmp(cmd[0], "echo", ft_strlen1(cmd[0])))
-		printf("builtins %s\n", cmd[0]);
+		echo_clone(cmd);
 }
 
 void    free_double(char    **str)
