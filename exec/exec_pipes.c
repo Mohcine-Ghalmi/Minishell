@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/19 21:30:48 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/23 09:30:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ void execution(t_data *new, t_env *envp)
     if (ft_lstsize(new) == 1)
         ifcond = check_builtins(new->av, envp);
     if (ifcond == 0)
-        while  (new)
-        {
-            piper(new, envp);
-            new = new->next;
-        }
+    while  (new)
+    {
+        piper(new, envp);
+        new = new->next;
+    }
     while (wait(NULL) != -1);
 }

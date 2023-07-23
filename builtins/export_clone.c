@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/18 15:38:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/23 18:10:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int    checking_dash(char *cmd)
     i = 0;
     while (i < first_equale(cmd))
     {
-        if (cmd[i] == '=' || cmd[i] == '/' || cmd[i] == '%'
-            || cmd[i] == '+' || cmd[i] == '-')
+        if (cmd[i] == '/' || cmd[i] == '%'
+            || cmd[i] == '-')
         {
-            printf("minishell: export: `%s` not valid in this context:", cmd);
+            printf("minishell: export: `%s` not valid identifier\n", cmd);
             return (i);
         }
         i++;
@@ -64,6 +64,23 @@ int    show_export(char **cmd, t_env *env)
     return (i);
 }
 
+void    add_to_env(char *cmd, t_env *env)
+{
+    char    *prb;
+    char    *key;
+    char    *value;
+
+    key = ft_substr(cmd, 0, first_equale(cmd));
+    value = ft_substr(cmd, first_equale(cmd), ft_strlen1(cmd));
+    if (find_key(ft_substr(cmd, 0, first_equale(cmd) - 1), env))
+    {
+        prb = ft_strjoin1("unset ", ft_substr(cmd, 0, first_equale(cmd) - 1));
+        unset_clone(env,  ft_split(prb, ' '));
+    }
+    value = add_to_value(env, ft_substr(cmd, 0, first_equale(cmd) - 2), value);
+    ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 1));
+}
+
 void    export_clone(char   **cmd, t_env *env)
 {
     int     i;
@@ -80,11 +97,7 @@ void    export_clone(char   **cmd, t_env *env)
                 if (ft_strchr1(cmd[i], '='))
                 {
                     if (!checking_dash(cmd[i]))
-                    {
-                        key = ft_substr(cmd[i], 0, first_equale(cmd[i]));
-                        value = ft_substr(cmd[i], first_equale(cmd[i]), ft_strlen1(cmd[i]));
-                        ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 1));
-                    }
+                        add_to_env(cmd[i], env);
                 }
                 else
                     if (!checking_dash(cmd[i]))

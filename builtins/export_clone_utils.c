@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   export_clone_utils.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/07/23 18:07:03 by mghalmi          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../Minishell.h"
 
 int    option_replace(char *key, t_env *env)
@@ -20,4 +32,21 @@ int    option_replace(char *key, t_env *env)
         tmp = tmp->next;
     }
     return (0);
+}
+
+char   *add_to_value(t_env *env, char *key, char *value)
+{
+    t_env *tmp;
+
+    tmp = env;
+    while (tmp)
+    {
+        if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
+        {
+            value = ft_strjoin1(tmp->value, value);
+            printf("%s\n", value);
+        }
+        tmp = tmp->next;
+    }
+    return (value);
 }
