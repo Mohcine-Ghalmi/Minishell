@@ -5,7 +5,7 @@ change the builtins function inside the dup2
 4-export : done
 7-env : done
 5-unset : done
-3-echo : done
+3-echo : echo -nnnnnnnnnnnnnnnnnnnß
 6-exit : exit value add to envirment but never show up neither  "export / env"
 
 -------------------test's--------------------------
