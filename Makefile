@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/22 13:11:45 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/24 15:19:29 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ PIPEX_DIR = exec/Pipex/
 
 SRC = exec/exec_pipes.c \
 	builtins/environment.c \
+	builtins/envirment_utils.c \
 	builtins/pwd_clone.c \
 	builtins/cd_clone.c \
 	builtins/export_clone.c \

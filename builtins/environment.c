@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/21 17:13:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:18:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ t_env		*envirment(char **old_env)
 	{
 		key = ft_substr(old_env[i], 0, first_equale(old_env[i]));
 		value = ft_substr(old_env[i], first_equale(old_env[i]), ft_strlen1(old_env[i]));
+		if (!ft_strncmp(key, "SHLVL=", 7))
+			value = shlvl(value);
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		i++;
 	}
@@ -87,13 +89,8 @@ void	show_env(t_env *new_env, char **cmd)
 	}
 	while (tmp)
 	{
-		if (ft_strncmp(tmp->value, "-1", 3) && tmp->option == 1)
-		{
-			printf("%s", tmp->key);
-			if (ft_strncmp(tmp->value, "-2", 3))
-				printf("%s",tmp->value);
-			printf("\n");
-		}
+		if (tmp->option == 1)
+			printf("%s%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 }

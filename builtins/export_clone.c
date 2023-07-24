@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/23 18:10:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/24 16:14:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,13 @@
 int    checking_dash(char *cmd)
 {
     int i;
+    int len;
 
     i = 0;
-    while (i < first_equale(cmd))
+    len =  first_equale(cmd);
+    if (len == -1)
+        len = ft_strlen1(cmd);
+    while (i < len)
     {
         if (cmd[i] == '/' || cmd[i] == '%'
             || cmd[i] == '-')
@@ -51,10 +55,8 @@ int    show_export(char **cmd, t_env *env)
     {
         while (tmp)
 	    {
-            if (!ft_strncmp(tmp->value, "-1", 2))
+            if (tmp->option == 2)
                 printf("declare -x %s\n", tmp->key);
-            else if (!ft_strncmp(tmp->value, "-2", 2))
-                printf("declare -x %s\"\"\n", tmp->key);
             else
                 printf("declare -x %s\"%s\"\n", tmp->key, tmp->value);
             tmp = tmp->next;
@@ -72,12 +74,18 @@ void    add_to_env(char *cmd, t_env *env)
 
     key = ft_substr(cmd, 0, first_equale(cmd));
     value = ft_substr(cmd, first_equale(cmd), ft_strlen1(cmd));
-    if (find_key(ft_substr(cmd, 0, first_equale(cmd) - 1), env))
+    if (key[first_equale(cmd) - 2] == '+')
     {
-        prb = ft_strjoin1("unset ", ft_substr(cmd, 0, first_equale(cmd) - 1));
-        unset_clone(env,  ft_split(prb, ' '));
+        key = ft_substr(cmd, 0, first_equale(cmd) - 2);
+        key = ft_strjoin1(key, "=");
+        value = add_to_value(env, key, value);
     }
-    value = add_to_value(env, ft_substr(cmd, 0, first_equale(cmd) - 2), value);
+    if (find_key(key, env))
+    {
+        prb = ft_strjoin1("unset ", ft_substr(cmd, 0, first_equale(key) - 1));
+        unset_clone(env,  ft_split(prb, ' '));
+        free(prb);
+    }
     ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 1));
 }
 
@@ -103,8 +111,8 @@ void    export_clone(char   **cmd, t_env *env)
                     if (!checking_dash(cmd[i]))
                     {
                         key = ft_strdup(cmd[i]);
-                        value = ft_strdup("-1");
-                        ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 0));
+                        value = ft_strdup("");
+                        ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 2));
                     }
             }
             i++;

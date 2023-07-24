@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/23 18:07:03 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/24 15:59:45 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int    option_replace(char *key, t_env *env)
             if (key[ft_strlen1(key) - 1] == '=')
             {
                 free(tmp->value);
-                tmp->value = ft_strdup("-2");
+                tmp->value = ft_strdup("");
             }
             tmp->option = 1;
             return (1);
@@ -34,7 +34,7 @@ int    option_replace(char *key, t_env *env)
     return (0);
 }
 
-char   *add_to_value(t_env *env, char *key, char *value)
+char    *add_to_value(t_env *env, char *key, char *value)
 {
     t_env *tmp;
 
@@ -42,10 +42,7 @@ char   *add_to_value(t_env *env, char *key, char *value)
     while (tmp)
     {
         if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
-        {
-            value = ft_strjoin1(tmp->value, value);
-            printf("%s\n", value);
-        }
+            return (ft_strjoin1(tmp->value, value));
         tmp = tmp->next;
     }
     return (value);

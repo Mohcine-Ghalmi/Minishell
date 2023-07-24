@@ -2,7 +2,7 @@ change the builtins function inside the dup2
 
 1-cd : done 
 2-pwd : done
-4-export : export a=5 || export a+=3 :: a="53" || export a=-1
+4-export : done
 7-env : done
 5-unset : done
 3-echo : done
