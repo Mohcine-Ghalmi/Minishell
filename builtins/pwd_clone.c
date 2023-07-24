@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/23 10:53:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/24 17:04:06 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char    *pwd_env(t_env   *new_env, int ret)
     tmp = new_env;
     while(tmp)
     {
-        if (ft_strnstr(tmp->key, "PWD", ft_strlen1(tmp->key)))
+        if (!ft_strncmp(tmp->key, "PWD=", ft_strlen1(tmp->key)))
         {
             if (ret == 1)
                 printf("%s\n", tmp->value);

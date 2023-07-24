@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/24 15:59:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/24 17:29:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int    option_replace(char *key, t_env *env)
             {
                 free(tmp->value);
                 tmp->value = ft_strdup("");
+                tmp->option = 1;
             }
-            tmp->option = 1;
             return (1);
         }
         tmp = tmp->next;
