@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 22:05:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/25 23:02:08 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	lenword(t_lsttoken *token)
 	i = 0;
 	while (token)
 	{
+		//printf("DD\n");
 		while (token->type != 4 && token)
 		{
 			if (token->type == 1)
@@ -28,7 +29,8 @@ int	lenword(t_lsttoken *token)
 					token = token->next;
 				else
 					break ;
-			}
+			}else
+					break ;
 		}
 		if (token)
 			token = token->next;
@@ -56,23 +58,25 @@ t_node	*create_node(t_lsttoken *token)
 			if (token->type == 1)
 			{
 				cmd[i++] = ft_strdup(token->str);
-				if (token->next)
-					token = token->next;
-				else
-					break ;
+				// if (token->next)
+				// 	token = token->next;
+				// else
+				// 	break ;
 
 			}
-			if (token->type == 2)
+			else if (token->type == 2)
 			{
 				in = openfile(token->next->str, 0);
-				if (token->next && token->next->next)
-					token = token->next->next;
+				if (token->next)
+				{
+					token = token->next;
+				}
 			}
-			if (token->type == 3)
+			else if (token->type == 3)
 			{
 				out = openfile(token->next->str, 1);
-				if (token->next->next && token->next->next)
-					token = token->next->next;
+				if (token->next)
+					token = token->next;
 			}
 			if (token)
 				token = token->next;

@@ -116,13 +116,20 @@ int	main(int argc, char **argv, char **envp)
 		}
 		tokena(input, &token, envp);
 		jointok(&join, token);
-		//syntaxerror(join);
-		//	continue;
+		syntaxerror(join);
+			//continue;
 		lst = ltoken(&join);
 		node = create_node(lst);
 		while (node)
 		{
-			printf("%s,%d,%d\n", node->cmd[0],node->fdin,node->fdout);
+			int i = 0;
+			while (node->cmd[i])
+			{
+				printf("s = %s\n",node->cmd[i]);
+				i++;
+			}
+			
+			printf("%d,%d\n", node->fdin, node->fdout);
 			node = node->next;
 		}
 		//free_node(&node);
