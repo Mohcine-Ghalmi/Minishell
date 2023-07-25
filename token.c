@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 14:08:53 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/25 16:48:54 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
 void	outorappand(char *text, int *i, t_token **token)
 {
@@ -60,7 +60,7 @@ void	inorherdoc(char *text, int *i, t_token **token)
 		ft_lstadd_back(token, ft_lstnew(2, table));
 }
 
-void	word(char *text, int *i, t_token **token,char **envp)
+void	word(char *text, int *i, t_token **token, char **envp)
 {
 	int		j;
 	int		k;

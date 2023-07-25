@@ -39,23 +39,36 @@ void	tokena(char *input, t_token **token, char **envp)
 	}
 }
 
-void	free_node(t_node **node)
+//void	free_node(t_node **node)
+//{
+//	t_node *tmp;
+//
+//	tmp = *node;
+//	while ((*node))
+//	{
+//		tmp = (*node)->next;
+//		free((*node));
+//		(*node) = tmp;
+//	}
+//	free(tmp);
+//}
+void	free_lst(t_lsttoken **lst)
 {
-	t_node *tmp;
+	t_lsttoken	*tmp;
 
-	tmp = *node;
-	while ((*node))
+	tmp = *lst;
+	while ((*lst))
 	{
-		tmp = (*node)->next;
-		free((*node));
-		(*node) = tmp;
+		tmp = (*lst)->next;
+		free((*lst));
+		(*lst) = tmp;
 	}
 	free(tmp);
 }
 
 void	free_jointoken(t_jointok **token)
 {
-	t_jointok *tmp;
+	t_jointok	*tmp;
 
 	tmp = *token;
 	while ((*token))
@@ -69,7 +82,7 @@ void	free_jointoken(t_jointok **token)
 
 void	free_token(t_token **token)
 {
-	t_token *tmp;
+	t_token	*tmp;
 
 	tmp = *token;
 	while ((*token))
@@ -113,7 +126,7 @@ int	main(int argc, char **argv, char **envp)
 			lst = lst->next;
 		}
 		//free_node(&node);
-
+		// free_node(&lst);
 		free_jointoken(&join);
 		free_token(&token);
 	}

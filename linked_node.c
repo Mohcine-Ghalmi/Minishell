@@ -6,13 +6,13 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 21:04:01 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/21 22:15:43 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/25 17:02:15 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
-t_node	*new_node(char *cmd, int in, int out)
+t_node	*new_node(char **cmd, int in, int out)
 {
 	t_node	*ptr;
 

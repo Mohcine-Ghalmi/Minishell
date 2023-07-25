@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
 int	checksyntax(t_jointok	*token)
 {
@@ -19,22 +19,21 @@ int	checksyntax(t_jointok	*token)
 	tmp = token;
 	if ((tmp)->type == 4)
 		return (2);
-	if(ft_lstlast1(tmp)->type == 2 || ft_lstlast1(tmp)->type == 3
-		|| ft_lstlast1(tmp)->type == 4 ||ft_lstlast1(tmp)->type == 7
+	if (ft_lstlast1(tmp)->type == 2 || ft_lstlast1(tmp)->type == 3
+		|| ft_lstlast1(tmp)->type == 4 || ft_lstlast1(tmp)->type == 7
 		|| ft_lstlast1(tmp)->type == 9)
-		return(3);
+		return (3);
 	while (tmp)
 	{
 		if (tmp->type == 2 && tmp->next->type == 4
 			|| (tmp->type == 4 && tmp->next->type == 4
 				&& tmp->next->next->type == 4)
 			|| (tmp->type == 2 && tmp->next->type == 10
-			&& tmp->next->next->type == 4)
+				&& tmp->next->next->type == 4)
 			|| (tmp->type == 3 && tmp->next->type == 10
-			&& tmp->next->next->type == 4))
+				&& tmp->next->next->type == 4))
 			return (4);
-		
-			tmp = tmp->next;
+		tmp = tmp->next;
 	}
 	return (1);
 }

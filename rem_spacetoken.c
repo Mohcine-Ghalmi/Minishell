@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
 t_lsttoken	*new_ltoken(char *str, int type)
 {
@@ -20,7 +20,7 @@ t_lsttoken	*new_ltoken(char *str, int type)
 	if (!ptr)
 		return (NULL);
 	ptr->str = str;
-    ptr->type = type;
+	ptr->type = type;
 	ptr->next = NULL;
 	return (ptr);
 }
@@ -49,26 +49,25 @@ void	addnode_ltoken(t_lsttoken	**lst, t_lsttoken	*new)
 	last_ltoken(*lst)->next = new;
 }
 
-
-t_lsttoken  *ltoken(t_jointok **token)
+t_lsttoken	*ltoken(t_jointok **token)
 {
-    t_jointok   *tmp;
-    t_lsttoken  *lst;
+	t_jointok	*tmp;
+	t_lsttoken	*lst;
 
-    lst = NULL;
+	lst = NULL;
 	tmp = *token;
-    while(tmp)
-    {
+	while (tmp)
+	{
 		if (tmp->next == NULL && tmp->type == 10)
 			tmp = NULL;
-        else if(tmp->type == 10 && tmp->next)
-            tmp = tmp->next;
-        else
-        {
-            addnode_ltoken(&lst, new_ltoken(tmp->str,tmp->type));
-            if(tmp)
-            tmp = tmp->next;
-        }
-    }
-    return(lst);
+		else if (tmp->type == 10 && tmp->next)
+			tmp = tmp->next;
+		else
+		{
+			addnode_ltoken(&lst, new_ltoken(tmp->str, tmp->type));
+			if (tmp)
+				tmp = tmp->next;
+		}
+	}
+	return (lst);
 }
