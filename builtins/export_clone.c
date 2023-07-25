@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/24 18:06:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/25 14:42:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,17 @@ int    checking_dash(char *cmd)
     int len;
 
     i = 0;
-    len =  first_equale(cmd);
-    if (len == -1)
+    len =  first_equale(cmd) - 2;
+    if (len <= -1)
         len = ft_strlen1(cmd);
     while (i < len)
     {
-        if (cmd[i] == '/' || cmd[i] == '%'
-            || cmd[i] == '-' || (i < len - 1 && cmd[i] == '+' && cmd[i + 1] != '='))
+        if ((cmd[i] >= 33 &&  cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 47)
+            || (cmd[i] >= 58 &&  cmd[i] <= 64) || (cmd[i] >= 91 &&  cmd[i] <= 96) 
+            || cmd[i] >= 123 || (i < len - 1 && cmd[i] == '+' && cmd[i + 1] != '='))
         {
             printf("minishell: export: `%s` not valid identifier\n", cmd);
-            return (i);
+            return (i + 1);
         }
         i++;
     }

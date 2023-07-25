@@ -31,4 +31,4 @@ print environment vars. </br>
 ● Wildcards: Arguments of the form ``a*a`` are expanded to all the files that match them in 
 the local directory and in multiple directories . </br>
 ● Subshells: Arguments between `` (backticks) are executed and the output is sent as 
-input to the shell. 
+input to the shell.

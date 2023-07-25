@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/23 09:30:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/25 11:55:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ void	piper(t_data *cmd, t_env *new_env)
 void execution(t_data *new, t_env *envp)
 {
     int ifcond;
+    int status;
 
     ifcond = 0;
     if (ft_lstsize(new) == 1)
@@ -93,5 +94,7 @@ void execution(t_data *new, t_env *envp)
         piper(new, envp);
         new = new->next;
     }
+    // replace  with waitpid(0, &status, 0)
+    // check WESXITSTATUS(status)
     while (wait(NULL) != -1);
 }

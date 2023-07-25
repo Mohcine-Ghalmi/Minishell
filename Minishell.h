@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/24 16:55:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/25 14:45:01 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int    		find_and_replace(t_env  **env, char *key, char *value);
 int 		find_key(char *key, t_env *env);
 char   		*add_to_value(t_env *env, char *key, char *value);
 char 		*shlvl(char  *value);
+void		exit_clone(t_env *env, char **cmd);
 int 		olpwd_env(t_env *env);
-
+void    	update_status(int status, t_env *env);
 
 #endif

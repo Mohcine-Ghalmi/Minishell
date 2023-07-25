@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/24 15:19:29 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/07/25 10:38:28 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRC = exec/exec_pipes.c \
 	builtins/pwd_clone.c \
 	builtins/cd_clone.c \
 	builtins/export_clone.c \
+	builtins/exit_clone.c \
 	builtins/unset_clone.c \
 	builtins/export_clone_utils.c \
 	builtins/echo_clone.c \
