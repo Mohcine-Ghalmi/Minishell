@@ -5,21 +5,23 @@
 #                                                     +:+ +:+         +:+      #
 #    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/06/05 18:33:20 by selhilal          #+#    #+#              #
-#    Updated: 2023/07/12 23:05:51 by selhilal         ###   ########.fr        #
+#    Created: 2023/07/18 19:40:39 by selhilal          #+#    #+#              #
+#    Updated: 2023/07/18 19:40:39 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Minishell
 
-SRC = check_input.c creat_node.c creat_token.c ft_strjoin.c ft_substr.c linkedlist.c main.c qudes.c syntaxerror.c syntaxerror2.c token_operator.c utilis.c
+SRC = ast_constructor.c inoutfile.c       linkedlist.c      parsequdes.c      syntaxerror.c \
+		expande.c         jointoken.c       main.c            qudes.c           token.c \
+		ft_substr.c       linked_node.c     parse.c           rem_spacetoken.c  utilise.c
 
-OBJ = $(SRC:%.c=%.o)
+OBJ = $(SRC:%.c=%.o) 
 
 all : $(NAME)
 
 $(NAME) : minishell.h $(OBJ)
-	gcc -Wall -Wextra -Werror -lreadline $(OBJ) -o $(NAME)
+	gcc -Wall -Wextra -Werror  $(OBJ) -lreadline  -o $(NAME)
 
 clean: 
 	rm -rfv $(OBJ)

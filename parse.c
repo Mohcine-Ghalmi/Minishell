@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_input.c                                      :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 22:40:11 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 22:46:22 by selhilal         ###   ########.fr       */
+/*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
+/*   Updated: 2023/07/25 14:23:47 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minishell.h"
+#include"minishell.h"
 
-int	parsing(char *text)
+void  syntaxerror(t_jointok *token)
 {
-	if (!parsing_token(text))
-		return (0);
-	if (!qudes(text))
-	{
-		printf("syntax error\n");
-		return (0);
-	}
-	return (1);
+    
+    if (checksyntax(token) == 2 || checksyntax(token) == 4)
+    {
+			printf("syntax error near unexpected token `|'\n");
+    }
+    if (checksyntax(token) == 3)
+    {
+			printf("syntax error near unexpected token `newline'\n");
+    }
+    
 }

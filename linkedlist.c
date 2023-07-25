@@ -5,40 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/06 17:12:17 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/12 21:42:07 by selhilal         ###   ########.fr       */
+/*   Created: 2023/07/18 19:39:37 by selhilal          #+#    #+#             */
+/*   Updated: 2023/07/18 19:39:37 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minishell.h"
+#include"minishell.h"
 
-t_token	*ft_lstnew(char	*str, int type)
+t_token	*ft_lstnew(int type, char *str)
 {
 	t_token	*ptr;
 
-	ptr = (t_token *)malloc(sizeof(t_token));
+	ptr = malloc(sizeof(t_token));
 	if (!ptr)
 		return (NULL);
-	ptr -> str = str;
-	ptr ->type = type;
-	ptr -> next = NULL;
+	ptr->cmd = str;
+	ptr->type = type;
+	ptr->next = NULL;
 	return (ptr);
 }
 
 t_token	*ft_lstlast(t_token	*lst)
 {
-	if (!lst)
+	t_token	*tmp;
+
+	tmp = lst;
+	if (!tmp)
 		return (NULL);
-	while (lst ->next != NULL)
-		lst = lst ->next;
-	return (lst);
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
 }
 
 void	ft_lstadd_back(t_token	**lst, t_token	*new)
 {
 	if (!new)
 		return ;
-	if (!*lst)
+	if (!(*lst))
 	{
 		*lst = new;
 		return ;
@@ -46,31 +49,39 @@ void	ft_lstadd_back(t_token	**lst, t_token	*new)
 	ft_lstlast(*lst)->next = new;
 }
 
-t_node	*ft_lstnew2(t_node	*new)
+t_jointok	*ft_lstnew1(char *str, int type)
 {
-	t_node	*ptr;
+	t_jointok	*ptr;
 
-	ptr = (t_node *)malloc(sizeof(t_node));
+	ptr = malloc(sizeof(t_jointok));
 	if (!ptr)
 		return (NULL);
-	ptr -> cmd = new->cmd;
-	ptr -> outfile = new->outfile;
-	ptr -> infile = new->infile;
-	ptr -> append = new->append;
-	ptr -> heredoc = new->heredoc;
-	ptr -> next = NULL;
+	ptr->str = str;
+	ptr->type = type;
+	ptr->next = NULL;
 	return (ptr);
 }
 
-void	ft_lstadd_front(t_node	**lst, t_node	*new)
+t_jointok	*ft_lstlast1(t_jointok	*lst)
+{
+	t_jointok	*tmp;
+
+	tmp = lst;
+	if (!tmp)
+		return (NULL);
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+	return (tmp);
+}
+
+void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new)
 {
 	if (!new)
 		return ;
-	if (!*lst)
+	if (!(*lst))
 	{
 		*lst = new;
 		return ;
 	}
-	new -> next = *lst;
-	*lst = new;
+	ft_lstlast1(*lst)->next = new;
 }

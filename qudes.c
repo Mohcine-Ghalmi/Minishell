@@ -5,83 +5,55 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/12 22:45:35 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/13 00:26:20 by selhilal         ###   ########.fr       */
+/*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
+/*   Updated: 2023/07/25 15:15:53 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minishell.h"
+#include "minishell.h"
 
-void	strqudes(int *yes, int c)
+void	qudes(char *text, int *i, t_token **token, char **envp)
 {
-	if (c == '\'')
+	int		q;
+	char	*table;
+	int		t;
+	int		m;
+	char	*tex;
+	int flag;
+
+	tex = NULL;
+	q = text[*i];
+	flag = 0;
+	*i += 1;
+	t = *i;
+	if (q == '\'')
 	{
-		if (*yes == 1)
-			*yes = 0;
-		else if (*yes == 0)
-			*yes = 1;
+		while (text[t] && text[t] != q)
+			t += 1;
+		m = t;
 	}
-	if (c == '\"')
+	if (q == '\"')
 	{
-		if (*yes == 2)
-			*yes = 0;
-		else if (*yes == 0)
-			*yes = 2;
+		while (text[t] && text[t] != q)
+		{
+			if (text[t] == '$')	
+			{
+				m = t;
+				flag = 1;
+				tex = dollar(text, &t, token, envp);
+			}
+			t += 1;
+		}
+		if (!flag)
+			m = t;
 	}
+	t += 1;
+	table = ft_substr(text, *i, m - *i);
+	*i = t;
+	if (q == '\'')
+		ft_lstadd_back(token, ft_lstnew(6, table));
+	if (q == '\"')
+		ft_lstadd_back(token, ft_lstnew(5, ft_strjoin(table, tex)));
+	// printf("%s\n", ft_strjoin(table, tex));
+	// free(table);
 }
-
-int	qudes(char *str)
-{
-	int	i;
-	int	yes;
-
-	i = 0;
-	yes = 0;
-	while (str[i])
-	{
-		strqudes(&yes, str[i]);
-		i++;
-	}
-	if (yes == 1)
-		return (0);
-	if (yes == 2)
-		return (0);
-	return (1);
-}
-
-char	*dt_queds(char *str, int *i)
-{
-	char	*table[2];
-	char	*ptr;
-	char	b;
-	int		j;
-
-	b = str[*i];
-	j = *i + 1;
-	while (str[j] != b)
-		j++;
-	table[0] = ft_substr(str, 0, *i);
-	table[1] = ft_substr(str, *i + 1, j - *i - 1);
-	ptr = ft_strjoin(table[0], table[1]);
-	*i = j - 2;
-	table[0] = ft_strjoin(ptr, str + j + 1);
-	str = ft_strdup(table[0]);
-	free(table[0]);
-	free(table[1]);
-	return (str);
-}
-
-char	*rem_qudes(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'' || str[i] == '\"')
-			str = dt_queds(str, &i);
-		i++;
-	}
-	return (str);
-}
-

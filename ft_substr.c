@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/09 13:55:24 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/10 17:03:38 by selhilal         ###   ########.fr       */
+/*   Created: 2023/07/18 19:40:21 by selhilal          #+#    #+#             */
+/*   Updated: 2023/07/18 19:40:21 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Minishell.h"
+#include "minishell.h"
 
 size_t	ft_strlen1(char *s)
 {
