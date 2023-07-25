@@ -6,28 +6,28 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/22 14:32:52 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/25 21:03:49 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
-int    ft_strchr1(const char *s, int c)
+int ft_strchr1(const char *s, int c)
 {
-    int        i;
-    char    find;
+	int		i;
+	char	find;
 
-    find = (char)c;
-    i = 0;
-    while (s[i])
-    {
-        if (s[i] == find)
-            return (i);
-        i++;
-    }
-    if (s[i] == find)
-        return (i);
-    return (0);
+	find = (char)c;
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == find)
+			return (i);
+		i++;
+	}
+	if (s[i] == find)
+		return (i);
+	return (0);
 }
 
 int	openfile(char *filename, int mode)

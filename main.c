@@ -119,11 +119,11 @@ int	main(int argc, char **argv, char **envp)
 		//syntaxerror(join);
 		//	continue;
 		lst = ltoken(&join);
-		//node = create_node(lst);
-		while (lst)
+		node = create_node(lst);
+		while (node)
 		{
-			printf("%s,%d\n", lst->str,lst->type);
-			lst = lst->next;
+			printf("%s,%d,%d\n", node->cmd[0],node->fdin,node->fdout);
+			node = node->next;
 		}
 		//free_node(&node);
 		// free_node(&lst);

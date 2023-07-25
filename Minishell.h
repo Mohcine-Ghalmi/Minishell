@@ -74,18 +74,17 @@ typedef struct node
 
 }					t_node;
 
-void	outorappand(char *text, int *i, t_token **token);
-void	inorherdoc(char *text, int *i, t_token **token);
-void	qudes(char *text, int *i, t_token **token, char **envp);
-void	word(char *text, int *i, t_token **token, char **envp);
-void	space(char *text, int *i, t_token **token);
-char	*dollar(char *text, int *i, t_token **token, char **envp);
-void	jointok(t_jointok	**join, t_token *token);
-void	ft_lstadd_back(t_token	**lst, t_token	*new);
-void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
-
+void		outorappand(char *text, int *i, t_token **token);
+void		inorherdoc(char *text, int *i, t_token **token);
+void		qudes(char *text, int *i, t_token **token, char **envp);
+void		word(char *text, int *i, t_token **token, char **envp);
+void		space(char *text, int *i, t_token **token);
+char		*dollar(char *text, int *i, t_token **token, char **envp);
+void		jointok(t_jointok	**join, t_token *token);
+void		ft_lstadd_back(t_token	**lst, t_token	*new);
+void		ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
 int			checksyntax(t_jointok *token);
-void  		syntaxerror(t_jointok *token);
+void		syntaxerror(t_jointok *token);
 char		*out_dollars(char *key, char **env);
 int			openfile(char *filename, int mode);
 t_token		*ft_lstnew(int type, char *str);
