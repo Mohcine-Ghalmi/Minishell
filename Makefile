@@ -12,9 +12,7 @@
 
 NAME = Minishell
 
-SRC = ast_constructor.c inoutfile.c       linkedlist.c      parsequdes.c      syntaxerror.c \
-		expande.c         jointoken.c       main.c            qudes.c           token.c \
-		ft_substr.c       linked_node.c     parse.c           rem_spacetoken.c  utilise.c
+SRC = ast_constructor.c inoutfile.c   linkedlist.c    parsequdes.c	expande.c  jointoken.c   main.c  qudes.c  token.c  ft_substr.c       linked_node.c     parse.c           rem_spacetoken.c  utilise.c
 
 OBJ = $(SRC:%.c=%.o) 
 

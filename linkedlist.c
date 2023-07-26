@@ -73,15 +73,3 @@ t_jointok	*ft_lstlast1(t_jointok	*lst)
 		tmp = tmp->next;
 	return (tmp);
 }
-
-void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new)
-{
-	if (!new)
-		return ;
-	if (!(*lst))
-	{
-		*lst = new;
-		return ;
-	}
-	ft_lstlast1(*lst)->next = new;
-}

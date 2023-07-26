@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 16:51:00 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:11:19 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,4 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 		ft_lstadd_back(token, ft_lstnew(6, table));
 	if (q == '\"')
 		ft_lstadd_back(token, ft_lstnew(5, ft_strjoin(table, tex)));
-	// printf("%s\n", ft_strjoin(table, tex));
-	 //free(table);
 }

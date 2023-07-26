@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 23:02:08 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:48:46 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,11 @@
 
 int	lenword(t_lsttoken *token)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (token)
 	{
-		//printf("DD\n");
 		while (token->type != 4 && token)
 		{
 			if (token->type == 1)
@@ -29,8 +28,9 @@ int	lenword(t_lsttoken *token)
 					token = token->next;
 				else
 					break ;
-			}else
-					break ;
+			}
+			else
+				break ;
 		}
 		if (token)
 			token = token->next;
@@ -56,21 +56,12 @@ t_node	*create_node(t_lsttoken *token)
 		while (token && token->type != 4)
 		{
 			if (token->type == 1)
-			{
 				cmd[i++] = ft_strdup(token->str);
-				// if (token->next)
-				// 	token = token->next;
-				// else
-				// 	break ;
-
-			}
 			else if (token->type == 2)
 			{
 				in = openfile(token->next->str, 0);
 				if (token->next)
-				{
 					token = token->next;
-				}
 			}
 			else if (token->type == 3)
 			{
@@ -81,7 +72,6 @@ t_node	*create_node(t_lsttoken *token)
 			if (token)
 				token = token->next;
 		}
-		cmd[i] = NULL;
 		addnode_back(&node, new_node(cmd, in, out));
 		if (token)
 			token = token->next;

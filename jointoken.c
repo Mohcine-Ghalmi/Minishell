@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:18:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 16:53:37 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:03:07 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,23 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (str);
 }
 
+void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new)
+{
+	if (!new)
+		return ;
+	if (!(*lst))
+	{
+		*lst = new;
+		return ;
+	}
+	ft_lstlast1(*lst)->next = new;
+}
+
 void	jointok(t_jointok	**join, t_token *token)
 {
 	t_token	*tmp;
 	char	*table;
-	char 	*backup;
+	char	*backup;
 
 	table = ft_strdup("");
 	backup = ft_strdup("");
@@ -62,9 +74,7 @@ void	jointok(t_jointok	**join, t_token *token)
 	while (tmp)
 	{
 		if (tmp->type != 5 && tmp->type != 6 && tmp->type != 1)
-		{
 			ft_lstadd_back1(join, ft_lstnew1(tmp->cmd, tmp->type));
-		}
 		else
 		{
 			table = ft_strjoin(backup, tmp->cmd);

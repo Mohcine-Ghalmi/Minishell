@@ -6,13 +6,13 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 21:03:49 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/26 10:46:54 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int ft_strchr1(const char *s, int c)
+int	ft_strchr1(const char *s, int c)
 {
 	int		i;
 	char	find;
