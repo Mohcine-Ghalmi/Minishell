@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/25 14:42:15 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/26 17:58:45 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int    checking_dash(char *cmd)
         len = ft_strlen1(cmd);
     while (i < len)
     {
-        if ((cmd[i] >= 33 &&  cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 47)
-            || (cmd[i] >= 58 &&  cmd[i] <= 64) || (cmd[i] >= 91 &&  cmd[i] <= 96) 
+        if ((cmd[i] >= 33 &&  cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 64)
+            || (cmd[i] >= 91 &&  cmd[i] <= 96) 
             || cmd[i] >= 123 || (i < len - 1 && cmd[i] == '+' && cmd[i + 1] != '='))
         {
             printf("minishell: export: `%s` not valid identifier\n", cmd);
@@ -114,6 +114,8 @@ void    export_clone(char   **cmd, t_env *env)
                         key = ft_strdup(cmd[i]);
                         value = ft_strdup("");
                         ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 2));
+                        free(key);
+                        free(value);
                     }
             }
             i++;
