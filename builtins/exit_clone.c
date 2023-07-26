@@ -6,16 +6,16 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/25 14:44:44 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/26 16:47:22 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-int     checking_status(int status)
-{
+// int     checking_status(int status)
+// {
     
-}
+// }
 
 void    update_status(int status, t_env *env)
 {
@@ -25,7 +25,10 @@ void    update_status(int status, t_env *env)
     while (tmp)
     {
         if (!ft_strncmp("?", tmp->key, 2))
+        {
             tmp->value = ft_itoa_shlvl(status);
+            printf("exit status : %s\n", tmp->value);
+        }
         tmp = tmp->next;
     }
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:38:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 15:54:57 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/26 16:48:04 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ void	    piper(t_data *cmd, t_env *new_env);
 void 		execution(t_data *new, t_env *envp);
 void	    show_env(t_env *new_env, char **cmd);
 void        free_double(char    **str);
+void        piper_norm(t_data *cmd, int pipefd[2]);
 
 #endif

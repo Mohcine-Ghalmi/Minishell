@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/25 10:38:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/26 16:47:48 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,34 @@ int    check_builtins(char **cmd, t_env *env)
 		i++;
 	}
 	return (0);
+}
+
+int first_built(t_data *new, t_env *env)
+{
+    pid_t	pid;
+    char    **exec_enev;
+    int     ret;
+    int pipefd[2];
+
+    ret  = 0;
+    if (pipe(pipefd) < 0)
+        return 0;
+	pid = fork();
+	if (!pid)
+	{
+		close(pipefd[1]);
+        if (new->infile > 2)
+            dup2(new->infile, STDIN_FILENO);
+        else
+		    dup2(pipefd[0], STDIN_FILENO);
+        exit(1);
+	}
+	else
+	{
+        piper_norm(new, pipefd);
+        // give exit to every  proc
+        ret = check_builtins(new->av, env);
+	}
+    closepipe(pipefd);
+    return (ret);
 }
