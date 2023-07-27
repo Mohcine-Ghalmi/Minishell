@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"minishell.h"
+#include "minishell.h"
 
 void	tokena(char *input, t_token **token, char **envp)
 {
@@ -24,6 +24,7 @@ void	tokena(char *input, t_token **token, char **envp)
 		{
 			table = ft_substr(input, i, 1);
 			ft_lstadd_back(token, ft_lstnew(4, table));
+			free(table);
 			i += 1;
 		}
 		else if (input[i] == '>' && input[i])
@@ -39,57 +40,57 @@ void	tokena(char *input, t_token **token, char **envp)
 	}
 }
 
-void	free_node(t_node **node)
+void	free_node(t_node *node)
 {
 	t_node *tmp;
 
-	tmp = *node;
-	while ((*node))
+	tmp = node;
+	while ((node))
 	{
-		tmp = (*node)->next;
-		free((*node));
-		(*node) = tmp;
+		tmp = (node)->next;
+		free((node));
+		(node) = tmp;
 	}
 	free(tmp);
 }
-void	free_lst(t_lsttoken **lst)
+void	free_lst(t_lsttoken *lst)
 {
 	t_lsttoken	*tmp;
 
-	tmp = *lst;
-	while ((*lst))
+	tmp = lst;
+	while ((lst))
 	{
-		tmp = (*lst)->next;
-		free((*lst));
-		(*lst) = tmp;
+		tmp = (lst)->next;
+		free((lst));
+		(lst) = tmp;
 	}
 	free(tmp);
 }
 
-void	free_jointoken(t_jointok **token)
+void	free_jointoken(t_jointok *token)
 {
 	t_jointok	*tmp;
 
-	tmp = *token;
-	while ((*token))
+	tmp = token;
+	while ((token))
 	{
-		tmp = (*token)->next;
-		free((*token));
-		(*token) = tmp;
+		tmp = (token)->next;
+		free((token));
+		(token) = tmp;
 	}
 	free(tmp);
 }
 
-void	free_token(t_token **token)
+void	free_token(t_token *token)
 {
 	t_token	*tmp;
 
-	tmp = *token;
-	while ((*token))
+	tmp = token;
+	while ((token))
 	{
-		tmp = (*token)->next;
-		free((*token));
-		(*token) = tmp;
+		tmp = (token)->next;
+		free((token));
+		(token) = tmp;
 	}
 	free(tmp);
 }
@@ -114,22 +115,29 @@ int	main(int argc, char **argv, char **envp)
 	(void)argv;
 	while (1)
 	{
-		//system("leaks Minishell");
 		token = NULL;
+		join = NULL;
+		lst = NULL;
+		node = NULL;
 		input = readline("> ");
 		add_history(input);
 		if (qudespars(input) == 0)
 		{
 			printf("syntax error close qudes\n");
-			free(input);
 			continue ;
 		}
 		tokena(input, &token, envp);
 		free(input);
 		jointok(&join, token);
-		syntaxerror(join);
+		//syntaxerror(join);
 		lst = ltoken(&join);
 		node = create_node(lst);
+
+		//while(lst)
+		//{
+		//	printf("%s -- %d\n", lst->str, lst->type);
+		//	lst = lst->next;
+		//}
 		while (node)
 		{
 			int i = 0;
@@ -142,9 +150,9 @@ int	main(int argc, char **argv, char **envp)
 			close_files(node->fdin, node->fdout);
 			node = node->next;
 		}
-		//free_node(&node);
-		//free_lst(&lst);
-		free_token(&token);
-		free_jointoken(&join);
+		free_token(token);
+		free_jointoken(join);
+		free_lst(lst);
+		free_node(node);
 	}
 }

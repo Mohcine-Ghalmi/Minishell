@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 16:48:54 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 14:10:45 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	outorappand(char *text, int *i, t_token **token)
 		ft_lstadd_back(token, ft_lstnew(7, table));
 	else if (f == 1)
 		ft_lstadd_back(token, ft_lstnew(3, table));
+	free(table);
 }
 
 void	inorherdoc(char *text, int *i, t_token **token)
@@ -58,6 +59,7 @@ void	inorherdoc(char *text, int *i, t_token **token)
 		ft_lstadd_back(token, ft_lstnew(9, table));
 	if (f == 1)
 		ft_lstadd_back(token, ft_lstnew(2, table));
+	free(table);
 }
 
 void	word(char *text, int *i, t_token **token, char **envp)
@@ -97,4 +99,5 @@ void	space(char *text, int *i, t_token **token)
 	table = ft_substr(text, t, j - t);
 	ft_lstadd_back(token, ft_lstnew(10, table));
 	*i = j;
+	free(table);
 }

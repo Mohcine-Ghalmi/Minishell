@@ -96,5 +96,6 @@ t_node		*new_node(char **cmd, int in, int out);
 t_node		*last_node(t_node	*lst);
 void		addnode_back(t_node	**lst, t_node	*new);
 t_lsttoken 	*ltoken(t_jointok **token);
+void	free_cmds(char **cmd);
 
 #endif

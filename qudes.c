@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/26 10:11:19 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 13:28:56 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 	char	*tex;
 	int 	flag;
 
-	tex = NULL;
+	tex = ft_strdup("");
 	q = text[*i];
 	flag = 0;
 	*i += 1;
@@ -35,14 +35,15 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 	if (q == '\"')
 	{
 		while (text[t] && text[t] != q)
-		{
+		{ //stile have prb
 			if (text[t] == '$')
 			{
 				m = t;
 				flag = 1;
-				tex = dollar(text, &t, token, envp);
+				tex = ft_strjoin(tex, dollar(text, &t, token, envp));
 			}
-			t += 1;
+			else
+				t += 1;
 		}
 		if (!flag)
 			m = t;
@@ -54,4 +55,5 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 		ft_lstadd_back(token, ft_lstnew(6, table));
 	if (q == '\"')
 		ft_lstadd_back(token, ft_lstnew(5, ft_strjoin(table, tex)));
+	free(tex);
 }

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:18:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/26 10:03:07 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:28:50 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,35 @@ void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new)
 	ft_lstlast1(*lst)->next = new;
 }
 
+//void	jointok(t_jointok	**join, t_token *token)
+//{
+//	t_token	*tmp;
+//	char	*table;
+//
+//	table = NULL;
+//	tmp = token;
+//	while (tmp)
+//	{
+//		if (tmp->type != 5 && tmp->type != 6 && tmp->type != 1)
+//			ft_lstadd_back1(join, ft_lstnew1(tmp->cmd, tmp->type));
+//		else
+//		{
+//			table = ft_strdup("");
+//			table = ft_strjoin(table, tmp->cmd);
+//			if (!tmp->next || (tmp->next && tmp->next->type != 5
+//					&& tmp->next->type != 6 && tmp->next->type != 1))
+//			{
+//				ft_lstadd_back1(join, ft_lstnew1(table, 1));
+//				table = ft_strdup("");
+//			}
+//			else
+//				free(table);
+//		}
+//		tmp = tmp->next;
+//	}
+//	free(table);
+//}
+
 void	jointok(t_jointok	**join, t_token *token)
 {
 	t_token	*tmp;
@@ -74,7 +103,9 @@ void	jointok(t_jointok	**join, t_token *token)
 	while (tmp)
 	{
 		if (tmp->type != 5 && tmp->type != 6 && tmp->type != 1)
+		{
 			ft_lstadd_back1(join, ft_lstnew1(tmp->cmd, tmp->type));
+		}
 		else
 		{
 			table = ft_strjoin(backup, tmp->cmd);
@@ -89,4 +120,5 @@ void	jointok(t_jointok	**join, t_token *token)
 		}
 		tmp = tmp->next;
 	}
+	//free(table);
 }

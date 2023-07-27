@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/26 10:48:46 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 16:47:19 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ int	lenword(t_lsttoken *token)
 	return (i);
 }
 
+void	free_cmds(char **cmd)
+{
+	int i;
+
+	i = 0;
+	while (cmd[i])
+		free(cmd[i++]);
+	free(cmd);
+}
+
 t_node	*create_node(t_lsttoken *token)
 {
 	char	**cmd;
@@ -49,7 +59,7 @@ t_node	*create_node(t_lsttoken *token)
 	node = NULL;
 	while (token)
 	{
-		cmd = malloc(sizeof(char *) * (lenword(token)));
+		cmd = malloc(sizeof(char *) * (lenword(token) + 1));
 		i = 0;
 		in = 0;
 		out = 1;
@@ -62,6 +72,8 @@ t_node	*create_node(t_lsttoken *token)
 				in = openfile(token->next->str, 0);
 				if (token->next)
 					token = token->next;
+				else
+					break ;
 			}
 			else if (token->type == 3)
 			{
@@ -72,7 +84,9 @@ t_node	*create_node(t_lsttoken *token)
 			if (token)
 				token = token->next;
 		}
+		cmd[i] = NULL;
 		addnode_back(&node, new_node(cmd, in, out));
+		//free_cmds(cmd);
 		if (token)
 			token = token->next;
 	}

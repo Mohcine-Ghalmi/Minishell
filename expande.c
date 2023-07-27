@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/25 17:51:09 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 17:13:11 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	dollar_length(char *text, int i, t_token **token)
 
 	j = 0;
 	l = i + 1;
-	while (text[l] && ft_isalnum(text[l]) && !spaces(text[l]))
+	while (text[l] && ft_isalnum(text[l]))
 	{
 		j += 1;
 		l += 1;
@@ -33,20 +33,30 @@ char	*dollar(char *text, int *i, t_token **token, char **envp)
 	char	*dolar;
 	int		l;
 
-	dolar = ft_strdup("");
 	*i += 1;
 	l = 0;
-	table = malloc(dollar_length(text, *i, token));
-	while (text[*i] && ft_isalnum(text[*i]) && !spaces(text[*i]))
+	dolar = NULL;
+	table = calloc(1, dollar_length(text, *i, token));
+	if()
+	while (text[*i] && text[*i] != '$')
 	{
-		table[l] = text[*i];
-		l += 1;
-		*i += 1;
+		if (ft_isalnum(text[*i]))
+		{
+			table[l] = text[*i];
+			l += 1;
+			*i += 1;
+		}
+		else
+			break ;
 	}
 	table[l] = '\0';
 	if (!ft_strlen(table))
+	{
+		free(table);
 		return (ft_strdup(""));
+	}
 	dolar = out_dollars(table, envp);
+	free(table);
 	return (dolar);
 }
 
