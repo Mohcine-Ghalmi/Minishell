@@ -40,61 +40,6 @@ void	tokena(char *input, t_token **token, char **envp)
 	}
 }
 
-void	free_node(t_node *node)
-{
-	t_node *tmp;
-
-	tmp = node;
-	while ((node))
-	{
-		tmp = (node)->next;
-		free((node));
-		(node) = tmp;
-	}
-	free(tmp);
-}
-void	free_lst(t_lsttoken *lst)
-{
-	t_lsttoken	*tmp;
-
-	tmp = lst;
-	while ((lst))
-	{
-		tmp = (lst)->next;
-		free((lst));
-		(lst) = tmp;
-	}
-	free(tmp);
-}
-
-void	free_jointoken(t_jointok *token)
-{
-	t_jointok	*tmp;
-
-	tmp = token;
-	while ((token))
-	{
-		tmp = (token)->next;
-		free((token));
-		(token) = tmp;
-	}
-	free(tmp);
-}
-
-void	free_token(t_token *token)
-{
-	t_token	*tmp;
-
-	tmp = token;
-	while ((token))
-	{
-		tmp = (token)->next;
-		free((token));
-		(token) = tmp;
-	}
-	free(tmp);
-}
-
 void	close_files(int in, int out)
 {
 	if (out > 2)
@@ -132,11 +77,10 @@ int	main(int argc, char **argv, char **envp)
 		//syntaxerror(join);
 		lst = ltoken(&join);
 		node = create_node(lst);
-
-		//while(lst)
+		//while(join)
 		//{
-		//	printf("%s -- %d\n", lst->str, lst->type);
-		//	lst = lst->next;
+		//	printf("%s, %d\n",join->str, join->type);
+		//	join = join->next;
 		//}
 		while (node)
 		{

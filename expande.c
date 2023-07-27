@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/27 17:13:11 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:33:53 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,21 @@ char	*dollar(char *text, int *i, t_token **token, char **envp)
 	l = 0;
 	dolar = NULL;
 	table = calloc(1, dollar_length(text, *i, token));
-	if()
 	while (text[*i] && text[*i] != '$')
 	{
 		if (ft_isalnum(text[*i]))
 		{
-			table[l] = text[*i];
-			l += 1;
-			*i += 1;
+			//if (text[*i] >= '0' && text[*i] <= '9')
+			//{
+			//	*i += 1;
+			//	break ;
+			//}
+			//else
+			//{
+				table[l] = text[*i];
+				l += 1;
+				*i += 1;	
+			//}
 		}
 		else
 			break ;

@@ -94,8 +94,13 @@ t_jointok	*ft_lstlast1(t_jointok	*lst);
 t_node		*create_node(t_lsttoken *token);
 t_node		*new_node(char **cmd, int in, int out);
 t_node		*last_node(t_node	*lst);
+t_lsttoken	*ltoken(t_jointok **token);
+
 void		addnode_back(t_node	**lst, t_node	*new);
-t_lsttoken 	*ltoken(t_jointok **token);
-void	free_cmds(char **cmd);
+void		free_cmds(char **cmd);
+void		free_node(t_node *node);
+void		free_lst(t_lsttoken *lst);
+void		free_jointoken(t_jointok *token);
+void		free_token(t_token *token);
 
 #endif

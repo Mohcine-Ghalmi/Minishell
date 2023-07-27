@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:18:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/27 16:28:50 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/27 21:35:12 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*jointoken(char *s1, char *s2)
 {
 	int		i;
 	int		j;
@@ -36,7 +36,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (s1);
 	if (!s1 || !s2)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	str = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 2));
 	if (str == NULL)
 		return (NULL);
 	i = -1;
@@ -45,7 +45,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		str[i] = s1[i];
 	while (s2[j] != '\0')
 		str[i++] = s2[j++];
-	str[ft_strlen(s1) + ft_strlen(s2) + 1] = '\0';
+	str[ft_strlen(s1) + ft_strlen(s2)] = '\0';
 	free(s1);
 	return (str);
 }
@@ -108,7 +108,7 @@ void	jointok(t_jointok	**join, t_token *token)
 		}
 		else
 		{
-			table = ft_strjoin(backup, tmp->cmd);
+			table = jointoken(backup, tmp->cmd);
 			backup = table;
 			if (!tmp->next || (tmp->next && tmp->next->type != 5
 					&& tmp->next->type != 6 && tmp->next->type != 1))
@@ -120,5 +120,4 @@ void	jointok(t_jointok	**join, t_token *token)
 		}
 		tmp = tmp->next;
 	}
-	//free(table);
 }
