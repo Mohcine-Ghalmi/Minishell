@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/26 22:57:01 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/27 18:34:31 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int    checking_dash(char *cmd)
     int len;
 
     i = 0;
-    len =  first_equale(cmd);
+    len =  first_equale(cmd) - 1;
     if (cmd[first_equale(cmd) - 2] ==  '+')
         len -= 2;
     if (len <= -1)

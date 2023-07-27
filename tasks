@@ -2,7 +2,7 @@
 2-pwd : done
 4-export : done
 7-env : done
-5-unset : done
+5-unset : unset OLDPWD in env -i if no value there 
 3-echo : echo -nnnnnnnnnnnnnnnnnnn
 6-exit : exit value add to envirment but never show up neither  "export / env"
 
