@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/28 11:25:30 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:10:30 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,13 @@ void	piper(t_data *cmd, t_env *new_env)
 void execution(t_data *new, t_env *envp)
 {
     int status;
-        // ifcond = first_built(new, envp);
+    int ifcond;
+
+    ifcond = 0;
+        // check_builtins(new->av, envp);
     if (ft_lstsize(new) == 1)
-        check_builtins(new->av, envp);
-    else
+        ifcond = first_built(new, envp);
+    if (!ifcond)
         while  (new)
         {
             piper(new, envp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:58:06 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/26 17:52:26 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:06:59 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	ft_lstclear_env(t_env **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		if ((*lst)->key)
+		// if ((*lst)->key)
         	free((*lst)->key);
-		if((*lst)->value)
+		// if((*lst)->value)
 			free((*lst)->value);
         free(*lst);
 		*lst = tmp;

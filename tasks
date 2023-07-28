@@ -4,7 +4,7 @@
 7-env : done
 5-unset : done
 3-echo : echo -nnnnnnnnnnnnnnnnnnn
-6-exit : exit value add to envirment but never show up neither  "export / env"
+6-exit : fix exit status 
 
 -------------------test's--------------------------
 - if there is a builtins at the end of commands should not  change anything on the env
