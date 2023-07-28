@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/27 21:33:53 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:50:38 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	dollar_length(char *text, int i, t_token **token)
 
 	j = 0;
 	l = i + 1;
-	while (text[l] && ft_isalnum(text[l]))
+	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
 	{
 		j += 1;
 		l += 1;
@@ -35,23 +35,23 @@ char	*dollar(char *text, int *i, t_token **token, char **envp)
 
 	*i += 1;
 	l = 0;
-	dolar = NULL;
+	dolar = ft_strdup("");
 	table = calloc(1, dollar_length(text, *i, token));
 	while (text[*i] && text[*i] != '$')
 	{
-		if (ft_isalnum(text[*i]))
+		if (ft_isalnum(text[*i]) && text[*i] != '$')
 		{
-			//if (text[*i] >= '0' && text[*i] <= '9')
-			//{
-			//	*i += 1;
-			//	break ;
-			//}
-			//else
-			//{
+			if (text[*i] >= '0' && text[*i] <= '9')
+			{
+				*i += 1;
+				break ;
+			}
+			else
+			{
 				table[l] = text[*i];
 				l += 1;
 				*i += 1;	
-			//}
+			}
 		}
 		else
 			break ;

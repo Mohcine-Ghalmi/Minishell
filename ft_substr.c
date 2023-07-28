@@ -32,7 +32,10 @@ char	*ft_strdup(char *string)
 	i = 0;
 	ptr = (char *)malloc(sizeof(char) * ft_strlen1(string)+1);
 	if (!ptr)
+	{
+		free(ptr);
 		return (NULL);
+	}
 	while (string[i])
 	{
 		ptr[i] = string[i];
@@ -42,17 +45,17 @@ char	*ft_strdup(char *string)
 	return (ptr);
 }
 
-char	*ft_substr(char *s, unsigned int start, size_t len)
+char	*ft_substr(char *s, int start, int len)
 {
 	char	*ptr;
-	size_t	i;
+	int		i;
 
 	if (!s)
 		return (NULL);
-	if (start < ft_strlen1(s))
+	if (start < ft_strlen(s))
 	{
-		if ((ft_strlen1(s) - start) < len)
-			ptr = malloc(ft_strlen1(s) - start + 1);
+		if ((ft_strlen(s) - start) < len)
+			ptr = malloc(ft_strlen(s) - start + 1);
 		else
 			ptr = malloc(len + 1);
 		if (!ptr)
@@ -63,5 +66,6 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		ptr[i] = 0;
 		return (ptr);
 	}
+	ptr = ft_strdup("");
 	return (ptr);
 }

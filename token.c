@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/27 20:56:55 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 17:51:46 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	outorappand(char *text, int *i, t_token **token)
 	char	*table;
 
 	j = *i;
+	table = NULL;
 	if (text[*i + 1] != '>')
 	{
 		f = 1;
@@ -43,6 +44,7 @@ void	inorherdoc(char *text, int *i, t_token **token)
 	int		j;
 	char	*table;
 
+	table = NULL;
 	j = *i;
 	if (text[*i + 1] != '<')
 	{
@@ -68,20 +70,22 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	int		k;
 	int		t;
 	char	*tex;
-	char	*table;
+	char	*exet;
 
 	j = *i;
 	t = *i;
 	k = 0;
-	tex = NULL;
+	exet = NULL;
+	tex = ft_strdup("");
 	while (text[j] && !notword(text[j]) && !spaces(text[j]) && text[j] != '$')
 		j += 1;
 	k = j;
 	if (text[j] && text[j] == '$')
 		tex = dollar(text, &j, token, envp);
-	table = ft_substr(text, t, k - t);
+	exet = ft_substr(text, t, k - t);
 	*i = j;
-	ft_lstadd_back(token, ft_lstnew(1, ft_strjoin(table, tex)));
+	ft_lstadd_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));
+	free(tex);
 }
 
 void	space(char *text, int *i, t_token **token)
@@ -91,6 +95,7 @@ void	space(char *text, int *i, t_token **token)
 	int		t;
 	char	*table;
 
+	table = NULL;
 	j = *i;
 	t = *i;
 	k = 0;

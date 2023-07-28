@@ -18,6 +18,7 @@ void	tokena(char *input, t_token **token, char **envp)
 	int		i;
 
 	i = 0;
+	table = NULL;
 	while (input[i])
 	{
 		if (input[i] == '|' && input[i])
@@ -38,6 +39,7 @@ void	tokena(char *input, t_token **token, char **envp)
 		else if ((!notword(input[i]) || !spaces(input[i])) && input[i])
 			word(input, &i, token, envp);
 	}
+	//free(table);
 }
 
 void	close_files(int in, int out)
@@ -65,38 +67,40 @@ int	main(int argc, char **argv, char **envp)
 		lst = NULL;
 		node = NULL;
 		input = readline("> ");
+		if (input[0] == '\0')
+			break ;
 		add_history(input);
 		if (qudespars(input) == 0)
 		{
-			printf("syntax error close qudes\n");
+			ft_putstr_fd("syntax error close qudes\n", 2);
 			continue ;
 		}
 		tokena(input, &token, envp);
 		free(input);
-		jointok(&join, token);
+		//jointok(&join, token);
 		//syntaxerror(join);
-		lst = ltoken(&join);
-		node = create_node(lst);
-		//while(join)
-		//{
-		//	printf("%s, %d\n",join->str, join->type);
-		//	join = join->next;
-		//}
-		while (node)
+		//lst = ltoken(&join);
+		//node = create_node(lst);
+		while(token)
 		{
-			int i = 0;
-			while (node->cmd[i])
-			{
-				printf("s = %s\n",node->cmd[i]);
-				i++;
-			}
-			printf("%d,%d\n", node->fdin, node->fdout);
-			close_files(node->fdin, node->fdout);
-			node = node->next;
+			printf("%s, %d\n",token->cmd, token->type);
+			token = token->next;
 		}
+		//while (node)
+		//{
+		//	int i = 0;
+		//	while (node->cmd[i])
+		//	{
+		//		printf("s = %s\n",node->cmd[i]);
+		//		i++;
+		//	}
+		//	printf("%d,%d\n", node->fdin, node->fdout);
+		//	//close_files(node->fdin, node->fdout);
+		//	node = node->next;
+		//}
 		free_token(token);
-		free_jointoken(join);
-		free_lst(lst);
-		free_node(node);
+		//free_jointoken(join);
+		//free_lst(lst);
+		//free_node(node);
 	}
 }

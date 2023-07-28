@@ -37,7 +37,7 @@ int		ft_isalnum(int c);
 int		notword(int c);
 int		spaces(int c);
 
-char	*ft_substr(char *s, unsigned int start, size_t len);
+char	*ft_substr(char *s, int start, int len);
 char	*ft_strdup(char *string);
 char	*ft_strjoin(char *s1, char *s2);
 int		qudespars(char *str);
@@ -74,6 +74,7 @@ typedef struct node
 
 }					t_node;
 
+void		ft_putstr_fd(char *s, int fd);
 void		outorappand(char *text, int *i, t_token **token);
 void		inorherdoc(char *text, int *i, t_token **token);
 void		qudes(char *text, int *i, t_token **token, char **envp);

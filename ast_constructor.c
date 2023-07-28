@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/27 16:47:19 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 13:30:25 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,17 +69,18 @@ t_node	*create_node(t_lsttoken *token)
 				cmd[i++] = ft_strdup(token->str);
 			else if (token->type == 2)
 			{
+				if(token->next && token->next->str)
 				in = openfile(token->next->str, 0);
 				if (token->next)
 					token = token->next;
-				else
-					break ;
 			}
 			else if (token->type == 3)
 			{
-				out = openfile(token->next->str, 1);
+				if(token->next && token->next->str)
+					out = openfile(token->next->str, 1);
 				if (token->next)
 					token = token->next;
+
 			}
 			if (token)
 				token = token->next;
