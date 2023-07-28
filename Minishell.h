@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/26 15:59:27 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:50:49 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 #include "exec/exec.h"
 #include <readline/readline.h>
 #include <readline/history.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 #include "libft/libft.h"
 
 typedef struct data
@@ -28,7 +30,6 @@ typedef struct data
 	char **av;
 	int infile;
 	int outfile;
-	int append;
 	struct data *next;
 }		t_data;
 
@@ -41,7 +42,7 @@ typedef struct env
 }		t_env;
 
 t_env		*envirment(char **old_env);
-t_data		*struct_args(char **cmd, char *infile, char *outfile, char *append);
+t_data    *struct_args(char **cmd, char *infile, char *outfile);
 int			ft_lstsize(t_data *lst);
 char		**env_exec(t_env *new_env);
 void		out_dollars(char *key, t_env *new_env);

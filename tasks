@@ -1,6 +1,6 @@
 1-cd : done 
 2-pwd : done
-4-export : done
+4-export : export --> sort 
 7-env : done
 5-unset : done
 3-echo : echo -nnnnnnnnnnnnnnnnnnn

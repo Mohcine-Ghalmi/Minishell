@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/26 16:47:48 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 17:01:53 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int first_built(t_data *new, t_env *env)
             dup2(new->infile, STDIN_FILENO);
         else
 		    dup2(pipefd[0], STDIN_FILENO);
-        exit(1);
+		// exit(1);
 	}
 	else
 	{

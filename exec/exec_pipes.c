@@ -6,14 +6,14 @@
 /*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/28 16:10:30 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/28 17:12:07 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-t_data    *struct_args(char **cmd, char *infile, char *outfile, char *append)
+t_data    *struct_args(char **cmd, char *infile, char *outfile)
 {
     t_data *new;
 
@@ -21,7 +21,6 @@ t_data    *struct_args(char **cmd, char *infile, char *outfile, char *append)
     new->av = cmd;
     new->infile = openfile(infile, 0);
     new->outfile = openfile(outfile, 1);
-    new->append = open(append, O_CREAT | O_RDWR | O_APPEND, 0777);
     new->next = NULL;
     return new;
 }
@@ -44,9 +43,7 @@ int	ft_lstsize(t_data *lst)
 void    piper_norm(t_data *cmd, int pipefd[2])
 {
     close(pipefd[0]);
-    if  (cmd->append > 2)
-        dup2(cmd->append, STDOUT_FILENO);
-    else if (cmd->outfile > 2)
+    if (cmd->outfile > 2)
         dup2(cmd->outfile, STDOUT_FILENO);
     else if (ft_lstsize(cmd) > 1)
 	    dup2(pipefd[1], STDOUT_FILENO);
@@ -84,17 +81,25 @@ void execution(t_data *new, t_env *envp)
 {
     int status;
     int ifcond;
+    pid_t   main_fork;
 
     ifcond = 0;
-        // check_builtins(new->av, envp);
-    if (ft_lstsize(new) == 1)
-        ifcond = first_built(new, envp);
-    if (!ifcond)
-        while  (new)
-        {
-            piper(new, envp);
-            new = new->next;
-        }
+    status = 0;
+    main_fork  = fork();
+    if (main_fork)
+    {
+        if (ft_lstsize(new) == 1)
+            ifcond = first_built(new, envp);
+        if (!ifcond)
+            while  (new)
+            {
+                piper(new, envp);
+                new = new->next;
+            }
+        // exit(1);
+    }
+    while (wait(&status) != -1);
+    printf("status == %d\n", WEXITSTATUS(status));
     // while (1)
     // {
     //     waitpid(0, &status, 0);
@@ -103,5 +108,4 @@ void execution(t_data *new, t_env *envp)
     // }
     // replace  with waitpid(0, &status, 0)
     // check WESXITSTATUS(status)
-    while (wait(NULL) != -1);
 }

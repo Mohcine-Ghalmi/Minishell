@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/26 17:58:59 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 16:42:40 by sleeps           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **envp)
         // system("leaks minishell");
         input = readline("minishell>");
         cmd = ft_split(input, ' ');
-        new = struct_args(cmd, NULL, NULL, NULL);
+        new = struct_args(cmd, NULL, NULL);
         execution(new, new_envp);
         ft_lstclear_struct(&new);
         free_double(cmd);
