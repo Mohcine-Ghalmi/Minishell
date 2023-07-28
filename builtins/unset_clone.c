@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/24 18:03:29 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:20:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int find_key(char *key, t_env *env)
     t_env *tmp;
 
     tmp = env;
-    // printf("new key :%s -- %s\n", key, ft_substr(key, 0, ft_strlen1(key) - 1));
     while (tmp)
     {
         if (!ft_strncmp(tmp->key, key, ft_strlen1(key)))
@@ -44,8 +43,6 @@ void    delete_key(char *key, t_env *env)
     if (tmp)
         if (prev)
             prev->next = tmp->next;
-            
-    
     free(tmp);
 }
 
@@ -53,7 +50,7 @@ void    unset_clone(t_env *env, char **cmd)
 {
     int i;
 
-    i = 1;
+    i = 1; 
     while (cmd[i])
     {
         if (!find_key(cmd[i], env))

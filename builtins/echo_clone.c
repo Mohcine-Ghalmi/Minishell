@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/23 09:44:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/28 14:26:56 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ void    echo_clone(char **cmd)
 
     i = 1;
     flag = 0;
+    if (!cmd[i])
+    {
+        printf("\n");
+        return ;
+    }
     if (!ft_strncmp(cmd[i], "-n", 3))
     {
         i++;
@@ -31,7 +36,7 @@ void    echo_clone(char **cmd)
         else
         {
             flag = 0;
-            printf("%s ", cmd[i++]);
+            printf("%s", cmd[i++]);
         }
     }
     if (ft_strncmp(cmd[1], "-n", 3))
