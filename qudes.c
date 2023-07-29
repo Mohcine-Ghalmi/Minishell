@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 20:42:57 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 22:47:10 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,14 @@ char	*double_qudes(char *text, int *t, int i, t_token **token, char **evp)
 	{
 		if(text[*t] == '$')
 		{
-			table = ft_strjoin(table, ft_substr(text, i, *t - 1));
-			printf("table0 = %s\n", table);
+			char *tmp = ft_substr(text, i, *t - 1);
+			printf("tmp = %s\n", tmp);
+			table = ft_strjoin(table, tmp);
 			globel = dollar(text, t, token, evp);
 			i = *t;
 			// printf("glebel = %s\n", globel);
 			table = ft_strjoin(table, globel);
+			printf("table = %s, %s\n", table, globel);
 			// printf("table = %s\n", table);
 			free(globel);
 		}

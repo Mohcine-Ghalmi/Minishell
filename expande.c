@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 21:43:12 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 22:39:09 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*dollar(char *text, int *i, t_token **token, char **envp)
 	if (!ft_strlen(table))
 		return (free(table), ft_strdup(""));
 	dolar = out_dollars(table, envp);
+	printf("dolar = %s\n", dolar);
 	return (free(table), dolar);
 }
 
