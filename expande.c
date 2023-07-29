@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 11:11:04 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 21:43:12 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,36 +27,33 @@ int	dollar_length(char *text, int i, t_token **token)
 	return (l);
 }
 
+char	*creat_table(char *text, int *i, t_token **token)
+{
+	int		l;
+	int		j;
+	char	*table;
+
+	j = 0;
+	l = *i + 1;
+	table = calloc(1, dollar_length(text, *i, token));
+	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
+	{
+		table[j] = text[l];
+		j += 1;
+		l += 1;
+	}
+	table[j] = '\0';
+	*i = l;
+	return (table);
+}
+
 char	*dollar(char *text, int *i, t_token **token, char **envp)
 {
 	char	*table;
 	char	*dolar;
-	int		l;
 
-	*i += 1;
-	l = 0;
 	dolar = ft_strdup("");
-	table = calloc(1, dollar_length(text, *i, token));
-	while (text[*i] && text[*i] != '$')
-	{
-		if (ft_isalnum(text[*i]) && text[*i] != '$')
-		{
-			if (text[*i] >= '0' && text[*i] <= '9')
-			{
-				*i += 1;
-				break ;
-			}
-			else
-			{
-				table[l] = text[*i];
-				l += 1;
-				*i += 1;
-			}
-		}
-		else
-			break ;
-	}
-	table[l] = '\0';
+	table = creat_table(text, i, token);
 	if (!ft_strlen(table))
 		return (free(table), ft_strdup(""));
 	dolar = out_dollars(table, envp);

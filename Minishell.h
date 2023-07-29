@@ -40,6 +40,14 @@ char	*ft_strjoin(char *s1, char *s2);
 int		qudespars(char *str);
 size_t	ft_strlen(char *s);
 
+typedef struct env
+{
+	char		*key;
+	char		*value;
+	int			option;
+	struct env	*next;
+}			t_env;
+
 typedef struct token
 {
 	char			*cmd;
