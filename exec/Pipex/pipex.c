@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/19 21:30:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 16:42:40 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	openfile(char *filename, int mode)
 		{
 			// write(STDERR_FILENO, filename, ft_strchr1(filename, 0));
 			// write(STDERR_FILENO, ": No such file or directory\n", 28);
-			return (-1);
+			return (0);
 		}
 		return (open(filename, O_RDONLY));
 	}
@@ -66,7 +66,7 @@ void	exec(char **cmd, char **env)
 		write(STDERR_FILENO, "minishell: ", 12);
 		write(STDERR_FILENO, cmd[0], ft_strchr1(cmd[0], 0));
 		write(STDERR_FILENO, ": command not found\n", 20);
-		exit(1);
+		exit(127);
 	}
 }
 

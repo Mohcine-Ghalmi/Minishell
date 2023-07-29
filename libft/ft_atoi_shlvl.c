@@ -6,17 +6,17 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:00:26 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/24 15:29:41 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 16:38:48 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi_shlvl(const char *str)
+unsigned int	ft_atoi_shlvl(const char *str)
 {
-	int	res;
-	int	i;
-	int	signe;
+	unsigned int	res;
+	unsigned int	i;
+	unsigned int	signe;
 
 	res = 0;
 	i = 0;

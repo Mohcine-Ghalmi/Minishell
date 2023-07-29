@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/28 17:12:07 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/29 16:40:20 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,9 @@ void	piper(t_data *cmd, t_env *new_env)
 	pid_t	pid;
     char    **exec_enev;
     int pipefd[2];
+    int b;
 
+    b = 0;
     if (pipe(pipefd) < 0)
         return ;
 	pid = fork();
@@ -70,8 +72,9 @@ void	piper(t_data *cmd, t_env *new_env)
 	{
         piper_norm(cmd, pipefd);
         exec_enev = env_exec(new_env);
-        if (check_builtins(cmd->av, new_env))
-            exit(1);
+        b = check_builtins(cmd->av, new_env);
+        if (b < 2)
+            exit(b);
         exec(cmd->av, exec_enev);
 	}
     closepipe(pipefd);
@@ -80,32 +83,21 @@ void	piper(t_data *cmd, t_env *new_env)
 void execution(t_data *new, t_env *envp)
 {
     int status;
-    int ifcond;
-    pid_t   main_fork;
+    unsigned int ifcond;
 
-    ifcond = 0;
+    ifcond = 2;
     status = 0;
-    main_fork  = fork();
-    if (main_fork)
-    {
-        if (ft_lstsize(new) == 1)
-            ifcond = first_built(new, envp);
-        if (!ifcond)
-            while  (new)
-            {
-                piper(new, envp);
-                new = new->next;
-            }
-        // exit(1);
-    }
+    if (ft_lstsize(new) == 1)
+        ifcond = first_built(new, envp);
+    if (ifcond == 2)
+        while  (new)
+        {
+            piper(new, envp);
+            new = new->next;
+        }
     while (wait(&status) != -1);
-    printf("status == %d\n", WEXITSTATUS(status));
-    // while (1)
-    // {
-    //     waitpid(0, &status, 0);
-    //     if (WEXITSTATUS(status))
-    //         break;
-    // }
-    // replace  with waitpid(0, &status, 0)
-    // check WESXITSTATUS(status)
+    if (ifcond < 2)
+        update_status(ifcond, envp);
+    else
+        update_status(WEXITSTATUS(status), envp);
 }

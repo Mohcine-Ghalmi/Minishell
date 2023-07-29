@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/27 18:34:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 13:20:11 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int    show_export(char **cmd, t_env *env)
     return (i);
 }
 
-void    add_to_env(char *cmd, t_env *env)
+void   add_to_env(char *cmd, t_env *env)
 {
     char    *prb;
     char    *key;
@@ -92,13 +92,17 @@ void    add_to_env(char *cmd, t_env *env)
     ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 1));
 }
 
-void    export_clone(char   **cmd, t_env *env)
+int   export_clone(char   **cmd, t_env *env)
 {
     int     i;
     char    *key;
     char    *value;
+    int     ret;
+    int     ret1;
 
     i = 1;
+    ret = 0;
+    ret1 = 0;
     if (!show_export(cmd, env))
     {
         while (cmd[i])
@@ -109,6 +113,8 @@ void    export_clone(char   **cmd, t_env *env)
                 {
                     if (!checking_dash(cmd[i]))
                         add_to_env(cmd[i], env);
+                    else
+                        ret = 1;
                 }
                 else
                     if (!checking_dash(cmd[i]))
@@ -116,11 +122,14 @@ void    export_clone(char   **cmd, t_env *env)
                         key = ft_strdup(cmd[i]);
                         value = ft_strdup("");
                         ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 2));
-                        free(key);
-                        free(value);
                     }
+                    else
+                        ret = 1;
             }
+            if (ret != 0)
+                ret1 = 1;
             i++;
         }
     }
+    return (ret1);
 }

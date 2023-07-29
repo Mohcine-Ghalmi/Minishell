@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/24 15:28:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 16:39:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,26 @@
 typedef struct data t_data;
 typedef struct env  t_env;
 
-void	ft_bzero(void *s, size_t n);
-char	*ft_strdup(const char *s1);
-void	*ft_calloc(size_t count, size_t size);
-size_t	ft_strlen(const char *s);
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char	**ft_split(char const *s, char c);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_lstadd_back_env(t_env **list, t_env *new);
-t_env	*ft_lstnew_env(char *key, char *value, int option);
-void	*ft_memmove(void *dest, const void *src, size_t len);
-void	*ft_memcpy(void *dst, const void *src, size_t n);
-t_env	*ft_lstlast(t_env *lst);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int	    ft_lstsize_env(t_env *lst);
-void	ft_lstclear_env(t_env **lst);
-char    *ft_tolower_str(char *str);
-char	*ft_strchr(const char *s, int c);
-void	ft_lstclear_struct(t_data **lst);
-void	ft_lstdelone(t_env *lst);
-int	    ft_atoi_shlvl(const char *str);
-char	*ft_itoa_shlvl(int n);
+void	        ft_bzero(void *s, size_t n);
+char	        *ft_strdup(const char *s1);
+void	        *ft_calloc(size_t count, size_t size);
+size_t	        ft_strlen(const char *s);
+char	        *ft_strnstr(const char *haystack, const char *needle, size_t len);
+char	        **ft_split(char const *s, char c);
+void	        ft_putstr_fd(char *s, int fd);
+void	        ft_lstadd_back_env(t_env **list, t_env *new);
+t_env	        *ft_lstnew_env(char *key, char *value, int option);
+void	        *ft_memmove(void *dest, const void *src, size_t len);
+void	        *ft_memcpy(void *dst, const void *src, size_t n);
+t_env	        *ft_lstlast(t_env *lst);
+char	        *ft_substr(char const *s, unsigned int start, size_t len);
+int	            ft_lstsize_env(t_env *lst);
+void	        ft_lstclear_env(t_env **lst);
+char            *ft_tolower_str(char *str);
+char	        *ft_strchr(const char *s, int c);
+void	        ft_lstclear_struct(t_data **lst);
+void	        ft_lstdelone(t_env *lst);
+unsigned int	ft_atoi_shlvl(const char *str);
+char	        *ft_itoa_shlvl(int n);
 
 #endif

@@ -3,32 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/28 17:01:53 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/29 15:51:48 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-void	shoose_builtins(char **cmd, t_env *env)
+int	shoose_builtins(char **cmd, t_env *env)
 {
 	if (!ft_strncmp(cmd[0], "cd", ft_strlen1(cmd[0])))
-		cd_clone(cmd, env);
+		return (cd_clone(cmd, env));
 	else if (!ft_strncmp(cmd[0], "export", ft_strlen1(cmd[0])))
-		export_clone(cmd, env);
+		return (export_clone(cmd, env));
 	else if (!ft_strncmp(cmd[0], "unset", ft_strlen1(cmd[0])))
-		unset_clone(env, cmd);
+		return (unset_clone(env, cmd));
 	else if (!ft_strncmp(cmd[0], "exit", ft_strlen1(cmd[0])))
-		exit_clone(env, cmd);
+		return (exit_clone(env, cmd));
 	else if (!ft_strncmp(cmd[0], "pwd", ft_strlen1(cmd[0])))
-		pwd_clone(cmd, env);
+		return (pwd_clone(cmd, env));
 	else if (!ft_strncmp(cmd[0], "env", ft_strlen1(cmd[0])))
-		show_env(env, cmd);
+		return (show_env(env, cmd));
 	else if (!ft_strncmp(cmd[0], "echo", ft_strlen1(cmd[0])))
-		echo_clone(cmd);
+		return (echo_clone(cmd));
+	return (2);
 }
 
 void    free_double(char    **str)
@@ -57,41 +58,19 @@ int    check_builtins(char **cmd, t_env *env)
 	while (i < 7)
 	{
 		if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
-		{
-			shoose_builtins(cmd, env);
-			return (1);
-		}
+			return (shoose_builtins(cmd, env));
 		i++;
 	}
-	return (0);
+	return (2);
 }
 
 int first_built(t_data *new, t_env *env)
 {
-    pid_t	pid;
-    char    **exec_enev;
     int     ret;
-    int pipefd[2];
 
     ret  = 0;
-    if (pipe(pipefd) < 0)
-        return 0;
-	pid = fork();
-	if (!pid)
-	{
-		close(pipefd[1]);
-        if (new->infile > 2)
-            dup2(new->infile, STDIN_FILENO);
-        else
-		    dup2(pipefd[0], STDIN_FILENO);
-		// exit(1);
-	}
-	else
-	{
-        piper_norm(new, pipefd);
-        // give exit to every  proc
-        ret = check_builtins(new->av, env);
-	}
-    closepipe(pipefd);
+	if (new->outfile > 2)
+		dup2(new->outfile, STDOUT_FILENO);
+	ret = check_builtins(new->av, env);
     return (ret);
 }

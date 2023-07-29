@@ -6,13 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/28 14:26:56 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 13:12:04 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-void    echo_clone(char **cmd)
+int    echo_clone(char **cmd)
 {
     int i;
     int flag;
@@ -22,7 +22,7 @@ void    echo_clone(char **cmd)
     if (!cmd[i])
     {
         printf("\n");
-        return ;
+        return (0);
     }
     if (!ft_strncmp(cmd[i], "-n", 3))
     {
@@ -41,4 +41,5 @@ void    echo_clone(char **cmd)
     }
     if (ft_strncmp(cmd[1], "-n", 3))
         printf("\n");
+    return (0);
 }

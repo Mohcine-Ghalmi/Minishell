@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/28 14:19:53 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 14:20:39 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ t_env		*envirment(char **old_env)
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		i++;
 	}
+	ft_lstadd_back_env(&new_env, ft_lstnew_env("?=", ft_strdup(""), 3));
 	if (!olpwd_env(new_env))
 	{
-		ft_lstadd_back_env(&new_env, ft_lstnew_env("?", ft_strdup(""), 3));
 		ft_lstadd_back_env(&new_env, ft_lstnew_env("OLDPWD", ft_strdup(""), 2));
 		i++;
 	}
@@ -83,7 +83,7 @@ char	**env_exec(t_env *new_env)
 	return (envp);
 }
 
-void	show_env(t_env *new_env, char **cmd)
+int	show_env(t_env *new_env, char **cmd)
 {
 	t_env	*tmp;
 
@@ -91,7 +91,7 @@ void	show_env(t_env *new_env, char **cmd)
 	if (cmd[1])
 	{
 		printf("env with no options\n");
-        return ;
+        return (1);
 	}
 	while (tmp)
 	{
@@ -99,4 +99,5 @@ void	show_env(t_env *new_env, char **cmd)
 			printf("%s%s\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
+	return (0);
 }
