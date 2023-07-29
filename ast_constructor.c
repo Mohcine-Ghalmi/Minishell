@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 21:08:27 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 22:24:27 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	free_cmds(char **cmd)
 	free(cmd);
 }
 
-void	wl(int in, int out, t_node **node,t_lsttoken *token)
+char	**wl(int *in, int *out, t_lsttoken *token)
 {
-	int i;
+	int		i;
 	char	**cmd;
 
 	i = 0;
@@ -62,22 +62,21 @@ void	wl(int in, int out, t_node **node,t_lsttoken *token)
 		else if (token->type == 2)
 		{
 			if (token->next && token->next->str)
-				in = openfile(token->next->str, 0);
+				*in = openfile(token->next->str, 0);
 			if (token->next)
 				token = token->next;
 		}
 		else if (token->type == 3)
 		{
 			if (token->next && token->next->str)
-				out = openfile(token->next->str, 1);
+				*out = openfile(token->next->str, 1);
 			if (token->next)
 				token = token->next;
 		}
 		if (token)
 			token = token->next;
 	}
-	cmd[i] = NULL;
-	addnode_back(node, new_node(cmd, in, out));
+	return (cmd);
 }
 
 t_node	*create_node(t_lsttoken *token)
@@ -91,11 +90,11 @@ t_node	*create_node(t_lsttoken *token)
 	node = NULL;
 	while (token)
 	{
-		cmd = malloc(sizeof(char *) * (lenword(token) + 1));
 		i = 0;
 		in = 0;
 		out = 1;
-		wl(in, out, &node, token);
+		cmd = wl(&in, &out, token);
+		addnode_back(&node, new_node(cmd, in, out));
 		if (token)
 			token = token->next;
 	}

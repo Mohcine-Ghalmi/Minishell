@@ -80,6 +80,12 @@ int	main(int argc, char **argv, char **envp)
 		syntaxerror(join);
 		lst = ltoken(&join);
 		node = create_node(lst);
+		while (node)
+		{
+			//printf("in = %d || out = %d\n", node->fdin, node->fdout);
+			printf("cmd = %s\n", node->cmd[0]);
+			node = node->next;
+		}
 		free_token(token);
 		free_jointoken(join);
 		free_lst(lst);
