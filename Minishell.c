@@ -6,16 +6,11 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 23:16:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 23:39:20 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-void    fuck(void)
-{
-    system("leaks minishell");
-}
 
 t_data    *struct_args(char **cmd, char *infile, char *outfile)
 {
@@ -57,7 +52,7 @@ t_data  *cmds(char **cmd)
     new = NULL;
     i = 0;
     while (cmd != NULL && cmd[i])
-        ft_lstadd_back_cmnd(&new, struct_args(ft_split(cmd[i++], ' '), "tasks", NULL));
+        ft_lstadd_back_cmnd(&new, struct_args(ft_split(cmd[i++], ' '), NULL, NULL));
     return new;
 }
 int main(int argc, char **argv, char **envp)
@@ -73,7 +68,6 @@ int main(int argc, char **argv, char **envp)
     new_envp = envirment(envp);
     while (1)
     {
-        // system("leaks minishell");
         input = readline("minishell>");
         if (!input)
             break;
