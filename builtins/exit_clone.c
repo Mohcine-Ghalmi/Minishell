@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 16:53:51 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 23:10:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void    update_status(unsigned int status, t_env *env)
         if (!ft_strncmp("?=", tmp->key, 2))
         {
             tmp->value = ft_itoa_shlvl(checking_status(status));
-            printf("exit status : %s%s\n",tmp->key ,tmp->value);
+            // printf("exit status : %s%s\n",tmp->key ,tmp->value);
         }
         tmp = tmp->next;
     }
@@ -52,12 +52,11 @@ int find_char(char *str)
 
 int   exit_clone(t_env *env, char **cmd)
 {
-    if (cmd[2])
+    if (cmd[2] != NULL)
     {
         printf("exit\n");
         printf("minishell: exit: too many arguments\n");
         update_status(1, env);
-        exit(1);
     }
     if (cmd[1])
     {

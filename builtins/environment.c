@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 14:20:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/29 22:36:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,10 @@ t_env		*envirment(char **old_env)
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		i++;
 	}
-	ft_lstadd_back_env(&new_env, ft_lstnew_env("?=", ft_strdup(""), 3));
+	ft_lstadd_back_env(&new_env, ft_lstnew_env(ft_strdup("?="), ft_strdup(""), 3));
 	if (!olpwd_env(new_env))
 	{
-		ft_lstadd_back_env(&new_env, ft_lstnew_env("OLDPWD", ft_strdup(""), 2));
+		ft_lstadd_back_env(&new_env, ft_lstnew_env(ft_strdup("OLDPWD"), ft_strdup(""), 2));
 		i++;
 	}
 	if (i == 1)
@@ -72,14 +72,15 @@ char	**env_exec(t_env *new_env)
 	
 	i = 0;
 	tmp = new_env;
-	envp = malloc(ft_lstsize_env(new_env) * sizeof(char *));
+	envp = malloc((ft_lstsize_env(new_env) + 1) * sizeof(char *));
 	while (tmp)
 	{
-		envp[i] = ft_strjoin1(envp[i], tmp->key);
+		envp[i] = ft_strdup(tmp->key);
 		envp[i] = ft_strjoin1(envp[i], tmp->value);
 		tmp = tmp->next;
 		i++;
 	}
+	envp[i] = NULL;
 	return (envp);
 }
 

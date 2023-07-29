@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 02:04:37 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/07/29 23:13:03 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	openfile(char *filename, int mode)
 {
 	if (mode == STDIN_FILENO)
 	{
-		if (access(filename, F_OK))
-			return (-1);
+		if (!access(filename, F_OK))
+			return (0);
 		return (open(filename, O_RDONLY));
 	}
 	else
