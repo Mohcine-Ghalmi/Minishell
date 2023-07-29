@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	tokena(char *input, t_token **token, char **envp)
 {
@@ -24,7 +24,7 @@ void	tokena(char *input, t_token **token, char **envp)
 		if (input[i] == '|' && input[i])
 		{
 			table = ft_substr(input, i, 1);
-			ft_lstadd_back(token, ft_lstnew(4, table));
+			ft_back(token, ft_lstnew(4, table));
 			free(table);
 			i += 1;
 		}
@@ -39,7 +39,6 @@ void	tokena(char *input, t_token **token, char **envp)
 		else if ((!notword(input[i]) || !spaces(input[i])) && input[i])
 			word(input, &i, token, envp);
 	}
-	//free(table);
 }
 
 void	close_files(int in, int out)
@@ -77,30 +76,25 @@ int	main(int argc, char **argv, char **envp)
 		}
 		tokena(input, &token, envp);
 		free(input);
-		//jointok(&join, token);
-		//syntaxerror(join);
-		//lst = ltoken(&join);
-		//node = create_node(lst);
-		while(token)
+		jointok(&join, token);
+		syntaxerror(join);
+		lst = ltoken(&join);
+		node = create_node(lst);
+		while (node)
 		{
-			printf("%s, %d\n",token->cmd, token->type);
-			token = token->next;
+			int i = 0;
+			while (node->cmd[i])
+			{
+				printf("s = %s\n",node->cmd[i]);
+				i++;
+			}
+			printf("%d,%d\n", node->fdin, node->fdout);
+			//close_files(node->fdin, node->fdout);
+			node = node->next;
 		}
-		//while (node)
-		//{
-		//	int i = 0;
-		//	while (node->cmd[i])
-		//	{
-		//		printf("s = %s\n",node->cmd[i]);
-		//		i++;
-		//	}
-		//	printf("%d,%d\n", node->fdin, node->fdout);
-		//	//close_files(node->fdin, node->fdout);
-		//	node = node->next;
-		//}
 		free_token(token);
-		//free_jointoken(join);
-		//free_lst(lst);
-		//free_node(node);
+		free_jointoken(join);
+		free_lst(lst);
+		free_node(node);
 	}
 }

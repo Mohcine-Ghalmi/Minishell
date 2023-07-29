@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/26 10:46:54 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:04:26 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 int	ft_strchr1(const char *s, int c)
 {

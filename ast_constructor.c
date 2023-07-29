@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 13:30:25 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 11:17:35 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 int	lenword(t_lsttoken *token)
 {
@@ -40,7 +40,7 @@ int	lenword(t_lsttoken *token)
 
 void	free_cmds(char **cmd)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (cmd[i])
@@ -69,25 +69,23 @@ t_node	*create_node(t_lsttoken *token)
 				cmd[i++] = ft_strdup(token->str);
 			else if (token->type == 2)
 			{
-				if(token->next && token->next->str)
-				in = openfile(token->next->str, 0);
+				if (token->next && token->next->str)
+					in = openfile(token->next->str, 0);
 				if (token->next)
 					token = token->next;
 			}
 			else if (token->type == 3)
 			{
-				if(token->next && token->next->str)
+				if (token->next && token->next->str)
 					out = openfile(token->next->str, 1);
 				if (token->next)
 					token = token->next;
-
 			}
 			if (token)
 				token = token->next;
 		}
 		cmd[i] = NULL;
 		addnode_back(&node, new_node(cmd, in, out));
-		//free_cmds(cmd);
 		if (token)
 			token = token->next;
 	}

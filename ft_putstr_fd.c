@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/28 12:02:12 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 13:10:25 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:04:18 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {

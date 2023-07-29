@@ -13,15 +13,13 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include<unistd.h>
-# include<stdio.h>
-# include<unistd.h>
-# include<stdlib.h>
 # include <stdio.h>
-# include<string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <string.h>
 
 # define WORD 1
 # define IN	2
@@ -36,7 +34,6 @@
 int		ft_isalnum(int c);
 int		notword(int c);
 int		spaces(int c);
-
 char	*ft_substr(char *s, int start, int len);
 char	*ft_strdup(char *string);
 char	*ft_strjoin(char *s1, char *s2);
@@ -74,20 +71,6 @@ typedef struct node
 
 }					t_node;
 
-void		ft_putstr_fd(char *s, int fd);
-void		outorappand(char *text, int *i, t_token **token);
-void		inorherdoc(char *text, int *i, t_token **token);
-void		qudes(char *text, int *i, t_token **token, char **envp);
-void		word(char *text, int *i, t_token **token, char **envp);
-void		space(char *text, int *i, t_token **token);
-char		*dollar(char *text, int *i, t_token **token, char **envp);
-void		jointok(t_jointok	**join, t_token *token);
-void		ft_lstadd_back(t_token	**lst, t_token	*new);
-void		ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
-int			checksyntax(t_jointok *token);
-void		syntaxerror(t_jointok *token);
-char		*out_dollars(char *key, char **env);
-int			openfile(char *filename, int mode);
 t_token		*ft_lstnew(int type, char *str);
 t_token		*ft_lstlast(t_token	*lst);
 t_jointok	*ft_lstnew1(char *str, int type);
@@ -97,11 +80,24 @@ t_node		*new_node(char **cmd, int in, int out);
 t_node		*last_node(t_node	*lst);
 t_lsttoken	*ltoken(t_jointok **token);
 
-void		addnode_back(t_node	**lst, t_node	*new);
-void		free_cmds(char **cmd);
-void		free_node(t_node *node);
-void		free_lst(t_lsttoken *lst);
-void		free_jointoken(t_jointok *token);
-void		free_token(t_token *token);
+void	outorappand(char *text, int *i, t_token **token);
+void	ft_putstr_fd(char *s, int fd);
+void	inorherdoc(char *text, int *i, t_token **token);
+void	qudes(char *text, int *i, t_token **token, char **envp);
+void	word(char *text, int *i, t_token **token, char **envp);
+void	space(char *text, int *i, t_token **token);
+char	*dollar(char *text, int *i, t_token **token, char **envp);
+void	jointok(t_jointok	**join, t_token *token);
+void	ft_back(t_token	**lst, t_token	*new);
+void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
+void	syntaxerror(t_jointok *token);
+char	*out_dollars(char *key, char **env);
+int		openfile(char *filename, int mode);
+void	addnode_back(t_node	**lst, t_node	*new);
+void	free_cmds(char **cmd);
+void	free_node(t_node *node);
+void	free_lst(t_lsttoken *lst);
+void	free_jointoken(t_jointok *token);
+void	free_token(t_token *token);
 
 #endif

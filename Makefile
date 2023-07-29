@@ -18,7 +18,7 @@ OBJ = $(SRC:%.c=%.o)
 
 all : $(NAME)
 
-$(NAME) : minishell.h $(OBJ)
+$(NAME) : Minishell.h $(OBJ)
 	gcc -Wall -Wextra -Werror $(OBJ) -lreadline  -o $(NAME)
 clean: 
 	rm -rfv $(OBJ)

@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:20:52 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/27 20:22:15 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:04:15 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	free_node(t_node *node)
 {

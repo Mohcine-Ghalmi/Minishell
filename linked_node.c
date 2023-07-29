@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 21:04:01 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/26 10:49:06 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:04:39 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 t_node	*new_node(char **cmd, int in, int out)
 {

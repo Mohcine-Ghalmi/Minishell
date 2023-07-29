@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:57:16 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/26 15:58:03 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/28 22:04:24 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	heredoc_file(char *limiter, int outfile)
 {

@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 17:51:46 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 09:42:09 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 void	outorappand(char *text, int *i, t_token **token)
 {
@@ -32,9 +32,9 @@ void	outorappand(char *text, int *i, t_token **token)
 	}
 	table = ft_substr(text, j, *i - j);
 	if (f == 2)
-		ft_lstadd_back(token, ft_lstnew(7, table));
+		ft_back(token, ft_lstnew(7, table));
 	else if (f == 1)
-		ft_lstadd_back(token, ft_lstnew(3, table));
+		ft_back(token, ft_lstnew(3, table));
 	free(table);
 }
 
@@ -58,9 +58,9 @@ void	inorherdoc(char *text, int *i, t_token **token)
 	}
 	table = ft_substr(text, j, *i - j);
 	if (f == 2)
-		ft_lstadd_back(token, ft_lstnew(9, table));
+		ft_back(token, ft_lstnew(9, table));
 	if (f == 1)
-		ft_lstadd_back(token, ft_lstnew(2, table));
+		ft_back(token, ft_lstnew(2, table));
 	free(table);
 }
 
@@ -84,7 +84,7 @@ void	word(char *text, int *i, t_token **token, char **envp)
 		tex = dollar(text, &j, token, envp);
 	exet = ft_substr(text, t, k - t);
 	*i = j;
-	ft_lstadd_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));
+	ft_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));
 	free(tex);
 }
 
@@ -102,7 +102,7 @@ void	space(char *text, int *i, t_token **token)
 	while (spaces(text[j]) && !notword(text[j]))
 		j += 1;
 	table = ft_substr(text, t, j - t);
-	ft_lstadd_back(token, ft_lstnew(10, table));
+	ft_back(token, ft_lstnew(10, table));
 	*i = j;
 	free(table);
 }

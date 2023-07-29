@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 int	ft_isalnum(int c)
 {
@@ -64,4 +64,3 @@ char	*ft_strjoin(char *s1, char *s2)
 	ft_free((void **)&s1);
 	return (str);
 }
-

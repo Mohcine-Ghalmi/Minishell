@@ -6,11 +6,11 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 17:50:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/29 11:11:04 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 int	dollar_length(char *text, int i, t_token **token)
 {
@@ -50,7 +50,7 @@ char	*dollar(char *text, int *i, t_token **token, char **envp)
 			{
 				table[l] = text[*i];
 				l += 1;
-				*i += 1;	
+				*i += 1;
 			}
 		}
 		else
@@ -58,13 +58,9 @@ char	*dollar(char *text, int *i, t_token **token, char **envp)
 	}
 	table[l] = '\0';
 	if (!ft_strlen(table))
-	{
-		free(table);
-		return (ft_strdup(""));
-	}
+		return (free(table), ft_strdup(""));
 	dolar = out_dollars(table, envp);
-	free(table);
-	return (dolar);
+	return (free(table), dolar);
 }
 
 int	ft_strncmp(char *str1, char *str2, size_t n)

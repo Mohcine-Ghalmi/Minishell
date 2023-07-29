@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "Minishell.h"
 
 t_token	*ft_lstnew(int type, char *str)
 {
@@ -37,7 +37,7 @@ t_token	*ft_lstlast(t_token	*lst)
 	return (tmp);
 }
 
-void	ft_lstadd_back(t_token	**lst, t_token	*new)
+void	ft_back(t_token	**lst, t_token	*new)
 {
 	if (!new)
 		return ;
