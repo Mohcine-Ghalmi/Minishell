@@ -31,6 +31,7 @@
 # define HEC 9
 # define SPAE 10
 
+int		ft_isdigit(int c);
 int		ft_isalnum(int c);
 int		notword(int c);
 int		spaces(int c);

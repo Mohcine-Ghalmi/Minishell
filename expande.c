@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/30 17:21:53 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/30 19:42:49 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char	*creat_table(char *text, int *i)
 	table = ft_calloc(1, dollar_length(text, *i));
 	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
 	{
-		if (text[l] >= '0' && text[l] <= '9')
+		if (ft_isdigit(text[l]))
 		{
 			l += 1;
 			break ;

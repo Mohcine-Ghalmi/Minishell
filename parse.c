@@ -6,13 +6,13 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/30 11:26:34 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/30 18:09:02 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-int	checksyntax(t_token *tmp)
+int	checksyntax(t_jointok *tmp)
 {
 	if (tmp->type == 2 && tmp->next->type == 4
 		|| (tmp->type == 4 && tmp->next->type == 4
@@ -53,17 +53,17 @@ void	syntaxerror(t_jointok	*token)
 	tmp = token;
 	if (checksyntax1(tmp->type) == 2)
 		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
-	if (checksyntax2(ft_lstlast1(tmp)->type) == 3)
+	else if (checksyntax2(ft_lstlast1(tmp)->type) == 3)
 		ft_putstr_fd("syntax error near unexpected token `newline'\n", 2);
 	//while (tmp)
 	//{
-	//	if (checksyntax(&tmp) == 2)
+	//	if (checksyntax(tmp) == 2)
 	//		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
-	//	if (checksyntax(&tmp) == 7)
+	//	else if (checksyntax(tmp) == 7)
 	//		ft_putstr_fd("syntax error near unexpected token `newline'\n", 2);
-	//	if (checksyntax(&tmp) == 5)
+	//	else if (checksyntax(tmp) == 5)
 	//		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
-	//	if (checksyntax(&tmp) == 6)
+	//	else if (checksyntax(tmp) == 6)
 	//		ft_putstr_fd("syntax error near unexpected token `>'\n", 2);
 	//	tmp = tmp->next;
 	//}

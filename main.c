@@ -77,7 +77,7 @@ int	main(int argc, char **argv, char **envp)
 		tokena(input, &token, envp);
 		free(input);
 		jointok(&join, token);
-		//syntaxerror(join);
+		syntaxerror(join);
 		lst = ltoken(&join);
 		node = create_node(lst);
 		while (node)
