@@ -77,12 +77,21 @@ int	main(int argc, char **argv, char **envp)
 		tokena(input, &token, envp);
 		free(input);
 		jointok(&join, token);
-		syntaxerror(join);
+		//syntaxerror(join);
 		lst = ltoken(&join);
 		node = create_node(lst);
 		while (node)
 		{
-			printf("cmd = %s\n", node->cmd[0]);
+			//printf("%s, %d\n",token->cmd, token->type);
+			//token = token->next;
+			int i = 0;
+			while (node->cmd[i])
+			{
+				printf("s = %s\n",node->cmd[i]);
+				i++;
+			}
+			printf("%d,%d\n", node->fdin, node->fdout);
+			//close_files(node->fdin, node->fdout);
 			node = node->next;
 		}
 		free_token(token);

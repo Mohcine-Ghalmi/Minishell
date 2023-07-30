@@ -98,6 +98,7 @@ void	free_node(t_node *node);
 void	free_lst(t_lsttoken *lst);
 void	free_jointoken(t_jointok *token);
 void	free_token(t_token *token);
+void	*ft_calloc(size_t count, size_t size);
 
 t_token	*ft_lstnew(int type, char *cmd);
 t_token	*ft_lstlast(t_token	*lst);
