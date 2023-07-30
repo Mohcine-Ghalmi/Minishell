@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/30 17:49:48 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 18:23:20 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,13 @@ int   exit_clone(t_env *env, char **cmd)
 {
     if (cmd[2] != NULL)
     {
-        ft_putstr_fd("exit", 2);
-        ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-        update_status(1, env);
+        if (!find_char(cmd[1]))
+        {
+            ft_putstr_fd("exit\n", 2);
+            ft_putstr_fd("minishell: exit: too many arguments\n", 2);
+            update_status(1, env);
+        }
+        return (1);
     }
     if (cmd[1])
     {
@@ -64,6 +68,9 @@ int   exit_clone(t_env *env, char **cmd)
         {
             update_status(255, env);
             printf("exit\n");
+            ft_putstr_fd("minishell: exit: ", 2);
+            ft_putstr_fd(cmd[1], 2);
+            ft_putstr_fd(": numeric argument required\n", 2);
             exit(255);
         }
         update_status(checking_status(ft_atoi_shlvl(cmd[1])), env);
