@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 22:47:10 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/30 15:01:02 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,61 +24,32 @@ void	single_qudes(char *text, int *t, int i, t_token **token)
 	ft_back(token, ft_lstnew(6, ft_substr(text, i, m - i)));
 }
 
-char	*double_qudes(char *text, int *t, int i, t_token **token, char **evp)
+char	*double_qudes(char *text, int *t, int i, char **evp)
 {
-	//char	*tex;
-	//int		m;
-	//char	*table;
-	//int		flag;
-
-	//tex = ft_strdup("");
-	//table = ft_strdup("");
-	//flag = 0;
-	//m = 0;
-	//while (text[*t] && text[*t] != '\"')
-	//{
-	//	if (text[*t] == '$')
-	//	{
-	//		flag = 1;
-	//		tex = ft_strjoin(tex , dollar(text, t, token, evp));
-	//	}
-	//	else
-	//		*t += 1; 
-	//}
-	//if (!flag)
-	//	m = *t;
-	//printf("m = %d || i = %d\n", m, i);
-	//table = ft_substr(text, i, m - i);
-	//puts(table);
-	//return (ft_strjoin(table, tex));
-	char *table;
-	char *globel;
+	char	*table;
+	char	*globel;
 
 	table = NULL;
 	globel = NULL;
-	while(text[*t] && text[*t] != '\"')
+	while (text[*t] && text[*t] != '\"')
 	{
-		if(text[*t] == '$')
+		if (text[*t] == '$')
 		{
-			char *tmp = ft_substr(text, i, *t - 1);
-			printf("tmp = %s\n", tmp);
-			table = ft_strjoin(table, tmp);
-			globel = dollar(text, t, token, evp);
-			i = *t;
-			// printf("glebel = %s\n", globel);
+			globel = dollar(text, t, evp);
+			// (*t)++;
+			i = *t + 1;
 			table = ft_strjoin(table, globel);
-			printf("table = %s, %s\n", table, globel);
-			// printf("table = %s\n", table);
 			free(globel);
 		}
 		else
 		{
-			*t += 1;
+			(*t)++;
+			if (text[*t] == '$')
+				table = ft_strjoin(table, ft_substr(text, i, *t - 1));
 		}
 	}
-	// *t += 1;
-	table = ft_strjoin(table, ft_substr(text, i, *t - 1));
-	printf("table = %s\n", table);
+	//t += 1;
+	table = ft_strjoin(table, ft_substr(text, i, *t + 1));
 	return (table);
 }
 
@@ -93,7 +64,7 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 	if (q == '\'')
 		single_qudes(text, &t, *i, token);
 	else if (q == '\"')
-		ft_back(token, ft_lstnew(5, double_qudes(text, &t, *i, token, envp)));
-	t += 1;
+		ft_back(token, ft_lstnew(5, double_qudes(text, &t, *i, envp)));
+	//t += 1;
 	*i = t;
 }

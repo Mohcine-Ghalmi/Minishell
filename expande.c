@@ -6,13 +6,13 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 22:39:09 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/30 14:56:02 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-int	dollar_length(char *text, int i, t_token **token)
+int	dollar_length(char *text, int i)
 {
 	int	l;
 	int	j;
@@ -27,37 +27,45 @@ int	dollar_length(char *text, int i, t_token **token)
 	return (l);
 }
 
-char	*creat_table(char *text, int *i, t_token **token)
+char	*creat_table(char *text, int *i)
 {
 	int		l;
 	int		j;
 	char	*table;
 
 	j = 0;
+	l = 0;
 	l = *i + 1;
-	table = calloc(1, dollar_length(text, *i, token));
+	table = calloc(1, dollar_length(text, *i));
 	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
 	{
-		table[j] = text[l];
-		j += 1;
-		l += 1;
+		if (text[l] >= '0' && text[l] <= '9')
+		{
+			l += 1;
+			break ;
+		}
+		else
+		{
+			table[j] = text[l];
+			j += 1;
+			l += 1;
+		}
 	}
 	table[j] = '\0';
 	*i = l;
 	return (table);
 }
 
-char	*dollar(char *text, int *i, t_token **token, char **envp)
+char	*dollar(char *text, int *i, char **envp)
 {
 	char	*table;
 	char	*dolar;
 
 	dolar = ft_strdup("");
-	table = creat_table(text, i, token);
+	table = creat_table(text, i);
 	if (!ft_strlen(table))
 		return (free(table), ft_strdup(""));
 	dolar = out_dollars(table, envp);
-	printf("dolar = %s\n", dolar);
 	return (free(table), dolar);
 }
 

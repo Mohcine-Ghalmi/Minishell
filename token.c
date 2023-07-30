@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/29 09:42:09 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/30 11:42:58 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	word(char *text, int *i, t_token **token, char **envp)
 		j += 1;
 	k = j;
 	if (text[j] && text[j] == '$')
-		tex = dollar(text, &j, token, envp);
+		tex = dollar(text, &j, envp);
 	exet = ft_substr(text, t, k - t);
 	*i = j;
 	ft_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));

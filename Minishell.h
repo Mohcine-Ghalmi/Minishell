@@ -79,22 +79,13 @@ typedef struct node
 
 }					t_node;
 
-t_token		*ft_lstnew(int type, char *str);
-t_token		*ft_lstlast(t_token	*lst);
-t_jointok	*ft_lstnew1(char *str, int type);
-t_jointok	*ft_lstlast1(t_jointok	*lst);
-t_node		*create_node(t_lsttoken *token);
-t_node		*new_node(char **cmd, int in, int out);
-t_node		*last_node(t_node	*lst);
-t_lsttoken	*ltoken(t_jointok **token);
-
 void	outorappand(char *text, int *i, t_token **token);
 void	ft_putstr_fd(char *s, int fd);
 void	inorherdoc(char *text, int *i, t_token **token);
 void	qudes(char *text, int *i, t_token **token, char **envp);
 void	word(char *text, int *i, t_token **token, char **envp);
 void	space(char *text, int *i, t_token **token);
-char	*dollar(char *text, int *i, t_token **token, char **envp);
+char	*dollar(char *text, int *i, char **envp);
 void	jointok(t_jointok	**join, t_token *token);
 void	ft_back(t_token	**lst, t_token	*new);
 void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
@@ -107,5 +98,16 @@ void	free_node(t_node *node);
 void	free_lst(t_lsttoken *lst);
 void	free_jointoken(t_jointok *token);
 void	free_token(t_token *token);
+
+t_token	*ft_lstnew(int type, char *cmd);
+t_token	*ft_lstlast(t_token	*lst);
+
+t_node	*create_node(t_lsttoken *token);
+t_node	*new_node(char **cmd, int in, int out);
+t_node	*last_node(t_node	*lst);
+
+t_jointok	*ft_lstlast1(t_jointok	*lst);
+t_jointok	*ft_lstnew1(char *str, int type);
+t_lsttoken	*ltoken(t_jointok **token);
 
 #endif
