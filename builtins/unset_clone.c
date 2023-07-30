@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 13:20:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:55:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ int    unset_clone(t_env *env, char **cmd)
     {
         if (!find_key(cmd[i], env))
         {
-            printf("minishell: unset: `%s': not a valid identifier\n", cmd[i]);
+            ft_putstr_fd("minishell: unset: `", 2);
+            ft_putstr_fd(cmd[i], 2);
+            ft_putstr_fd("': not a valid identifier\n", 2);
             ret = 1;
         }
         else

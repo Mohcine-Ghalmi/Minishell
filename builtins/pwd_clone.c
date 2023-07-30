@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 11:10:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:55:01 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int    pwd_clone(char  **cmd, t_env *new_env)
     ret = getcwd(NULL, 0);
     if (cmd[1])
     {
-        printf("pwd with no options\n");
+        ft_putstr_fd("pwd with no options\n", 2);
         free(ret);
         return (1);
     }

@@ -6,11 +6,37 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 13:12:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:40:56 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
+
+int option_echo(char *str)
+{
+    int i;
+
+    i = 0;
+    if (str[i] == '-')
+        i++;
+    while (str[i])
+    {
+        if (str[i] != 'n')
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
+int double_size(char **str)
+{
+    int i;
+
+    i = 0;
+    while (str[i])
+        i++;
+    return (i);
+}
 
 int    echo_clone(char **cmd)
 {
@@ -24,22 +50,17 @@ int    echo_clone(char **cmd)
         printf("\n");
         return (0);
     }
-    if (!ft_strncmp(cmd[i], "-n", 3))
-    {
-        i++;
-        flag = 1;
-    }
     while (cmd[i])
     {
-        if (!ft_strncmp(cmd[i], "-n", 3) && flag)
-            i++;
-        else
-        {
-            flag = 0;
-            printf("%s", cmd[i++]);
-        }
+        if (!option_echo(cmd[i]))
+            flag = 1;
+        if (option_echo(cmd[i]))
+            printf("%s", cmd[i]);
+        if (i < double_size(cmd) - 1)
+            printf(" ");
+        i++;
     }
-    if (ft_strncmp(cmd[1], "-n", 3))
+    if (!flag)
         printf("\n");
     return (0);
 }

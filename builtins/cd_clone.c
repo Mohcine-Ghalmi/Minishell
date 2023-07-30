@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 11:55:00 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:48:09 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ int   cd_clone(char **cmd, t_env *env)
         find_and_replace(&env, "PWD", getcwd(NULL, 0));
         return (0);
     }
-    else
-        printf("minishell: cd: %s: No such file or directory\n",  cmd[1]);
+    ft_putstr_fd("minishell: cd: ", 2);
+    ft_putstr_fd(cmd[1], 2);
+    ft_putstr_fd(": No such file or directory\n", 2);
     return (1);
 }

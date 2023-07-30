@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 23:28:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:49:48 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ unsigned int     checking_status(unsigned  int status)
 {
     if (status > 255)
         while (status > 255)
-            status += 256;
+            status -= 256;
     return (status);
 }
 
@@ -54,8 +54,8 @@ int   exit_clone(t_env *env, char **cmd)
 {
     if (cmd[2] != NULL)
     {
-        printf("exit\n");
-        printf("minishell: exit: too many arguments\n");
+        ft_putstr_fd("exit", 2);
+        ft_putstr_fd("minishell: exit: too many arguments\n", 2);
         update_status(1, env);
     }
     if (cmd[1])

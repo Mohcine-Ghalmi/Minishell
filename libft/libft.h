@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 16:39:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/30 17:48:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,6 @@ void	        ft_lstclear_struct(t_data **lst);
 void	        ft_lstdelone(t_env *lst);
 unsigned int	ft_atoi_shlvl(const char *str);
 char	        *ft_itoa_shlvl(int n);
+void	        ft_putstr_fd(char *s, int fd);
 
 #endif
