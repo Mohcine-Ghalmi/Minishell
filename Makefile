@@ -45,7 +45,7 @@ $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) -g -fsanitize=address
+	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) #-g -fsanitize=address
 
 # %.o: %.c $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 # 		cc -Wall -Wextra -Werror -c $< -o $@ -g -fsanitize=address
