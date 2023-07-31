@@ -4,7 +4,7 @@
 7-env : done
 5-unset : done
 3-echo : done
-6-exit : exit a b || exit 12 b
+6-exit : done
 
 -------------------test's--------------------------
 
