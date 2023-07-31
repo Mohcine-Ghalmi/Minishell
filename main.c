@@ -76,12 +76,18 @@ int	main(int argc, char **argv, char **envp)
 		if (qudespars(input) == 0)
 		{
 			ft_putstr_fd("syntax error close qudes\n", 2);
+			free(input);
 			continue ;
 		}
 		tokena(input, &token, envp);
 		free(input);
 		jointok(&join, token);
-		syntaxerror(join);
+		if (syntaxerror(join) == 1)
+		{
+			free_token(token);
+			free_jointoken(join);
+			continue ;
+		}
 		lst = ltoken(&join);
 		node = create_node(lst);
 		while (node)

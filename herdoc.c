@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 15:57:16 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 22:04:24 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/31 18:32:02 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	heredoc_file(char *limiter, int outfile)
 
 	if (outfile < 0)
 		exit(1);
-	end = ft_strjoin1(limiter, "\n");
+	end = ft_strjoin(limiter, "\n");
 	str = readline(">");
 	if (!str)
 		exit(1);
-	while (limiter && ft_strncmp(limiter, str, ft_strlen1(str)))
+	while (limiter && ft_strncmp(limiter, str, ft_strlen(str)))
 	{
 		ft_putstr_fd(str, outfile);
 		free(str);

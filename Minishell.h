@@ -90,7 +90,7 @@ char	*dollar(char *text, int *i, char **envp);
 void	jointok(t_jointok	**join, t_token *token);
 void	ft_back(t_token	**lst, t_token	*new);
 void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
-void	syntaxerror(t_jointok *token);
+int		syntaxerror(t_jointok *token);
 char	*out_dollars(char *key, char **env);
 int		openfile(char *filename, int mode);
 void	addnode_back(t_node	**lst, t_node	*new);
@@ -100,6 +100,8 @@ void	free_lst(t_lsttoken *lst);
 void	free_jointoken(t_jointok *token);
 void	free_token(t_token *token);
 void	*ft_calloc(size_t count, size_t size);
+void	heredoc(char *limiter, int infile, int outfile);
+int		ft_strncmp(char *str1, char *str2, size_t n);
 
 t_token	*ft_lstnew(int type, char *cmd);
 t_token	*ft_lstlast(t_token	*lst);

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/31 16:19:26 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/31 21:59:32 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ t_node	*create_node(t_lsttoken *token)
 	int		i;
 	int		out;
 	t_node	*node;
-
+//kyn mochkil hna > ila kan wraha khawi
 	node = NULL;
 	while (token)
 	{
@@ -136,14 +136,18 @@ t_node	*create_node(t_lsttoken *token)
 					out = openfile(token->next->str, 1);
 				if (token->next)
 					token = token->next;
-
+			}
+			else if(token->type == 9)
+			{
+				heredoc(token->next->str, in, out);
+				if (token->next)
+					token = token->next;
 			}
 			if (token)
 				token = token->next;
 		}
 		cmd[i] = NULL;
 		addnode_back(&node, new_node(cmd, in, out));
-		//free_cmds(cmd);
 		if (token)
 			token = token->next;
 	}
