@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/30 18:23:20 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/31 15:20:28 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ int find_char(char *str)
     int  i;
 
     i = 0;
+    if (!str)
+        return (1);
     while (str[i])
     {
         if (str[i] < 48 || str[i] > 57)
@@ -52,15 +54,15 @@ int find_char(char *str)
 
 int   exit_clone(t_env *env, char **cmd)
 {
-    if (cmd[2] != NULL)
+    if (cmd[2])
     {
         if (!find_char(cmd[1]))
         {
             ft_putstr_fd("exit\n", 2);
             ft_putstr_fd("minishell: exit: too many arguments\n", 2);
             update_status(1, env);
+            return (1);
         }
-        return (1);
     }
     if (cmd[1])
     {

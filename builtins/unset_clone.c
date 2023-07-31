@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/30 17:55:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/07/31 15:24:00 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void    delete_key(char *key, t_env *env)
     if (tmp)
         if (prev)
             prev->next = tmp->next;
+    free(tmp->key);
+    free(tmp->value);
     free(tmp);
 }
 
