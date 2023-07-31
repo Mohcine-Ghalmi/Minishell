@@ -59,6 +59,8 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
 	while (1)
 	{
 		token = NULL;
@@ -66,6 +68,8 @@ int	main(int argc, char **argv, char **envp)
 		lst = NULL;
 		node = NULL;
 		input = readline("> ");
+		if (input == NULL)
+			exit_main();
 		if (input[0] == '\0')
 			break ;
 		add_history(input);
@@ -82,8 +86,6 @@ int	main(int argc, char **argv, char **envp)
 		node = create_node(lst);
 		while (node)
 		{
-			//printf("%s, %d\n",token->cmd, token->type);
-			//token = token->next;
 			int i = 0;
 			while (node->cmd[i])
 			{

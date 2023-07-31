@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/31 15:15:41 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/07/31 16:19:26 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ t_node	*create_node(t_lsttoken *token)
 			else if (token->type == 3)
 			{
 				out = openfile(token->next->str, 1);
-				if(token->next && token->next->str)
+				if (token->next && token->next->str)
 					out = openfile(token->next->str, 1);
 				if (token->next)
 					token = token->next;

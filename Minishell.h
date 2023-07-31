@@ -107,6 +107,8 @@ t_token	*ft_lstlast(t_token	*lst);
 t_node	*create_node(t_lsttoken *token);
 t_node	*new_node(char **cmd, int in, int out);
 t_node	*last_node(t_node	*lst);
+void	sigint_handler(int sig);
+void	exit_main(void);
 
 t_jointok	*ft_lstlast1(t_jointok	*lst);
 t_jointok	*ft_lstnew1(char *str, int type);
