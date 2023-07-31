@@ -90,13 +90,14 @@ int	main(int argc, char **argv, char **envp)
 				printf("s = %s\n",node->cmd[i]);
 				i++;
 			}
-			printf("%d,%d\n", node->fdin, node->fdout);
-			//close_files(node->fdin, node->fdout);
+			printf("--%d,---%d\n", node->fdin, node->fdout);
+			close_files(node->fdin, node->fdout);
 			node = node->next;
 		}
 		free_token(token);
 		free_jointoken(join);
 		free_lst(lst);
 		free_node(node);
+		//clear add_history
 	}
 }
