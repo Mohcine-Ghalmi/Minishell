@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 19:13:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 21:11:45 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include "libft/libft.h"
-#include "parsing/parsing.h"
+#include "parser/parsing.h"
 
 typedef struct env
 {
@@ -61,7 +61,7 @@ void    	update_status(unsigned int status, t_env *env);
 int 		first_built(t_node *new, t_env *env);
 void		tokena(char *input, t_token **token, char **envp);
 void		close_files(int in, int out);
-t_node 		*inputs(char *input, char **envp, int *to_move);
+t_node 		*inputs(char *input, char **envp);
 
 
 #endif

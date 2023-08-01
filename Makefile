@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/01 19:17:13 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/08/01 20:38:25 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = minishell
 
 HEADER = Minishell.h
 
-PARSER_HEADER = parsing/parsing.h
+PARSER_HEADER = parser/parsing.h
 
 HEADER_PIPEX = exec/Pipex/pipex.h
 
@@ -36,16 +36,16 @@ SRC = exec/exec_pipes.c \
 	builtins/echo_clone.c \
 	exec/builtins_check.c \
 	parser.c \
-  	parsing/jointoken.c  parsing/qudes.c  parsing/token.c  parsing/ft_substr.c parsing/linked_node.c parsing/parse.c parsing/ft_free.c  parsing/rem_spacetoken.c \
-  	parsing/utilise.c  parsing/utilise2.c \
-	parsing/ast_constructor.c parsing/inoutfile.c parsing/linkedlist.c parsing/herdoc.c parsing/parsequdes.c parsing/append.c	parsing/expande.c \
+  	parser/jointoken.c  parser/qudes.c  parser/token.c  parser/ft_substr.c parser/linked_node.c parser/parse.c parser/ft_free.c  parser/rem_spacetoken.c \
+  	parser/utilise.c  parser/utilise2.c \
+	parser/ast_constructor.c parser/inoutfile.c parser/linkedlist.c parser/herdoc.c parser/parsequdes.c parser/append.c	parser/expande.c \
 	Minishell.c \
 
 OBJ = $(SRC:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT) $(PARSER_HEADER)
+$(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT) $(PARSER_HEADER) 
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
