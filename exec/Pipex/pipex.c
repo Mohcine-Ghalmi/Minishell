@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 15:57:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 17:38:57 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ char	*getpath(char *cmd, char **env)
 		i++;
 	if (!env[i])
 		return (cmd);
-	path = env[i] + 5;
+	path = env[i] + 5; 
 	while (path && ft_strchr1(path, ':') > 0)
 	{
 		dir = ft_strdup1(path, ft_strchr1(path, ':'));
