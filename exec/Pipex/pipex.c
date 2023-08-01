@@ -6,13 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 17:38:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:23:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	openfile(char *filename, int mode)
+int	openfile_cmd(char *filename, int mode)
 {
 	if (mode == STDIN_FILENO)
 	{

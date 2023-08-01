@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:58:06 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/31 13:50:48 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:03:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ void	ft_lstclear_env(t_env **lst)
 	free(tmp);
 }
 
-void	ft_lstclear_struct(t_data **lst)
+void	ft_lstclear_struct(t_node **lst)
 {
-	t_data	*tmp;
+	t_node	*tmp;
 
 	if (!lst)
 		return ;
@@ -41,7 +41,7 @@ void	ft_lstclear_struct(t_data **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-        free((*lst)->av);
+        free((*lst)->cmd);
         free(*lst);
 		*lst = tmp;
 	}

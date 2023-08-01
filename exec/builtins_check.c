@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 15:51:48 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:04:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ int    check_builtins(char **cmd, t_env *env)
 	return (2);
 }
 
-int first_built(t_data *new, t_env *env)
+int first_built(t_node*new, t_env *env)
 {
     int     ret;
 
     ret  = 0;
-	if (new->outfile > 2)
-		dup2(new->outfile, STDOUT_FILENO);
-	ret = check_builtins(new->av, env);
+	if (new->fdout > 2)
+		dup2(new->fdout, STDOUT_FILENO);
+	ret = check_builtins(new->cmd, env);
     return (ret);
 }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/30 17:48:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:22:51 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "../Minishell.h"
 
-typedef struct data t_data;
+typedef struct node t_node;
 typedef struct env  t_env;
 
 void	        ft_bzero(void *s, size_t n);
@@ -32,16 +32,17 @@ void	        ft_lstadd_back_env(t_env **list, t_env *new);
 t_env	        *ft_lstnew_env(char *key, char *value, int option);
 void	        *ft_memmove(void *dest, const void *src, size_t len);
 void	        *ft_memcpy(void *dst, const void *src, size_t n);
-t_env	        *ft_lstlast(t_env *lst);
+t_env	        *ft_lstlast_env(t_env *lst);
 char	        *ft_substr(char const *s, unsigned int start, size_t len);
 int	            ft_lstsize_env(t_env *lst);
 void	        ft_lstclear_env(t_env **lst);
 char            *ft_tolower_str(char *str);
 char	        *ft_strchr(const char *s, int c);
-void	        ft_lstclear_struct(t_data **lst);
+void	        ft_lstclear_struct(t_node **lst);
 void	        ft_lstdelone(t_env *lst);
 unsigned int	ft_atoi_shlvl(const char *str);
 char	        *ft_itoa_shlvl(int n);
 void	        ft_putstr_fd(char *s, int fd);
+int	        ft_lstsize_node(t_node *lst);
 
 #endif

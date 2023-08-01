@@ -6,13 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 02:06:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/13 02:06:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 19:11:51 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_env	*ft_lstlast(t_env *lst)
+t_env	*ft_lstlast_env(t_env *lst)
 {
 	if (lst)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipex.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 18:13:45 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 02:03:38 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/08/01 19:18:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	closepipe(int pipefd[2])
 	close(pipefd[0]);
 }
 
-void	redirection(t_data *cmd)
+void	redirection(t_node *cmd)
 {
-	if (cmd->infile != 0)
-		dup2(cmd->infile, STDIN_FILENO);
-	if (cmd->outfile != 1)
-		dup2(cmd->outfile, STDOUT_FILENO);
+	if (cmd->fdin != 0)
+		dup2(cmd->fdin, STDIN_FILENO);
+	if (cmd->fdout != 1)
+		dup2(cmd->fdout, STDOUT_FILENO);
 }
 
 void	pipex1(char *cmd1, char *cmd2, char **env)
