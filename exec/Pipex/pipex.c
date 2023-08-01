@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 23:14:43 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 15:57:45 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	exec(char **cmd, char **env)
 
 	args = cmd;
 	path = getpath(args[0], env);
+	if (ft_strchr1(cmd[0], '/'))
+		path = args[0];
 	if (execve(path, args, env) < 0)
 	{
 		write(STDERR_FILENO, "minishell: ", 12);

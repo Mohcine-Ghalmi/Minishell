@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/07/31 15:49:49 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/08/01 15:50:32 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC = exec/exec_pipes.c \
 	exec/builtins_check.c \
 	builtins/for_dollars.c \
 	Minishell.c \
-	# exec/hereDoc.c \
+	# test.c
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -45,7 +45,7 @@ $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o test.c #$(NAME) #-g -fsanitize=address
+	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o$(NAME) #-g -fsanitize=address
 
 # %.o: %.c $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 # 		cc -Wall -Wextra -Werror -c $< -o $@ -g -fsanitize=address
