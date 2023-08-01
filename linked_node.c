@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 21:04:01 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 22:04:39 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:47:49 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_node	*new_node(char **cmd, int in, int out)
 		return (NULL);
 	ptr->cmd = cmd;
 	ptr->fdin = in;
-	ptr->fdin = out;
+	ptr->fdout = out;
 	ptr->next = NULL;
 	return (ptr);
 }

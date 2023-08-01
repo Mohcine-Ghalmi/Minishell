@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/28 22:04:26 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/01 14:34:36 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ int	openfile(char *filename, int mode)
 		return (open(filename, O_RDONLY));
 	}
 	else
-		return (open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644));
+		return (open(filename, O_CREAT | O_RDWR | O_TRUNC, 0644));
 }

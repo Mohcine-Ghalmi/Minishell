@@ -67,7 +67,7 @@ int	main(int argc, char **argv, char **envp)
 		join = NULL;
 		lst = NULL;
 		node = NULL;
-		input = readline("> ");
+		input = readline("minishell> ");
 		if (input == NULL)
 			exit_main();
 		if (input[0] == '\0')
@@ -98,8 +98,8 @@ int	main(int argc, char **argv, char **envp)
 				printf("s = %s\n",node->cmd[i]);
 				i++;
 			}
-			printf("--%d,---%d\n", node->fdin, node->fdout);
-			close_files(node->fdin, node->fdout);
+			printf("--my in %d,---my out %d\n", node->fdin, node->fdout);
+			// close_files(node->fdin, node->fdout);
 			node = node->next;
 		}
 		free_token(token);

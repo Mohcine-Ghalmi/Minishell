@@ -100,7 +100,7 @@ void	free_lst(t_lsttoken *lst);
 void	free_jointoken(t_jointok *token);
 void	free_token(t_token *token);
 void	*ft_calloc(size_t count, size_t size);
-void	heredoc(char *limiter, int infile, int outfile);
+int 	heredoc(char *limiter);	
 int		ft_strncmp(char *str1, char *str2, size_t n);
 
 t_token	*ft_lstnew(int type, char *cmd);

@@ -19,7 +19,7 @@ OBJ = $(SRC:%.c=%.o)
 all : $(NAME)
 
 $(NAME) : Minishell.h $(OBJ)
-	gcc -Wall -Wextra -Werror $(OBJ) -lreadline  -o $(NAME) #-g -fsanitize=address
+	gcc -Wall -Wextra -Werror $(OBJ) -lreadline  -o $(NAME) -g -fsanitize=address
 clean: 
 	rm -rfv $(OBJ)
 
