@@ -100,20 +100,20 @@ void	free_lst(t_lsttoken *lst);
 void	free_jointoken(t_jointok *token);
 void	free_token(t_token *token);
 void	*ft_calloc(size_t count, size_t size);
-int 	heredoc(char *limiter);	
+int		heredoc(char *limiter);	
+int		append(char *file);
 int		ft_strncmp(char *str1, char *str2, size_t n);
 
-t_token	*ft_lstnew(int type, char *cmd);
-t_token	*ft_lstlast(t_token	*lst);
+t_jointok	*ft_lstlast1(t_jointok	*lst);
+t_jointok	*ft_lstnew1(char *str, int type);
+t_lsttoken	*ltoken(t_jointok **token);
 
 t_node	*create_node(t_lsttoken *token);
 t_node	*new_node(char **cmd, int in, int out);
 t_node	*last_node(t_node	*lst);
 void	sigint_handler(int sig);
 void	exit_main(void);
-
-t_jointok	*ft_lstlast1(t_jointok	*lst);
-t_jointok	*ft_lstnew1(char *str, int type);
-t_lsttoken	*ltoken(t_jointok **token);
+t_token	*ft_lstnew(int type, char *cmd);
+t_token	*ft_lstlast(t_token	*lst);
 
 #endif

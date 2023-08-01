@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:01:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/07/30 18:26:32 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/01 15:53:28 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,17 @@ int	ft_isdigit(int c)
 	if (c >= 48 && c <= 57)
 		return (1);
 	return (0);
+}
+
+void	sigint_handler(int sig)
+{
+	(void)sig;
+	ft_putstr_fd("\n", 1);
+	ft_putstr_fd("minishell> ", 1);
+}
+
+void	exit_main(void)
+{
+	ft_putstr_fd("\nexit\n", 1);
+	exit(0);
 }

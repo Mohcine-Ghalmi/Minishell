@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 15:29:47 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/01 16:01:46 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,24 +67,27 @@ t_node	*create_node(t_lsttoken *token)
 		{
 			if (token->type == 1)
 				cmd[i++] = ft_strdup(token->str);
-			else if (token->type == 2)
+			else if (token->type == 2 && token->next && token->next->str)
 			{
-				if (token->next && token->next->str)
-					in = openfile(token->next->str, STDIN_FILENO);
+				in = openfile(token->next->str, STDIN_FILENO);
 				if (token->next)
 					token = token->next;
 			}
-			else if (token->type == 3)
+			else if (token->type == 3 && token->next && token->next->str)
 			{
-				if (token->next && token->next->str)
-					out = openfile(token->next->str, STDOUT_FILENO);
+				out = openfile(token->next->str, STDOUT_FILENO);
 				if (token->next)
 					token = token->next;
 			}
-			else if (token->type == 9)
+			else if (token->type == 9 && token->next && token->next->str)
 			{
-				if (token->next && token->next->str)
-					in = heredoc(token->next->str);
+				in = heredoc(token->next->str);
+				if (token->next)
+					token = token->next;
+			}
+			else if (token->type == 7 && token->next && token->next->str)
+			{
+				in = append(token->next->str);
 				if (token->next)
 					token = token->next;
 			}

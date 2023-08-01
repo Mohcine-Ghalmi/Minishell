@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   append.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/31 15:34:37 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 14:40:08 by selhilal         ###   ########.fr       */
+/*   Created: 2023/08/01 15:55:40 by selhilal          #+#    #+#             */
+/*   Updated: 2023/08/01 16:33:34 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void	sigint_handler(int sig)
+int	append(char *file)
 {
-	(void)sig;
-	ft_putstr_fd("\n", 1);
-	ft_putstr_fd("minishell> ", 1);
-}
-
-void	exit_main(void)
-{
-	ft_putstr_fd("\nexit\n", 1);
-	exit(0);
+	return (open(file, O_CREAT | O_APPEND | O_WRONLY, 0777));
 }

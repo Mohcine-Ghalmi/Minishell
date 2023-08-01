@@ -88,24 +88,12 @@ int	main(int argc, char **argv, char **envp)
 			free_jointoken(join);
 			continue ;
 		}
-		lst = ltoken(&join);
-		node = create_node(lst);
-		while (node)
-		{
-			int i = 0;
-			while (node->cmd[i])
-			{
-				printf("s = %s\n",node->cmd[i]);
-				i++;
-			}
-			printf("--my in %d,---my out %d\n", node->fdin, node->fdout);
-			// close_files(node->fdin, node->fdout);
-			node = node->next;
-		}
+		//lst = ltoken(&join);
+		//node = create_node(lst);
 		free_token(token);
 		free_jointoken(join);
-		free_lst(lst);
-		free_node(node);
-		//clear add_history
+		//free_lst(lst);
+		//free_node(node);
+		clear_history();
 	}
 }
