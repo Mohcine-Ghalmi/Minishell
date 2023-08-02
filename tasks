@@ -9,9 +9,8 @@
 -------------------test's--------------------------
 
 exit when echo ($> and other  syntax err) shoudl be 256 fix with errno
-
-task
+signals
 close fd
-ls > "" 
 hereDoc signal D
- cd - set old pwd
+cd - set old pwd
+ls > k >"">b

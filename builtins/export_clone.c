@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:38:01 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 21:06:20 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	checking_dash(char *cmd)
 	i = 0;
 	len = first_equale(cmd) - 1;
 	if (cmd[first_equale(cmd) - 2] == '+')
-		len -= 2;
-	if (len <= -1)
+		len -= 1;
+	if (len <= 0)
 		len = ft_strlen1(cmd);
 	while (i < len)
 	{
@@ -31,6 +31,7 @@ int	checking_dash(char *cmd)
 				&& cmd[i + 1] != '='))
 		{
 			printf("minishell: export: `%s` not valid identifier\n", cmd);
+			printf("here = %d\n", i + 1);
 			return (i + 1);
 		}
 		i++;
@@ -130,9 +131,9 @@ int	export_clone(char **cmd, t_env *env)
 						ret = 1;
 				}
 			}
+			i++;
 			if (ret != 0)
 				ret1 = 1;
-			i++;
 		}
 	}
 	return (ret1);

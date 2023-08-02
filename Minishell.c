@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:17:02 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 21:46:28 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,12 @@ int	main(int argc, char **argv, char **envp)
 		input = readline("\033[31;1mminishell>\033[0m");
 		if (!input)
 			exit_main();
+		if (qudespars(input) == 0)
+		{
+			ft_putstr_fd("syntax error close qudes\n", 2);
+			free(input);
+			continue ;
+		}
 		add_history(input);
 		node = inputs(input, env_exec(new_envp));
 		if (node == NULL)

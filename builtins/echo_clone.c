@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:25:22 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 20:45:45 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,11 @@ int	echo_clone(char **cmd)
 		if (!option_echo(cmd[i]))
 			flag = 1;
 		if (option_echo(cmd[i]))
+		{
 			printf("%s", cmd[i]);
-		if (i < double_size(cmd) - 1)
-			printf(" ");
+			if (i < double_size(cmd) - 1)
+				printf(" ");
+		}
 		i++;
 	}
 	if (!flag)

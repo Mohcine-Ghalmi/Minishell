@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 18:41:55 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:12:29 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ int	syntaxerror(t_jointok	*token)
 		if ((norm1(tmp->type) && !tmp->next)
 			|| (norm1(tmp->type) && tmp->next
 				&& norm1(tmp->next->type))
-			|| (norm1(tmp->type)) && tmp->next
-			&& tmp->next->type == 10 && tmp->next->next
-			&& norm1(tmp->next->next->type))
+			|| ((norm1(tmp->type) && tmp->next
+					&& tmp->next->type == 10 && tmp->next->next
+					&& norm1(tmp->next->next->type))))
 		{
 			s_fd("\033[31;1msyntax error\033[0m\n", 2);
 			return (1);
 		}
-		tmp = tmp->next;
+		if (tmp)
+			tmp = tmp->next;
 	}
 	return (0);
 }

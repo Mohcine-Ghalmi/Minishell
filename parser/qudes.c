@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   qudes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 19:15:55 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 22:36:08 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	single_qudes(char *text, int *t, int i, t_token **token)
 	int		m;
 
 	m = 0;
+	if (text[*t] == '\'')
+		return ;
 	while (text[*t] && text[*t] != '\'')
 		*t += 1;
 	m = *t;
@@ -43,12 +45,17 @@ char	*join_char(char *str, char c)
 	return (new);
 }
 
-char	*double_qudes(char *text, int *t, int i, char **evp)
+char	*double_qudes(char *text, int *t, char **evp)
 {
 	char	*table;
 	int		j;
 
 	table = NULL;
+	if (text[*t] == '\"')
+	{
+		(*t)++;
+		return (NULL);
+	}
 	while (text[*t] && text[*t] != '\"')
 	{
 		if (text[*t] == '$')
@@ -74,6 +81,6 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 	if (q == '\'')
 		single_qudes(text, &t, *i, token);
 	else if (q == '\"')
-		ft_back(token, ft_lstnew(5, double_qudes(text, &t, *i, envp)));
+		ft_back(token, ft_lstnew(5, double_qudes(text, &t, envp)));
 	*i = t;
 }

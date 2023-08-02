@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:57:28 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 22:43:19 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 void	piper_norm(t_node *cmd, int pipefd[2])
 {
 	close(pipefd[0]);
+	if (cmd->fdout == -1 || cmd->fdin == -1)
+		exit(1);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);
 	else if (ft_lstsize_node(cmd) > 1)

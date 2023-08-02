@@ -6,7 +6,7 @@
 #    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/02 09:57:38 by selhilal         ###   ########.fr        #
+#    Updated: 2023/08/02 23:31:23 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,9 @@ SRC = exec/exec_pipes.c \
 
 OBJ = $(SRC:%.c=%.o)
 
-LDFLAGS="-L/Users/selhilal/.brew/opt/readline/lib"
+LDFLAGS="-L/Users/$(USER)/.brew/opt/readline/lib"
 
-CPPFLAGS="-I/Users/selhilal/.brew/opt/readline/include"
+CPPFLAGS="-I/Users/$(USER)/.brew/opt/readline/include"
 
 all: $(NAME)
 

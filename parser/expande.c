@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 04:55:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 22:17:33 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,5 @@ char	*out_dollars(char *key, char **env)
 			return (ft_substr(env[i], strlen(key) + 1, strlen(env[i]))); 
 		i++;
 	}
-	return (ft_strdup("\n"));
+	return (ft_strdup(""));
 }
