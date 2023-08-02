@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 19:21:53 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 01:45:26 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,9 @@ void execution(t_node *new, t_env *envp)
             new = new->next;
         }
     }
-    while (wait(&status) != -1);
     dup2(in, STDIN_FILENO);
     dup2(out, STDOUT_FILENO);
+    while (wait(&status) != -1);
     if (ifcond < 2)
         update_status(ifcond, envp);
     else

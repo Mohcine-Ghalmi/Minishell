@@ -10,4 +10,4 @@
 
 echo $?
 
-|| seg
+./minishell '

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 18:15:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 23:42:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ char	*out_dollars(char *key, char **env)
 	while (env[i])
 	{
 		if (!ft_strncmp(key, env[i], strlen(key)))
-			return (ft_substr(env[i], strlen(key) + 1, strlen(env[i])));
+			return (ft_substr(env[i], strlen(key), strlen(env[i]))); 
 		i++;
 	}
 	return (ft_strdup(""));

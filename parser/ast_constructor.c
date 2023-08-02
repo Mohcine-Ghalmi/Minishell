@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 18:15:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/01 23:26:19 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,11 @@ t_node	*create_node(t_lsttoken *token)
 	t_node	*node;
 
 	node = NULL;
-	i = 0;
-	in = 0;
-	out = 1;
 	while (token)
 	{
+		i = 0;
+		in = 0;
+		out = 1;
 		cmd = malloc(sizeof(char *) * (lenword(token) + 1));
 		while (token && token->type != 4)
 		{
@@ -87,7 +87,7 @@ t_node	*create_node(t_lsttoken *token)
 			}
 			else if (token->type == 7 && token->next && token->next->str)
 			{
-				in = append(token->next->str);
+				out = append(token->next->str);
 				if (token->next)
 					token = token->next;
 			}

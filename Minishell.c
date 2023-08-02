@@ -3,20 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 21:17:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 01:45:06 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-void    free_all(t_node  **new, char *input)
-{
-	ft_lstclear_struct(new);
-	free(input);
-}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -37,16 +31,12 @@ int	main(int argc, char **argv, char **envp)
 		if (!input)
 			exit_main();
 		add_history(input);
-		node = inputs(input, envp);
+		node = inputs(input, env_exec(new_envp));
 		if (node == NULL)
 			continue ;
-		while (node)
-		{
-			execution(node, new_envp);
-			node = node->next;
-		}
+		execution(node, new_envp);
 		clear_history();
-		free_all(&node, input);
+		ft_lstclear_struct(&node);
 	}
 	ft_lstclear_env(&new_envp);
 	return (0);
