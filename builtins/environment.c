@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 05:13:00 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 08:21:09 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,9 @@ int	show_env(t_env *new_env, char **cmd)
 	}
 	while (tmp)
 	{
-		if (tmp->option == 1)
-			printf("\033[34;1m%s%s\033[0m\n", tmp->key, tmp->value);
+        if (ft_strncmp("?=", tmp->key, 2))
+			if (tmp->option == 1)
+				printf("\033[34;1m%s%s\033[0m\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (0);
