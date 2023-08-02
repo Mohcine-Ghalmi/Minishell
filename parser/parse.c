@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 20:45:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/02 05:16:11 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void	message_error(int k)
 {
 	if (k == 1)
-		ft_putstr_fd("syntax error near unexpected token `|'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `|'\033[0m\n", 2);
 	if (k == 2)
-		ft_putstr_fd("syntax error near unexpected token `<'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `<'\033[0m\n", 2);
 	if (k == 3)
-		ft_putstr_fd("syntax error near unexpected token `>'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `>'\033[0m\n", 2);
 	if (k == 4)
-		ft_putstr_fd("syntax error near unexpected token `>>'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `>>'\033[0m\n", 2);
 	if (k == 5)
-		ft_putstr_fd("syntax error near unexpected token `<<'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `<<'\033[0m\n", 2);
 	if (k == 6)
-		ft_putstr_fd("syntax error near unexpected token `newline'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `newline'\033[0m\n", 2);
 	if (k == 7)
-		ft_putstr_fd("syntax error near unexpected token `||'\n", 2);
+		ft_putstr_fd("\033[31;1msyntax error near unexpected token `||'\033[0m\n", 2);
 
 }
 

@@ -76,39 +76,3 @@ t_node *inputs(char *input, char **envp)
     free_lst(lst);
     return (node);
 }
- 
-// int main(int argc, char **argv, char **envp)
-// {
-//     char        *input;
-//     int         to_move;
-//     t_node        *node;
-
-//     (void)argc;
-//     (void)argv;
-//     signal(SIGINT, sigint_handler);
-//     signal(SIGQUIT, SIG_IGN);
-//     while (1)
-//     {
-//         node = NULL;
-//         input = readline("minishell> ");
-//         if (input == NULL)
-//             exit_main();
-//         if (input[0] == '\0')
-//             break ;
-//         add_history(input);
-//         node = inputs(input, envp, &to_move);
-//         if (to_move == 1)
-//             continue ;
-//         while(node)
-//         {
-//             printf("cmd: %s\n", node->cmd[0]);
-//             printf("cmd: %s\n", node->cmd[1]);
-//             //printf("cmd: %s\n", node->cmd[2]);
-//             printf("fdin: %d\n", node->fdin);
-//             printf("fdout: %d\n", node->fdout);
-//             node = node->next;
-//         }
-//         free_node(node);
-//         clear_history();
-//     }
-// }

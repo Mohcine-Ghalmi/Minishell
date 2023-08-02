@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 23:42:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 04:55:07 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ char	*dollar(char *text, int *i, char **envp)
 	char	*table;
 	char	*dolar;
 
-	dolar = ft_strdup("");
 	table = creat_table(text, i);
 	if (!ft_strlen(table))
 		return (free(table), ft_strdup(""));
@@ -93,8 +92,8 @@ char	*out_dollars(char *key, char **env)
 	while (env[i])
 	{
 		if (!ft_strncmp(key, env[i], strlen(key)))
-			return (ft_substr(env[i], strlen(key), strlen(env[i]))); 
+			return (ft_substr(env[i], strlen(key) + 1, strlen(env[i]))); 
 		i++;
 	}
-	return (ft_strdup(""));
+	return (ft_strdup("\n"));
 }

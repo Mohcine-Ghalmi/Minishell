@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 01:52:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 05:13:00 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ t_env		*envirment(char **old_env)
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(ft_strdup("OLDPWD"), ft_strdup(""), 2));
 		i++;
 	}
-	if (find_key("?", new_env))
-		ft_lstadd_back_env(&new_env, ft_lstnew_env(ft_strdup("?"), ft_strdup(""), 2));
+	if (!find_key("?=", new_env))
+		ft_lstadd_back_env(&new_env, ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 	if (i == 1)
 		new_env = empty_env(new_env);
 	return (new_env);
@@ -92,13 +92,13 @@ int	show_env(t_env *new_env, char **cmd)
 	tmp = new_env;
 	if (cmd[1])
 	{
-		printf("env with no options\n");
+		ft_putstr_fd("env with no options\n", 1);
         return (1);
 	}
 	while (tmp)
 	{
 		if (tmp->option == 1)
-			printf("%s%s\n", tmp->key, tmp->value);
+			printf("\033[34;1m%s%s\033[0m\n", tmp->key, tmp->value);
 		tmp = tmp->next;
 	}
 	return (0);
