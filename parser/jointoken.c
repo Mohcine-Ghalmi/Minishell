@@ -3,26 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   jointoken.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:18:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 18:22:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 09:21:44 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-// size_t	ft_strlen(char *s)
-// {
-// 	size_t	i;
-
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		i++;
-// 	}
-// 	return (i);
-// }
 
 char	*jointoken(char *s1, char *s2)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:20:52 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 18:15:28 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 09:21:23 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_node(t_node *node)
 {
-	t_node  *tmp;
+	t_node	*tmp;
 
 	tmp = node;
 	while ((node))

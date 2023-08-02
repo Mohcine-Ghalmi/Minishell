@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 04:38:20 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 10:47:17 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ int	openfile_cmd(char *filename, int mode)
 	if (mode == STDIN_FILENO)
 	{
 		if (access(filename, F_OK))
-		{
-			// write(STDERR_FILENO, filename, ft_strchr1(filename, 0));
-			// write(STDERR_FILENO, ": No such file or directory\n", 28);
 			return (0);
-		}
 		return (open(filename, O_RDONLY));
 	}
 	else

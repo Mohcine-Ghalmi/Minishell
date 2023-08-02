@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone_env.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 15:08:25 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/21 15:40:41 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:16:37 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	ft_lstdelone(t_env *lst)
 {
 	if (!lst)
 		return ;
-    if (lst->key)
-	    free(lst->key);
-    if (lst->value)
-        free(lst->value);
+	if (lst->key)
+		free(lst->key);
+	if (lst->value)
+		free(lst->value);
 	free(lst);
 }

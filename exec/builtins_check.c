@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 19:04:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 10:54:35 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,29 @@ int	shoose_builtins(char **cmd, t_env *env)
 	return (2);
 }
 
-void    free_double(char    **str)
+void	free_double(char **str)
 {
-    int i;
+	int	i;
 
-    i  = 0;
-    while (str[i])
-        free(str[i++]);
-    free(str);
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
 }
 
-int    check_builtins(char **cmd, t_env *env)
+int	check_builtins(char **cmd, t_env *env)
 {
-	int 	i;
-	char	*builtins[7] = {
-		"cd",
-		"export",
-		"unset",
-		"exit",
-		"env",
-		"echo",
-		"pwd",
-	};
-	i  = 0;
+	int		i;
+	char	*builtins[7];
+
+	builtins[0] = "cd";
+	builtins[1] = "export";
+	builtins[2] = "unset";
+	builtins[3] = "exit";
+	builtins[4] = "env";
+	builtins[5] = "echo";
+	builtins[6] = "pwd";
+	i = 0;
 	while (i < 7)
 	{
 		if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
@@ -64,13 +64,13 @@ int    check_builtins(char **cmd, t_env *env)
 	return (2);
 }
 
-int first_built(t_node*new, t_env *env)
+int	first_built(t_node*new, t_env *env)
 {
-    int     ret;
+	int	ret;
 
-    ret  = 0;
+	ret = 0;
 	if (new->fdout > 2)
 		dup2(new->fdout, STDOUT_FILENO);
 	ret = check_builtins(new->cmd, env);
-    return (ret);
+	return (ret);
 }

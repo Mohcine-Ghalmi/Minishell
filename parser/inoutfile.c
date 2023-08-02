@@ -3,37 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   inoutfile.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/01 18:21:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 10:29:43 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-// int	ft_strchr1(const char *s, int c)
-// {
-// 	int		i;
-// 	char	find;
-
-// 	find = (char)c;
-// 	i = 0;
-// 	while (s[i])
-// 	{
-// 		if (s[i] == find)
-// 			return (i);
-// 		i++;
-// 	}
-// 	if (s[i] == find)
-// 		return (i);
-// 	return (0);
-// }
-
 int	openfile(char *filename, int mode)
 {
 	if (mode == STDIN_FILENO)
 	{
+		puts("file0");
+		puts(filename);
 		if (access(filename, F_OK))
 		{
 			write(STDERR_FILENO, filename, ft_strchr1(filename, 0));

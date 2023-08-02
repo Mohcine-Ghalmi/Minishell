@@ -49,30 +49,30 @@ void	close_files(int in, int out)
 		close(in);
 }
 
-t_node *inputs(char *input, char **envp)
+t_node	*inputs(char *input, char **envp)
 {
-    t_token        *token;
-    t_jointok    *join;
-    t_lsttoken    *lst;
-    t_node        *node;
+	t_token		*token;
+	t_jointok	*join;
+	t_lsttoken	*lst;
+	t_node		*node;
 
-    token = NULL;
-    join = NULL;
-    lst = NULL;
-    node = NULL;
-    tokena(input, &token, envp);
-    free(input);
-    jointok(&join, token);
-    if (syntaxerror(join) == 1)
-    {
-        free_token(token);
-        free_jointoken(join);
-        return (NULL);
-    }
-    lst = ltoken(&join);
-    node = create_node(lst);
-    free_token(token);
-    free_jointoken(join);
-    free_lst(lst);
-    return (node);
+	token = NULL;
+	join = NULL;
+	lst = NULL;
+	node = NULL;
+	tokena(input, &token, envp);
+	free(input);
+	jointok(&join, token);
+	if (syntaxerror(join) == 1)
+	{
+		free_token(token);
+		free_jointoken(join);
+		return (NULL);
+	}
+	lst = ltoken(&join);
+	node = create_node(lst);
+	free_token(token);
+	free_jointoken(join);
+	free_lst(lst);
+	return (node);
 }

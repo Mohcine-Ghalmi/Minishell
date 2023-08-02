@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:26:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 19:17:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 10:46:44 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,6 @@ char	*path_join(char *path, char *bin)
 	joined[i] = 0;
 	return (joined);
 }
-
-// int	ft_strncmp(const char *s1, const char *s2, size_t n)
-// {
-// 	int				i;
-// 	unsigned char	*str1;
-// 	unsigned char	*str2;
-
-// 	i = 0;
-// 	if (n == 0)
-// 		return (0);
-// 	str1 = (unsigned char *)s1;
-// 	str2 = (unsigned char *)s2;
-// 	if (!str1)
-// 		return (0);
-// 	while (str1[i] && str2[i] && str1[i] == str2[i] && --n)
-// 		++i;
-// 	return (str1[i] - str2[i]);
-// }
 
 char	*ft_strdup1(char *str, unsigned int n)
 {

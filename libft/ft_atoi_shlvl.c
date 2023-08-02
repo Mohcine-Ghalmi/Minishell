@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_shlvl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:00:26 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/29 16:38:48 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 11:15:28 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ unsigned int	ft_atoi_shlvl(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 		res = res * 10 + str[i++] - '0';
-	if  (str[i])
+	if (str[i])
 		res = 0;
 	return (signe * res);
 }

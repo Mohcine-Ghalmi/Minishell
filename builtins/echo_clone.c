@@ -3,64 +3,64 @@
 /*                                                        :::      ::::::::   */
 /*   echo_clone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 04:40:17 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 10:25:22 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-int option_echo(char *str)
+int	option_echo(char *str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (str[i] == '-')
-        i++;
-    while (str[i])
-    {
-        if (str[i] != 'n')
-            return (1);
-        i++;
-    }
-    return (0);
+	i = 0;
+	if (str[i] == '-')
+		i++;
+	while (str[i])
+	{
+		if (str[i] != 'n')
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-int double_size(char **str)
+int	double_size(char **str)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (str[i])
-        i++;
-    return (i);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }
 
-int    echo_clone(char **cmd)
+int	echo_clone(char **cmd)
 {
-    int i;
-    int flag;
+	int	i;
+	int	flag;
 
-    i = 1;
-    flag = 0;
-    if (!cmd[i])
-    {
-        printf("\n");
-        return (0);
-    }
-    while (cmd[i])
-    {
-        if (!option_echo(cmd[i]))
-            flag = 1;
-        if (option_echo(cmd[i]))
-            printf("%s", cmd[i]);
-        if (i < double_size(cmd) - 1)
-            printf(" ");
-        i++;
-    }
-    if (!flag)
-        printf("\n");
-    return (0);
+	i = 1;
+	flag = 0;
+	if (!cmd[i])
+	{
+		printf("\n");
+		return (0);
+	}
+	while (cmd[i])
+	{
+		if (!option_echo(cmd[i]))
+			flag = 1;
+		if (option_echo(cmd[i]))
+			printf("%s", cmd[i]);
+		if (i < double_size(cmd) - 1)
+			printf(" ");
+		i++;
+	}
+	if (!flag)
+		printf("\n");
+	return (0);
 }

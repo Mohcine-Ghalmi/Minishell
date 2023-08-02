@@ -32,15 +32,13 @@
 # define HEC 9
 # define SPAE 10
 
-int		ft_isdigit(int c);
-int		ft_isalnum(int c);
-int		notword(int c);
-int		spaces(int c);
-// char	*ft_substr(char *s, int start, int len);
-// char	*ft_strdup(char *string);
-char	*ft_strjoin(char *s1, char *s2);
-int		qudespars(char *str);
-// size_t	ft_strlen(char *s);
+int			ft_isdigit(int c);
+int			ft_isalnum(int c);
+int			notword(int c);
+int			spaces(int c);
+char		*ft_strjoin(char *s1, char *s2);
+int			qudespars(char *str);
+void		s_fd(char *s, int fd);
 
 typedef struct token
 {
@@ -49,7 +47,6 @@ typedef struct token
 
 	struct token	*next;
 }			t_token;
-
 typedef struct jointok
 {
 	char			*str;
@@ -63,7 +60,6 @@ typedef struct lsttoken
 	int				type;
 	struct lsttoken	*next;
 }			t_lsttoken;
-
 typedef struct node
 {
 	char			**cmd;
@@ -71,42 +67,36 @@ typedef struct node
 	int				fdout;
 	struct node		*next;
 
-}					t_node;
-
-void	outorappand(char *text, int *i, t_token **token);
-// void	ft_putstr_fd(char *s, int fd);
-void	inorherdoc(char *text, int *i, t_token **token);
-void	qudes(char *text, int *i, t_token **token, char **envp);
-void	word(char *text, int *i, t_token **token, char **envp);
-void	space(char *text, int *i, t_token **token);
-char	*dollar(char *text, int *i, char **envp);
-void	jointok(t_jointok	**join, t_token *token);
-void	ft_back(t_token	**lst, t_token	*new);
-void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
-int		syntaxerror(t_jointok *token);
-char	*out_dollars(char *key, char **env);
-int		openfile(char *filename, int mode);
-void	addnode_back(t_node	**lst, t_node	*new);
-void	free_cmds(char **cmd);
-void	free_node(t_node *node);
-void	free_lst(t_lsttoken *lst);
-void	free_jointoken(t_jointok *token);
-void	free_token(t_token *token);
-// void	*ft_calloc(size_t count, size_t size);
-int		heredoc(char *limiter);	
-int		append(char *file);
-// int		ft_strncmp(char *str1, char *str2, size_t n);
-
+}			t_node;
+void		outorappand(char *text, int *i, t_token **token);
+void		inorherdoc(char *text, int *i, t_token **token);
+void		qudes(char *text, int *i, t_token **token, char **envp);
+void		word(char *text, int *i, t_token **token, char **envp);
+void		space(char *text, int *i, t_token **token);
+char		*dollar(char *text, int *i, char **envp);
+void		jointok(t_jointok	**join, t_token *token);
+void		ft_back(t_token	**lst, t_token	*new);
+void		ft_lstadd_back1(t_jointok	**lst, t_jointok	*new);
+int			syntaxerror(t_jointok *token);
+char		*out_dollars(char *key, char **env);
+int			openfile(char *filename, int mode);
+void		addnode_back(t_node	**lst, t_node	*new);
+void		free_cmds(char **cmd);
+void		free_node(t_node *node);
+void		free_lst(t_lsttoken *lst);
+void		free_jointoken(t_jointok *token);
+void		free_token(t_token *token);
+int			heredoc(char *limiter);	
+int			append(char *file);
+t_node		*create_node(t_lsttoken *token);
+t_node		*new_node(char **cmd, int in, int out);
+t_node		*last_node(t_node	*lst);
+void		sigint_handler(int sig);
+void		exit_main(void);
+t_token		*ft_lstnew(int type, char *cmd);
+t_token		*ft_lstlast(t_token	*lst);
 t_jointok	*ft_lstlast1(t_jointok	*lst);
 t_jointok	*ft_lstnew1(char *str, int type);
 t_lsttoken	*ltoken(t_jointok **token);
-
-t_node	*create_node(t_lsttoken *token);
-t_node	*new_node(char **cmd, int in, int out);
-t_node	*last_node(t_node	*lst);
-void	sigint_handler(int sig);
-void	exit_main(void);
-t_token	*ft_lstnew(int type, char *cmd);
-t_token	*ft_lstlast(t_token	*lst);
 
 #endif

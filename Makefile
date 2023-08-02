@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/02 05:35:10 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/08/02 09:57:38 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,13 +43,17 @@ SRC = exec/exec_pipes.c \
 
 OBJ = $(SRC:%.c=%.o)
 
+LDFLAGS="-L/Users/selhilal/.brew/opt/readline/lib"
+
+CPPFLAGS="-I/Users/selhilal/.brew/opt/readline/include"
+
 all: $(NAME)
 
 $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT) $(PARSER_HEADER) 
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) #-g -fsanitize=address
+	cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) #-g -fsanitize=address
 
 # %.o: %.c $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 # 		cc -Wall -Wextra -Werror -c $< -o $@ -g -fsanitize=address
