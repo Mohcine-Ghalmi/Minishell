@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 05:17:05 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/02 08:44:19 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int main(int argc, char **argv, char **envp)
 	}
     signal(SIGINT, sigint_handler);
     signal(SIGQUIT, SIG_IGN);
+    
     new_envp = envirment(envp);
     while (1)
     {

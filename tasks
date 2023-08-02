@@ -8,6 +8,4 @@
 
 -------------------test's--------------------------
 
-echo $?
-
-./minishell '
+exit when echo ($> and other  syntax err) shoudl be 256 fix with errno
