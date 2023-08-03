@@ -11,4 +11,13 @@
 exit when echo ($> and other  syntax err) shoudl be 256 fix with errno
 signals
 hereDoc signal D
-unset PWD X --> unset PWD=
+
+("" == echo $?)
+($)
+export ""  et unset ""
+
+echo "$tests" "Makefile"
+>file
+
+
+

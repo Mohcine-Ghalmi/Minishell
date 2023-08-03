@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 21:46:28 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 18:01:55 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,5 @@ int	main(int argc, char **argv, char **envp)
 		execution(node, new_envp);
 		ft_lstclear_struct(&node);
 	}
-	ft_lstclear_env(&new_envp);
-	return (0);
+	return (ft_lstclear_env(&new_envp), 0);
 }

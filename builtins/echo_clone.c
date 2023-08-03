@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 20:45:45 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:36:30 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	option_echo(char *str)
 	while (str[i])
 	{
 		if (str[i] != 'n')
-			return (1);
+			return (0);
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 int	double_size(char **str)
@@ -38,7 +38,21 @@ int	double_size(char **str)
 	return (i);
 }
 
-int	echo_clone(char **cmd)
+char	*r_value(t_env *env, char *key)
+{
+	t_env	*tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key) - 1))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return (NULL);
+}
+
+int	echo_clone(char **cmd, t_env *env)
 {
 	int	i;
 	int	flag;
@@ -46,17 +60,17 @@ int	echo_clone(char **cmd)
 	i = 1;
 	flag = 0;
 	if (!cmd[i])
-	{
-		printf("\n");
-		return (0);
-	}
+		return (printf("\n"), 0);
 	while (cmd[i])
 	{
-		if (!option_echo(cmd[i]))
+		if (option_echo(cmd[i]) && !flag)
 			flag = 1;
-		if (option_echo(cmd[i]))
+		if (!option_echo(cmd[i]))
 		{
-			printf("%s", cmd[i]);
+			if (!ft_strncmp(cmd[i], "~", 2))
+				printf("%s", r_value(env, "HOME"));
+			else
+				printf("%s", cmd[i]);
 			if (i < double_size(cmd) - 1)
 				printf(" ");
 		}

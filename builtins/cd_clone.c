@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_clone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 14:15:40 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:33:53 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,23 +84,17 @@ int	cd_clone(char **cmd, t_env *env)
 	oldpwd = pwd_env(env, 0);
 	if (cmd[1] == NULL)
 	{
-		if (!find_key("HOME", env))
+		if (!find_key("HOME=", env))
 			return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
 		if (!find_and_replace(&env, "OLDPWD", oldpwd))
 			ft_lstadd_back_env(&env,
 				ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
 		find_and_replace(&env, "PWD", return_value(env, "HOME"));
-		chdir(return_value(env, "HOME"));
+		chdir(return_value(env, "HOME="));
 		return (0);
 	}
 	if (!chdir(cmd[1]))
-	{
-		if (!find_and_replace(&env, "OLDPWD", oldpwd))
-			ft_lstadd_back_env(&env,
-				ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
-		find_and_replace(&env, "PWD", getcwd(NULL, 0));
-		return (0);
-	}
+		return (fail_cd(env, oldpwd));
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(cmd[1], 2);
 	ft_putstr_fd(": No such file or directory\n", 2);

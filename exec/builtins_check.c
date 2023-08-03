@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:54:35 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:03:12 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	shoose_builtins(char **cmd, t_env *env)
 	else if (!ft_strncmp(cmd[0], "env", ft_strlen1(cmd[0])))
 		return (show_env(env, cmd));
 	else if (!ft_strncmp(cmd[0], "echo", ft_strlen1(cmd[0])))
-		return (echo_clone(cmd));
+		return (echo_clone(cmd, env));
 	return (2);
 }
 

@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 12:33:56 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:34:42 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		export_clone(char **cmd, t_env *env);
 int		first_equale(char *string);
 int		option_replace(char *key, t_env *env);
 int		unset_clone(t_env *env, char **cmd);
-int		echo_clone(char **cmd);
+int		echo_clone(char **cmd, t_env *env);
 int		find_and_replace(t_env **env, char *key, char *value);
 int		find_key(char *key, t_env *env);
 char	*add_to_value(t_env *env, char *key, char *value);
@@ -61,5 +61,6 @@ int		first_built(t_node *new, t_env *env);
 void	tokena(char *input, t_token **token, char **envp);
 void	close_files(int in, int out);
 t_node	*inputs(char *input, char **envp);
+int		fail_cd(t_env *env, char *oldpwd);
 
 #endif

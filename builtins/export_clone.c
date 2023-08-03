@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 21:06:20 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:52:24 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int	checking_dash(char *cmd)
 				&& cmd[i + 1] != '='))
 		{
 			printf("minishell: export: `%s` not valid identifier\n", cmd);
-			printf("here = %d\n", i + 1);
 			return (i + 1);
 		}
 		i++;

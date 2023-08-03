@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 01:16:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/03 17:55:48 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,16 @@ void	piper(t_node *cmd, t_env *new_env)
 	close_files(cmd->fdin, cmd->fdout);
 }
 
+void	update_and_wait(int ifcond, int status, t_env *envp)
+{
+	while (wait(&status) != -1)
+		;
+	if (ifcond < 2)
+		update_status(ifcond, envp);
+	else
+		update_status(WEXITSTATUS(status), envp);
+}
+
 void	execution(t_node *new, t_env *envp)
 {
 	int				status;
@@ -82,10 +92,5 @@ void	execution(t_node *new, t_env *envp)
 	}
 	dup2(in, STDIN_FILENO);
 	dup2(out, STDOUT_FILENO);
-	while (wait(&status) != -1)
-		;
-	if (ifcond < 2)
-		update_status(ifcond, envp);
-	else
-		update_status(WEXITSTATUS(status), envp);
+	update_and_wait(ifcond, status, envp);
 }

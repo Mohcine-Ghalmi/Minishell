@@ -3,14 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   unset_clone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 14:24:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/03 15:27:14 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
+
+int	checking_args(char *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if ((cmd[i] >= 33 && cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 64)
+			|| (cmd[i] >= 91 && cmd[i] <= 96) 
+			|| cmd[i] >= 123)
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}
 
 int	find_key(char *key, t_env *env)
 {
@@ -36,7 +52,7 @@ void	delete_key(char *key, t_env **env)
 
 	prev = NULL;
 	tmp = *env;
-	while (tmp && ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
+	while (tmp && ft_strncmp(tmp->key, key, ft_strlen1(tmp->key) - 1))
 	{
 		prev = tmp;
 		tmp = tmp->next;
@@ -64,7 +80,7 @@ int	unset_clone(t_env *env, char **cmd)
 	ret1 = 0;
 	while (cmd[i])
 	{
-		if (!find_key(cmd[i], env))
+		if (checking_args(cmd[i]))
 		{
 			ft_putstr_fd("minishell: unset: `", 2);
 			ft_putstr_fd(cmd[i], 2);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_constructor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/03 01:17:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/03 16:28:29 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,13 @@ t_node	*create_node(t_lsttoken *token)
 	int		in;
 	int		i;
 	int		out;
-	int 	flag;
+	int		flagout;
+	int		flagin;
 	t_node	*node;
 
 	node = NULL;
-	flag = 0;
+	flagout = 0;
+	flagin = 0;
 	while (token)
 	{
 		i = 0;
@@ -71,16 +73,20 @@ t_node	*create_node(t_lsttoken *token)
 				cmd[i++] = ft_strdup(token->str);
 			else if (token->type == 2 && token->next && token->next->str)
 			{
-				in = openfile(token->next->str, STDIN_FILENO);
+				if (flagin != -1)
+				{
+					in = openfile(token->next->str, STDIN_FILENO);
+					flagin = in;
+				}
 				if (token->next)
 					token = token->next;
 			}
 			else if (token->type == 3 && token->next && token->next->str)
 			{
-				if (flag != -1)
+				if (flagout != -1)
 				{
 					out = openfile(token->next->str, STDOUT_FILENO);
-					flag = out;
+					flagout = out;
 				}
 				if (token->next)
 					token = token->next;

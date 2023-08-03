@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:33:48 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 17:50:23 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,21 @@ int	find_char(char *str)
 	return (0);
 }
 
+void	put_msg(char *str, char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+}
+
 int	exit_clone(t_env *env, char **cmd)
 {
-	if (cmd[2])
+	if (cmd[2] && !find_char(cmd[1]))
 	{
-		if (!find_char(cmd[1]))
-		{
-			ft_putstr_fd("exit\n", 2);
-			ft_putstr_fd("minishell: exit: too many arguments\n", 2);
-			update_status(1, env);
-			return (1);
-		}
+		put_msg("", "exit: too many arguments");
+		return (update_status(1, env), 1);
 	}
 	if (cmd[1])
 	{
@@ -71,9 +75,7 @@ int	exit_clone(t_env *env, char **cmd)
 		{
 			update_status(255, env);
 			printf("exit\n");
-			ft_putstr_fd("minishell: exit: ", 2);
-			ft_putstr_fd(cmd[1], 2);
-			ft_putstr_fd(": numeric argument required\n", 2);
+			put_msg(cmd[1], "exit: numeric argument required");
 			exit(255);
 		}
 		update_status(checking_status(ft_atoi_shlvl(cmd[1])), env);
@@ -81,7 +83,5 @@ int	exit_clone(t_env *env, char **cmd)
 		exit(checking_status(ft_atoi_shlvl(cmd[1])));
 	}
 	printf("exit\n");
-	update_status(0, env);
-	exit(0);
-	return (0);
+	return (update_status(0, env), exit(0), 0);
 }

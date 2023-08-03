@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 23:28:14 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:42:08 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,8 @@ int	exec_dollar(char *str, t_token **token)
 		while (j < i)
 		{
 			ft_back(token, ft_lstnew(1, splited[j++]));
-			ft_back(token, ft_lstnew(10, " "));
+			if (j < i)
+				ft_back(token, ft_lstnew(10, " "));
 		}
 		free(str);
 		return (1);

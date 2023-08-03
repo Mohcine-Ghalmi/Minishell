@@ -6,7 +6,7 @@
 #    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/02 23:31:23 by selhilal         ###   ########.fr        #
+#    Updated: 2023/08/03 17:35:30 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = exec/exec_pipes.c \
 	builtins/envirment_utils.c \
 	builtins/pwd_clone.c \
 	builtins/cd_clone.c \
+	builtins/cd_clone_utils.c \
 	builtins/export_clone.c \
 	builtins/exit_clone.c \
 	builtins/unset_clone.c \
