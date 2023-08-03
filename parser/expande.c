@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 22:17:33 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 14:11:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ char	*out_dollars(char *key, char **env)
 	i = 0;
 	while (env[i])
 	{
-		if (!ft_strncmp(key, env[i], strlen(key)))
+		if (!ft_strncmp(key, env[i], first_equale(env[i]) - 1))
 			return (ft_substr(env[i], strlen(key) + 1, strlen(env[i]))); 
 		i++;
 	}

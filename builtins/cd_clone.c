@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 01:15:49 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:15:40 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	find_value(t_env *env, char *key)
 	tmp = env;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, key, ft_strlen1(key)))
+		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
 			if (!ft_strncmp(tmp->value, "", 1))
 				return (1);
 		tmp = tmp->next;
@@ -53,7 +53,7 @@ char	*return_value(t_env *env, char *key)
 	tmp = env;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, key, ft_strlen1(key)))
+		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
 			return (ft_strdup(tmp->value));
 		tmp = tmp->next;
 	}
@@ -78,14 +78,14 @@ int	cd_clone(char **cmd, t_env *env)
 {
 	char	*oldpwd;
 
-	if (!ft_strncmp(cmd[1], "-", 2))
-		return (cd_old(cmd[1], &env));
+	if (cmd[1])
+		if (!ft_strncmp(cmd[1], "-", 2))
+			return (cd_old(cmd[1], &env));
 	oldpwd = pwd_env(env, 0);
 	if (cmd[1] == NULL)
 	{
-		puts("here");
 		if (!find_key("HOME", env))
-			return (ft_putstr_fd("minishell: cd: HOME not set", 2), 1);
+			return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
 		if (!find_and_replace(&env, "OLDPWD", oldpwd))
 			ft_lstadd_back_env(&env,
 				ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 01:22:15 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/03 14:14:44 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,23 @@ int	find_key(char *key, t_env *env)
 	tmp = env;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, key, ft_strlen1(key)))
+		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
 			return (1);
 		if (!ft_strncmp(tmp->key, ft_substr(key, 0, ft_strlen1(key) - 1),
-				ft_strlen(key)))
+				ft_strlen(tmp->key)))
 			return (1);
 		tmp = tmp->next;
 	}
 	return (0);
 }
 
-void	delete_key(char *key, t_env *env)
+void	delete_key(char *key, t_env **env)
 {
 	t_env	*tmp;
 	t_env	*prev;
 
 	prev = NULL;
-	tmp = env;
+	tmp = *env;
 	while (tmp && ft_strncmp(tmp->key, key, ft_strlen1(key)))
 	{
 		prev = tmp;
@@ -44,13 +44,13 @@ void	delete_key(char *key, t_env *env)
 	if (tmp)
 	{
 		if (!prev)
-			env = tmp->next;
+			*env = tmp->next;
 		else 
 			prev->next = tmp->next;
+		free(tmp->key);
+		free(tmp->value);
+		free(tmp);
 	}
-	free(tmp->key);
-	free(tmp->value);
-	free(tmp);
 }
 
 int	unset_clone(t_env *env, char **cmd)
@@ -72,7 +72,7 @@ int	unset_clone(t_env *env, char **cmd)
 			ret = 1;
 		}
 		else
-			delete_key(cmd[i], env);
+			delete_key(cmd[i], &env);
 		if (ret == 1)
 			ret1 = ret;
 		i++;
