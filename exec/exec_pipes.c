@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 22:43:19 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:16:25 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	piper(t_node *cmd, t_env *new_env)
 		exec(cmd->cmd, exec_enev);
 	}
 	closepipe(pipefd);
+	close_files(cmd->fdin, cmd->fdout);
 }
 
 void	execution(t_node *new, t_env *envp)

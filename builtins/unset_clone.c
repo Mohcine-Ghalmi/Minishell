@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_clone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:43:37 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:22:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,12 @@ void	delete_key(char *key, t_env *env)
 		tmp = tmp->next;
 	}
 	if (tmp)
-		if (prev)
+	{
+		if (!prev)
+			env = tmp->next;
+		else 
 			prev->next = tmp->next;
+	}
 	free(tmp->key);
 	free(tmp->value);
 	free(tmp);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_constructor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 22:41:02 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 01:17:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,11 @@ t_node	*create_node(t_lsttoken *token)
 	int		in;
 	int		i;
 	int		out;
+	int 	flag;
 	t_node	*node;
 
 	node = NULL;
+	flag = 0;
 	while (token)
 	{
 		i = 0;
@@ -75,7 +77,11 @@ t_node	*create_node(t_lsttoken *token)
 			}
 			else if (token->type == 3 && token->next && token->next->str)
 			{
-				out = openfile(token->next->str, STDOUT_FILENO);
+				if (flag != -1)
+				{
+					out = openfile(token->next->str, STDOUT_FILENO);
+					flag = out;
+				}
 				if (token->next)
 					token = token->next;
 			}
