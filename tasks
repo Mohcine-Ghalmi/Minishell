@@ -7,12 +7,6 @@
 6-exit : done
 
 -------------------test's--------------------------
-hereDoc signal D
-
-($)
-
-aadd two exports to show the last one
+leaks 
 
 << 2 | << 3 | << 4
-
-echo "'$HOMEa'"

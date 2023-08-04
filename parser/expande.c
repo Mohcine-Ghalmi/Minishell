@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 22:13:44 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 23:35:51 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,9 @@ char	*dollar(char *text, int *i, char **envp)
 	char	*table;
 	char	*dolar;
 
-	// printf("expand staerrt\n");
-	// show_env_char(envp);
-	// printf("expand end\n");
 	table = creat_table(text, i);
 	if (!ft_strlen(table))
-		return (free(table), ft_strdup(""));
+		return (free(table), ft_strdup("$"));
 	dolar = out_dollars(table, envp);
 	return (free(table), dolar);
 }
@@ -92,17 +89,10 @@ char	*out_dollars(char *key, char **env)
 	int		i;
 
 	i = 0;
-	while (env[i] != NULL)
-	{
-		printf("env == %s\n", env[i]);
-		i++;
-	}
-	printf("i == %d\n", i);
-	i = 0;
-	printf("dhjkashdjkasjk\n\n\n\n");
+	key = ft_strjoin1(key, "=");
 	while (env[i])
 	{
-		if (!ft_strncmp(key, env[i], first_equale(env[i]) - 1))
+		if (!ft_strncmp(key, env[i], ft_strlen1(key)))
 			return (ft_substr(env[i], first_equale(env[i]), strlen(env[i]))); 
 		i++;
 	}

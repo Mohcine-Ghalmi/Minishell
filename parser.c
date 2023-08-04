@@ -19,9 +19,8 @@ void	tokena(char *input, t_token **token, char **envp)
 
 	i = 0;
 	table = NULL;
-	while (input[i])
+	while (input != NULL && input[i])
 	{
-		// printf("lol\n");
 		if (input[i] == '|' && input[i])
 		{
 			table = ft_substr(input, i, 1);
@@ -55,21 +54,15 @@ t_node	*inputs(char *input, char **envp)
 	t_token		*token;
 	t_jointok	*join;
 	t_lsttoken	*lst;
-	t_node		**node;
+	t_node		*node;
 
 	int i = 0;
 	token = NULL;
 	join = NULL;
 	lst = NULL;
-	*node = NULL;
+	node = NULL;
 
-	// printf("tokena staerrt\n");
-	// show_env_char(envp);
-	// if (input == NULL)
-		// printf("above tokena\n");
 	tokena(input, &token, envp);
-	// show_env_char(envp);
-	// printf("tokena end\n");
 	free(input);
 	jointok(&join, token);
 	if (syntaxerror(join) == 1)
@@ -79,10 +72,10 @@ t_node	*inputs(char *input, char **envp)
 		return (free_double(envp), NULL);
 	}
 	lst = ltoken(&join);
-	create_node(lst, node);
+	create_node(lst, &node);
 	free_token(token);
 	free_jointoken(join);
 	free_lst(lst); 
 	free_double(envp);
-	return (*node);
+	return (node);
 }

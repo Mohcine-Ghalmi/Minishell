@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 22:39:17 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 23:24:01 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,24 +47,7 @@ t_env	*envirment(char **old_env)
 	t_env	*new_env;
 
 	i = 0;
-	// while (old_env[i] != NULL)
-	// {
-	// 	printf("env == %s\n", old_env[i]);
-	// 	i++;
-	// }
-	// printf("i == %d\n", i);
-	// i = 0;
-	// printf("\n\n\n\n");
 	new_env = main_env(old_env, &i);
-	// t_env *tmp = new_env;
-	// int l = 0;
-	// while (tmp != NULL)
-	// {
-	// 	printf("env == %s ____ %s\n", tmp->key , tmp->value);
-	// 	tmp = tmp->next;
-	// 	l++;
-	// }
-	// printf("i == %d\n", l);
 	if (!olpwd_env(new_env))
 	{
 		ft_lstadd_back_env(&new_env,
@@ -101,7 +84,6 @@ int	show_env(t_env *new_env, char **cmd)
 	t_env	*tmp;
 
 	tmp = new_env;
-	printf("lol\n");
 	if (cmd[1])
 	{
 		ft_putstr_fd("env with no options\n", 1);
