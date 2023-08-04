@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_clone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 17:50:23 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:25:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ unsigned int	checking_status(unsigned int status)
 	return (status);
 }
 
-void	update_status(unsigned int status, t_env *env)
+void	update_status(unsigned int status, t_env *env, int i)
 {
 	t_env	*tmp;
 
@@ -29,7 +29,10 @@ void	update_status(unsigned int status, t_env *env)
 	{
 		if (!ft_strncmp("?=", tmp->key, 2))
 		{
-			tmp->value = ft_itoa_shlvl(checking_status(status));
+			if (i == 1)
+				tmp->value = ft_itoa_shlvl(checking_status(status));
+			else
+				tmp->value = ft_itoa_shlvl(status);
 			tmp->option = 3;
 			break ;
 		}
@@ -67,21 +70,21 @@ int	exit_clone(t_env *env, char **cmd)
 	if (cmd[2] && !find_char(cmd[1]))
 	{
 		put_msg("", "exit: too many arguments");
-		return (update_status(1, env), 1);
+		return (update_status(1, env, 1), 1);
 	}
 	if (cmd[1])
 	{
 		if (find_char(cmd[1]))
 		{
-			update_status(255, env);
+			update_status(255, env, 1);
 			printf("exit\n");
 			put_msg(cmd[1], "exit: numeric argument required");
 			exit(255);
 		}
-		update_status(checking_status(ft_atoi_shlvl(cmd[1])), env);
+		update_status(checking_status(ft_atoi_shlvl(cmd[1])), env, 1);
 		printf("exit\n");
 		exit(checking_status(ft_atoi_shlvl(cmd[1])));
 	}
 	printf("exit\n");
-	return (update_status(0, env), exit(0), 0);
+	return (update_status(0, env, 1), exit(0), 0);
 }

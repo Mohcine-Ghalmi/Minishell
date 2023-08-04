@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 18:48:12 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 20:26:35 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,17 @@ int	main(int argc, char **argv, char **envp)
 		if (qudespars(input) == 0)
 		{
 			ft_putstr_fd("syntax error close qudes\n", 2);
+			update_status(258, new_envp, 0);
 			free(input);
 			continue ;
 		}
 		add_history(input);
 		node = inputs(input, env_exec(new_envp));
 		if (node == NULL)
+		{
+			update_status(258, new_envp, 0);
 			continue ;
+		}
 		execution(node, new_envp);
 		ft_lstclear_struct(&node);
 	}

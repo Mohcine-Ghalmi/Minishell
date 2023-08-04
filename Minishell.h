@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 17:40:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 20:26:09 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*add_to_value(t_env *env, char *key, char *value);
 char	*shlvl(char *value);
 int		exit_clone(t_env *env, char **cmd);
 int		olpwd_env(t_env *env);
-void	update_status(unsigned int status, t_env *env);
+void	update_status(unsigned int status, t_env *env, int i);
 int		first_built(t_node *new, t_env *env);
 void	tokena(char *input, t_token **token, char **envp);
 void	close_files(int in, int out);

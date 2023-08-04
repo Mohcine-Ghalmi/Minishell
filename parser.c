@@ -63,9 +63,8 @@ t_node	*inputs(char *input, char **envp)
 	tokena(input, &token, envp);
 	free(input);
 	jointok(&join, token);
-	if (syntaxerror(join) == 258)
+	if (syntaxerror(join) == 1)
 	{
-		// update_status(258, env);
 		free_token(token);
 		free_jointoken(join);
 		return (free_double(envp), NULL);

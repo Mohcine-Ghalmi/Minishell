@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 11:32:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 20:22:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 			ft_putstr_fd("Quit: 3\n", 1);
 	}
 	if (ifcond < 2)
-		update_status(ifcond, envp);
+		update_status(ifcond, envp, 1);
 	else
-		update_status(WEXITSTATUS(status), envp);
+		update_status(WEXITSTATUS(status), envp, 1);
 }
 
 void	execution(t_node *new, t_env *envp)
