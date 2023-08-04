@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signel_her.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:14:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 14:31:35 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 18:36:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 void	handel(int sig)
 {
 	(void)sig;
-	exit(1);
+	// exit(1);
+    close(0);
 }
 
 void signl_herdoc()

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envirment_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 11:00:38 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:28:31 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,15 @@ t_env	*main_env(char **old_env, int *i)
 	while (old_env[*i])
 	{
 		key = ft_substr(old_env[*i], 0, first_equale(old_env[*i]));
-		value = ft_substr(old_env[*i],
-				first_equale(old_env[*i]), ft_strlen1(old_env[*i]));
 		if (*i == 0)
 			if (!find_key("?=", new_env) && ft_strncmp(key, "?=", 3))
 				ft_lstadd_back_env(&new_env,
 					ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 		if (!ft_strncmp(key, "SHLVL=", 7))
-		{
-			free(value);
 			value = shlvl(value);
-		}
+		else
+			value = ft_substr(old_env[*i],
+				first_equale(old_env[*i]), ft_strlen1(old_env[*i]));
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		(*i)++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 15:08:59 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:30:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**env_exec(t_env *new_env)
 	while (tmp)
 	{
 		envp[i] = ft_strdup(tmp->key);
-		envp[i] = ft_strjoin1(envp[i], tmp->value);
+		envp[i] = ft_strjoin(envp[i], tmp->value);
 		tmp = tmp->next;
 		i++;
 	}

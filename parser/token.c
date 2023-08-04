@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/03 14:42:08 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:41:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	inorherdoc(char *text, int *i, t_token **token)
 		ft_back(token, ft_lstnew(9, table));
 	if (f == 1)
 		ft_back(token, ft_lstnew(2, table));
-	free(table);
+	if (table)
+		free(table);
 }
 
 int	exec_dollar(char *str, t_token **token)

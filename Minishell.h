@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 14:10:43 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:40:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@
 # include <ctype.h>
 # include "exec/exec.h"
 # include <readline/readline.h>
-# include <errno.h>
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
 # include "libft/libft.h"
 # include "parser/parsing.h"
+# include <sys/errno.h>
 
 typedef struct env
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilise3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:50:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 13:47:51 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 17:12:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	filein(int *flagin, t_lsttoken **token, int in)
 {
-	if (*flagin == !1)
+	if (*flagin != -1)
 	{
 		in = openfile((*token)->next->str, STDIN_FILENO);
 		*flagin = in;
