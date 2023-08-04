@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 21:11:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 01:35:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,10 @@ t_env	*main_env(char **old_env, int *i)
 				ft_lstadd_back_env(&new_env,
 					ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 		if (!ft_strncmp(key, "SHLVL=", 7))
+		{
+			free(value);
 			value = shlvl(value);
+		}
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		(*i)++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstclear_env.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:58:06 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 11:16:12 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 01:44:50 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_lstclear_struct(t_node **lst)
 	while (*lst)
 	{
 		tmp = (*lst)->next;
-		free((*lst)->cmd);
+		free_double((*lst)->cmd);
 		free(*lst);
 		*lst = tmp;
 	}
