@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 01:45:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 05:40:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv, char **envp)
 	t_node	*node;
 	t_env	*new_envp;
 	char	*input;
+	char  **env_exc;
 
 	(void)argv;
 	if (argc > 1)
@@ -40,7 +41,8 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		}
 		add_history(input);
-		// node = inputs(input, env_exec(new_envp));
+		env_exc = env_exec(new_envp);
+		node = inputs(input, env_exc);
 		if (node == NULL)
 			continue ;
 		// execution(node, new_envp);

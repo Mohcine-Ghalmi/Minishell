@@ -32,14 +32,13 @@ void	tokena(char *input, t_token **token, char **envp)
 			outorappand(input, &i, token);
 		else if (input[i] == '<' && input[i])
 			inorherdoc(input, &i, token);
-		// else if ((input[i] == '\"' || input[i] == '\'') && input[i])
-		// 	qudes(input, &i, token, envp);
+		else if ((input[i] == '\"' || input[i] == '\'') && input[i])
+			qudes(input, &i, token, envp);
 		else if (spaces(input[i]))
 			space(input, &i, token);
-		// else if ((!notword(input[i]) || !spaces(input[i])) && input[i])
-		// 	word(input, &i, token, envp);
+		else if ((!notword(input[i]) || !spaces(input[i])) && input[i])
+			word(input, &i, token, envp);
 	}
-	free_double(envp);
 }
 
 void	close_files(int in, int out)
