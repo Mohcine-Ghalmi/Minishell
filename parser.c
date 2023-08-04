@@ -67,8 +67,7 @@ t_node	*inputs(char *input, char **envp)
 	{
 		free_token(token);
 		free_jointoken(join);
-		free_double(envp);
-		return (NULL);
+		return (free_double(envp), NULL);
 	}
 	lst = ltoken(&join);
 	create_node(lst, node);

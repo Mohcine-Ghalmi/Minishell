@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   environment.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 01:35:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 15:08:59 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ t_env	*envirment(char **old_env)
 	char	*value;
 	t_env	*new_env;
 
-	new_env = NULL;
 	i = 0;
 	new_env = main_env(old_env, &i);
 	if (!olpwd_env(new_env))
@@ -68,7 +67,7 @@ char	**env_exec(t_env *new_env)
 
 	i = 0;
 	tmp = new_env;
-	envp = malloc((ft_lstsize_env(new_env) + 1) * sizeof(char *));
+	envp = (char **)malloc((ft_lstsize_env(new_env) + 1) * sizeof(char *));
 	while (tmp)
 	{
 		envp[i] = ft_strdup(tmp->key);

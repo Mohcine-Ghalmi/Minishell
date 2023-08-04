@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/03 21:24:34 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 14:40:55 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,15 @@ int	syntaxerror(t_jointok	*token)
 	}
 	while (tmp)
 	{
-		if ((norm1(tmp->type) && !tmp->next)
+		if ((norm1(tmp->type) && tmp->next && tmp->next->type == 10
+				&& !tmp->next->next)
+			|| (norm1(tmp->type) && !tmp->next)
 			|| (norm1(tmp->type) && tmp->next
 				&& norm1(tmp->next->type))
 			|| ((norm1(tmp->type) && tmp->next
 					&& tmp->next->type == 10 && tmp->next->next
 					&& norm1(tmp->next->next->type))))
-		{
-			s_fd("\033[31;1msyntax error\033[0m\n", 2);
-			return (1);
-		}
+			return (s_fd("\033[31;1msyntax error\033[0m\n", 2), 1);
 		if (tmp)
 			tmp = tmp->next;
 	}

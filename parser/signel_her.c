@@ -1,43 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lststzie_env.c                                  :+:      :+:    :+:   */
+/*   signel_her.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/13 16:58:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 16:00:50 by selhilal         ###   ########.fr       */
+/*   Created: 2023/08/04 14:14:03 by selhilal          #+#    #+#             */
+/*   Updated: 2023/08/04 14:31:35 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../Minishell.h"
+#include "parsing.h"
 
-int	ft_lstsize_env(t_env *lst)
+void	handel(int sig)
 {
-	int	len;
-
-	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
+	(void)sig;
+	exit(1);
 }
 
-int	ft_lstsize_node(t_node *lst)
+void signl_herdoc()
 {
-	int	len;
-
-	if (!lst)
-		return (0);
-	len = 0;
-	while (lst)
-	{
-		len++;
-		lst = lst->next;
-	}
-	return (len);
+    rl_catch_signals = 1;
+    signal(SIGINT, handel);
+    signal(SIGQUIT, SIG_IGN);
 }

@@ -103,5 +103,5 @@ int			fileout(int *flagout, t_lsttoken **token, int out);
 int			heredocfile(t_lsttoken **token, int in);
 int			appendfile(t_lsttoken **token, int out);
 void		init_values(int *i, int *in, int *out);
-
+void		signl_herdoc();
 #endif

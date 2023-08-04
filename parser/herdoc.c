@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/26 15:57:16 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 10:21:31 by selhilal         ###   ########.fr       */
+/*   Created: 2023/08/04 14:07:52 by selhilal          #+#    #+#             */
+/*   Updated: 2023/08/04 14:29:21 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	heredoc_file(char *limiter, int outfile)
 	str = readline("> ");
 	if (!str)
 		exit(1);
-	while (end && ft_strncmp(end, str, ft_strlen(str))) 
+	signl_herdoc();
+	while (end && ft_strncmp(end, str, ft_strlen(end) - 1)) 
 	{
 		str = ft_strjoin(str, "\n");
 		if (str == NULL)
