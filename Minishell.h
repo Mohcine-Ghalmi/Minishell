@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 17:34:42 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:18:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ void	tokena(char *input, t_token **token, char **envp);
 void	close_files(int in, int out);
 t_node	*inputs(char *input, char **envp);
 int		fail_cd(t_env *env, char *oldpwd);
+t_env	*main_env(char **old_env, int *i);
+void	export_helper(char *cmd, t_env *env, int *ret);
 
 #endif

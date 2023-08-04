@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 17:55:48 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 00:55:28 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,15 @@ void	piper_norm(t_node *cmd, int pipefd[2])
 	close(pipefd[1]);
 }
 
+void	piper_dup(t_node *cmd, int pipefd[2])
+{
+	close(pipefd[1]);
+	if (cmd->fdin > 2)
+		dup2(cmd->fdin, STDIN_FILENO);
+	else
+		dup2(pipefd[0], STDIN_FILENO);
+}
+
 void	piper(t_node *cmd, t_env *new_env)
 {
 	pid_t	pid;
@@ -33,19 +42,16 @@ void	piper(t_node *cmd, t_env *new_env)
 	int		b;
 
 	b = 0;
+	signal(SIGINT, SIG_IGN);
 	if (pipe(pipefd) < 0)
 		return ;
 	pid = fork();
 	if (pid)
-	{
-		close(pipefd[1]);
-		if (cmd->fdin > 2)
-			dup2(cmd->fdin, STDIN_FILENO);
-		else
-			dup2(pipefd[0], STDIN_FILENO);
-	}
+		piper_dup(cmd, pipefd);
 	else
 	{
+		rl_catch_signals = 1;
+		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		piper_norm(cmd, pipefd);
 		exec_enev = env_exec(new_env);

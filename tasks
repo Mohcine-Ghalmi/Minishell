@@ -14,10 +14,5 @@ hereDoc signal D
 
 ("" == echo $?)
 ($)
-export ""  et unset ""
 
-echo "$tests" "Makefile"
->file
-
-
-
+aadd two exports to show the last one

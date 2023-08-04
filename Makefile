@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
+#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/03 17:35:30 by selhilal         ###   ########.fr        #
+#    Updated: 2023/08/03 22:53:14 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC = exec/exec_pipes.c \
 	exec/builtins_check.c \
 	parser.c \
   	parser/jointoken.c  parser/qudes.c  parser/token.c	parser/linked_node.c parser/parse.c parser/ft_free.c  parser/rem_spacetoken.c \
+	parser/utilise3.c \
   	parser/utilise.c  parser/utilise2.c \
 	parser/ast_constructor.c parser/inoutfile.c parser/linkedlist.c parser/herdoc.c parser/parsequdes.c parser/append.c	parser/expande.c \
 	Minishell.c \

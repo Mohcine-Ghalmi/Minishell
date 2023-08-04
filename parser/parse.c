@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 22:12:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:24:34 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ int	syntaxerror(t_jointok	*token)
 	t_jointok	*tmp;
 
 	tmp = token;
+	if (tmp->type == 4)
+	{
+		s_fd("\033[31;1msyntax error\033[0m\n", 2);
+		return (1);
+	}
 	while (tmp)
 	{
 		if ((norm1(tmp->type) && !tmp->next)

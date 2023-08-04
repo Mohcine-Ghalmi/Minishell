@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_clone.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 17:36:30 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 21:03:55 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,20 @@ int	option_echo(char *str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	if (str[i] == '-')
 		i++;
-	while (str[i])
+	if (i == ft_strlen1(str))
+		return (0);
+	while (str[i] && i > 0)
 	{
 		if (str[i] != 'n')
 			return (0);
 		i++;
 	}
+	if (i < ft_strlen1(str))
+		return (0);
 	return (1);
 }
 
@@ -33,6 +39,8 @@ int	double_size(char **str)
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 		i++;
 	return (i);
@@ -45,7 +53,7 @@ char	*r_value(t_env *env, char *key)
 	tmp = env;
 	while (tmp)
 	{
-		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key) - 1))
+		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
 			return (tmp->value);
 		tmp = tmp->next;
 	}
@@ -65,10 +73,10 @@ int	echo_clone(char **cmd, t_env *env)
 	{
 		if (option_echo(cmd[i]) && !flag)
 			flag = 1;
-		if (!option_echo(cmd[i]))
+		else
 		{
 			if (!ft_strncmp(cmd[i], "~", 2))
-				printf("%s", r_value(env, "HOME"));
+				printf("%s", r_value(env, "HOME="));
 			else
 				printf("%s", cmd[i]);
 			if (i < double_size(cmd) - 1)

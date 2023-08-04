@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 16:03:12 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 20:24:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,9 @@ int	check_builtins(char **cmd, t_env *env)
 	i = 0;
 	while (i < 7)
 	{
-		if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
-			return (shoose_builtins(cmd, env));
+		if (cmd[0])
+			if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
+				return (shoose_builtins(cmd, env));
 		i++;
 	}
 	return (2);

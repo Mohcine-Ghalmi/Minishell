@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_clone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 17:33:53 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 20:31:53 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ char	*return_value(t_env *env, char *key)
 
 int	cd_old(char *cmd, t_env **env)
 {
-	if (!find_value(*env, "OLDPWD"))
+	if (!find_value(*env, "OLDPWD="))
 	{
-		chdir(return_value(*env, "OLDPWD"));
+		chdir(return_value(*env, "OLDPWD="));
 		find_and_replace(env, "OLDPWD", pwd_env(*env, 0));
 		find_and_replace(env, "PWD", getcwd(NULL, 0));
 		pwd_env(*env, 1);

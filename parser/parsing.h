@@ -88,7 +88,7 @@ void		free_jointoken(t_jointok *token);
 void		free_token(t_token *token);
 int			heredoc(char *limiter);	
 int			append(char *file);
-t_node		*create_node(t_lsttoken *token);
+void		create_node(t_lsttoken *token, t_node **node);
 t_node		*new_node(char **cmd, int in, int out);
 t_node		*last_node(t_node	*lst);
 void		sigint_handler(int sig);
@@ -98,5 +98,10 @@ t_token		*ft_lstlast(t_token	*lst);
 t_jointok	*ft_lstlast1(t_jointok	*lst);
 t_jointok	*ft_lstnew1(char *str, int type);
 t_lsttoken	*ltoken(t_jointok **token);
+int			filein(int *flagin, t_lsttoken **token, int in);
+int			fileout(int *flagout, t_lsttoken **token, int out);
+int			heredocfile(t_lsttoken **token, int in);
+int			appendfile(t_lsttoken **token, int out);
+void		init_values(int *i, int *in, int *out);
 
 #endif

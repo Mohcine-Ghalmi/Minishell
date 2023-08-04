@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_constructor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/03 16:28:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/03 22:55:30 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,68 +48,50 @@ void	free_cmds(char **cmd)
 	free(cmd);
 }
 
-t_node	*create_node(t_lsttoken *token)
+char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag)
+{
+	int		i;
+	char	**cmd;
+
+	i = 0;
+	cmd = malloc(sizeof(char *) * (lenword(*token) + 1));
+	while (*token && (*token)->type != 4)
+	{
+		if ((*token)->type == 1)
+			cmd[i++] = ft_strdup((*token)->str);
+		else if ((*token)->type == 2 && (*token)->next && (*token)->next->str)
+			*in = filein(flag, token, *in);
+		else if ((*token)->type == 3 && (*token)->next && (*token)->next->str)
+			*out = fileout(flag, token, *out);
+		else if ((*token)->type == 9 && (*token)->next && (*token)->next->str)
+			*in = heredocfile(token, *in);
+		else if ((*token)->type == 7 && (*token)->next && (*token)->next->str)
+			*out = appendfile(token, *out);
+		else
+			break ;
+		if (*token)
+			*token = (*token)->next;
+	}
+	cmd[i] = NULL;
+	return (cmd);
+}
+
+void	create_node(t_lsttoken *token, t_node **node)
 {
 	char	**cmd;
 	int		in;
 	int		i;
 	int		out;
-	int		flagout;
-	int		flagin;
-	t_node	*node;
+	int		flag;
 
-	node = NULL;
-	flagout = 0;
-	flagin = 0;
+	flag = 0;
+	cmd = NULL;
 	while (token)
 	{
-		i = 0;
-		in = 0;
-		out = 1;
-		cmd = malloc(sizeof(char *) * (lenword(token) + 1));
-		while (token && token->type != 4)
-		{
-			if (token->type == 1)
-				cmd[i++] = ft_strdup(token->str);
-			else if (token->type == 2 && token->next && token->next->str)
-			{
-				if (flagin != -1)
-				{
-					in = openfile(token->next->str, STDIN_FILENO);
-					flagin = in;
-				}
-				if (token->next)
-					token = token->next;
-			}
-			else if (token->type == 3 && token->next && token->next->str)
-			{
-				if (flagout != -1)
-				{
-					out = openfile(token->next->str, STDOUT_FILENO);
-					flagout = out;
-				}
-				if (token->next)
-					token = token->next;
-			}
-			else if (token->type == 9 && token->next && token->next->str)
-			{
-				in = heredoc(token->next->str);
-				if (token->next)
-					token = token->next;
-			}
-			else if (token->type == 7 && token->next && token->next->str)
-			{
-				out = append(token->next->str);
-				if (token->next)
-					token = token->next;
-			}
-			if (token)
-				token = token->next;
-		}
-		cmd[i] = NULL;
-		addnode_back(&node, new_node(cmd, in, out));
+		init_values(&i, &in, &out);
+		cmd = create_cmd_array(&token, &in, &out, &flag);
+		addnode_back(node, new_node(cmd, in, out));
 		if (token)
 			token = token->next;
 	}
-	return (node);
 }

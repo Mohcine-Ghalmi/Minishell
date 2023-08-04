@@ -54,12 +54,12 @@ t_node	*inputs(char *input, char **envp)
 	t_token		*token;
 	t_jointok	*join;
 	t_lsttoken	*lst;
-	t_node		*node;
+	t_node		**node;
 
 	token = NULL;
 	join = NULL;
 	lst = NULL;
-	node = NULL;
+	*node = NULL;
 	tokena(input, &token, envp);
 	free(input);
 	jointok(&join, token);
@@ -70,9 +70,9 @@ t_node	*inputs(char *input, char **envp)
 		return (NULL);
 	}
 	lst = ltoken(&join);
-	node = create_node(lst);
+	create_node(lst, node);
 	free_token(token);
 	free_jointoken(join);
 	free_lst(lst);
-	return (node);
+	return (*node);
 }
