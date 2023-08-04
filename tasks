@@ -7,12 +7,12 @@
 6-exit : done
 
 -------------------test's--------------------------
-
-exit when echo ($> and other  syntax err) shoudl be 256 fix with errno
-signals
 hereDoc signal D
 
-("" == echo $?)
 ($)
 
 aadd two exports to show the last one
+
+<< 2 | << 3 | << 4
+
+echo "'$HOMEa'"

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 17:28:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 22:40:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ t_env	*main_env(char **old_env, int *i)
 	new_env = NULL;
 	while (old_env[*i])
 	{
+		// printf("i == %d\n", *i);
+		// printf("env == %p\n", &old_env[*i]);
 		key = ft_substr(old_env[*i], 0, first_equale(old_env[*i]));
-		if (*i == 0)
-			if (!find_key("?=", new_env) && ft_strncmp(key, "?=", 3))
-				ft_lstadd_back_env(&new_env,
-					ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
+		// if (*i == 0)
+		// 	if (!find_key("?=", new_env) && ft_strncmp(key, "?=", 3))
+		// 		ft_lstadd_back_env(&new_env,
+		// 			ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 		if (!ft_strncmp(key, "SHLVL=", 7))
 			value = shlvl(value);
 		else
@@ -56,6 +58,9 @@ t_env	*main_env(char **old_env, int *i)
 				first_equale(old_env[*i]), ft_strlen1(old_env[*i]));
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		(*i)++;
+		// printf("end loop\n");
 	}
+	show_env_lst(new_env);
+	show_env_char(env_exec(new_env));
 	return (new_env);
 }

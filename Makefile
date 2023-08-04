@@ -6,7 +6,7 @@
 #    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/04 16:55:11 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/08/04 22:46:32 by mghalmi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,9 @@ SRC = exec/exec_pipes.c \
 	builtins/echo_clone.c \
 	exec/builtins_check.c \
 	parser.c \
-	parser/signel_her.c \
-  	parser/jointoken.c  parser/qudes.c  parser/token.c	parser/linked_node.c parser/parse.c parser/ft_free.c  parser/rem_spacetoken.c \
-	parser/utilise3.c \
-  	parser/utilise.c  parser/utilise2.c \
-	parser/ast_constructor.c parser/inoutfile.c parser/linkedlist.c parser/herdoc.c parser/parsequdes.c parser/append.c	parser/expande.c \
-	Minishell.c \
+	parser/append.c          parser/ft_free.c         parser/jointoken.c       parser/parse.c           parser/rem_spacetoken.c  parser/utilise.c\
+	parser/ast_constructor.c parser/herdoc.c          parser/linked_node.c     parser/parsequdes.c      parser/signel_her.c      parser/utilise2.c \
+	parser/expande.c         parser/inoutfile.c       parser/linkedlist.c      parser/qudes.c           parser/token.c           parser/utilise3.c Minishell.c \
 
 OBJ = $(SRC:%.c=%.o)
 
@@ -56,7 +53,7 @@ $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT) $(PARSER_HEADER)
 	make -C $(LIBFT_DIR)
 	make bonus -C $(PIPEX_DIR)
 	make -C $(PIPEX_DIR)
-	cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) -g #-fsanitize=address
+	cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline libft/libft.a exec/Pipex/pipex.a -o $(NAME) -g -fsanitize=address
 
 # %.o: %.c $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
 # 		cc -Wall -Wextra -Werror -c $< -o $@ -g -fsanitize=address

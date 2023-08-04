@@ -6,12 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 20:26:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 22:08:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
+
 
 # include <stdio.h>
 # include <string.h>
@@ -26,6 +27,8 @@
 # include "libft/libft.h"
 # include "parser/parsing.h"
 # include <sys/errno.h>
+# include <sys/ioctl.h>
+
 
 typedef struct env
 {
@@ -40,6 +43,8 @@ typedef struct jointok	t_jointok;
 typedef struct lsttoken	t_lsttoken;
 typedef struct node		t_node;
 
+void show_env_lst(t_env *lst);
+void show_env_char(char **);
 t_env	*envirment(char **old_env);
 char	**env_exec(t_env *new_env);
 int		pwd_clone(char **cmd, t_env *new_env);

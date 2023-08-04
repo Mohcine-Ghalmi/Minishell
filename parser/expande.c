@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 15:19:54 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:13:44 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,9 @@ char	*dollar(char *text, int *i, char **envp)
 	char	*table;
 	char	*dolar;
 
+	// printf("expand staerrt\n");
+	// show_env_char(envp);
+	// printf("expand end\n");
 	table = creat_table(text, i);
 	if (!ft_strlen(table))
 		return (free(table), ft_strdup(""));
@@ -89,6 +92,14 @@ char	*out_dollars(char *key, char **env)
 	int		i;
 
 	i = 0;
+	while (env[i] != NULL)
+	{
+		printf("env == %s\n", env[i]);
+		i++;
+	}
+	printf("i == %d\n", i);
+	i = 0;
+	printf("dhjkashdjkasjk\n\n\n\n");
 	while (env[i])
 	{
 		if (!ft_strncmp(key, env[i], first_equale(env[i]) - 1))

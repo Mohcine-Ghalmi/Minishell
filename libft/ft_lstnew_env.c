@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/12 23:25:11 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 11:16:52 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 22:32:55 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_env	*ft_lstnew_env(char *key, char *value, int option)
 {
 	t_env	*new;
 
-	new = (void *)malloc(sizeof(t_env));
+	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		return (NULL);
 	new->key = key;

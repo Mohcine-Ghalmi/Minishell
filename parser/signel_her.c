@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 14:14:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 18:36:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/04 20:38:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,3 @@ void	handel(int sig)
     close(0);
 }
 
-void signl_herdoc()
-{
-    rl_catch_signals = 1;
-    signal(SIGINT, handel);
-    signal(SIGQUIT, SIG_IGN);
-}

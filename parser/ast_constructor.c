@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_constructor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 13:47:15 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/04 21:11:54 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ void	create_node(t_lsttoken *token, t_node **node)
 	{
 		init_values(&i, &in, &out);
 		cmd = create_cmd_array(&token, &in, &out, &flag);
+		if (!cmd)
+			return ;
 		addnode_back(node, new_node(cmd, in, out));
 		if (token)
 			token = token->next;
