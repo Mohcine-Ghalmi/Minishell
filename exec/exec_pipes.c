@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 01:57:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:36:47 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	piper_norm(t_node *cmd, int pipefd[2])
 		exit(1);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);
-	else if (cmd &&  ft_lstsize_node(cmd) > 1)
+	else if (cmd && ft_lstsize_node(cmd) > 1)
 		dup2(pipefd[1], STDOUT_FILENO);
 	close(pipefd[1]);
 }
@@ -76,7 +76,8 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 		else if (WTERMSIG(status) == 3)
 			ft_putstr_fd("Quit: 3\n", 1);
 		update_status(g_test, envp, 1);
-	}else if (ifcond < 2)
+	}
+	else if (ifcond < 2)
 		update_status(ifcond, envp, 1);
 	else
 		update_status(WEXITSTATUS(status), envp, 1);

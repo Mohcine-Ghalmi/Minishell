@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envirment_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 02:31:55 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:35:16 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_env	*main_env(char **old_env, int *i)
 			value = shlvl(value);
 		else
 			value = ft_substr(old_env[*i],
-				first_equale(old_env[*i]), ft_strlen1(old_env[*i]));
+					first_equale(old_env[*i]), ft_strlen1(old_env[*i]));
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		(*i)++;
 	}

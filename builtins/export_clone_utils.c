@@ -3,41 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 22:52:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:40:29 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
-
-void show_env_char(char **envp)
-{
-	int i = 0;
-	// printf("start char\n");
-	while (envp[i])
-	{
-		// printf("env char == %s\n", envp[i]);
-		// printf("env char addr == %p\n", envp[i]);
-		i++;
-	}
-	// printf("end charasdas\n");
-		// printf("env end == %p\n", envp[i]);
-}
-
-
-void show_env_lst(t_env *lst)
-{
-	// printf("start lst\n");
-	while (lst)
-	{
-		// printf("env lst == %s ___ %s\n", lst->key, lst->value);
-		lst = lst->next;
-	}
-	// printf("end lst\n");
-}
-
 
 void	add_to_env(char *cmd, t_env *env)
 {
