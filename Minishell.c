@@ -6,14 +6,15 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 02:18:27 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 03:16:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void	signl_herdoc(void)
+void	signl_herdoc(int sig)
 {
+	(void)sig;
 	ioctl(0, TIOCSTI, "\4");
 	g_test = -1;
 }
@@ -71,47 +72,16 @@ int	heredocfile(t_lsttoken **token, int in)
 
 int	main(int argc, char **argv, char **envp)
 {
-	t_node	*node;
 	t_env	*new_envp;
-	char	*input;
 
 	(void)argv;
 	if (argc > 1)
-		return (printf("no arguments\n"), 0);
-	new_envp = envirment(envp);
-	while (1)
 	{
-		node = NULL;
-		rl_catch_signals = 0;
-		signal(SIGINT, sigint_handler);
-		signal(SIGQUIT, SIG_IGN);
-		g_test = 0;
-		input = readline("minishell> ");
-		if (!input)
-			exit_main();
-		if (input[0] == '\0')
-		{
-			free(input);
-			continue ;
-		}
-		if (qudespars(input) == 0)
-		{
-			ft_putstr_fd("syntax error close qudes\n", 2);
-			update_status(258, new_envp, 0);
-			free(input);
-			continue ;
-		}
-		add_history(input);
-		node = inputs(input, env_exec(new_envp));
-		if (node == NULL)
-		{
-			update_status(258, new_envp, 0);
-			continue ;
-		}
-		execution(node, new_envp);
-		if (g_test == -1)
-			update_status(1, new_envp, 1);
-		ft_lstclear_struct(&node);
+		printf("no arguments\n");
+		return (0);
 	}
-	return (ft_lstclear_env(&new_envp), 0);
+	new_envp = envirment(envp);
+	execute_minishell(new_envp);
+	ft_lstclear_env(&new_envp);
+	return (0);
 }

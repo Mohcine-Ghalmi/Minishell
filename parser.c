@@ -77,3 +77,16 @@ t_node	*inputs(char *input, char **envp)
 	free_double(envp);
 	return (node);
 }
+
+char	*get_user_input(t_node *node)
+{
+	char	*input;
+
+	node = NULL;
+	rl_catch_signals = 0;
+	signal(SIGINT, sigint_handler);
+	signal(SIGQUIT, SIG_IGN);
+	g_test = 0;
+	input = readline("minishell> ");
+	return (input);
+}

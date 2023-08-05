@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 02:36:47 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 02:50:11 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	piper_dup(t_node *cmd, int pipefd[2])
 void	piper(t_node *cmd, t_env *new_env)
 {
 	pid_t	pid;
-	char	**exec_enev;
 	int		pipefd[2];
 	int		b;
 
@@ -55,11 +54,10 @@ void	piper(t_node *cmd, t_env *new_env)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		piper_norm(cmd, pipefd);
-		exec_enev = env_exec(new_env);
 		b = check_builtins(cmd->cmd, new_env);
 		if (b < 2)
 			exit(b);
-		exec(cmd->cmd, exec_enev);
+		exec(cmd->cmd, env_exec(new_env));
 	}
 	closepipe(pipefd);
 	close_files(cmd->fdin, cmd->fdout);

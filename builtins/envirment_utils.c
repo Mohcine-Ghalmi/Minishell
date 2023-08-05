@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envirment_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 02:35:16 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 03:59:04 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,11 @@ t_env	*main_env(char **old_env, int *i)
 				ft_lstadd_back_env(&new_env,
 					ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 		if (!ft_strncmp(key, "SHLVL=", 7))
-			value = shlvl(value);
+		{
+			value = shlvl(ft_substr(old_env[*i],
+						first_equale(old_env[*i]), ft_strlen1(old_env[*i])));
+			puts(value);
+		}
 		else
 			value = ft_substr(old_env[*i],
 					first_equale(old_env[*i]), ft_strlen1(old_env[*i]));
