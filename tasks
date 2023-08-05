@@ -9,35 +9,21 @@
 -------------------test's--------------------------
 leaks 
 
-//command not found khdma but k create file noo "" ''
-
-
-
-cd with no arguments commands don't work
-
-/bin/lss exit code 127 display error
-
-
-echo "ashjdjsadjsa >> <<'as'"oi >> "" b error
-
- << ls exit when printing when is alphabet
-
  ls | < a  cat  read from pipe
-
 
  cat | cat | las > o | cat o test in bash
 
- echo $HOME $LOGNAME $SHL""VL
+ cat | ls | << d | cat
 
- unset PWD plus cd
+ << 's' cat ==> ma kat 2ikspandach
 
- unset OLDPWD  plus cd - 
+ << "s" cat ==> ma kat 2ikspandach
 
- unset PATH plus set path to /bin/ ls not work
+ << s cat ==> kat 2ikspandach
 
+ cat + ctrl c => echo $?
 
  unset _ must work
-
 
  export when empty must show nothing
 
@@ -47,13 +33,10 @@ echo "ashjdjsadjsa >> <<'as'"oi >> "" b error
 
  echo -n -n lasd error test in bash
 
- export la=$HOME ads=$LOGNAME
-
-
  << la cat expand in heredoc
-
 
  exit should exit with exit status
 
-
  las | cat status code of last command
+
+opendir 

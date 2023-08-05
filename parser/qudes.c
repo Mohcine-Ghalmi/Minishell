@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 06:13:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 18:38:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	single_qudes(char *text, int *t, int i, t_token **token)
 	if (text[*t] == '\'')
 	{
 		*t += 1;
-		return (ft_back(token, ft_lstnew(1, ft_strdup("\0"))));
+		return (ft_back(token, ft_lstnew(1, ft_strdup(""))));
 	}
 	while (text[*t] && text[*t] != '\'')
 		*t += 1;
@@ -57,7 +57,8 @@ char	*double_qudes(char *text, int *t, char **evp)
 	if (text[*t] == '\"')
 	{
 		(*t)++;
-		table = ft_strdup("\0");
+		if (text[*t] == ' ')
+			return (ft_strdup(""));
 	}
 	while (text[*t] && text[*t] != '\"')
 	{

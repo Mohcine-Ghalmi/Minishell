@@ -36,7 +36,7 @@ void	tokena(char *input, t_token **token, char **envp)
 			qudes(input, &i, token, envp);
 		else if (spaces(input[i]))
 			space(input, &i, token);
-		else if ((!notword(input[i]) || !spaces(input[i])) && input[i])
+		else if ((!notword(input[i]) || !spaces(input[i])))
 			word(input, &i, token, envp);
 	}
 }

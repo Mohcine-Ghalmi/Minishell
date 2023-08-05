@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:50:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 00:11:30 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 18:58:09 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ int	fileout(int *flagout, t_lsttoken **token, int out)
 	return (out);
 }
 
-int	appendfile(t_lsttoken **token, int out)
+int	appendfile(int *flagout, t_lsttoken **token, int out)
 {
-	out = append((*token)->next->str);
+	if (*flagout != -1)
+	{
+		out = append((*token)->next->str);
+		*flagout = out;
+	}
 	if ((*token)->next)
 		(*token) = (*token)->next;
 	return (out);

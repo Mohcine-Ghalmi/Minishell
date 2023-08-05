@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 04:14:22 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:40:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ char	*getpath(char *cmd, char **env)
 	if (!env[i])
 		return (NULL);
 	path = env[i] + 5;
+	if (!ft_strchr1(path, ':'))
+		return (path_join(path, cmd));
 	while (path && ft_strchr1(path, ':') > 0)
 	{
 		dir = ft_strdup1(path, ft_strchr1(path, ':'));
@@ -55,15 +57,14 @@ void	exec(char **cmd, char **env)
 	char	**args;
 	char	*path;
 
-	if (!*env || !*cmd)
-		return ;
 	args = cmd;
-	path = getpath(args[0], env);
+	if (!*env || cmd[0][0] == '\0')
+		path = NULL;
+	else
+		path = getpath(args[0], env);
 	if (!path && (ft_strchr1(cmd[0], '/') || cmd[0][0] == '/'))
 		path = args[0];
-	if (!ft_strncmp(args[0], "`", 2))
-		cmd[0] = "";
-	if (path == NULL)
+	if (path == NULL || access(path, X_OK) == -1)
 	{
 		write(STDERR_FILENO, "minishell: ", 12);
 		write(STDERR_FILENO, cmd[0], ft_strchr1(cmd[0], 0));

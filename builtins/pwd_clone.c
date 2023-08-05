@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_clone.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 10:39:00 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 20:07:31 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ char	*pwd_env(t_env *new_env, int ret)
 		{
 			if (ret == 1)
 				printf("%s\n", tmp->value);
-			break ;
+			else
+				return (tmp->value);
 		}
 		tmp = tmp->next;
 	}
-	return (tmp->value);
+	return (NULL);
 }
 
 int	pwd_clone(char **cmd, t_env *new_env)

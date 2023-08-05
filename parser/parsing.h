@@ -101,7 +101,7 @@ t_lsttoken	*ltoken(t_jointok **token);
 int			filein(int *flagin, t_lsttoken **token, int in);
 int			fileout(int *flagout, t_lsttoken **token, int out);
 int			heredocfile(t_lsttoken **token, int in);
-int			appendfile(t_lsttoken **token, int out);
+int			appendfile(int *flagout, t_lsttoken **token, int out);
 void		init_values(int *i, int *in, int *out);
 
 #endif

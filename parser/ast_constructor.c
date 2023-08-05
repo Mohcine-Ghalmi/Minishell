@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 21:11:54 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 18:57:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,36 @@ void	free_cmds(char **cmd)
 char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag)
 {
 	int		i;
+	int		j;
 	char	**cmd;
 
 	i = 0;
+	j = *flag;
 	cmd = malloc(sizeof(char *) * (lenword(*token) + 1));
 	while (*token && (*token)->type != 4)
 	{
 		if ((*token)->type == 1)
-			cmd[i++] = ft_strdup((*token)->str);
+		{
+			if ((*token)->str[0] == '\0')
+				cmd[i++] = ft_strdup("");
+			else
+				cmd[i++] = ft_strdup((*token)->str);
+		}
 		else if ((*token)->type == 2 && (*token)->next && (*token)->next->str)
-			*in = filein(flag, token, *in);
+			*in = filein(&j, token, *in);
 		else if ((*token)->type == 3 && (*token)->next && (*token)->next->str)
-			*out = fileout(flag, token, *out);
+			*out = fileout(&j, token, *out);
 		else if ((*token)->type == 9 && (*token)->next && (*token)->next->str)
 			*in = heredocfile(token, *in);
 		else if ((*token)->type == 7 && (*token)->next && (*token)->next->str)
-			*out = appendfile(token, *out);
+			*out = appendfile(&j, token, *out);
 		else
 			break ;
 		if (*token)
 			*token = (*token)->next;
 	}
 	cmd[i] = NULL;
+	*flag = j;
 	return (cmd);
 }
 
@@ -90,6 +98,8 @@ void	create_node(t_lsttoken *token, t_node **node)
 	{
 		init_values(&i, &in, &out);
 		cmd = create_cmd_array(&token, &in, &out, &flag);
+		if (flag == -1)
+			return ;
 		if (!cmd)
 			return ;
 		addnode_back(node, new_node(cmd, in, out));

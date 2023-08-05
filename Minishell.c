@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 03:16:49 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 19:08:42 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,13 @@ int	heredoc_file(char *limiter, int outfile)
 	str = readline("> ");
 	if (!str)
 		return (1);
-	while (end && ft_strncmp(end, str, ft_strlen(str) - 1)) 
+	while (1) 
 	{
 		str = ft_strjoin(str, "\n");
 		if (str == NULL)
 			return (1);
+		if (!ft_strncmp(end, str, ft_strlen(end)))
+			break;
 		ft_putstr_fd(str, outfile);
 		free(str);
 		str = readline("> ");
