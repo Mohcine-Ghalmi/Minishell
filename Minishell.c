@@ -6,16 +6,16 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 02:10:29 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:18:27 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
 
-void signl_herdoc()
+void	signl_herdoc(void)
 {
-    ioctl(0, TIOCSTI, "\4");
-    g_test = -1;
+	ioctl(0, TIOCSTI, "\4");
+	g_test = -1;
 }
 
 int	heredoc_file(char *limiter, int outfile)
@@ -43,8 +43,8 @@ int	heredoc_file(char *limiter, int outfile)
 	free(str);
 	close(outfile);
 	if (g_test == -1)
-		return(1);
-	return(0);
+		return (1);
+	return (0);
 }
 
 int	heredoc(char *limiter)
@@ -55,8 +55,8 @@ int	heredoc(char *limiter)
 	g_test = 0;
 	if (fd < 0)
 		return (0);
-	if(heredoc_file(limiter, fd[1]))
-		return(-1);
+	if (heredoc_file(limiter, fd[1]))
+		return (-1);
 	return (fd[0]);
 }
 

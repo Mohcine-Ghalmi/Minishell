@@ -56,12 +56,10 @@ t_node	*inputs(char *input, char **envp)
 	t_lsttoken	*lst;
 	t_node		*node;
 
-	int i = 0;
 	token = NULL;
 	join = NULL;
 	lst = NULL;
 	node = NULL;
-
 	tokena(input, &token, envp);
 	free(input);
 	jointok(&join, token);

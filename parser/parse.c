@@ -6,27 +6,27 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 00:09:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:28:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int    norm1(int k)
+int norm1(int k)
 {
     if (k == 4 || k == 2 || k == 3 || k == 7 || k == 9)
         return (1);
     return (0);
 }
 
-int    norm2(int k)
+int norm2(int k)
 {
     if (k == 2 || k == 3 || k == 7)
         return (1);
     return (0);
 }
 
-int    syntaxerror(t_jointok    *token)
+int syntaxerror(t_jointok *token)
 {
     t_jointok    *tmp;
 

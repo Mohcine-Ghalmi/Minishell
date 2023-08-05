@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   qudes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 15:22:25 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 02:24:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ char	*double_qudes(char *text, int *t, char **evp)
 	if (text[*t] == '\"')
 	{
 		(*t)++;
-		//command not found khdma but k create file noo 
 		table = ft_strdup("");
 	}
 	while (text[*t] && text[*t] != '\"')
