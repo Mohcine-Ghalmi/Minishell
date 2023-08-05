@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 23:35:51 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:11:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ int	ft_strncmp(char *str1, char *str2, size_t n)
 	unsigned char	*s2;
 
 	i = 0;
+	if (!str1 || !str2)
+		return (0);
 	s1 = (unsigned char *)str1;
 	s2 = (unsigned char *)str2;
 	if (n == 0)

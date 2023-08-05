@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 21:20:27 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 01:57:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	piper(t_node *cmd, t_env *new_env)
 	int		b;
 
 	b = 0;
+	if (!cmd->cmd[0])
+		return ;
 	signal(SIGINT, SIG_IGN);
 	if (pipe(pipefd) < 0)
 		return ;
@@ -50,7 +52,6 @@ void	piper(t_node *cmd, t_env *new_env)
 		piper_dup(cmd, pipefd);
 	else
 	{
-		rl_catch_signals = 1;
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		piper_norm(cmd, pipefd);
@@ -74,8 +75,8 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 			ft_putstr_fd("\n", 1);
 		else if (WTERMSIG(status) == 3)
 			ft_putstr_fd("Quit: 3\n", 1);
-	}
-	if (ifcond < 2)
+		update_status(g_test, envp, 1);
+	}else if (ifcond < 2)
 		update_status(ifcond, envp, 1);
 	else
 		update_status(WEXITSTATUS(status), envp, 1);

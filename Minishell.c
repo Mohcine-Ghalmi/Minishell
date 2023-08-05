@@ -6,13 +6,11 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 00:11:01 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 02:10:29 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-int g_test;
 
 void signl_herdoc()
 {
@@ -32,7 +30,7 @@ int	heredoc_file(char *limiter, int outfile)
 	str = readline("> ");
 	if (!str)
 		return (1);
-	while (end && ft_strncmp(end, str, ft_strlen(end) - 1)) 
+	while (end && ft_strncmp(end, str, ft_strlen(str) - 1)) 
 	{
 		str = ft_strjoin(str, "\n");
 		if (str == NULL)
@@ -103,15 +101,16 @@ int	main(int argc, char **argv, char **envp)
 			free(input);
 			continue ;
 		}
-		char **my = env_exec(new_envp);
 		add_history(input);
-		node = inputs(input, my);
+		node = inputs(input, env_exec(new_envp));
 		if (node == NULL)
 		{
 			update_status(258, new_envp, 0);
 			continue ;
 		}
 		execution(node, new_envp);
+		if (g_test == -1)
+			update_status(1, new_envp, 1);
 		ft_lstclear_struct(&node);
 	}
 	return (ft_lstclear_env(&new_envp), 0);

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:26:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 00:06:37 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 01:21:12 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*path_join(char *path, char *bin)
 	int		j;
 	int		len;
 
+	if (!bin)
+		return (NULL);
 	len = ft_strchr1(path, 0) + ft_strchr1(bin, 0);
 	joined = malloc(sizeof(char) * (len + 2));
 	i = 0;
@@ -51,6 +53,8 @@ int	ft_strchr1(const char *s, int c)
 	int		i;
 	char	find;
 
+	if (!s)
+		return (0);
 	find = (char)c;
 	i = 0;
 	while (s[i])

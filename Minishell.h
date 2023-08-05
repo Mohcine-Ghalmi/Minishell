@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 22:08:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 01:52:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ typedef struct jointok	t_jointok;
 typedef struct lsttoken	t_lsttoken;
 typedef struct node		t_node;
 
-void show_env_lst(t_env *lst);
-void show_env_char(char **);
+int g_test;
+
+void 	show_env_lst(t_env *lst);
+void 	show_env_char(char **);
 t_env	*envirment(char **old_env);
 char	**env_exec(t_env *new_env);
 int		pwd_clone(char **cmd, t_env *new_env);

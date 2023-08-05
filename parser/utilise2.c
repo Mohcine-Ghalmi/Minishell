@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utilise2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:01:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 13:43:16 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 01:08:45 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-// extern int	g_blob;
 
 int	ft_isdigit(int c)
 {
@@ -23,12 +22,6 @@ int	ft_isdigit(int c)
 void	sigint_handler(int sig)
 {
 	(void)sig;
-	//if (g_glob == 1 && sig == SIGINT)
-	//{
-	//	printf("aaaaa\n");
-	//	close(STDIN_FILENO);
-	//	g_glob = 0;
-	//}
 	if (sig == SIGINT && waitpid(-1, NULL, 0) == -1)
 	{
 		ft_putstr_fd("\n", 1);
