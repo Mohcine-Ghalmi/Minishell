@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/04 22:47:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 06:09:53 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,12 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	if (text[j] && text[j] == '$')
 		tex = dollar(text, &j, envp);
 	exet = ft_substr(text, t, k - t);
-	if (exec_dollar(tex, token))
-	{
-		*i = j;
-		return ;
-	}
+	if (!exet[1])
+		if (exec_dollar(tex, token))
+		{
+			*i = j;
+			return ;
+		}
 	*i = j;
 	ft_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));
 	free(tex);

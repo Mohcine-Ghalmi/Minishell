@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_clone.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 15:27:14 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 05:36:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	checking_args(char *cmd)
 	while (cmd[i])
 	{
 		if ((cmd[i] >= 33 && cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 64)
-			|| (cmd[i] >= 91 && cmd[i] <= 96) 
+			|| (cmd[i] >= 91 && cmd[i] <= 94 || cmd[i] == 96) 
 			|| cmd[i] >= 123)
 			return (i + 1);
 		i++;

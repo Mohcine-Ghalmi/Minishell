@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   qudes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 04:08:15 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 06:13:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	single_qudes(char *text, int *t, int i, t_token **token)
 	if (text[*t] == '\'')
 	{
 		*t += 1;
-		return (ft_back(token, ft_lstnew(1, ft_strdup("`"))));
+		return (ft_back(token, ft_lstnew(1, ft_strdup("\0"))));
 	}
 	while (text[*t] && text[*t] != '\'')
 		*t += 1;
@@ -57,7 +57,7 @@ char	*double_qudes(char *text, int *t, char **evp)
 	if (text[*t] == '\"')
 	{
 		(*t)++;
-		table = ft_strdup("`");
+		table = ft_strdup("\0");
 	}
 	while (text[*t] && text[*t] != '\"')
 	{

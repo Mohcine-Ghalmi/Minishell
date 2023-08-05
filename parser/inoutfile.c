@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inoutfile.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 04:12:59 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 06:11:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	openfile(char *filename, int mode)
 {
-	if (!ft_strncmp(filename, "`", ft_strlen(filename)))
+	if (!ft_strncmp(filename, "\0", ft_strlen(filename)))
 	{
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
 		write(STDERR_FILENO, ": No such file or directory\n", 28);
