@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 01:24:30 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/05 04:14:22 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	exec(char **cmd, char **env)
 	path = getpath(args[0], env);
 	if (!path && (ft_strchr1(cmd[0], '/') || cmd[0][0] == '/'))
 		path = args[0];
+	if (!ft_strncmp(args[0], "`", 2))
+		cmd[0] = "";
 	if (path == NULL)
 	{
 		write(STDERR_FILENO, "minishell: ", 12);
