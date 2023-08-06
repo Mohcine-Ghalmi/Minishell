@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 04:24:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 05:22:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,18 @@
 
 void	piper_norm(t_node *cmd, int pipefd[2])
 {
+	// printf("cmd == %s\n", cmd->cmd);
+	// printf("cmd[0] == %s\n", cmd->cmd[0]);
 	close(pipefd[0]);
-	// if (cmd->fdout == -1 || cmd->fdin == -1)
-	// 	exit(1);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);
-	else if (cmd && ft_lstsize_node(cmd) > 1)
+	else if (cmd && cmd->cmd != NULL && ft_lstsize_node(cmd) > 1)
 		dup2(pipefd[1], STDOUT_FILENO);
+	close(pipefd[1]);
 	// if (cmd->fdin > 2)
 	// 	dup2(cmd->fdin, STDIN_FILENO);
-	close(pipefd[1]);
+	// else
+	// 	dup2(pipefd[0], STDIN_FILENO);
 }
 
 void	piper_dup(t_node *cmd, int pipefd[2])
@@ -33,14 +35,9 @@ void	piper_dup(t_node *cmd, int pipefd[2])
 	if (cmd->next)
 	{
 		if (cmd->next->fdin > 2)
-		{
 			dup2(cmd->next->fdin, STDIN_FILENO);
-		}
 		else
-		{
-			printf("cmd == %s\n", cmd->next->cmd[0]);
 			dup2(pipefd[0], STDIN_FILENO);
-	}
 	}
 	close(pipefd[0]);
 }
@@ -62,12 +59,9 @@ void	piper(t_node *cmd, t_env *new_env)
 	int		b;
 
 	b = 0;
-	if (!cmd->cmd[0])
-		return ;
+	// if (!cmd->cmd[0])
+	// 	return ;
 	signal(SIGINT, SIG_IGN);
-	// while (cmd->cmd[b])
-    //     remove_carriage_return(cmd->cmd[b++]);
-	// b = 0;
 	if (pipe(pipefd) < 0)
 		return ;
 	pid = fork();
@@ -81,6 +75,8 @@ void	piper(t_node *cmd, t_env *new_env)
 		b = check_builtins(cmd->cmd, new_env);
 		if (b < 2)
 			exit(b);
+		if (!cmd->cmd[0])
+			exit(127);
 		exec(cmd->cmd, env_exec(new_env));
 	}
 	closepipe(pipefd);
@@ -123,6 +119,7 @@ void	execution(t_node *new, t_env *envp)
 		dup2(new->fdin, STDIN_FILENO);
 		while (new)
 		{
+			// printf("begin == %s\n", new->cmd[0]);
 			piper(new, envp);
 			new = new->next;
 		}

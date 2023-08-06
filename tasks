@@ -11,9 +11,9 @@ leaks
 
 ctrl + C heredoc afterc write
 
- ls | < a  cat  read from pipe
+#  ls | < a  cat  read from pipe
 
- cat | cat | las > o | cat o test in bash
+#  cat | cat | las > o | cat o test in bash
 
  cat | ls | << d | cat
 
@@ -37,3 +37,6 @@ ctrl + C heredoc afterc write
 ..
 
 opendir 
+
+
+<< d | cat
