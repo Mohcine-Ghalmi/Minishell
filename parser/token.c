@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 00:20:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 22:02:17 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,13 @@ void	word(char *text, int *i, t_token **token, char **envp)
 		tex = dollar(text, &j, envp);
 	exet = ft_substr(text, t, k - t);
 	if (!exet[1])
+	{
 		if (exec_dollar(tex, token))
 		{
 			*i = j;
 			return ;
 		}
+	}
 	*i = j;
 	ft_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));
 	free(tex);

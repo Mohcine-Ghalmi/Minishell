@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_constructor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 19:35:10 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 22:17:41 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,13 @@ void	free_cmds(char **cmd)
 	free(cmd);
 }
 
-char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag, char **envp)
+char	**array(t_lsttoken **token, int *in, int *out, char **envp)
 {
 	int		i;
 	int		j;
 	char	**cmd;
 
 	i = 0;
-	j = *flag;
 	cmd = malloc(sizeof(char *) * (lenword(*token) + 1));
 	while (*token && (*token)->type != 4)
 	{
@@ -80,7 +79,6 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag, char *
 			*token = (*token)->next;
 	}
 	cmd[i] = NULL;
-	*flag = j;
 	return (cmd);
 }
 
@@ -97,11 +95,12 @@ int	create_node(t_lsttoken *token, t_node **node, char **envp)
 	while (token)
 	{
 		init_values(&i, &in, &out);
-		cmd = create_cmd_array(&token, &in, &out, &flag, envp);
+		cmd = array(&token, &in, &out, envp);
+		flag = in;
 		if (flag == -1)
-			return -1;
+			return (-1);
 		if (!cmd)
-			return -1;
+			return (-1);
 		addnode_back(node, new_node(cmd, in, out));
 		if (token)
 			token = token->next;

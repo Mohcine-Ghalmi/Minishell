@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+         #
+#    By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/09 13:53:40 by mghalmi           #+#    #+#              #
-#    Updated: 2023/08/06 18:55:44 by mghalmi          ###   ########.fr        #
+#    Updated: 2023/08/06 22:23:08 by selhilal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,13 @@ SRC = exec/exec_pipes.c \
 	builtins/export_clone_utils.c \
 	builtins/echo_clone.c \
 	exec/builtins_check.c \
+	exec/execution.c \
 	parser.c \
 	parser/append.c          parser/ft_free.c         parser/jointoken.c       parser/parse.c           parser/rem_spacetoken.c  parser/utilise.c\
 	parser/ast_constructor.c        parser/linked_node.c     parser/parsequdes.c        parser/utilise2.c \
 	parser/expande.c         parser/inoutfile.c       parser/linkedlist.c      parser/qudes.c           parser/token.c           parser/utilise3.c Minishell.c \
-	exec_minishell.c
+	exec_minishell.c \
+	minishell_herdoc.c\
 
 OBJ = $(SRC:%.c=%.o)
 

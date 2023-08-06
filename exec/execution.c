@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 01:10:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 03:27:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 22:23:32 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,5 @@ void	execution(t_node *new, t_env *envp)
 	}
 	duper(in, out);
 	update_and_wait(ifcond, status, envp);
-	ft_lstclear_struct(new);
+	ft_lstclear_struct(&new);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 19:24:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 22:23:51 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	piper_dup(t_node *cmd, int pipefd[2])
 
 void	dir(char *cmd)
 {
-	DIR *direct;
+	DIR	*direct;
 
 	direct = opendir(cmd);
 	if (direct)
@@ -50,7 +50,6 @@ void	dir(char *cmd)
 		ft_putstr_fd(": is a directory\n", 2);
 		exit(126);
 	}
-	// closedir(direct);
 }
 
 void	piper(t_node *cmd, t_env *new_env)
@@ -105,32 +104,4 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 		update_status(ifcond, envp, 1);
 	else
 		update_status(WEXITSTATUS(status), envp, 1);
-}
-
-void	execution(t_node *new, t_env *envp)
-{
-	int				status;
-	unsigned int	ifcond;
-	int				in;
-	int				out;
-
-	ifcond = 2;
-	status = 0;
-	in = dup(0);
-	out = dup(1);
-	if (ft_lstsize_node(new) == 1)
-		ifcond = first_built(new, envp);
-	if (new && ifcond == 2)
-	{
-		dup2(new->fdin, STDIN_FILENO);
-		while (new)
-		{
-			piper(new, envp);
-			new = new->next;
-		}
-	}
-	dup2(in, STDIN_FILENO);
-	dup2(out, STDOUT_FILENO);
-	close_files(in, out);
-	update_and_wait(ifcond, status, envp);
 }

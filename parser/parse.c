@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 00:03:20 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 22:03:13 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ int	syntaxerror(t_jointok *token)
 
 	tmp = token;
 	if (tmp->type == 4)
-    {
-        s_fd("\033[31;1msyntax error\033[0m\n", 2);
-        return (1);
-    }
-    while (tmp)
-    {
-        if ((norm1(tmp->type) && tmp->next && tmp->next->type == 10
-                && tmp->next->next && tmp->next->next->type == 4)
-            || (norm1(tmp->type) && tmp->next && tmp->next->type == 10
-                && !tmp->next->next)
-            || (norm1(tmp->type) && !tmp->next)
-            || (norm2(tmp->type) && tmp->next
-                && norm2(tmp->next->type))
-            || ((norm2(tmp->type) && tmp->next
-                    && tmp->next->type == 10 && tmp->next->next
-                    && norm2(tmp->next->next->type))))
-            return (s_fd("\033[31;1msyntax error\033[0m\n", 2), 1);
-        if (tmp)
-            tmp = tmp->next;
-    }
+	{
+		s_fd("\033[31;1msyntax error\033[0m\n", 2);
+		return (1);
+	}
+	while (tmp)
+	{
+		if ((norm1(tmp->type) && tmp->next && tmp->next->type == 10
+				&& tmp->next->next && tmp->next->next->type == 4)
+			|| (norm1(tmp->type) && tmp->next && tmp->next->type == 10
+				&& !tmp->next->next)
+			|| (norm1(tmp->type) && !tmp->next)
+			|| (norm2(tmp->type) && tmp->next
+				&& norm2(tmp->next->type))
+			|| ((norm2(tmp->type) && tmp->next
+					&& tmp->next->type == 10 && tmp->next->next
+					&& norm2(tmp->next->next->type))))
+			return (s_fd("\033[31;1msyntax error\033[0m\n", 2), 1);
+		if (tmp)
+			tmp = tmp->next;
+	}
 	return (0);
 }

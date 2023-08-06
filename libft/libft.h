@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 17:59:03 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 22:14:38 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			ft_lstdelone(t_env *lst);
 char			*ft_itoa_shlvl(int n);
 void			ft_putstr_fd(char *s, int fd);
 int				ft_lstsize_node(t_node *lst);
+void			ft_lstadd_front_env(t_env **lst, t_env *new);
 unsigned int	ft_atoi_shlvl(const char *str);
-void	        ft_lstadd_front_env(t_env **lst, t_env *new);
 
 #endif
