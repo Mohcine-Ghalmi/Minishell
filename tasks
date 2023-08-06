@@ -11,11 +11,6 @@ leaks
 
 ctrl + C heredoc afterc write
 
-#  ls | < a  cat  read from pipe
-
-#  cat | cat | las > o | cat o test in bash
-
- cat | ls | << d | cat
 
  << 's' cat ==> ma kat 2ikspandach
 
@@ -29,14 +24,7 @@ ctrl + C heredoc afterc write
 
  unset PATH in env -i segfault
 
- << la cat expand in heredoc
-
- las | cat status code of last command
-
 .
 ..
 
 opendir 
-
-
-<< d | cat

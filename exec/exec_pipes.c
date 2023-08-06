@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 05:22:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 05:26:31 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 void	piper_norm(t_node *cmd, int pipefd[2])
 {
-	// printf("cmd == %s\n", cmd->cmd);
-	// printf("cmd[0] == %s\n", cmd->cmd[0]);
 	close(pipefd[0]);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);
@@ -119,7 +117,6 @@ void	execution(t_node *new, t_env *envp)
 		dup2(new->fdin, STDIN_FILENO);
 		while (new)
 		{
-			// printf("begin == %s\n", new->cmd[0]);
 			piper(new, envp);
 			new = new->next;
 		}
