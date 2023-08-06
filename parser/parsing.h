@@ -99,10 +99,10 @@ t_token		*ft_lstlast(t_token	*lst);
 t_jointok	*ft_lstlast1(t_jointok	*lst);
 t_jointok	*ft_lstnew1(char *str, int type);
 t_lsttoken	*ltoken(t_jointok **token);
-int			filein(int *flagin, t_lsttoken **token, int in);
+int			filein(t_lsttoken **token, int in);
 int			fileout(int *flagout, t_lsttoken **token, int out);
 int			heredocfile(t_lsttoken **token, int in, char **envp);
 int			appendfile(int *flagout, t_lsttoken **token, int out);
-void		init_values(int *i, int *in, int *out);
+void		init_values(int *in, int *out);
 
 #endif

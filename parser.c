@@ -49,7 +49,7 @@ void	close_files(int in, int out)
 		close(in);
 }
 
-t_node	*inputs(char *input, char **envp, int ret)
+t_node	*inputs(char *input, char **envp, int *ret)
 {
 	t_token		*token;
 	t_jointok	*join;
@@ -70,7 +70,7 @@ t_node	*inputs(char *input, char **envp, int ret)
 		return (free_double(envp), NULL);
 	}
 	lst = ltoken(&join);
-	ret = create_node(lst, &node, envp);
+	*ret = create_node(lst, &node, envp);
 	free_token(token);
 	free_jointoken(join);
 	free_lst(lst); 

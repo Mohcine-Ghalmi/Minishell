@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 20:21:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 23:43:10 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	for_qudespars(t_env *new_envp, char *input)
 t_node	*in_hist(char *input, t_env *new_envp, int	*ret)
 {
 	add_history(input);
-	return (inputs(input, env_exec(new_envp), *ret));
+	return (inputs(input, env_exec(new_envp), ret));
 }
 
 int	to_con(char *input, t_env *new_envp)
@@ -69,10 +69,10 @@ void	execute_minishell(t_env *new_envp)
 		{
 			if (ret != -1)
 				update_status(258, new_envp, 0);
-			if (ret == -1)
-				update_status(0, new_envp, 0);
 			continue ;
 		}
 		for_exec(node, new_envp);
+		if (ret == -1)
+			update_status(1, new_envp, 0);
 	}
 }

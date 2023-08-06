@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:38:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 18:12:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:56:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ void		execution(t_node *new, t_env *envp);
 int			show_env(t_env *new_env, char **cmd);
 void		free_double(char **str);
 void		piper_norm(t_node *cmd, int pipefd[2]);
+void		update_and_wait(int ifcond, int status, t_env *envp);
 
 #endif

@@ -6,19 +6,15 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:50:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 18:58:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 23:56:45 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	filein(int *flagin, t_lsttoken **token, int in)
+int	filein(t_lsttoken **token, int in)
 {
-	if (*flagin != -1)
-	{
-		in = openfile((*token)->next->str, STDIN_FILENO);
-		*flagin = in;
-	}
+	in = openfile((*token)->next->str, STDIN_FILENO);
 	if ((*token)->next)
 		(*token) = (*token)->next;
 	return (in);
@@ -48,9 +44,8 @@ int	appendfile(int *flagout, t_lsttoken **token, int out)
 	return (out);
 }
 
-void	init_values(int *i, int *in, int *out)
+void	init_values(int *in, int *out)
 {
-	*i = 0;
 	*in = 0;
 	*out = 1;
 }

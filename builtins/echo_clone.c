@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 00:08:49 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:52:21 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	echo_clone(char **cmd, t_env *env)
 	flag = 0;
 	if (!cmd[i])
 		return (printf("\n"), 0);
-	while (cmd[i]  && option_echo(cmd[i]))
+	while (cmd[i] && option_echo(cmd[i]))
 	{
 		i++;
 		flag = 1;

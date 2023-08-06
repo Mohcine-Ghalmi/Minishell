@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 18:05:06 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:52:59 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	show_env(t_env *new_env, char **cmd)
 		return (1);
 	}
 	if (cmd)
+	{
 		while (tmp)
 		{
 			if (ft_strncmp("?=", tmp->key, 2))
@@ -103,5 +104,6 @@ int	show_env(t_env *new_env, char **cmd)
 					printf("\033[34;1m%s%s\033[0m\n", tmp->key, tmp->value);
 			tmp = tmp->next;
 		}
+	}
 	return (0);
 }

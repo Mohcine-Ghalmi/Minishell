@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 19:35:10 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 23:53:29 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ void	free_cmds(char **cmd)
 	free(cmd);
 }
 
-char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag, char **envp)
+char	**create_cmd_array(t_lsttoken **token, int *in, int *out, char **envp)
 {
 	int		i;
 	int		j;
 	char	**cmd;
 
 	i = 0;
-	j = *flag;
+	j = 0;
 	cmd = malloc(sizeof(char *) * (lenword(*token) + 1));
 	while (*token && (*token)->type != 4)
 	{
@@ -67,7 +67,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag, char *
 				cmd[i++] = ft_strdup((*token)->str);
 		}
 		else if ((*token)->type == 2 && (*token)->next && (*token)->next->str)
-			*in = filein(&j, token, *in);
+			*in = filein(token, *in);
 		else if ((*token)->type == 3 && (*token)->next && (*token)->next->str)
 			*out = fileout(&j, token, *out);
 		else if ((*token)->type == 9 && (*token)->next && (*token)->next->str)
@@ -80,7 +80,6 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag, char *
 			*token = (*token)->next;
 	}
 	cmd[i] = NULL;
-	*flag = j;
 	return (cmd);
 }
 
@@ -88,7 +87,6 @@ int	create_node(t_lsttoken *token, t_node **node, char **envp)
 {
 	char	**cmd;
 	int		in;
-	int		i;
 	int		out;
 	int		flag;
 
@@ -96,12 +94,12 @@ int	create_node(t_lsttoken *token, t_node **node, char **envp)
 	cmd = NULL;
 	while (token)
 	{
-		init_values(&i, &in, &out);
-		cmd = create_cmd_array(&token, &in, &out, &flag, envp);
-		if (flag == -1)
-			return -1;
-		if (!cmd)
-			return -1;
+		init_values(&in, &out);
+		cmd = create_cmd_array(&token, &in, &out, envp);
+		if (in == -1)
+			flag  = in;
+		else
+			flag = out;
 		addnode_back(node, new_node(cmd, in, out));
 		if (token)
 			token = token->next;

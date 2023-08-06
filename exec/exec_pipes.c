@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 19:24:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:54:55 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	piper_dup(t_node *cmd, int pipefd[2])
 
 void	dir(char *cmd)
 {
-	DIR *direct;
+	DIR	*direct;
 
 	direct = opendir(cmd);
 	if (direct)
@@ -50,7 +50,6 @@ void	dir(char *cmd)
 		ft_putstr_fd(": is a directory\n", 2);
 		exit(126);
 	}
-	// closedir(direct);
 }
 
 void	piper(t_node *cmd, t_env *new_env)
@@ -80,31 +79,6 @@ void	piper(t_node *cmd, t_env *new_env)
 	}
 	closepipe(pipefd);
 	close_files(cmd->fdin, cmd->fdout);
-}
-
-void	update_and_wait(int ifcond, int status, t_env *envp)
-{
-	while (wait(&status) != -1)
-		;
-	if (WTERMSIG(status))
-	{
-		if (WTERMSIG(status) == 2)
-		{
-			ft_putstr_fd("\n", 1);
-			update_status(130, envp, 1);
-		}
-		else if (WTERMSIG(status) == 3)
-		{
-			ft_putstr_fd("Quit: 3\n", 1);
-			update_status(131, envp, 1);
-		}
-		else
-			update_status(0, envp, 1);
-	}
-	else if (ifcond < 2)
-		update_status(ifcond, envp, 1);
-	else
-		update_status(WEXITSTATUS(status), envp, 1);
 }
 
 void	execution(t_node *new, t_env *envp)

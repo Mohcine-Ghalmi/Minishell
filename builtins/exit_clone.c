@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 20:28:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 00:54:10 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	put_msg(char *str, char *msg)
 
 int	exit_clone(t_env *env, char **cmd)
 {
-	int ret;
+	int	ret;
 
 	ret = 0;
 	if (cmd[2] && !find_char(cmd[1]))
@@ -86,9 +86,8 @@ int	exit_clone(t_env *env, char **cmd)
 			put_msg(cmd[1], "exit: numeric argument required");
 			exit(255);
 		}
-		// update_status(checking_status(ft_atoi_shlvl(cmd[1])), env, 1);
 		printf("exit\n");
-		exit(ft_atoi_shlvl(cmd[1]));
+		exit(checking_status(ft_atoi_shlvl(cmd[1])));
 	}
 	ret = ft_atoi_shlvl(return_value(env, "?="));
 	return (update_status(ret, env, 1), exit(ret), 0);
