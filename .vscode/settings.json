@@ -3,6 +3,7 @@
         "pipex.h": "c",
         "minishell.h": "c",
         "parsing.h": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "exec.h": "c"
     }
 }

@@ -9,6 +9,8 @@
 -------------------test's--------------------------
 leaks 
 
+ctrl + C heredoc afterc write
+
  ls | < a  cat  read from pipe
 
  cat | cat | las > o | cat o test in bash
@@ -25,18 +27,13 @@ leaks
 
  unset _ must work
 
- export when empty must show nothing
-
  unset PATH in env -i segfault
-
- echo asdhjal -nnnnn should print newline
-
- echo -n -n lasd error test in bash
 
  << la cat expand in heredoc
 
- exit should exit with exit status
-
  las | cat status code of last command
+
+.
+..
 
 opendir 

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/03 21:03:55 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 00:08:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,19 @@ int	echo_clone(char **cmd, t_env *env)
 	flag = 0;
 	if (!cmd[i])
 		return (printf("\n"), 0);
+	while (cmd[i]  && option_echo(cmd[i]))
+	{
+		i++;
+		flag = 1;
+	}
 	while (cmd[i])
 	{
-		if (option_echo(cmd[i]) && !flag)
-			flag = 1;
+		if (!ft_strncmp(cmd[i], "~", 2))
+			printf("%s", r_value(env, "HOME="));
 		else
-		{
-			if (!ft_strncmp(cmd[i], "~", 2))
-				printf("%s", r_value(env, "HOME="));
-			else
-				printf("%s", cmd[i]);
-			if (i < double_size(cmd) - 1)
-				printf(" ");
-		}
+			printf("%s", cmd[i]);
+		if (i < double_size(cmd) - 1)
+			printf(" ");
 		i++;
 	}
 	if (!flag)

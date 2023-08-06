@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/04 20:25:15 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 00:14:07 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ void	put_msg(char *str, char *msg)
 
 int	exit_clone(t_env *env, char **cmd)
 {
+	int ret;
+
+	ret = 0;
 	if (cmd[2] && !find_char(cmd[1]))
 	{
 		put_msg("", "exit: too many arguments");
@@ -85,6 +88,6 @@ int	exit_clone(t_env *env, char **cmd)
 		printf("exit\n");
 		exit(checking_status(ft_atoi_shlvl(cmd[1])));
 	}
-	printf("exit\n");
-	return (update_status(0, env, 1), exit(0), 0);
+	ret = ft_atoi_shlvl(return_value(env, "?="));
+	return (update_status(ret, env, 1), exit(ret), 0);
 }

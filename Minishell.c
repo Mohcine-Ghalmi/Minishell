@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 19:08:42 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 02:07:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	heredoc_file(char *limiter, int outfile)
 		str = ft_strjoin(str, "\n");
 		if (str == NULL)
 			return (1);
+		ft_putstr_fd(str, outfile);
 		if (!ft_strncmp(end, str, ft_strlen(end)))
 			break;
-		ft_putstr_fd(str, outfile);
 		free(str);
 		str = readline("> ");
 	}

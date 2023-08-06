@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 02:40:29 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/05 23:51:30 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,11 @@ int	checking_dash(char *cmd)
 
 void	export_helper(char *cmd, t_env *env, int *ret)
 {
+	if (cmd[0] == '\0')
+	{
+		printf("minishell: export: `%s` not valid identifier\n", cmd);
+		return ;
+	}
 	if (!option_replace(cmd, env))
 	{
 		if (ft_strchr1(cmd, '='))

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 22:04:05 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 04:21:57 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,43 @@
 void	piper_norm(t_node *cmd, int pipefd[2])
 {
 	close(pipefd[0]);
-	if (cmd->fdout == -1 || cmd->fdin == -1)
-		exit(1);
+	// if (cmd->fdout == -1 || cmd->fdin == -1)
+	// 	exit(1);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);
 	else if (cmd && ft_lstsize_node(cmd) > 1)
 		dup2(pipefd[1], STDOUT_FILENO);
+	// if (cmd->fdin > 2)
+	// 	dup2(cmd->fdin, STDIN_FILENO);
 	close(pipefd[1]);
 }
 
 void	piper_dup(t_node *cmd, int pipefd[2])
 {
 	close(pipefd[1]);
-	if (cmd->fdin > 2)
-		dup2(cmd->fdin, STDIN_FILENO);
-	else
-		dup2(pipefd[0], STDIN_FILENO);
+	if (cmd->next)
+	{
+		if (cmd->next->fdin > 2)
+		{
+			dup2(cmd->next->fdin, STDIN_FILENO);
+		}
+		else
+		{
+			printf("cmd == %s\n", cmd->next->cmd[0]);
+			dup2(pipefd[0], STDIN_FILENO);
+	}
+	}
+	close(pipefd[0]);
+}
+
+void remove_carriage_return(char *str)
+{
+	int i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == '\r')
+            ft_memmove(&str[i], &str[i + 1], ft_strlen(str) - i);
 }
 
 void	piper(t_node *cmd, t_env *new_env)
@@ -44,6 +65,9 @@ void	piper(t_node *cmd, t_env *new_env)
 	if (!cmd->cmd[0])
 		return ;
 	signal(SIGINT, SIG_IGN);
+	// while (cmd->cmd[b])
+    //     remove_carriage_return(cmd->cmd[b++]);
+	b = 0;
 	if (pipe(pipefd) < 0)
 		return ;
 	pid = fork();
@@ -52,7 +76,7 @@ void	piper(t_node *cmd, t_env *new_env)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		// signal(SIGQUIT, SIG_DFL);
 		piper_norm(cmd, pipefd);
 		b = check_builtins(cmd->cmd, new_env);
 		if (b < 2)
