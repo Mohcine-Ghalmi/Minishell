@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 20:23:14 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 20:28:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int	exit_clone(t_env *env, char **cmd)
 		}
 		// update_status(checking_status(ft_atoi_shlvl(cmd[1])), env, 1);
 		printf("exit\n");
-		exit(ft_atoi_`shlvl(cmd[1]));
+		exit(ft_atoi_shlvl(cmd[1]));
 	}
 	ret = ft_atoi_shlvl(return_value(env, "?="));
 	return (update_status(ret, env, 1), exit(ret), 0);

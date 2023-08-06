@@ -9,4 +9,4 @@
 -------------------test's--------------------------
 leaks 
 
-unset HELLO1 HELLO2 exit status 
+exit wrong file no such a file 

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 19:34:34 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 21:11:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void					export_helper(char *cmd, t_env *env, int *ret);
 char					*get_user_input(t_node *node);
 void					execute_minishell(t_env *new_envp);
 char					*return_value(t_env *env, char *key);
+char					*creat_table(char *text, int *i);
 
 #endif

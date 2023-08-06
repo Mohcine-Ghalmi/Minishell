@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 20:23:37 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 21:48:56 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ void	signl_herdoc(int sig)
 		g_test = -1;
 }
 
+char    *herdoc_dollar(char *text, int *i, char **envp)
+{
+    char    *table;
+    char    *dolar;
+
+    table = creat_table(text, i);
+    if (!ft_strlen(table) || (!text[*i] || text[*i] == '\n' || text[*i] == ' '))
+        return (free(table), ft_strdup("$"));
+    dolar = out_dollars(table, envp);
+    return (free(table), dolar);
+}
+
 char	*her_qudes(char *text, char **envp)
 {
 	char	*table;
@@ -29,7 +41,7 @@ char	*her_qudes(char *text, char **envp)
 	while (text[t])
 	{
 		if (text[t] == '$')
-			table = ft_strjoin(table, dollar(text, &t, envp));
+			table = ft_strjoin(table, herdoc_dollar(text, &t, envp));
 		else
 		{
 			table = join_char(table, text[t]);
