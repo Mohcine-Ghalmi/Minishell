@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_constructor.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 00:29:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 17:29:42 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	free_cmds(char **cmd)
 	free(cmd);
 }
 
-char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag)
+char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag, char **envp)
 {
 	int		i;
 	int		j;
@@ -71,7 +71,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag)
 		else if ((*token)->type == 3 && (*token)->next && (*token)->next->str)
 			*out = fileout(&j, token, *out);
 		else if ((*token)->type == 9 && (*token)->next && (*token)->next->str)
-			*in = heredocfile(token, *in);
+			*in = heredocfile(token, *in, envp);
 		else if ((*token)->type == 7 && (*token)->next && (*token)->next->str)
 			*out = appendfile(&j, token, *out);
 		else
@@ -84,7 +84,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, int *flag)
 	return (cmd);
 }
 
-void	create_node(t_lsttoken *token, t_node **node)
+void	create_node(t_lsttoken *token, t_node **node, char **envp)
 {
 	char	**cmd;
 	int		in;
@@ -97,7 +97,7 @@ void	create_node(t_lsttoken *token, t_node **node)
 	while (token)
 	{
 		init_values(&i, &in, &out);
-		cmd = create_cmd_array(&token, &in, &out, &flag);
+		cmd = create_cmd_array(&token, &in, &out, &flag, envp);
 		if (flag == -1)
 			return ;
 		if (!cmd)

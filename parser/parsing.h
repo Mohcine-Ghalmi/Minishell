@@ -39,7 +39,7 @@ int			spaces(int c);
 char		*ft_strjoin(char *s1, char *s2);
 int			qudespars(char *str);
 void		s_fd(char *s, int fd);
-
+char		*join_char(char *str, char c);
 typedef struct token
 {
 	char			*cmd;
@@ -68,7 +68,7 @@ typedef struct node
 	struct node		*next;
 
 }			t_node;
-int			qude;
+
 void		outorappand(char *text, int *i, t_token **token);
 void		inorherdoc(char *text, int *i, t_token **token);
 void		qudes(char *text, int *i, t_token **token, char **envp);
@@ -87,9 +87,9 @@ void		free_node(t_node *node);
 void		free_lst(t_lsttoken *lst);
 void		free_jointoken(t_jointok *token);
 void		free_token(t_token *token);
-int			heredoc(char *limiter);	
+int			heredoc(char *limiter, char **envp);	
 int			append(char *file);
-void		create_node(t_lsttoken *token, t_node **node);
+void		create_node(t_lsttoken *token, t_node **node, char **envp);
 t_node		*new_node(char **cmd, int in, int out);
 t_node		*last_node(t_node	*lst);
 void		sigint_handler(int sig);
@@ -101,7 +101,7 @@ t_jointok	*ft_lstnew1(char *str, int type);
 t_lsttoken	*ltoken(t_jointok **token);
 int			filein(int *flagin, t_lsttoken **token, int in);
 int			fileout(int *flagout, t_lsttoken **token, int out);
-int			heredocfile(t_lsttoken **token, int in);
+int			heredocfile(t_lsttoken **token, int in, char **envp);
 int			appendfile(int *flagout, t_lsttoken **token, int out);
 void		init_values(int *i, int *in, int *out);
 

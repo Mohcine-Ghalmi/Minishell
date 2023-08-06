@@ -9,15 +9,6 @@
 -------------------test's--------------------------
 leaks 
 
-ctrl + C heredoc afterc write
-
-
- << 's' cat ==> ma kat 2ikspandach
-
- << "s" cat ==> ma kat 2ikspandach
-
- << s cat ==> kat 2ikspandach
-
  cat + ctrl c => echo $?
 
  unset _ must work

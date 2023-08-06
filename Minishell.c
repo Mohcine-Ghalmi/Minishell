@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 17:05:32 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/06 17:42:16 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,33 @@ void	signl_herdoc(int sig)
 {
 	(void)sig;
 	ioctl(0, TIOCSTI, "\4");
-	if (g_test == 3)
-		g_test = 4;
-	else
+	// if (g_test == 3)
+	// 	g_test = 4;
+	// else
 		g_test = -1;
 }
 
+char	*her_qudes(char *text, char **envp)
+{
+	char	*table;
+	int 	t;
 
-int	heredoc_file(char *limiter, int outfile)
+	t = 0;
+	table = NULL;
+	while (text[t])
+	{
+		if (text[t] == '$')
+			table = ft_strjoin(table, dollar(text, &t, envp));
+		else
+		{
+			table = join_char(table, text[t]);
+			(t)++;
+		}
+	}
+	return (table);
+}
+
+int	heredoc_file(char *limiter, int outfile, char **envp)
 {
 	char	*str;
 	char	*end;
@@ -39,10 +58,10 @@ int	heredoc_file(char *limiter, int outfile)
 			return (1);
 		str = ft_strjoin(str, "\n");
 		if (g_test != 3)
-			puts("input");
-		ft_putstr_fd(str, outfile);
+			str = her_qudes(str, envp);
 		if (!ft_strncmp(end, str, ft_strlen(end)))
 			break ;
+		ft_putstr_fd(str, outfile);
 		free(str);
 		// signal(SIGINT, signl_herdoc);
 		//str = readline("> ");
@@ -55,22 +74,22 @@ int	heredoc_file(char *limiter, int outfile)
 	return (0);
 }
 
-int	heredoc(char *limiter)
+int	heredoc(char *limiter, char **envp)
 {
 	int	fd[2];
 
 	pipe(fd);
 	if (fd < 0)
 		return (0);
-	if (heredoc_file(limiter, fd[1]))
+	if (heredoc_file(limiter, fd[1], envp))
 		return (-1);
 	return (fd[0]);
 }
 
-int	heredocfile(t_lsttoken **token, int in)
+int	heredocfile(t_lsttoken **token, int in, char **envp)
 {
 	if (g_test != -1 && g_test != 4)
-		in = heredoc((*token)->next->str);
+		in = heredoc((*token)->next->str, envp);
 	if ((*token)->next)
 		(*token) = (*token)->next;
 	return (in);
