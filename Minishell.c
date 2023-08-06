@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 02:07:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 17:05:32 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,12 @@ void	signl_herdoc(int sig)
 {
 	(void)sig;
 	ioctl(0, TIOCSTI, "\4");
-	g_test = -1;
+	if (g_test == 3)
+		g_test = 4;
+	else
+		g_test = -1;
 }
+
 
 int	heredoc_file(char *limiter, int outfile)
 {
@@ -26,26 +30,27 @@ int	heredoc_file(char *limiter, int outfile)
 
 	if (outfile < 0)
 		return (1);
-	signal(SIGINT, signl_herdoc);
 	end = ft_strjoin(limiter, "\n");
-	str = readline("> ");
-	if (!str)
-		return (1);
 	while (1) 
 	{
-		str = ft_strjoin(str, "\n");
-		if (str == NULL)
+		signal(SIGINT, signl_herdoc);
+		str = readline("> ");
+		if (!str)
 			return (1);
+		str = ft_strjoin(str, "\n");
+		if (g_test != 3)
+			puts("input");
 		ft_putstr_fd(str, outfile);
 		if (!ft_strncmp(end, str, ft_strlen(end)))
-			break;
+			break ;
 		free(str);
-		str = readline("> ");
+		// signal(SIGINT, signl_herdoc);
+		//str = readline("> ");
 	}
 	free(end);
 	free(str);
 	close(outfile);
-	if (g_test == -1)
+	if (g_test == -1 || g_test == 4)
 		return (1);
 	return (0);
 }
@@ -55,7 +60,6 @@ int	heredoc(char *limiter)
 	int	fd[2];
 
 	pipe(fd);
-	g_test = 0;
 	if (fd < 0)
 		return (0);
 	if (heredoc_file(limiter, fd[1]))
@@ -65,7 +69,7 @@ int	heredoc(char *limiter)
 
 int	heredocfile(t_lsttoken **token, int in)
 {
-	if (g_test != -1)
+	if (g_test != -1 && g_test != 4)
 		in = heredoc((*token)->next->str);
 	if ((*token)->next)
 		(*token) = (*token)->next;

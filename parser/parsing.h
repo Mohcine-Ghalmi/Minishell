@@ -68,6 +68,7 @@ typedef struct node
 	struct node		*next;
 
 }			t_node;
+int			qude;
 void		outorappand(char *text, int *i, t_token **token);
 void		inorherdoc(char *text, int *i, t_token **token);
 void		qudes(char *text, int *i, t_token **token, char **envp);

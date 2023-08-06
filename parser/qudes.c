@@ -3,30 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   qudes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 18:38:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 17:05:02 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	single_qudes(char *text, int *t, int i, t_token **token)
+char	*single_qudes(char *text, int *t, t_token **token)
 {
 	char	*exet;
 	int		m;
+	int 	i;
 
 	m = 0;
+	i = 0;
+	i = *t;
 	if (text[*t] == '\'')
 	{
-		*t += 1;
-		return (ft_back(token, ft_lstnew(1, ft_strdup(""))));
+		if (text[*t] == ' ')
+			return (ft_strdup(""));
 	}
 	while (text[*t] && text[*t] != '\'')
 		*t += 1;
-	m = *t;
-	ft_back(token, ft_lstnew(6, ft_substr(text, i, m - i)));
+		m = *t;
+	return (ft_substr(text, i, m - i));
 }
 
 char	*join_char(char *str, char c)
@@ -82,8 +85,12 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 	q = text[*i];
 	*i += 1;
 	t = *i;
+	g_test = 3;
 	if (q == '\'')
-		single_qudes(text, &t, *i, token);
+	{
+		ft_back(token, ft_lstnew(6, single_qudes(text, &t, token)));
+		t++;
+	}
 	else if (q == '\"')
 		ft_back(token, ft_lstnew(5, double_qudes(text, &t, envp)));
 	*i = t;

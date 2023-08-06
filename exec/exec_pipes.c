@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 06:47:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 16:31:21 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 void	piper_norm(t_node *cmd, int pipefd[2])
 {
+	if (cmd->fdin == -1 || cmd->fdout == -1)
+		exit(1);
 	close(pipefd[0]);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 00:31:23 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 15:49:21 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	for_exec(t_node *node, t_env *new_envp)
 {
 	execution(node, new_envp);
-	if (g_test == -1)
+	if (g_test == -1 || g_test == 4)
 		update_status(1, new_envp, 1);
 }
 
