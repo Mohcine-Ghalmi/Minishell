@@ -22,7 +22,7 @@ ctrl + C heredoc afterc write
 
  unset _ must work
 
- unset PATH in env -i segfault
+ unset PATH in env -i        
 
 .
 ..

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 05:26:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 06:47:39 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,18 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 	if (WTERMSIG(status))
 	{
 		if (WTERMSIG(status) == 2)
+		{
 			ft_putstr_fd("\n", 1);
+			update_status(130, envp, 1);
+		}
 		else if (WTERMSIG(status) == 3)
+		{
 			ft_putstr_fd("Quit: 3\n", 1);
-		update_status(g_test, envp, 1);
+			update_status(131, envp, 1);
+		}
+		else
+			update_status(g_test, envp, 1);
+
 	}
 	else if (ifcond < 2)
 		update_status(ifcond, envp, 1);
