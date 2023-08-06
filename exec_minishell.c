@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_minishell.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 15:49:21 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:21:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ void	for_qudespars(t_env *new_envp, char *input)
 	free(input);
 }
 
-t_node	*in_hist(char *input, t_env *new_envp)
+t_node	*in_hist(char *input, t_env *new_envp, int	*ret)
 {
 	add_history(input);
-	return (inputs(input, env_exec(new_envp)));
+	return (inputs(input, env_exec(new_envp), *ret));
 }
 
 int	to_con(char *input, t_env *new_envp)
@@ -54,7 +54,9 @@ void	execute_minishell(t_env *new_envp)
 {
 	t_node	*node;
 	char	*input;
+	int		ret;
 
+	ret = 0;
 	while (1)
 	{
 		input = get_user_input(node);
@@ -62,10 +64,13 @@ void	execute_minishell(t_env *new_envp)
 			exit_main();
 		if (to_con(input, new_envp))
 			continue ;
-		node = in_hist(input, new_envp);
+		node = in_hist(input, new_envp, &ret);
 		if (node == NULL)
 		{
-			update_status(258, new_envp, 0);
+			if (ret != -1)
+				update_status(258, new_envp, 0);
+			if (ret == -1)
+				update_status(0, new_envp, 0);
 			continue ;
 		}
 		for_exec(node, new_envp);

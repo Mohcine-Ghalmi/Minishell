@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 17:42:16 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/06 20:23:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ void	signl_herdoc(int sig)
 {
 	(void)sig;
 	ioctl(0, TIOCSTI, "\4");
-	// if (g_test == 3)
-	// 	g_test = 4;
-	// else
 		g_test = -1;
 }
 
@@ -63,8 +60,6 @@ int	heredoc_file(char *limiter, int outfile, char **envp)
 			break ;
 		ft_putstr_fd(str, outfile);
 		free(str);
-		// signal(SIGINT, signl_herdoc);
-		//str = readline("> ");
 	}
 	free(end);
 	free(str);

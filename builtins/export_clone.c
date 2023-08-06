@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 23:49:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 18:04:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	export_clone(char **cmd, t_env *env)
 	i = 1;
 	ret = 0;
 	ret1 = 0;
-	if (!show_export(cmd, env))
+	if (!show_export(cmd, env) && cmd)
 	{
 		while (cmd[i])
 		{

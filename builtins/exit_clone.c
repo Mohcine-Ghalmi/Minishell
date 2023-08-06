@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 05:28:28 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 20:23:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ int	find_char(char *str)
 	i = 0;
 	if (!str)
 		return (1);
+	if (str[i] == '+' || str[i] == '-')
+		i++;
 	while (str[i])
 	{
 		if (str[i] < 48 || str[i] > 57)
@@ -84,9 +86,9 @@ int	exit_clone(t_env *env, char **cmd)
 			put_msg(cmd[1], "exit: numeric argument required");
 			exit(255);
 		}
-		update_status(checking_status(ft_atoi_shlvl(cmd[1])), env, 1);
+		// update_status(checking_status(ft_atoi_shlvl(cmd[1])), env, 1);
 		printf("exit\n");
-		exit(checking_status(ft_atoi_shlvl(cmd[1])));
+		exit(ft_atoi_`shlvl(cmd[1]));
 	}
 	ret = ft_atoi_shlvl(return_value(env, "?="));
 	return (update_status(ret, env, 1), exit(ret), 0);

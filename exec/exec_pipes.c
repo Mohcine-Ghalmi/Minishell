@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pipes.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 16:31:21 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/06 19:24:25 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,13 @@
 void	piper_norm(t_node *cmd, int pipefd[2])
 {
 	if (cmd->fdin == -1 || cmd->fdout == -1)
-		exit(1);
+		exit(0);
 	close(pipefd[0]);
 	if (cmd->fdout > 2)
 		dup2(cmd->fdout, STDOUT_FILENO);
 	else if (cmd && cmd->cmd != NULL && ft_lstsize_node(cmd) > 1)
 		dup2(pipefd[1], STDOUT_FILENO);
 	close(pipefd[1]);
-	// if (cmd->fdin > 2)
-	// 	dup2(cmd->fdin, STDIN_FILENO);
-	// else
-	// 	dup2(pipefd[0], STDIN_FILENO);
 }
 
 void	piper_dup(t_node *cmd, int pipefd[2])
@@ -42,14 +38,19 @@ void	piper_dup(t_node *cmd, int pipefd[2])
 	close(pipefd[0]);
 }
 
-void remove_carriage_return(char *str)
+void	dir(char *cmd)
 {
-	int i;
+	DIR *direct;
 
-	i = -1;
-	while (str[++i])
-		if (str[i] == '\r')
-            ft_memmove(&str[i], &str[i + 1], ft_strlen(str) - i);
+	direct = opendir(cmd);
+	if (direct)
+	{
+		ft_putstr_fd("minishell:", 2);
+		ft_putstr_fd(cmd, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+		exit(126);
+	}
+	// closedir(direct);
 }
 
 void	piper(t_node *cmd, t_env *new_env)
@@ -59,8 +60,6 @@ void	piper(t_node *cmd, t_env *new_env)
 	int		b;
 
 	b = 0;
-	// if (!cmd->cmd[0])
-	// 	return ;
 	signal(SIGINT, SIG_IGN);
 	if (pipe(pipefd) < 0)
 		return ;
@@ -70,13 +69,13 @@ void	piper(t_node *cmd, t_env *new_env)
 	else
 	{
 		signal(SIGINT, SIG_DFL);
-		// signal(SIGQUIT, SIG_DFL);
 		piper_norm(cmd, pipefd);
 		b = check_builtins(cmd->cmd, new_env);
 		if (b < 2)
 			exit(b);
 		if (!cmd->cmd[0])
-			exit(127);
+			exit(0);
+		dir(cmd->cmd[0]);
 		exec(cmd->cmd, env_exec(new_env));
 	}
 	closepipe(pipefd);
@@ -100,8 +99,7 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 			update_status(131, envp, 1);
 		}
 		else
-			update_status(g_test, envp, 1);
-
+			update_status(0, envp, 1);
 	}
 	else if (ifcond < 2)
 		update_status(ifcond, envp, 1);

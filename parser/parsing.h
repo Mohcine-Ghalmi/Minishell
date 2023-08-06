@@ -89,7 +89,7 @@ void		free_jointoken(t_jointok *token);
 void		free_token(t_token *token);
 int			heredoc(char *limiter, char **envp);	
 int			append(char *file);
-void		create_node(t_lsttoken *token, t_node **node, char **envp);
+int			create_node(t_lsttoken *token, t_node **node, char **envp);
 t_node		*new_node(char **cmd, int in, int out);
 t_node		*last_node(t_node	*lst);
 void		sigint_handler(int sig);

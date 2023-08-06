@@ -9,13 +9,4 @@
 -------------------test's--------------------------
 leaks 
 
- cat + ctrl c => echo $?
-
- unset _ must work
-
- unset PATH in env -i        
-
-.
-..
-
-opendir 
+unset HELLO1 HELLO2 exit status 

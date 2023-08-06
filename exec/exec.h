@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:38:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 02:34:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 18:12:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../Minishell.h"
 # include "Pipex/pipex.h"
+# include <dirent.h>
 
 typedef struct node	t_node;
 typedef struct env	t_env;
