@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 04:21:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/06 04:24:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	piper(t_node *cmd, t_env *new_env)
 	signal(SIGINT, SIG_IGN);
 	// while (cmd->cmd[b])
     //     remove_carriage_return(cmd->cmd[b++]);
-	b = 0;
+	// b = 0;
 	if (pipe(pipefd) < 0)
 		return ;
 	pid = fork();
