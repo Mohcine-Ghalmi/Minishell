@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 05:48:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 06:01:28 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	execute_minishell(t_env *new_envp)
 		}
 		for_exec(node, new_envp);
 		free_node(node);
-		// system("leaks minishell");
 		if (ret == -1)
 			update_status(1, new_envp, 0);
 	}

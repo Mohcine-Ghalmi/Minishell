@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sleeps <sleeps@student.42.fr>              +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 22:10:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/07/17 02:05:05 by sleeps           ###   ########.fr       */
+/*   Updated: 2023/08/07 06:14:03 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	here_doc(char **av, int infile)
 	str = get_next_line(STDIN_FILENO);
 	if (!str)
 		exit(1);
-	while (end && strcmp(end, str) != 0)
+	while (end && ft_strncmp(end, str, ft_strlen(end)) != 0)
 	{
 		ft_putstr_fd(str, infile);
 		free(str);

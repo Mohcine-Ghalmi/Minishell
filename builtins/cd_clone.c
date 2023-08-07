@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 00:51:44 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 06:03:50 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	find_and_replace(t_env **env, char *key, char *value)
 		{
 			tmp->key = ft_strjoin1(key, "=");
 			tmp->option = 1;
+			free(tmp->value);
 			tmp->value = value;
 			return (1);
 		}
@@ -54,7 +55,7 @@ char	*return_value(t_env *env, char *key)
 	while (tmp)
 	{
 		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
-			return (ft_strdup(tmp->value));
+			return (tmp->value);
 		tmp = tmp->next;
 	}
 	return (NULL);
