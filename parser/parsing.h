@@ -104,5 +104,6 @@ int			fileout(int *flagout, t_lsttoken **token, int out);
 int			heredocfile(t_lsttoken **token, int in, char **envp);
 int			appendfile(int *flagout, t_lsttoken **token, int out);
 void		init_values(int *in, int *out);
+char		*extract_dollar_value(char *text, int *j, char **envp, int	*k);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 01:04:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 01:16:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,17 @@ void	free_cmds(char **cmd)
 	free(cmd);
 }
 
+char	*create_single_cmd(t_lsttoken **token)
+{
+	char	*cmd;
+
+	if ((*token)->str[0] == '\0')
+		cmd = ft_strdup("");
+	else
+		cmd = ft_strdup((*token)->str);
+	return (cmd);
+}
+
 char	**create_cmd_array(t_lsttoken **token, int *in, int *out, char **envp)
 {
 	int		i;
@@ -60,12 +71,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, char **envp)
 	while (*token && (*token)->type != 4)
 	{
 		if ((*token)->type == 1)
-		{
-			if ((*token)->str[0] == '\0')
-				cmd[i++] = ft_strdup("");
-			else
-				cmd[i++] = ft_strdup((*token)->str);
-		}
+			cmd[i++] = create_single_cmd(token);
 		else if ((*token)->type == 2 && (*token)->next && (*token)->next->str)
 			*in = filein(token, *in);
 		else if ((*token)->type == 3 && (*token)->next && (*token)->next->str)
@@ -79,8 +85,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, char **envp)
 		if (*token)
 			*token = (*token)->next;
 	}
-	cmd[i] = NULL;
-	return (cmd);
+	return (cmd[i] = NULL, cmd);
 }
 
 int	create_node(t_lsttoken *token, t_node **node, char **envp)
@@ -97,7 +102,7 @@ int	create_node(t_lsttoken *token, t_node **node, char **envp)
 		init_values(&in, &out);
 		cmd = create_cmd_array(&token, &in, &out, envp);
 		if (in == -1)
-			flag  = in;
+			flag = in;
 		else
 			flag = out;
 		addnode_back(node, new_node(cmd, in, out));

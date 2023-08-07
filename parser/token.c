@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 22:02:17 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/07 01:44:41 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,7 @@ void	inorherdoc(char *text, int *i, t_token **token)
 		ft_back(token, ft_lstnew(9, table));
 	if (f == 1)
 		ft_back(token, ft_lstnew(2, table));
-	if (table)
-		free(table);
+	free(table);
 }
 
 int	exec_dollar(char *str, t_token **token)
@@ -99,12 +98,7 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	t = *i;
 	k = 0;
 	exet = NULL;
-	tex = ft_strdup("");
-	while (text[j] && !notword(text[j]) && !spaces(text[j]) && text[j] != '$')
-		j += 1;
-	k = j;
-	if (text[j] && text[j] == '$')
-		tex = dollar(text, &j, envp);
+	tex = extract_dollar_value(text, &j, envp, &k);
 	exet = ft_substr(text, t, k - t);
 	if (!exet[1])
 	{

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:50:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 23:56:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 01:44:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,21 @@ void	init_values(int *in, int *out)
 {
 	*in = 0;
 	*out = 1;
+}
+
+char	*extract_dollar_value(char *text, int *j, char **envp, int	*k)
+{
+	int		t;
+	char	*tex;
+
+	t = 0;
+	t = *j;
+	tex = ft_strdup("");
+	while (text[*j] && !notword(text[*j])
+		&& !spaces(text[*j]) && text[*j] != '$')
+		*j += 1;
+	*k = *j;
+	if (text[*j] && text[*j] == '$')
+		tex = dollar(text, j, envp);
+	return (tex);
 }
