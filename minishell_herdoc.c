@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Minishell.c                                        :+:      :+:    :+:   */
+/*   minishell_herdoc.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 01:02:34 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/08/06 22:08:35 by selhilal          #+#    #+#             */
+/*   Updated: 2023/08/06 22:12:16 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Minishell.h"
-
-void	signl_herdoc(int sig)
-{
-	(void)sig;
-	ioctl(0, TIOCSTI, "\4");
-	g_test = -1;
-}
 
 char	*herdoc_dollar(char *text, int *i, char **envp)
 {
@@ -49,32 +42,4 @@ char	*her_qudes(char *text, char **envp)
 		}
 	}
 	return (table);
-}
-
-int	heredoc(char *limiter, char **envp)
-{
-	int	fd[2];
-
-	pipe(fd);
-	if (fd < 0)
-		return (0);
-	if (heredoc_file(limiter, fd[1], envp))
-		return (-1);
-	return (fd[0]);
-}
-
-int	main(int argc, char **argv, char **envp)
-{
-	t_env	*new_envp;
-
-	(void)argv;
-	if (argc > 1)
-	{
-		printf("no arguments\n");
-		return (0);
-	}
-	new_envp = envirment(envp);
-	execute_minishell(new_envp);
-	ft_lstclear_env(&new_envp);
-	return (0);
 }

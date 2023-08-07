@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/06 17:05:02 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/06 22:01:36 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*single_qudes(char *text, int *t, t_token **token)
 {
 	char	*exet;
 	int		m;
-	int 	i;
+	int		i;
 
 	m = 0;
 	i = 0;
@@ -28,7 +28,7 @@ char	*single_qudes(char *text, int *t, t_token **token)
 	}
 	while (text[*t] && text[*t] != '\'')
 		*t += 1;
-		m = *t;
+	m = *t;
 	return (ft_substr(text, i, m - i));
 }
 

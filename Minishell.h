@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 00:48:29 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 01:04:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,6 @@ int						heredoc_file(char *limiter, int outfile, char **envp);
 char					*her_qudes(char *text, char **envp);
 void					signl_herdoc(int sig);
 
+char					*her_qudes(char *text, char **envp);
+void					for_exec(t_node *node, t_env *new_envp);
 #endif
