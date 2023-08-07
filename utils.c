@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 00:46:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 02:18:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 23:02:02 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	heredoc_file(char *limiter, int outfile, char **envp)
 
 	if (outfile < 0)
 		return (1);
-	end = ft_strjoin(limiter, "\n");
+	end = ft_strjoin1(limiter, "\n");
 	while (1) 
 	{
 		signal(SIGINT, signl_herdoc);

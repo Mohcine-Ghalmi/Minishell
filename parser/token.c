@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 02:42:24 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 00:47:12 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	inorherdoc(char *text, int *i, t_token **token)
 		ft_back(token, ft_lstnew(9, table));
 	if (f == 1)
 		ft_back(token, ft_lstnew(2, table));
-	free(table);
+	// free(table);
 }
 
 int	exec_dollar(char *str, t_token **token)
@@ -80,7 +80,8 @@ int	exec_dollar(char *str, t_token **token)
 			if (j < i)
 				ft_back(token, ft_lstnew(10, " "));
 		}
-		free(str);
+		// free(str);
+		// free_double(splited);
 		return (1);
 	}
 	return (0);
@@ -98,18 +99,22 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	t = *i;
 	k = 0;
 	exet = NULL;
+	tex = NULL;
 	tex = extract_dollar_value(text, &j, envp, &k);
 	exet = ft_substr(text, t, k - t);
-	if (!exet[1])
+	if (!exet[0])
 	{
 		if (exec_dollar(tex, token))
 		{
 			*i = j;
+			free(exet);
+			free(tex);
 			return ;
 		}
 	}
 	*i = j;
-	ft_back(token, ft_lstnew(1, ft_strjoin(exet, tex)));
+	ft_back(token, ft_lstnew(1, ft_strjoin(tex, exet)));
+	free(exet);
 	free(tex);
 }
 
@@ -129,5 +134,5 @@ void	space(char *text, int *i, t_token **token)
 	table = ft_substr(text, t, j - t);
 	ft_back(token, ft_lstnew(10, table));
 	*i = j;
-	free(table);
+	// free(table);
 }

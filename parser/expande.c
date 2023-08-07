@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 17:15:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 00:24:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*creat_table(char *text, int *i)
 	j = 0;
 	l = 0;
 	l = *i + 1;
-	table = ft_calloc(1, dollar_length(text, *i));
+	table = ft_calloc(1, dollar_length(text, *i) + 1);
 	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
 	{
 		if (ft_isdigit(text[l]))
@@ -63,7 +63,7 @@ char	*dollar(char *text, int *i, char **envp)
 
 	table = creat_table(text, i);
 	if (!ft_strlen(table))
-		return (free(table), ft_strdup("$"));
+		return (free(table), "$");
 	dolar = out_dollars(table, envp);
 	return (free(table), dolar);
 }
@@ -91,12 +91,16 @@ char	*out_dollars(char *key, char **env)
 	int		i;
 
 	i = 0;
-	key = ft_strjoin1(key, "=");
+	key = join_char(key, '=');
 	while (env[i])
 	{
 		if (!ft_strncmp(key, env[i], ft_strlen1(key)))
+		{
+			free(key);
 			return (ft_substr(env[i], first_equale(env[i]), strlen(env[i]))); 
+		}
 		i++;
 	}
-	return (ft_strdup(""));
+	free(key);
+	return ("");
 }

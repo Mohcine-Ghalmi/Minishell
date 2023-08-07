@@ -25,7 +25,7 @@ void	tokena(char *input, t_token **token, char **envp)
 		{
 			table = ft_substr(input, i, 1);
 			ft_back(token, ft_lstnew(4, table));
-			free(table);
+			// free(table);
 			i += 1;
 		}
 		else if (input[i] == '>' && input[i])
@@ -60,21 +60,20 @@ t_node	*inputs(char *input, char **envp, int *ret)
 	join = NULL;
 	lst = NULL;
 	node = NULL;
-	tokena(input, &token, envp);
+	tokena(input, &token, envp); // free here 
 	free(input);
 	jointok(&join, token);
-	// exit(1);   
 	if (syntaxerror(join) == 1)
 	{
 		free_token(&token);
-		free_jointoken(join);
+		free_jointoken(&join);
 		return (free_double(envp), NULL);
 	}
 	lst = ltoken(&join);
 	*ret = create_node(lst, &node, envp);
-	free_token(&token);
-	free_jointoken(join);
-	free_lst(lst);
+	free_lst(&lst);// next free 
+	free_jointoken(&join);
+	free_token(&token); // next free
 	free_double(envp);
 	return (node);
 }

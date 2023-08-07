@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 02:44:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 00:16:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,18 @@ char	*join_char(char *str, char c)
 	}
 	new[i++] = c;
 	new[i] = '\0';
+	// free(str);
 	return (new);
 }
 
 char	*double_qudes(char *text, int *t, char **evp)
 {
 	char	*table;
+	char	*dol;
 	int		j;
 
 	table = NULL;
+	dol = NULL;
 	if (text[*t] == '\"')
 	{
 		(*t)++;
@@ -66,7 +69,11 @@ char	*double_qudes(char *text, int *t, char **evp)
 	while (text[*t] && text[*t] != '\"')
 	{
 		if (text[*t] == '$')
-			table = ft_strjoin(table, dollar(text, t, evp));
+		{
+			dol = dollar(text, t, evp);
+			table = ft_strjoin(table, dol);
+			free(dol);
+		}
 		else
 		{
 			table = join_char(table, text[*t]);

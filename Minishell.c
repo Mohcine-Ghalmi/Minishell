@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 16:56:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 00:10:40 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,41 @@ char	*herdoc_dollar(char *text, int *i, char **envp)
 {
 	char	*table;
 	char	*dolar;
+	int 	l;
 
+	l = 0;
 	table = creat_table(text, i);
-	if (!ft_strlen(table) || (!text[*i] || text[*i] == '\n' || text[*i] == ' '))
+	l = *i - 1;
+	if (!ft_strlen(table) || (!text[l] || text[l] == '\n' || text[l] == ' '))
 		return (free(table), ft_strdup("$"));
 	dolar = out_dollars(table, envp);
-	return (free(table), dolar);
+	return (dolar);
 }
 
 char	*her_qudes(char *text, char **envp)
 {
 	char	*table;
+	char 	*dol;
 	int		t;
 
 	t = 0;
 	table = NULL;
+	dol = NULL;
 	while (text[t])
 	{
 		if (text[t] == '$')
-			table = ft_strjoin(table, herdoc_dollar(text, &t, envp));
+		{
+			dol = herdoc_dollar(text, &t, envp);
+			table = ft_strjoin(table, dol);
+			free(dol);
+		}
 		else
 		{
 			table = join_char(table, text[t]);
 			(t)++;
 		}
 	}
+	free(text);
 	return (table);
 }
 

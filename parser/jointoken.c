@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:18:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 03:48:17 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 00:43:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,6 @@ void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new)
 		return ;
 	}
 	ft_lstlast1(*lst)->next = new;
-}
-
-void	free_two(char *a, char *b)
-{
-	free(a);
-	free(b);
 }
 
 void	jointok(t_jointok	**join, t_token *token)

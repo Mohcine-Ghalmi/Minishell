@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 05:18:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 23:26:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void			ft_bzero(void *s, size_t n);
 char			*ft_strdup(char *s1);
 void			*ft_calloc(size_t count, size_t size);
 size_t			ft_strlen(const char *s);
-char			**ft_split(char const *s, char c);
+char			**ft_split(char *s, char c);
 void			ft_putstr_fd(char *s, int fd);
 void			ft_lstadd_back_env(t_env **list, t_env *new);
 t_env			*ft_lstnew_env(char *key, char *value, int option);

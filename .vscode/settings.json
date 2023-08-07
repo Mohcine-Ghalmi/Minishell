@@ -7,6 +7,9 @@
         "exec.h": "c",
         "__locale": "c",
         "sstream": "c",
-        "iterator": "c"
+        "iterator": "c",
+        "libft.h": "c",
+        "__node_handle": "c",
+        "ios": "c"
     }
 }
