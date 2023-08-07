@@ -6,6 +6,7 @@
         "stdlib.h": "c",
         "exec.h": "c",
         "__locale": "c",
-        "sstream": "c"
+        "sstream": "c",
+        "iterator": "c"
     }
 }

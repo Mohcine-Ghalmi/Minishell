@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_clone_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:34:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/03 17:34:58 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:30:27 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 int	fail_cd(t_env *env, char *oldpwd)
 {
-	if (!find_and_replace(&env, "OLDPWD", oldpwd))
+	char *cd;
+
+	if (!find_and_replace(&env, "OLDPWD=", oldpwd))
 		ft_lstadd_back_env(&env,
 			ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
-	find_and_replace(&env, "PWD", getcwd(NULL, 0));
+	cd = getcwd(NULL, 0);
+	find_and_replace(&env, "PWD=", cd);
+	free(cd);
 	return (0);
 }
