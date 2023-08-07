@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 01:06:28 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 04:45:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ t_env	*empty_env(t_env *new_env)
 t_env	*envirment(char **old_env)
 {
 	int		i;
-	char	*key;
-	char	*value;
 	t_env	*new_env;
 
 	i = 0;

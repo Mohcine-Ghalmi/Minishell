@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 22:01:10 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 03:21:57 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,7 @@ void	export_helper(char *cmd, t_env *env, int *ret)
 		ft_putstr_fd("minishell: export: `", 2);
 		ft_putstr_fd(cmd, 2);
 		ft_putstr_fd("` not valid identifier\n", 2);
+		*ret = 1;
 		return ;
 	}
 	if (!option_replace(cmd, env))

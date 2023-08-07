@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi_shlvl.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:00:26 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/02 11:15:28 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/07 05:18:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned int	ft_atoi_shlvl(const char *str)
+unsigned int	ft_atoi_shlvl(char *str)
 {
 	unsigned int	res;
 	unsigned int	i;

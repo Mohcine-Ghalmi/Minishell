@@ -63,17 +63,18 @@ t_node	*inputs(char *input, char **envp, int *ret)
 	tokena(input, &token, envp);
 	free(input);
 	jointok(&join, token);
+	// exit(1);   
 	if (syntaxerror(join) == 1)
 	{
-		free_token(token);
+		free_token(&token);
 		free_jointoken(join);
 		return (free_double(envp), NULL);
 	}
 	lst = ltoken(&join);
 	*ret = create_node(lst, &node, envp);
-	free_token(token);
+	free_token(&token);
 	free_jointoken(join);
-	free_lst(lst); 
+	free_lst(lst);
 	free_double(envp);
 	return (node);
 }

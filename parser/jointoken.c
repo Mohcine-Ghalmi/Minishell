@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 21:18:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 17:48:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 03:48:17 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,14 +50,20 @@ void	ft_lstadd_back1(t_jointok	**lst, t_jointok	*new)
 	ft_lstlast1(*lst)->next = new;
 }
 
+void	free_two(char *a, char *b)
+{
+	free(a);
+	free(b);
+}
+
 void	jointok(t_jointok	**join, t_token *token)
 {
 	t_token	*tmp;
 	char	*table;
 	char	*backup;
 
-	table = ft_strdup("");
-	backup = ft_strdup("");
+	table = NULL;
+	backup = NULL;
 	tmp = token;
 	while (tmp)
 	{
@@ -71,8 +77,8 @@ void	jointok(t_jointok	**join, t_token *token)
 					&& tmp->next->type != 6 && tmp->next->type != 1))
 			{
 				ft_lstadd_back1(join, ft_lstnew1(table, 1));
-				table = ft_strdup("");
-				backup = ft_strdup("");
+				table = NULL;
+				backup = NULL;
 			}
 		}
 		tmp = tmp->next;

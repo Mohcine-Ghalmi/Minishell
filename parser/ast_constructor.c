@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 01:16:16 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 03:28:17 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, char **envp)
 		if ((*token)->type == 1)
 			cmd[i++] = create_single_cmd(token);
 		else if ((*token)->type == 2 && (*token)->next && (*token)->next->str)
-			*in = filein(token, *in);
+			*in = filein(&j, token, *in);
 		else if ((*token)->type == 3 && (*token)->next && (*token)->next->str)
 			*out = fileout(&j, token, *out);
 		else if ((*token)->type == 9 && (*token)->next && (*token)->next->str)

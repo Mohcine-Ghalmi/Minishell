@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:20:52 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/02 09:21:23 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/07 05:57:52 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	free_node(t_node *node)
 	while ((node))
 	{
 		tmp = (node)->next;
+		free_double(node->cmd);
 		free((node));
 		(node) = tmp;
 	}
@@ -34,6 +35,7 @@ void	free_lst(t_lsttoken *lst)
 	while ((lst))
 	{
 		tmp = (lst)->next;
+		// free((lst)->str);
 		free((lst));
 		(lst) = tmp;
 	}
@@ -54,16 +56,18 @@ void	free_jointoken(t_jointok *token)
 	free(tmp);
 }
 
-void	free_token(t_token *token)
+void	free_token(t_token **token)
 {
 	t_token	*tmp;
 
-	tmp = token;
-	while ((token))
+	tmp = *token;
+	while ((*token))
 	{
-		tmp = (token)->next;
-		free((token));
-		(token) = tmp;
+		tmp = (*token)->next;
+		// free((*token)->cmd);
+		free((*token));
+		(*token) = tmp;
 	}
 	free(tmp);
+	free(*token);
 }

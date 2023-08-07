@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 04:21:00 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 05:19:42 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*shlvl(char *value)
 		return (ft_itoa_shlvl(0));
 	if (ft_atoi_shlvl(value) == 999)
 		return (ft_strdup(""));
-	return (ft_itoa_shlvl(ft_atoi_shlvl(value) + 1));
+	return (free(value), ft_itoa_shlvl(ft_atoi_shlvl(value) + 1));
 }
 
 int	olpwd_env(t_env *env)
@@ -42,16 +42,15 @@ t_env	*main_env(char **old_env, int *i)
 	char	*value;
 
 	new_env = NULL;
+	ft_lstadd_back_env(&new_env,
+		ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 	while (old_env[*i])
 	{
+		key = NULL;
+		value = NULL;
 		key = ft_substr(old_env[*i], 0, first_equale(old_env[*i]));
-		if (*i == 0)
-			if (!find_key("?=", new_env) && ft_strncmp(key, "?=", 3))
-				ft_lstadd_back_env(&new_env,
-					ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 		if (!ft_strncmp(key, "SHLVL=", 7))
-			value = shlvl(ft_substr(old_env[*i],
-						first_equale(old_env[*i]), ft_strlen1(old_env[*i])));
+			value = shlvl(ft_substr(old_env[*i], first_equale(old_env[*i]), ft_strlen1(old_env[*i])));
 		else
 			value = ft_substr(old_env[*i],
 					first_equale(old_env[*i]), ft_strlen1(old_env[*i]));

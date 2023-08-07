@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/06 20:35:01 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 03:32:40 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	unset_clone(t_env *env, char **cmd)
 	ret1 = 0;
 	while (cmd[i])
 	{
-		if (checking_args(cmd[i]))
+		if (checking_args(cmd[i]) || !cmd[i][0])
 		{
 			ft_putstr_fd("minishell: unset: `", 2);
 			ft_putstr_fd(cmd[i], 2);

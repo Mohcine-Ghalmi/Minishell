@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 01:06:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 05:41:54 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	update_status(unsigned int status, t_env *env, int i)
 		if (!ft_strncmp("?=", tmp->key, 2))
 		{
 			if (i == 1)
+			{
+				free(tmp->value);
 				tmp->value = ft_itoa_shlvl(checking_status(status));
+			}
 			else
 				tmp->value = ft_itoa_shlvl(status);
 			tmp->option = 3;

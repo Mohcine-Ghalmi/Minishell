@@ -4,6 +4,8 @@
         "minishell.h": "c",
         "parsing.h": "c",
         "stdlib.h": "c",
-        "exec.h": "c"
+        "exec.h": "c",
+        "__locale": "c",
+        "sstream": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 02:13:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 04:22:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/07 03:51:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 		len = 0;
 	if (ft_strlen(s) - start < len)
 		len = ft_strlen(s) - start;
-	result = (char *)malloc(len + 1);
+	result = ft_calloc(sizeof(char), len + 1);
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
