@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 04:50:44 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:44:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,19 @@ char	*herdoc_dollar(char *text, int *i, char **envp)
 	char	*table;
 	char	*dolar;
 	int		l;
+	int		flag;
 
 	l = 0;
-	table = creat_table(text, i);
+	flag = 0;
+	table = creat_table(text, i, &flag);
 	l = *i;
 	l--;
-	if (!ft_strlen(table) || (!text[l] || text[l] == '\n' || text[l] == ' '))
+	if ((!ft_strlen(table) && flag == 0) || (!text[l]
+			|| text[l] == '\n' || text[l] == ' '))
 		return (free(table), ft_strdup("$"));
+	if ((!ft_strlen(table) && flag == 1) || (!text[l]
+			|| text[l] == '\n' || text[l] == ' '))
+		return (free(table), ft_strdup(""));
 	dolar = out_dollars(table, envp);
 	return (dolar);
 }

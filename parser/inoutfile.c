@@ -6,14 +6,17 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 04:40:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:37:42 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+#include <sys/stat.h>
 
 int	openfile(char *filename, int mode)
 {
+	int	fd;
+
 	if (filename[0] == '\0')
 	{
 		ft_putstr_fd("minishell: ", STDERR_FILENO);
@@ -29,6 +32,8 @@ int	openfile(char *filename, int mode)
 			write(STDERR_FILENO, ": No such file or directory\n", 28);
 			return (-1);
 		}
+		fd = open(filename, O_RDONLY);
+		fstat(fd, NULL);
 		return (open(filename, O_RDONLY));
 	}
 	else

@@ -6,15 +6,14 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 04:36:22 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:44:10 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-char	*single_qudes(char *text, int *t, t_token **token)
+char	*single_qudes(char *text, int *t)
 {
-	char	*exet;
 	int		m;
 	int		i;
 
@@ -56,7 +55,6 @@ char	*double_qudes(char *text, int *t, char **evp)
 {
 	char	*table;
 	char	*dol;
-	int		j;
 
 	table = NULL;
 	dol = NULL;
@@ -91,7 +89,7 @@ void	qudes(char *text, int *i, t_token **token, char **envp)
 	g_test = 3;
 	if (q == '\'')
 	{
-		ft_back(token, ft_lstnew(6, single_qudes(text, &t, token)));
+		ft_back(token, ft_lstnew(6, single_qudes(text, &t)));
 		t++;
 	}
 	else if (q == '\"')

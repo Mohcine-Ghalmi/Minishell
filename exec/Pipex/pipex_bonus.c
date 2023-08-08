@@ -6,13 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/01 19:23:50 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:06:41 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	openfile(char *filename, int mode)
+int	openfile1(char *filename, int mode)
 {
 	if (mode == STDIN_FILENO)
 	{
@@ -24,7 +24,7 @@ int	openfile(char *filename, int mode)
 		return (open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0777));
 }
 
-char	*getpath(char *cmd, char **env)
+char	*getpath1(char *cmd, char **env)
 {
 	char	*path;
 	char	*dir;
@@ -50,7 +50,7 @@ char	*getpath(char *cmd, char **env)
 	return (cmd);
 }
 
-void	exec1(char *cmd, char **env)
+void	exec2(char *cmd, char **env)
 {
 	char	**args;
 	char	*path;
@@ -63,7 +63,7 @@ void	exec1(char *cmd, char **env)
 		write(STDERR_FILENO, ": command not found\n", 20);
 		exit(1);
 	}
-	path = getpath(args[0], env);
+	path = getpath1(args[0], env);
 	if (execve(path, args, env) < 0)
 	{
 		free_double(env);

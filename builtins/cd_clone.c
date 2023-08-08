@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 18:29:26 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 06:29:24 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*return_value(t_env *env, char *key)
 	return (NULL);
 }
 
-int	cd_old(char *cmd, t_env **env)
+int	cd_old(t_env **env)
 {
 	char	*cd;
 
@@ -84,7 +84,7 @@ int	cd_clone(char **cmd, t_env *env)
 
 	if (cmd[1])
 		if (!ft_strncmp(cmd[1], "-", 2))
-			return (cd_old(cmd[1], &env));
+			return (cd_old(&env));
 	oldpwd = pwd_env(env, 0);
 	if (!pwd_env(env, 0))
 		oldpwd = getcwd(NULL, 0);

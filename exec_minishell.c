@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 21:55:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:45:09 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	for_exec(t_node *node, t_env *new_envp)
 {
 	execution(node, new_envp);
-	if (g_test == -1 || g_test == 4)
+	if (g_test == -1)
 		update_status(1, new_envp, 1);
 }
 
@@ -57,9 +57,10 @@ void	execute_minishell(t_env *new_envp)
 	int		ret;
 
 	ret = 0;
+	node = NULL;
 	while (1)
 	{
-		input = get_user_input(node);
+		input = get_user_input(node, new_envp);
 		if (!input)
 			exit_main();
 		if (to_con(input, new_envp))

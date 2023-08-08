@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:02:33 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 02:35:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:05:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static char	*words(char const *s, char c)
 	return (word);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split1(char *s, char c)
 {
 	char	**str;
 	int		i;

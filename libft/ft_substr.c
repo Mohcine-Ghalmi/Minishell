@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 02:13:03 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 03:51:37 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:57:59 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (len == -1)
+	if ((int)len == -1)
 		return (NULL);
 	if (ft_strlen(s) < start)
 		len = 0;

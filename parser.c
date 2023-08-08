@@ -74,7 +74,7 @@ t_node	*inputs(char *input, char **envp, int *ret)
 	return (node);
 }
 
-char	*get_user_input(t_node *node)
+char	*get_user_input(t_node *node, t_env *new_envp)
 {
 	char	*input;
 
@@ -82,6 +82,8 @@ char	*get_user_input(t_node *node)
 	rl_catch_signals = 0;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
+	if (g_test == -2)
+		update_status(1, new_envp, 1);
 	g_test = 0;
 	input = readline("minishell> ");
 	return (input);

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 04:34:53 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:37:17 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	dollar_length(char *text, int i)
 	return (l);
 }
 
-char	*creat_table(char *text, int *i)
+char	*creat_table(char *text, int *i, int *flag)
 {
 	int		l;
 	int		j;
@@ -42,6 +42,7 @@ char	*creat_table(char *text, int *i)
 		if (ft_isdigit(text[l]))
 		{
 			l += 1;
+			*flag = 1;
 			break ;
 		}
 		else
@@ -52,18 +53,21 @@ char	*creat_table(char *text, int *i)
 		}
 	}
 	table[j] = '\0';
-	*i = l;
-	return (table);
+	return (*i = l, table);
 }
 
 char	*dollar(char *text, int *i, char **envp)
 {
 	char	*table;
 	char	*dolar;
+	int		flag;
 
-	table = creat_table(text, i);
-	if (!ft_strlen(table))
+	flag = 0;
+	table = creat_table(text, i, &flag);
+	if (!ft_strlen(table) && flag == 0)
 		return (free(table), ft_strdup("$"));
+	if (!ft_strlen(table) && flag == 1)
+		return (free(table), ft_strdup(""));
 	dolar = out_dollars(table, envp);
 	return (dolar);
 }

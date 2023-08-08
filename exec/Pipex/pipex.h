@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:37 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 23:25:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:07:06 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*path_join(char *path, char *bin);
 int		ft_strncmp(char *s1, char *s2, size_t n);
 int		ft_strchr1(const char *s, int c);
 char	*ft_strdup1(char *str, unsigned int n);
-char	**ft_split(char *s, char c);
+char	**ft_split1(char *s, char c);
 void	ft_putstr_fd(char *s, int fd);
 void	here_doc(char **av, int infile);
 int		ft_strspace(char *str);

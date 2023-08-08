@@ -6,13 +6,13 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 22:10:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 06:14:03 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:06:27 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_putstr_fd1(char *s, int fd)
 {
 	if (!s)
 		return ;
@@ -33,7 +33,7 @@ void	here_doc(char **av, int infile)
 		exit(1);
 	while (end && ft_strncmp(end, str, ft_strlen(end)) != 0)
 	{
-		ft_putstr_fd(str, infile);
+		ft_putstr_fd1(str, infile);
 		free(str);
 		str = get_next_line(STDIN_FILENO);
 	}

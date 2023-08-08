@@ -6,15 +6,15 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:01:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 05:03:40 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:45:53 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	len_int(int n)
+unsigned long long	len_int(unsigned long long n)
 {
-	int	len;
+	unsigned long long	len;
 
 	len = 0;
 	if (n <= 0)
@@ -27,11 +27,11 @@ int	len_int(int n)
 	return (len);
 }
 
-char	*ft_itoa_shlvl(int n)
+char	*ft_itoa_shlvl(unsigned long long n)
 {
-	int		len;
-	int		i;
-	char	*res;
+	unsigned long long		len;
+	unsigned long long		i;
+	char					*res;
 
 	i = 0;
 	len = len_int(n);

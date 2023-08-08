@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 04:54:31 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:31:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,15 @@ t_node					*inputs(char *input, char **envp, int *ret);
 int						fail_cd(t_env *env, char *oldpwd);
 t_env					*main_env(char **old_env, int *i);
 void					export_helper(char *cmd, t_env *env, int *ret);
-char					*get_user_input(t_node *node);
+char					*get_user_input(t_node *node, t_env *new_envp);
 void					execute_minishell(t_env *new_envp);
 char					*return_value(t_env *env, char *key);
-char					*creat_table(char *text, int *i);
+char					*creat_table(char *text, int *i, int *flag);
 int						heredoc_file(char *limiter, int outfile, char **envp);
 char					*her_qudes(char *text, char **envp);
 void					signl_herdoc(int sig);
 int						export_fail(char *cmd);
 char					*her_qudes(char *text, char **envp);
 void					for_exec(t_node *node, t_env *new_envp);
+
 #endif

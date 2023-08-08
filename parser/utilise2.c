@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:01:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/05 01:08:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 05:48:57 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	sigint_handler(int sig)
 	if (sig == SIGINT && waitpid(-1, NULL, 0) == -1)
 	{
 		ft_putstr_fd("\n", 1);
+		g_test = -2;
 		rl_on_new_line();
 		rl_replace_line("", 0);
 		rl_redisplay();

@@ -6,13 +6,22 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 00:56:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 08:32:30 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 
-unsigned int	checking_status(unsigned int status)
+void	put_msg(char *str, char *msg)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(msg, 2);
+	ft_putstr_fd("\n", 2);
+}
+
+unsigned int	checking_status(unsigned long	long status)
 {
 	if (status > 255)
 		while (status > 255)
@@ -64,15 +73,6 @@ int	find_char(char *str)
 	return (0);
 }
 
-void	put_msg(char *str, char *msg)
-{
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(str, 2);
-	ft_putstr_fd(": ", 2);
-	ft_putstr_fd(msg, 2);
-	ft_putstr_fd("\n", 2);
-}
-
 int	exit_clone(t_env *env, char **cmd)
 {
 	int	ret;
@@ -85,7 +85,7 @@ int	exit_clone(t_env *env, char **cmd)
 	}
 	if (cmd[1])
 	{
-		if (find_char(cmd[1]))
+		if (find_char(cmd[1]) || ft_atoi_shlvl(cmd[1]) >= 4294967294)
 		{
 			update_status(255, env, 1);
 			printf("exit\n");
