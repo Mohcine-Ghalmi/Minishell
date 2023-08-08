@@ -6,7 +6,7 @@
 /*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:20:52 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 16:00:20 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:41:54 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,8 @@ void	free_token(t_token **token)
 	{
 		tmp = (*token)->next;
 		if ((*token)->type == 1 || (*token)->type == 10 \
-			|| (*token)->type == 5 || (*token)->type == 7)
+			|| (*token)->type == 5 || (*token)->type == 7
+			|| (*token)->type == 6)
 			free((*token)->cmd);
 		free((*token));
 		(*token) = tmp;

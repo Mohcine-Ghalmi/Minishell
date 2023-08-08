@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   envirment_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 04:49:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:19:28 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@ char	*shlvl(char *value)
 		return (ft_itoa_shlvl(0));
 	if (ft_atoi_shlvl(value) == 999)
 		return (ft_strdup(""));
+	if (ft_atoi_shlvl(value) > 999)
+	{
+		ft_putstr_fd("minishell: warning: shell level (", 2);
+		ft_putstr_fd(value, 2);
+		ft_putstr_fd(") too high, resetting to 1\n", 2);
+		return (ft_strdup("1"));
+	}
 	return (free(value), ft_itoa_shlvl(ft_atoi_shlvl(value) + 1));
 }
 

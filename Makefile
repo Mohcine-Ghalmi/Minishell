@@ -62,22 +62,15 @@ CPPFLAGS="-I/Users/$(USER)/.brew/opt/readline/include"
 all: $(NAME)
 
 %.o: %.c $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT)
-	@printf "\033[1;34mCompiling\033[0m $<\r"
-	@cc -Wall -Wextra -Werror $(CPPFLAGS) -c $< -o $@
+	cc -Wall -Wextra -Werror $(CPPFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT) $(PARSER_HEADER)
-	@printf "\033[1;32mBuilding\033[0m $(NAME)\r"
-	@cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline -o $(NAME)
-	@echo "\033[1;32m✅ $(NAME) built successfully\033[0m"
+	cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline -o $(NAME)
 
 clean:
-	@printf "\033[1;33mCleaning\033[0m objects\r"
-	@rm -rf $(OBJ)
-	@echo "\033[1;33m🧹 Objects cleaned\033[0m"
+	rm -rf $(OBJ)
 
 fclean: clean
-	@printf "\033[1;31mCleaning\033[0m $(NAME)\r"
-	@rm -rf $(NAME)
-	@echo "\033[1;31m🧼 $(NAME) cleaned\033[0m"
+	rm -rf $(NAME)
 
 re: fclean all

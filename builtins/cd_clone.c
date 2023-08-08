@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_clone.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 06:29:24 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:41:40 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,19 @@ char	*return_value(t_env *env, char *key)
 int	cd_old(t_env **env)
 {
 	char	*cd;
+	char	**spliter;
 
 	if (!find_value(*env, "OLDPWD=") && return_value(*env, "OLDPWD="))
 	{
 		chdir(return_value(*env, "OLDPWD="));
-		find_and_replace(env, "OLDPWD=", pwd_env(*env, 0));
+		if (!pwd_env(*env, 0))
+		{
+			spliter = ft_split("unset OLDPWD", ' ');
+			unset_clone(*env, spliter);
+			free_double(spliter);
+		}
+		else
+			find_and_replace(env, "OLDPWD=", pwd_env(*env, 0));
 		cd = getcwd(NULL, 0);
 		find_and_replace(env, "PWD=", cd);
 		free(cd);
@@ -97,7 +105,7 @@ int	cd_clone(char **cmd, t_env *env)
 				ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
 		find_and_replace(&env, "PWD=", return_value(env, "HOME="));
 		chdir(return_value(env, "HOME="));
-		return (0);
+		return (free(oldpwd), 0);
 	}
 	if (!chdir(cmd[1]))
 		return (fail_cd(env, oldpwd));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
+/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 04:52:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 18:12:39 by selhilal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	checking_dash(char *cmd)
 		len = ft_strlen1(cmd);
 	while (i < len)
 	{
-		if ((cmd[i] >= 33 && cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 64)
+		if ((cmd[i] >= 33 && cmd[i] <= 43) || (cmd[i] > 43 && cmd[i] <= 64)
 			|| (cmd[i] >= 91 && cmd[i] <= 96) 
 			|| cmd[i] >= 123 || (i < len - 1 && cmd[i] == '+'
 				&& cmd[i + 1] != '='))
