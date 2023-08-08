@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 00:46:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 04:24:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 09:14:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	heredoc_file(char *limiter, int outfile, char **envp)
 
 int	heredocfile(t_lsttoken **token, int in, char **envp)
 {
-	if (g_test != -1 && g_test != 4)
+	if (g_test != -1)
 		in = heredoc((*token)->next->str, envp);
 	if ((*token)->next)
 		(*token) = (*token)->next;

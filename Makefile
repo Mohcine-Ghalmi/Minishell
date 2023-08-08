@@ -77,7 +77,7 @@ clean:
 
 fclean: clean
 	@printf "\033[1;31mCleaning\033[0m $(NAME)\r"
-	@rm -rfv $(NAME)
+	@rm -rf $(NAME)
 	@echo "\033[1;31m🧼 $(NAME) cleaned\033[0m"
 
 re: fclean all
