@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 17:32:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:47:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	checking_args(char *cmd)
 int	find_key(char *key, t_env *env)
 {
 	t_env	*tmp;
-	char 	*key1;
+	char	*key1;
 
 	tmp = env;
 	key1 = ft_substr(key, 0, ft_strlen1(key) - 1);
@@ -48,7 +48,7 @@ int	find_key(char *key, t_env *env)
 		if (!ft_strncmp(tmp->key, key1,
 				ft_strlen(tmp->key)))
 		{
-			free(key1);			
+			free(key1);
 			return (1);
 		}
 		tmp = tmp->next;

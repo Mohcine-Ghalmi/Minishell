@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:20:52 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 04:08:41 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:45:12 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	free_jointoken(t_jointok **token)
 	{
 		tmp = (*token)->next;
 		free((*token));
-		// free(&(*token)->str);
-		(*token) = tmp;	
+		(*token) = tmp;
 	}
 	free(tmp);
 }
@@ -65,11 +64,10 @@ void	free_token(t_token **token)
 	while ((*token))
 	{
 		tmp = (*token)->next;
-		if ((*token)->type == 1 || (*token)->type == 10 || (*token)->type == 5 ||  (*token)->type == 7)
+		if ((*token)->type == 1 || (*token)->type == 10 \
+			|| (*token)->type == 5 || (*token)->type == 7)
 			free((*token)->cmd);
 		free((*token));
 		(*token) = tmp;
 	}
-	// free(tmp);
-	// free(*token);
 }

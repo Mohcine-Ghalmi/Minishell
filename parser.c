@@ -14,18 +14,14 @@
 
 void	tokena(char *input, t_token **token, char **envp)
 {
-	// char	*table;
 	int		i;
 
 	i = 0;
-	// table = NULL;
 	while (input != NULL && input[i])
 	{
 		if (input[i] == '|' && input[i])
 		{
-			// table = ft_substr(input, i, 1);
 			ft_back(token, ft_lstnew(4, ft_substr(input, i, 1)));
-			// free(table);
 			i += 1;
 		}
 		else if (input[i] == '>' && input[i])

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:18:54 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 03:37:50 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:45:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strdup(char *s1)
 	int		i;
 
 	i = ft_strlen(s1);
-	cp  = ft_calloc(sizeof(char), i + 1);
+	cp = ft_calloc(sizeof(char), i + 1);
 	if (!cp)
 		return (NULL);
 	i = 0;

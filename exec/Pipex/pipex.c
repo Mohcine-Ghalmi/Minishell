@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 05:46:22 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:47:05 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	exec(char **cmd, char **env)
 {
 	char	**args;
 	char	*path;
+
 	args = cmd;
 	if (!*env || cmd[0][0] == '\0')
 		path = NULL;

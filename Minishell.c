@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 02:06:14 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:50:44 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*herdoc_dollar(char *text, int *i, char **envp)
 {
 	char	*table;
 	char	*dolar;
-	int 	l;
+	int		l;
 
 	l = 0;
 	table = creat_table(text, i);
@@ -40,7 +40,7 @@ char	*her_qudes(char *text, char **envp)
 	char	*table;
 	int		t;
 	char	*dol;
-	
+
 	dol = NULL;
 	t = 0;
 	table = NULL;
@@ -74,11 +74,8 @@ int	heredoc(char *limiter, char **envp)
 	return (fd[0]);
 }
 
-// void f(){system("leaks minishell");}
-
 int	main(int argc, char **argv, char **envp)
 {
-	// atexit(f);
 	t_env	*new_envp;
 
 	(void)argv;
