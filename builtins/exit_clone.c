@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 05:41:54 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 00:56:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ void	update_status(unsigned int status, t_env *env, int i)
 				tmp->value = ft_itoa_shlvl(checking_status(status));
 			}
 			else
+			{
+				free(tmp->value);
 				tmp->value = ft_itoa_shlvl(status);
+			}
 			tmp->option = 3;
 			break ;
 		}
@@ -77,7 +80,7 @@ int	exit_clone(t_env *env, char **cmd)
 	ret = 0;
 	if (cmd[2] && !find_char(cmd[1]))
 	{
-		put_msg("", "exit: too many arguments");
+		put_msg("", "exit: too many arguments"); 
 		return (update_status(1, env, 1), 1);
 	}
 	if (cmd[1])

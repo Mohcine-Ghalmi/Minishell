@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 00:16:18 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:36:22 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*join_char(char *str, char c)
 	}
 	new[i++] = c;
 	new[i] = '\0';
-	// free(str);
+	free(str);
 	return (new);
 }
 
@@ -75,13 +75,9 @@ char	*double_qudes(char *text, int *t, char **evp)
 			free(dol);
 		}
 		else
-		{
-			table = join_char(table, text[*t]);
-			(*t)++;
-		}
+			table = join_char(table, text[(*t)++]);
 	}
-	(*t)++;
-	return (table);
+	return ((t)++, table);
 }
 
 void	qudes(char *text, int *i, t_token **token, char **envp)

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:34:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/07 18:30:27 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 04:30:44 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	fail_cd(t_env *env, char *oldpwd)
 			ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
 	cd = getcwd(NULL, 0);
 	find_and_replace(&env, "PWD=", cd);
-	free(cd);
+	if (cd)
+		free(cd);
 	return (0);
 }

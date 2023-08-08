@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 17:02:33 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 23:25:41 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 02:35:39 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,5 @@ char	**ft_split(char *s, char c)
 			i++;
 	}
 	str[j] = NULL;
-	free(s);
 	return (str);
 }

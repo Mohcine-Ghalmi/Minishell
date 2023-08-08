@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/15 14:38:24 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 00:10:40 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 02:06:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ char	*herdoc_dollar(char *text, int *i, char **envp)
 
 	l = 0;
 	table = creat_table(text, i);
-	l = *i - 1;
+	l = *i;
+	l--;
 	if (!ft_strlen(table) || (!text[l] || text[l] == '\n' || text[l] == ' '))
 		return (free(table), ft_strdup("$"));
 	dolar = out_dollars(table, envp);
@@ -37,12 +38,12 @@ char	*herdoc_dollar(char *text, int *i, char **envp)
 char	*her_qudes(char *text, char **envp)
 {
 	char	*table;
-	char 	*dol;
 	int		t;
-
+	char	*dol;
+	
+	dol = NULL;
 	t = 0;
 	table = NULL;
-	dol = NULL;
 	while (text[t])
 	{
 		if (text[t] == '$')

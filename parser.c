@@ -14,17 +14,17 @@
 
 void	tokena(char *input, t_token **token, char **envp)
 {
-	char	*table;
+	// char	*table;
 	int		i;
 
 	i = 0;
-	table = NULL;
+	// table = NULL;
 	while (input != NULL && input[i])
 	{
 		if (input[i] == '|' && input[i])
 		{
-			table = ft_substr(input, i, 1);
-			ft_back(token, ft_lstnew(4, table));
+			// table = ft_substr(input, i, 1);
+			ft_back(token, ft_lstnew(4, ft_substr(input, i, 1)));
 			// free(table);
 			i += 1;
 		}
@@ -60,7 +60,7 @@ t_node	*inputs(char *input, char **envp, int *ret)
 	join = NULL;
 	lst = NULL;
 	node = NULL;
-	tokena(input, &token, envp); // free here 
+	tokena(input, &token, envp);
 	free(input);
 	jointok(&join, token);
 	if (syntaxerror(join) == 1)
@@ -71,9 +71,9 @@ t_node	*inputs(char *input, char **envp, int *ret)
 	}
 	lst = ltoken(&join);
 	*ret = create_node(lst, &node, envp);
-	free_lst(&lst);// next free 
+	free_lst(&lst);
 	free_jointoken(&join);
-	free_token(&token); // next free
+	free_token(&token);
 	free_double(envp);
 	return (node);
 }
