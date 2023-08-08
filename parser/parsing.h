@@ -86,6 +86,7 @@ void		free_cmds(char **cmd);
 void		free_node(t_node *node);
 void		free_lst(t_lsttoken **lst);
 void		free_jointoken(t_jointok **token);
+void		free_jointoken1(t_jointok **token);
 void		free_token(t_token **token);
 int			heredoc(char *limiter, char **envp);	
 int			append(char *file);

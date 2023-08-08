@@ -1,6 +1,7 @@
 {
     "C_Cpp.errorSquiggles": "disabled",
     "files.associations": {
-        "locale": "c"
+        "locale": "c",
+        "minishell.h": "c"
     }
 }

@@ -62,7 +62,7 @@ t_node	*inputs(char *input, char **envp, int *ret)
 	if (syntaxerror(join) == 1)
 	{
 		free_token(&token);
-		free_jointoken(&join);
+		free_jointoken1(&join);
 		return (free_double(envp), NULL);
 	}
 	lst = ltoken(&join);
@@ -82,9 +82,10 @@ char	*get_user_input(t_node *node, t_env *new_envp)
 	rl_catch_signals = 0;
 	signal(SIGINT, sigint_handler);
 	signal(SIGQUIT, SIG_IGN);
+	g_test = 0;
+	input = readline("minishell> ");
 	if (g_test == -2)
 		update_status(1, new_envp, 1);
 	g_test = 0;
-	input = readline("minishell> ");
 	return (input);
 }
