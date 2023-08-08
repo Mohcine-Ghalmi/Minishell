@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/13 16:58:06 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 04:04:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 20:26:10 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_lstclear_env(t_env **lst)
 		free(*lst);
 		*lst = tmp;
 	}
+	free((*lst)->key);
+	free((*lst)->value);
 	free(*lst);
 	free(tmp);
 	*lst = NULL;

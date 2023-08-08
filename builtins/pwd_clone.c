@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 18:39:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/08 19:45:25 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*pwd_env(t_env *new_env, int ret)
 			if (ret == 1)
 				printf("%s\n", tmp->value);
 			else
-				return (tmp->value);
+				return (ft_strdup(tmp->value));
 		}
 		tmp = tmp->next;
 	}
