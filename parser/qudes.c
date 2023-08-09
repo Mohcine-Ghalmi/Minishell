@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   qudes.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 20:07:10 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 18:34:48 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/09 14:08:52 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ char	*join_char(char *str, char c)
 	if (!str)
 		str = ft_strdup("");
 	new = malloc(ft_strlen(str) + 2);
+	if (!new)
+		return (NULL);
 	while (str[i])
 	{
 		new[i] = str[i];

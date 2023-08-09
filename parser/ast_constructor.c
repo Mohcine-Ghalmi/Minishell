@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 23:43:30 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 09:13:06 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:16:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**create_cmd_array(t_lsttoken **token, int *in, int *out, char **envp)
 
 	i = 0;
 	j = 0;
-	cmd = malloc(sizeof(char *) * (lenword(*token) + 1));
+	cmd = ft_calloc(sizeof(char *), (lenword(*token) + 1));
 	while (*token && (*token)->type != 4)
 	{
 		if ((*token)->type == 1)

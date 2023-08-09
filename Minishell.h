@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 21:06:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:10:17 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ void					signl_herdoc(int sig);
 int						export_fail(char *cmd);
 char					*her_qudes(char *text, char **envp);
 void					for_exec(t_node *node, t_env *new_envp);
+void					replace_pwd(t_env **envp);
+void					free_tree(char *s1, char *s2, char **s3);
 
 #endif

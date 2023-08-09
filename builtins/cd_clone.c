@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 21:03:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:35:11 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,30 +88,26 @@ int	cd_old(t_env **env)
 
 int	cd_clone(char **cmd, t_env *env)
 {
-	char    *oldpwd;
+	char	*oldpwd;
 
-    if (cmd[1] != NULL)
-        if (!ft_strncmp(cmd[1], "-", 2))
-            return (cd_old(&env));
+	if (cmd[1] != NULL)
+		if (!ft_strncmp(cmd[1], "-", 2))
+			return (cd_old(&env));
 	oldpwd = getcwd(NULL, 0);
-    if (cmd[1] == NULL)
-    {
-        if (!find_key("HOME=", env))
-            return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
-        if (!find_and_replace(&env, "OLDPWD=", oldpwd))
-            ft_lstadd_back_env(&env,
-                ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
-        if (!find_and_replace(&env, "PWD=", return_value(env, "HOME=")))
-            ft_lstadd_back_env(&env,
-                ft_lstnew_env(ft_strdup("PWD="), return_value(env, "HOME="), 1));
-        chdir(return_value(env, "HOME="));
-        return (free(oldpwd), 0);
-    }
-	else if (!chdir(cmd[1]))
+	if (cmd[1] == NULL)
 	{
-		oldpwd = getcwd(NULL, 0);
-		return (fail_cd(env, oldpwd));
+		if (!find_key("HOME=", env))
+			return (ft_putstr_fd("minishell: cd: HOME not set\n", 2)
+				, free(oldpwd), 1);
+		if (!find_and_replace(&env, "OLDPWD=", oldpwd))
+			ft_lstadd_back_env(&env,
+				ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
+		replace_pwd(&env);
+		chdir(return_value(env, "HOME="));
+		return (free(oldpwd), 0);
 	}
+	else if (!chdir(cmd[1]))
+		return (fail_cd(env, oldpwd));
 	free(oldpwd);
 	ft_putstr_fd("minishell: cd: ", 2);
 	ft_putstr_fd(cmd[1], 2);

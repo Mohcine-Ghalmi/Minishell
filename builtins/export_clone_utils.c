@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_clone_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 18:12:39 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:10:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,20 +17,26 @@ void	add_to_env(char *cmd, t_env *env)
 	char	*prb;
 	char	*key;
 	char	*value;
+	char	**spliter;
+	char	*old;
 
 	key = ft_substr(cmd, 0, first_equale(cmd));
 	value = ft_substr(cmd, first_equale(cmd), ft_strlen1(cmd));
 	if (key[first_equale(cmd) - 2] == '+')
 	{
-		key = ft_substr(cmd, 0, first_equale(cmd) - 2);
-		key = ft_strjoin1(key, "=");
+		old = ft_substr(cmd, 0, first_equale(cmd) - 2);
+		free(key);
+		key = ft_strjoin1(old, "=");
 		value = add_to_value(env, key, value);
+		free(old);
 	}
 	if (find_key(key, env))
 	{
-		prb = ft_strjoin1("unset ", ft_substr(cmd, 0, first_equale(key) - 1));
-		unset_clone(env, ft_split(prb, ' '));
-		free(prb);
+		old = ft_substr(cmd, 0, first_equale(key) - 1);
+		prb = ft_strjoin1("unset ", old);
+		spliter = ft_split(prb, ' ');
+		unset_clone(env, spliter);
+		free_tree(old, prb, spliter);
 	}
 	ft_lstadd_back_env(&env, ft_lstnew_env(key, value, 1));
 }
@@ -65,7 +71,7 @@ char	*add_to_value(t_env *env, char *key, char *value)
 	while (tmp)
 	{
 		if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
-			return (ft_strjoin1(tmp->value, value));
+			return (ft_strjoin(value, tmp->value));
 		tmp = tmp->next;
 	}
 	return (value);

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 20:25:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:35:28 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,22 @@ int	first_equale(char *string)
 t_env	*empty_env(t_env *new_env)
 {
 	t_env	*env;
+	char	*pwd;
 
 	env = new_env;
+	pwd = getcwd(NULL, 0);
 	if (!find_key("?=", new_env))
 		ft_lstadd_back_env(&new_env,
 			ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PWD="),
-			ft_strdup(getcwd(NULL, 0)), 1));
+			ft_strdup(pwd), 1));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("SHLVL="),
 			ft_strdup("1"), 1));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("_="),
 			ft_strdup("/user/bin/env"), 1));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PATH="),
 			ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."), 3));
+	free(pwd);
 	return (env);
 }
 
@@ -72,6 +75,8 @@ char	**env_exec(t_env *new_env)
 	i = 0;
 	tmp = new_env;
 	envp = (char **)malloc((ft_lstsize_env(new_env) + 1) * sizeof(char *));
+	if (!envp)
+		return (NULL);
 	while (tmp)
 	{
 		envp[i] = ft_strdup(tmp->key);

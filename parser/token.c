@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 17:34:16 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/09 16:17:55 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	word(char *text, int *i, t_token **token, char **envp)
 		}
 	}
 	*i = j;
-	ft_back(token, ft_lstnew(1, ft_strjoin(tex, exet)));
+	ft_back(token, ft_lstnew(1, ft_strjoin_word(exet, tex)));
 	free(exet);
 }
 

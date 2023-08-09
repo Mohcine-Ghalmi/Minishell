@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:26:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/05 01:21:12 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 14:29:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ char	*path_join(char *path, char *bin)
 
 	if (!bin)
 		return (NULL);
-	len = ft_strchr1(path, 0) + ft_strchr1(bin, 0);
+	len = ft_strlen(path) + ft_strlen(bin);
 	joined = malloc(sizeof(char) * (len + 2));
+	if (!joined)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (path[j])
@@ -42,6 +44,8 @@ char	*ft_strdup1(char *str, unsigned int n)
 
 	i = 0;
 	duped = malloc(sizeof(char) * (n + 1));
+	if (!duped)
+		return (NULL);
 	while (i < n)
 		duped[i++] = *str++;
 	duped[n] = 0;
