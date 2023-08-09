@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/22 11:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 06:31:05 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:52:54 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	*r_value(t_env *env, char *key)
 	return (NULL);
 }
 
-int	echo_clone(char **cmd, t_env *env)
+int	echo_clone(char **cmd, t_env *env, int fd)
 {
 	int	i;
 	int	flag;
@@ -68,7 +68,7 @@ int	echo_clone(char **cmd, t_env *env)
 	i = 1;
 	flag = 0;
 	if (!cmd[i])
-		return (printf("\n"), 0);
+		return (ft_putstr_fd("\n", fd), 1);
 	while (cmd[i] && option_echo(cmd[i]))
 	{
 		i++;
@@ -77,14 +77,14 @@ int	echo_clone(char **cmd, t_env *env)
 	while (cmd[i])
 	{
 		if (!ft_strncmp(cmd[i], "~", 2))
-			printf("%s", r_value(env, "HOME="));
+			ft_putstr_fd(r_value(env, "HOME="), fd);
 		else
-			printf("%s", cmd[i]);
+			ft_putstr_fd(cmd[i], fd);
 		if (i < double_size(cmd) - 1)
-			printf(" ");
+			ft_putstr_fd(" ", fd);
 		i++;
 	}
 	if (!flag)
-		printf("\n");
+		ft_putstr_fd("\n", fd);
 	return (0);
 }

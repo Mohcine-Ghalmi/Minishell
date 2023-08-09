@@ -107,5 +107,6 @@ int			appendfile(int *flagout, t_lsttoken **token, int out);
 void		init_values(int *in, int *out);
 char		*extract_dollar_value(char *text, int *j, char **envp, int	*k);
 char		*ft_strjoin_word(char *s1, char *s2);
+int			ft_isalpha(int c);
 
 #endif

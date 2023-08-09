@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expande.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: selhilal <selhilal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/08 15:03:32 by selhilal         ###   ########.fr       */
+/*   Updated: 2023/08/09 22:28:37 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,21 @@ char	*creat_table(char *text, int *i, int *flag)
 	l = 0;
 	l = *i + 1;
 	table = ft_calloc(1, dollar_length(text, *i) + 1);
-	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
+	if (text[l] && ft_isdigit(text[l]))
 	{
-		if (ft_isdigit(text[l]))
-		{
-			l += 1;
-			*flag = 1;
-			break ;
-		}
-		else
+		l += 1;
+		*flag = 1;
+	}
+	if (text[l] && (ft_isalpha(text[l]) || text[l] == '?'))
+	{
+		while (text[l] && text[l] != '$' && ft_isalnum(text[l]))
 		{
 			table[j] = text[l];
 			j += 1;
 			l += 1;
 		}
+		table[j] = '\0';
 	}
-	table[j] = '\0';
 	return (*i = l, table);
 }
 

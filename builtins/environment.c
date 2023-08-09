@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 16:35:28 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 21:45:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,12 @@ char	**env_exec(t_env *new_env)
 		return (NULL);
 	while (tmp)
 	{
-		envp[i] = ft_strdup(tmp->key);
+		if (tmp->key == NULL)
+			envp[i] = ft_strdup("");
+		else
+			envp[i] = ft_strdup(tmp->key);
+		if (!tmp->value)
+			tmp->value = ft_strdup("");
 		envp[i] = ft_strjoin(envp[i], tmp->value);
 		tmp = tmp->next;
 		i++;

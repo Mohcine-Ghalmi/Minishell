@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 16:10:17 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:25:36 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct token	t_token;
 typedef struct jointok	t_jointok;
 typedef struct lsttoken	t_lsttoken;
 typedef struct node		t_node;
+
 int						g_test;
 t_env					*envirment(char **old_env);
 char					**env_exec(t_env *new_env);
@@ -50,7 +51,7 @@ int						export_clone(char **cmd, t_env *env);
 int						first_equale(char *string);
 int						option_replace(char *key, t_env *env);
 int						unset_clone(t_env *env, char **cmd);
-int						echo_clone(char **cmd, t_env *env);
+int						echo_clone(char **cmd, t_env *env, int fd);
 int						find_and_replace(t_env **env, char *key, char *value);
 int						find_key(char *key, t_env *env);
 char					*add_to_value(t_env *env, char *key, char *value);

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 14:20:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 20:54:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	piper(t_node *cmd, t_env *new_env)
 		signal(SIGINT, SIG_DFL);
 		signal(SIGQUIT, SIG_DFL);
 		piper_norm(cmd, pipefd);
-		b = check_builtins(cmd->cmd, new_env);
+		b = check_builtins(cmd->cmd, new_env, 1);
 		if (!cmd->cmd[0] || b < 2)
 			exit(b);
 		dir(cmd->cmd[0]);

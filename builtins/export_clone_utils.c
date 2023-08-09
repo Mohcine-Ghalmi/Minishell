@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 16:10:43 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:10:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*add_to_value(t_env *env, char *key, char *value)
 	while (tmp)
 	{
 		if (!ft_strncmp(key, tmp->key, ft_strlen1(key)))
-			return (ft_strjoin(value, tmp->value));
+			return (ft_strjoin_word(tmp->value, value));
 		tmp = tmp->next;
 	}
 	return (value);

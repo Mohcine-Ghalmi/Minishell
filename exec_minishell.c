@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 08:45:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 16:54:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,7 @@ void	execute_minishell(t_env *new_envp)
 		node = in_hist(input, new_envp, &ret);
 		if (node == NULL)
 		{
-			if (ret != -1)
-				update_status(258, new_envp, 0);
+			update_status(258, new_envp, 0);
 			continue ;
 		}
 		for_exec(node, new_envp);

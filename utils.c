@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 00:46:20 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 09:14:16 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:17:06 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,13 @@ int	heredoc_file(char *limiter, int outfile, char **envp)
 	char	*str;
 	char	*end;
 
-	if (outfile < 0)
-		return (1);
+	signal(SIGINT, signl_herdoc);
 	end = ft_strjoin1(limiter, "\n");
-	while (1) 
+	str = readline("> ");
+	if (!str)
+		return (free(end), 1);
+	while (str) 
 	{
-		signal(SIGINT, signl_herdoc);
-		str = readline("> ");
-		if (!str)
-			return (free(end), 1);
 		str = ft_strjoin(str, "\n");
 		if (g_test != 3)
 			str = her_qudes(str, envp);
@@ -39,6 +37,7 @@ int	heredoc_file(char *limiter, int outfile, char **envp)
 			break ;
 		ft_putstr_fd(str, outfile);
 		free(str);
+		str = readline("> ");
 	}
 	two_free(end, str);
 	close(outfile);

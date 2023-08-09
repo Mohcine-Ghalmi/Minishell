@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 15:53:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 21:27:18 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,14 @@ int	show_export(char **cmd, t_env *env)
 	{
 		while (tmp)
 		{
-			if (tmp->option == 2)
-				printf("declare -x %s\n", tmp->key);
-			else if (tmp->option <= 1)
-				printf("declare -x %s\"%s\"\n",
-					tmp->key, tmp->value);
+			if (ft_strncmp("?=", tmp->key, 2))
+			{
+				if (tmp->option == 2)
+					printf("declare -x %s\n", tmp->key);
+				else if (tmp->option <= 1)
+					printf("declare -x %s\"%s\"\n",
+						tmp->key, tmp->value);
+			}
 			tmp = tmp->next;
 			i++;
 		}

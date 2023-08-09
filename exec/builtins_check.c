@@ -6,14 +6,14 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/07 16:58:02 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/09 22:29:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../Minishell.h"
 #include "exec.h"
 
-int	shoose_builtins(char **cmd, t_env *env)
+int	shoose_builtins(char **cmd, t_env *env, int fd)
 {
 	if (!ft_strncmp(cmd[0], "cd", ft_strlen1(cmd[0])))
 		return (cd_clone(cmd, env));
@@ -28,7 +28,7 @@ int	shoose_builtins(char **cmd, t_env *env)
 	else if (!ft_strncmp(cmd[0], "env", ft_strlen1(cmd[0])))
 		return (show_env(env, cmd));
 	else if (!ft_strncmp(cmd[0], "echo", ft_strlen1(cmd[0])))
-		return (echo_clone(cmd, env));
+		return (echo_clone(cmd, env, fd));
 	return (2);
 }
 
@@ -44,7 +44,7 @@ void	free_double(char **str)
 	free(str);
 }
 
-int	check_builtins(char **cmd, t_env *env)
+int	check_builtins(char **cmd, t_env *env, int fd)
 {
 	int		i;
 	char	*builtins[7];
@@ -61,7 +61,7 @@ int	check_builtins(char **cmd, t_env *env)
 	{
 		if (cmd[0] != NULL && cmd[0][0] != '\0')
 			if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
-				return (shoose_builtins(cmd, env));
+				return (shoose_builtins(cmd, env, fd));
 		i++;
 	}
 	return (2);
@@ -70,10 +70,11 @@ int	check_builtins(char **cmd, t_env *env)
 int	first_built(t_node *new, t_env *env)
 {
 	int	ret;
+	int	fd;
 
-	ret = 0;
+	fd = 1;
 	if (new->fdout > 2)
-		dup2(new->fdout, STDOUT_FILENO);
-	ret = check_builtins(new->cmd, env);
+		fd = new->fdout;
+	ret = check_builtins(new->cmd, env, fd);
 	return (ret);
 }
