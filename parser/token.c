@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/09 16:17:55 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/11 14:16:35 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	exec_dollar(char *str, t_token **token)
 	char	**splited;
 
 	i = 0;
+	if (!str)
+		return (0);
 	splited = ft_split(str, ' ');
 	while (splited[i])
 		i++;
@@ -92,6 +94,8 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	char	*tex;
 	char	*exet;
 
+	if (!text || !*envp)
+		return ;
 	j = *i;
 	t = *i;
 	k = 0;

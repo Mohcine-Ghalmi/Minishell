@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 16:54:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/11 14:07:06 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	execute_minishell(t_env *new_envp)
 	{
 		input = get_user_input(node, new_envp);
 		if (!input)
-			exit_main();
+			exit_main(new_envp);
 		if (to_con(input, new_envp))
 			continue ;
 		node = in_hist(input, new_envp, &ret);

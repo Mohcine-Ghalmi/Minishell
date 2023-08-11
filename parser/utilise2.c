@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:01:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/09 22:27:34 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/11 14:07:17 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	sigint_handler(int sig)
 	}
 }
 
-void	exit_main(void)
+void	exit_main(t_env *enp)
 {
 	ft_putstr_fd("\033[11C\033[1Aexit\n", 1);
-	exit(0);
+	exit(ft_atoi_shlvl(return_value(enp, "?=")));
 }
 
 char	*ft_strjoin_word(char *s1, char *s2)

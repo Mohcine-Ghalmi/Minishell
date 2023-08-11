@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:00:26 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 21:42:25 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/11 14:11:04 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ unsigned long long	ft_atoi_shlvl(char *str)
 	res = 0;
 	i = 0;
 	signe = 1;
+	if (!str)
+		return (0);
 	while (str[i] == '\t' || str[i] == '\n'
 		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r'
 		|| str[i] == ' ')
