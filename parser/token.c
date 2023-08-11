@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/11 14:16:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/11 16:09:05 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	outorappand(char *text, int *i, t_token **token)
 	char	*table;
 
 	j = *i;
+	if (!text)
+		return ;
 	table = NULL;
 	if (text[*i + 1] != '>')
 		f = 1;
@@ -94,8 +96,11 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	char	*tex;
 	char	*exet;
 
-	if (!text || !*envp)
+	if (!text || !envp)
+	{
+		(*i)++;
 		return ;
+	}
 	j = *i;
 	t = *i;
 	k = 0;

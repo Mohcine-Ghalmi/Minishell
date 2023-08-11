@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 20:20:52 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/09 20:28:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/11 15:27:17 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ void	free_lst(t_lsttoken **lst)
 	while ((*lst))
 	{
 		tmp = (*lst)->next;
-		if ((*lst)->type != 7)
-			free((*lst)->str);
+		free((*lst)->str);
 		free((*lst));
 		(*lst) = tmp;
 	}
