@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 00:35:58 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/11 16:10:28 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/12 15:45:48 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,7 @@ int	syntaxerror(t_jointok *token)
 	if (!tmp)
 		return (0);
 	if (tmp->type == 4)
-	{
-		s_fd("\033[31;1msyntax error\033[0m\n", 2);
-		return (1);
-	}
+		return (s_fd("\033[31;1msyntax error\033[0m\n", 2), 1);
 	while (tmp)
 	{
 		if ((norm1(tmp->type) && tmp->next && tmp->next->type == 10

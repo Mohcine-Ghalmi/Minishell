@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 22:50:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/11 14:16:17 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/12 15:50:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ char	*extract_dollar_value(char *text, int *j, char **envp, int	*k)
 
 	if (!text)
 		return (NULL);
+	*k = 0;
 	t = 0;
 	t = *j;
 	tex = NULL;

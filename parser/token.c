@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:09:21 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/11 16:09:05 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/12 15:57:57 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,20 +103,12 @@ void	word(char *text, int *i, t_token **token, char **envp)
 	}
 	j = *i;
 	t = *i;
-	k = 0;
 	tex = extract_dollar_value(text, &j, envp, &k);
 	exet = ft_substr(text, t, k - t);
-	if (!exet[0])
-	{
-		if (exec_dollar(tex, token))
-		{
-			*i = j;
-			free(tex);
-			free(exet);
-			return ;
-		}
-	}
 	*i = j;
+	if (!exet[0])
+		if (exec_dollar(tex, token))
+			return (free(tex), free(exet));
 	ft_back(token, ft_lstnew(1, ft_strjoin_word(exet, tex)));
 	free(exet);
 }
