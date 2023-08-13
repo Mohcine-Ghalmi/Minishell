@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 16:35:11 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/13 19:05:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	find_and_replace(t_env **env, char *key, char *value)
 	t_env	*tmp;
 
 	tmp = *env;
+	if (!key || !value)
+		return (0);
 	while (tmp)
 	{
 		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
