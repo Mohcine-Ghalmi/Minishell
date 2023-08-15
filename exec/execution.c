@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 01:10:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/09 16:12:43 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/15 09:09:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,14 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 		update_status(ifcond, envp, 1);
 	else
 		update_status(WEXITSTATUS(status), envp, 1);
+}
+
+void	close_all_fd(void)
+{
+	int			i;
+	struct stat	fd_stat;
+
+	i = 3;
+	while (fstat(i, &fd_stat) == 0)
+		close(i++);
 }

@@ -3,6 +3,8 @@
         "__bit_reference": "c",
         "bitset": "c",
         "vector": "c",
-        "minishell.h": "c"
+        "minishell.h": "c",
+        "__locale": "c",
+        "ios": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 13:38:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 20:52:11 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/15 09:09:15 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../Minishell.h"
 # include "Pipex/pipex.h"
 # include <dirent.h>
+# include <sys/stat.h>
 
 typedef struct node	t_node;
 typedef struct env	t_env;
@@ -27,5 +28,6 @@ int			show_env(t_env *new_env, char **cmd);
 void		free_double(char **str);
 void		piper_norm(t_node *cmd, int pipefd[2]);
 void		update_and_wait(int ifcond, int status, t_env *envp);
+void		close_all_fd(void);
 
 #endif
