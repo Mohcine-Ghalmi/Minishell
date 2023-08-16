@@ -33,6 +33,7 @@ SRC =   exec/exec_pipes.c \
 		builtins/echo_clone.c \
 		exec/builtins_check.c \
 		exec/execution.c \
+		exec/utils.c \
 		libft/ft_bzero.c libft/ft_calloc.c libft/ft_strdup.c libft/ft_strlen.c libft/ft_strnstr.c libft/ft_split.c \
 		libft/ft_lstadd_back_env.c libft/ft_lstnew_env.c libft/ft_memmove.c libft/ft_memcpy.c libft/ft_lstlast_env.c libft/ft_substr.c \
 		libft/ft_lststzie_env.c libft/ft_lstclear_env.c libft/ft_tolower.c libft/ft_strchr_env.c libft/ft_lstdelone_env.c \
@@ -46,6 +47,7 @@ SRC =   exec/exec_pipes.c \
 		exec/Pipex/get_next_line/get_next_line.c \
 		exec/Pipex/utils_bonus.c \
 		parser.c \
+		parser/utils4.c \
 		parser/append.c  parser/ft_free.c parser/jointoken.c       parser/parse.c   parser/rem_spacetoken.c  parser/utilise.c\
 		parser/ast_constructor.c        parser/linked_node.c     parser/parsequdes.c        parser/utilise2.c \
 		parser/expande.c parser/inoutfile.c       parser/linkedlist.c      parser/qudes.c   parser/token.c   parser/utilise3.c Minishell.c \

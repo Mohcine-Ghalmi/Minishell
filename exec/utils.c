@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   append.c                                           :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/01 15:55:40 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/16 23:47:25 by mghalmi          ###   ########.fr       */
+/*   Created: 2023/08/17 00:26:22 by mghalmi           #+#    #+#             */
+/*   Updated: 2023/08/17 00:31:20 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parsing.h"
+#include "exec.h"
 
-void	s_fd(char *s, int fd)
+void	for_seg(void)
 {
-	if (!s)
-		return ;
-	while (*s)
-		write(fd, s++, 1);
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
 }
 
-int	append(char *file)
+void	clone_std(int in, int out)
 {
-	int	fd;
-
-	if (!ft_strncmp(file, "\0", ft_strlen(file)))
-	{
-		ft_putstr_fd("minishell: ", STDERR_FILENO);
-		write(STDERR_FILENO, ": No such file or directory\n", 28);
-		return (-1);
-	}
-	fd = open(file, O_CREAT | O_APPEND | O_WRONLY, 0777);
-	if (fd < 0)
-		perror(file);
-	return (fd);
+	dup2(in, STDIN_FILENO);
+	dup2(out, STDOUT_FILENO);
 }

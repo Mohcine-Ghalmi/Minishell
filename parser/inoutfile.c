@@ -6,12 +6,32 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/16 20:59:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:45:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 #include <sys/stat.h>
+
+int	error_fd_in(char *filename)
+{
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		perror(filename);
+	return (fd);
+}
+
+int	error_fd_out(char *filename)
+{
+	int	fd;
+
+	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0644);
+	if (fd < 0)
+		perror(filename);
+	return (fd);
+}
 
 int	openfile(char *filename, int mode)
 {
@@ -31,17 +51,13 @@ int	openfile(char *filename, int mode)
 			perror(filename);
 			return (-1);
 		}
-		fd = open(filename, O_RDONLY);
-		if (fd < 0)
-			perror(filename);
+		fd = error_fd_in(filename);
 		fstat(fd, NULL);
 		return (open(filename, O_RDONLY));
 	}
 	else
 	{
-		fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0644);
-		if (fd < 0)
-			perror(filename);
+		fd = error_fd_out(filename);
 		return (fd);
 	}
 }

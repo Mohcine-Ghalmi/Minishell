@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 16:21:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:38:42 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,19 @@ char	*getpath(char *cmd, char **env)
 	return (NULL);
 }
 
+void	show_exit(char *cmd)
+{
+	write(STDERR_FILENO, "minishell: ", 12);
+	if (!ft_strchr1(cmd, '/'))
+	{
+		write(STDERR_FILENO, cmd, ft_strchr1(cmd, 0));
+		write(STDERR_FILENO, ": command not found\n", 20);
+	}
+	else
+		perror(cmd);
+	exit(127);
+}
+
 void	exec(char **cmd, char **env)
 {
 	char	**args;
@@ -65,12 +78,7 @@ void	exec(char **cmd, char **env)
 	if (!path || (ft_strchr1(cmd[0], '/') || cmd[0][0] == '/'))
 		path = args[0];
 	if (path == NULL || access(path, F_OK) == -1)
-	{
-		write(STDERR_FILENO, "minishell: ", 12);
-		write(STDERR_FILENO, cmd[0], ft_strchr1(cmd[0], 0));
-		write(STDERR_FILENO, ": command not found\n", 20);
-		exit(127);
-	}
+		show_exit(cmd[0]);
 	if (execve(path, args, env) < 0)
 	{
 		perror(args[0]);

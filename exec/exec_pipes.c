@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 21:17:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:31:52 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,22 +61,15 @@ int	piper(t_node *cmd, t_env *new_env)
 	b = 0;
 	signal(SIGINT, SIG_IGN);
 	if (pipe(pipefd) == -1 && ft_lstsize_node(cmd) == 1)
-	{
-		perror("Pipe ");
-		return -1;
-	}
+		return (perror("Pipe "), -1);
 	pid = fork();
 	if (pid == -1)
-	{
-		perror("fork");
-		return -1;
-	}
+		return (perror("fork"), -1);
 	if (pid)
 		piper_dup(cmd, pipefd);
 	else
 	{
-		signal(SIGINT, SIG_DFL);
-		signal(SIGQUIT, SIG_DFL);
+		for_seg();
 		piper_norm(cmd, pipefd);
 		b = check_builtins(cmd->cmd, new_env, 1);
 		if (!cmd->cmd[0] || b < 2)
@@ -85,8 +78,7 @@ int	piper(t_node *cmd, t_env *new_env)
 		exec(cmd->cmd, env_exec(new_env));
 	}
 	closepipe(pipefd);
-	close_files(cmd->fdin, cmd->fdout);
-	return 0;
+	return (close_files(cmd->fdin, cmd->fdout), 0);
 }
 
 void	execution(t_node *new, t_env *envp)
@@ -109,13 +101,11 @@ void	execution(t_node *new, t_env *envp)
 		{
 			status = piper(new, envp);
 			if (status == -1)
-				break;
+				break ;
 			new = new->next;
 		}
 	}
-	dup2(in, STDIN_FILENO);
-	dup2(out, STDOUT_FILENO);
+	clone_std(in, out);
 	close_files(in, out);
-	close_all_fd();
-	update_and_wait(ifcond, status, envp);
+	return (close_all_fd(), update_and_wait(ifcond, status, envp));
 }

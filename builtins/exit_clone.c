@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 21:11:55 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:22:05 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,14 @@ void	put_msg(char *str, char *msg)
 	ft_putstr_fd("\n", 2);
 }
 
-unsigned int	checking_status(unsigned long	long status)
+unsigned long long	checking_status(long	long status)
 {
 	if (status > 255)
 		while (status > 255)
 			status -= 256;
+	if (status < 0)
+		while (status < 0)
+			status += 256;
 	return (status);
 }
 
@@ -58,19 +61,24 @@ void	update_status(unsigned int status, t_env *env, int i)
 int	find_char(char *str)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	if (!str)
 		return (1);
 	if (str[i] == '+' || str[i] == '-')
 		i++;
+	j = i;
 	while (str[i])
 	{
-		if (str[i] < 48 || str[i] > 57)
-			return (1);
+		if (str[i] >= 48 && str[i] <= 57)
+			j++;
 		i++;
 	}
-	return (0);
+	if (j == i)
+		return (0);
+	return (1);
 }
 
 int	exit_clone(t_env *env, char **cmd)
@@ -85,7 +93,8 @@ int	exit_clone(t_env *env, char **cmd)
 	}
 	if (cmd[1])
 	{
-		if (find_char(cmd[1]) || ft_atoi_shlvl(cmd[1]) >= 4294967294)
+		if (find_char(cmd[1]) || (ft_atoi_shlvl(cmd[1]) > 9223372036854775806
+				|| ft_atoi_shlvl(cmd[1]) < -9223372036854775807))
 		{
 			update_status(255, env, 1);
 			printf("exit\n");
@@ -93,7 +102,7 @@ int	exit_clone(t_env *env, char **cmd)
 			exit(255);
 		}
 		printf("exit\n");
-		exit(checking_status(ft_atoi_shlvl(cmd[1])));
+		exit(ft_atoi_shlvl(cmd[1]));
 	}
 	ret = ft_atoi_shlvl(return_value(env, "?="));
 	return (update_status(ret, env, 1), exit(ret), 0);

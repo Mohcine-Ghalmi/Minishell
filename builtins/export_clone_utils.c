@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 18:54:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:22:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,17 +82,17 @@ int	checking_dash(char *cmd)
 	int	i;
 	int	len;
 
-	i = 0;
+	i = -1;
 	len = first_equale(cmd) - 1;
 	if (cmd[first_equale(cmd) - 2] == '+')
 		len -= 1;
 	if (len <= 0)
 		len = ft_strlen1(cmd);
-	while (i < len)
+	while (++i < len)
 	{
-		if ((cmd[i] >= 33 && cmd[i] <= 43) || (cmd[i] > 43 && cmd[i] <= 64)
-			|| (cmd[i] >= 91 && cmd[i] <= 96) 
-			|| cmd[i] >= 123 || (i < len - 1 && cmd[i] == '+'
+		if ((cmd[0] >= 33 && cmd[0] <= 43) || (cmd[0] > 43 && cmd[0] <= 64)
+			|| (cmd[0] >= 91 && cmd[0] <= 94) || cmd[0] == 96
+			|| cmd[0] >= 123 || (i < len - 1 && cmd[i] == '+'
 				&& cmd[i + 1] != '='))
 		{
 			ft_putstr_fd("minishell: export: `", 2);
@@ -100,7 +100,8 @@ int	checking_dash(char *cmd)
 			ft_putstr_fd("` not valid identifier\n", 2);
 			return (i + 1);
 		}
-		i++;
+		if (cmd[0] == 95 && !cmd[1])
+			return (1);
 	}
 	return (0);
 }

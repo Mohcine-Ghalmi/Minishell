@@ -6,27 +6,23 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 15:00:26 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/11 14:11:04 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:40:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned long long	ft_atoi_shlvl(char *str)
+long long	ft_atoi_shlvl(char *str)
 {
-	unsigned long long	res;
-	unsigned long long	i;
-	unsigned long long	signe;
+	long long	res;
+	long long	i;
+	long long	signe;
 
 	res = 0;
 	i = 0;
 	signe = 1;
 	if (!str)
 		return (0);
-	while (str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r'
-		|| str[i] == ' ')
-		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
@@ -34,7 +30,11 @@ unsigned long long	ft_atoi_shlvl(char *str)
 		i++;
 	}
 	while (str[i] >= '0' && str[i] <= '9')
+	{
+		if (res > res * 10 + str[i] - '0')
+			return (9223372036854775807);
 		res = res * 10 + str[i++] - '0';
+	}
 	if (str[i])
 		res = 0;
 	return (signe * res);

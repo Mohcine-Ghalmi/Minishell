@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 21:15:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/08 08:34:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 23:56:19 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,11 @@ char					*ft_tolower_str(char *str);
 char					*ft_strchr(const char *s, int c);
 void					ft_lstclear_struct(t_node **lst);
 void					ft_lstdelone(t_env *lst);
-char					*ft_itoa_shlvl(unsigned long long n);
+char					*ft_itoa_shlvl(long long n);
 void					ft_putstr_fd(char *s, int fd);
 int						ft_lstsize_node(t_node *lst);
 void					ft_lstadd_front_env(t_env **lst, t_env *new);
 void					ft_lstadd_front_env(t_env **lst, t_env *new);
-unsigned long long		ft_atoi_shlvl(char *str);
+long long				ft_atoi_shlvl(char *str);
 
 #endif

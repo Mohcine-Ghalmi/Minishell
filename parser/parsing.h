@@ -69,6 +69,7 @@ typedef struct node
 
 }			t_node;
 
+typedef struct env	t_env;
 void		outorappand(char *text, int *i, t_token **token);
 void		inorherdoc(char *text, int *i, t_token **token);
 void		qudes(char *text, int *i, t_token **token, char **envp);
@@ -108,5 +109,7 @@ void		init_values(int *in, int *out);
 char		*extract_dollar_value(char *text, int *j, char **envp, int	*k);
 char		*ft_strjoin_word(char *s1, char *s2);
 int			ft_isalpha(int c);
+void		ft___pwd(t_env *envp);
+void		for_stats(t_env *new_envp, t_node *node, int ret);
 
 #endif

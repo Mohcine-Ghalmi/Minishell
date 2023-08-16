@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 01:10:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/16 16:46:49 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 00:34:40 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,28 +24,31 @@ void	ms(int status)
 	free(str);
 }
 
+void	status_seg(int status, t_env *envp)
+{
+	if (WTERMSIG(status) == 2)
+	{
+		ft_putstr_fd("\n", 1);
+		update_status(128 + WTERMSIG(status), envp, 1);
+	}
+	else if (WTERMSIG(status) == 3)
+	{
+		ft_putstr_fd("Quit: 3\n", 1);
+		update_status(128 + WTERMSIG(status), envp, 1);
+	}
+	if (WTERMSIG(status) == 11)
+	{
+		ms(WTERMSIG(status));
+		update_status(128 + WTERMSIG(status), envp, 1);
+	}
+}
+
 void	update_and_wait(int ifcond, int status, t_env *envp)
 {
 	while (wait(&status) != -1)
 		;
 	if (WTERMSIG(status))
-	{
-		if (WTERMSIG(status) == 2)
-		{
-			ft_putstr_fd("\n", 1);
-			update_status(128 + WTERMSIG(status), envp, 1);
-		}
-		else if (WTERMSIG(status) == 3)
-		{
-			ft_putstr_fd("Quit: 3\n", 1);
-			update_status(128 + WTERMSIG(status), envp, 1);
-		}
-		if (WTERMSIG(status) == 11)
-		{
-			ms(WTERMSIG(status));
-			update_status(128 + WTERMSIG(status), envp, 1);
-		}
-	}
+		status_seg(status, envp);
 	else if (ifcond < 2)
 		update_status(ifcond, envp, 1);
 	else
@@ -63,6 +66,9 @@ void	close_all_fd(void)
 	struct stat	fd_stat;
 
 	i = 3;
-	while (fstat(i, &fd_stat) == 0)
-		close(i++);
+	while (fstat(i, &fd_stat) == 0 || i < 256)
+	{
+		close(i);
+		i++;
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/24 14:56:27 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 22:30:21 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 22:19:50 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ t_env	*main_env(char **old_env, int *i)
 		ft_lstadd_back_env(&new_env, ft_lstnew_env(key, value, 1));
 		(*i)++;
 	}
+	new_env->saved_pwd = NULL;
 	return (new_env);
 }

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 19:46:44 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 23:46:53 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,7 @@ int	cd_clone(char **cmd, t_env *env)
 		return (free(oldpwd), 0);
 	}
 	else if (!chdir(cmd[1]))
-		return (free(oldpwd), fail_cd(env, oldpwd));
+		return (fail_cd(env, oldpwd));
 	free(oldpwd);
-	ft_putstr_fd("minishell: cd: ", 2);
-	perror(cmd[1]);
-	return (1);
+	return (ft_putstr_fd("minishell: cd: ", 2), perror(cmd[1]), 1);
 }
