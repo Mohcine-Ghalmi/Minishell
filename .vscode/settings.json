@@ -5,6 +5,7 @@
         "vector": "c",
         "minishell.h": "c",
         "__locale": "c",
-        "ios": "c"
+        "ios": "c",
+        "sstream": "c"
     }
 }

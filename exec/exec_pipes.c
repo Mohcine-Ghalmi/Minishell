@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 20:46:38 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 21:17:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ void	execution(t_node *new, t_env *envp)
 	status = 0;
 	in = dup(0);
 	out = dup(1);
-	if (ft_lstsize_node(new) == 0)
+	if (ft_lstsize_node(new) == 1)
 		ifcond = first_built(new, envp);
 	if (new && ifcond == 2)
 	{

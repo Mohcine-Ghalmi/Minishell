@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 20:42:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 20:58:25 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	execute_minishell(t_env *new_envp)
 {
 	t_node	*node;
 	char	*input;
-	int		ret;	
+	int		ret;
 
 	ret = 0;
 	node = NULL;

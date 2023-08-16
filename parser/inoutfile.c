@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/20 01:30:13 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/16 18:18:08 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 20:59:36 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	openfile(char *filename, int mode)
 			return (-1);
 		}
 		fd = open(filename, O_RDONLY);
+		if (fd < 0)
+			perror(filename);
 		fstat(fd, NULL);
 		return (open(filename, O_RDONLY));
 	}
