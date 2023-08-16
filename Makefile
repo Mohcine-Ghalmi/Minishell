@@ -65,7 +65,7 @@ all: $(NAME)
 	cc -Wall -Wextra -Werror $(CPPFLAGS) -c $< -o $@
 
 $(NAME): $(OBJ) $(HEADER) $(HEADER_PIPEX) $(HEADER_LIBFT) $(PARSER_HEADER)
-	cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline -o $(NAME)  -g  -fsanitize=address
+	cc -Wall -Wextra -Werror $(CPPFLAGS) $(LDFLAGS) $(OBJ) -lreadline -o $(NAME)
 
 clean:
 	rm -rf $(OBJ)

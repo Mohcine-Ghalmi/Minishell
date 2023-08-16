@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/11 14:07:06 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:10:05 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,18 @@ int	to_con(char *input, t_env *new_envp)
 	return (i);
 }
 
+void ft___pwd(t_env *envp)
+{
+	char * pwd;
+	
+	pwd = getcwd(NULL, 0);
+	if(pwd != NULL)
+	{
+		free(envp->saved_pwd);
+		envp->saved_pwd = pwd;
+	}
+}
+
 void	execute_minishell(t_env *new_envp)
 {
 	t_node	*node;
@@ -72,8 +84,11 @@ void	execute_minishell(t_env *new_envp)
 			continue ;
 		}
 		for_exec(node, new_envp);
-		free_node(node);
+		if (node->fdin > 2 || node->fdout > 2)
+			update_status(0, new_envp, 0);
 		if (ret == -1)
 			update_status(1, new_envp, 0);
+		free_node(node);
+		ft___pwd(new_envp);
 	}
 }

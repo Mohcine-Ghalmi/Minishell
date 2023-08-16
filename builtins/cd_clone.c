@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/13 19:05:15 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 17:19:55 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	find_and_replace(t_env **env, char *key, char *value)
 		}
 		tmp = tmp->next;
 	}
+	free(value);
 	return (0);
 }
 
@@ -67,7 +68,7 @@ int	cd_old(t_env **env)
 	char	*cd;
 	char	**spliter;
 
-	if (!find_value(*env, "OLDPWD=") && !return_value(*env, "OLDPWD="))
+	if (!find_value(*env, "OLDPWD=") && return_value(*env, "OLDPWD="))
 	{
 		chdir(return_value(*env, "OLDPWD="));
 		if (!pwd_env(*env, 0))
@@ -109,10 +110,9 @@ int	cd_clone(char **cmd, t_env *env)
 		return (free(oldpwd), 0);
 	}
 	else if (!chdir(cmd[1]))
-		return (fail_cd(env, oldpwd));
+		return (free(oldpwd), fail_cd(env, oldpwd));
 	free(oldpwd);
 	ft_putstr_fd("minishell: cd: ", 2);
-	ft_putstr_fd(cmd[1], 2);
-	ft_putstr_fd(": No such file or directory\n", 2);
+	perror(cmd[1]);
 	return (1);
 }

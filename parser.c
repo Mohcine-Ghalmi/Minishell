@@ -43,7 +43,6 @@ void	close_files(int in, int out)
 		close(out);
 	if (in > 2)
 		close(in);
-	close_all_fd();
 }
 
 t_node	*inputs(char *input, char **envp, int *ret)

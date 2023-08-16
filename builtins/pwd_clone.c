@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 17:02:38 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:12:57 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ char	*pwd_env(t_env *new_env, int ret)
 		if (!ft_strncmp(tmp->key, "PWD=", ft_strlen1(tmp->key)))
 		{
 			if (ret == 1)
+			{
 				printf("%s\n", tmp->value);
+				return (tmp->value);
+			}
 			else
-				return (ft_strdup(tmp->value));
+				return (tmp->value);
 		}
 		tmp = tmp->next;
 	}
@@ -49,7 +52,8 @@ int	pwd_clone(char **cmd, t_env *new_env)
 	}
 	else
 	{
-		pwd_env(new_env, 1);
+		if (!pwd_env(new_env, 1))
+			printf("%s\n", new_env->saved_pwd);
 		return (0);
 	}
 	free(ret);

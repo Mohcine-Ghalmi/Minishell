@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 22:29:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 16:30:26 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	first_built(t_node *new, t_env *env)
 	fd = 1;
 	if (new->fdout > 2)
 		fd = new->fdout;
+	dup2(fd, STDOUT_FILENO);
 	ret = check_builtins(new->cmd, env, fd);
 	return (ret);
 }

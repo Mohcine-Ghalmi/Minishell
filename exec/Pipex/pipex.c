@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 14:29:09 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 16:21:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	exec(char **cmd, char **env)
 		path = getpath(args[0], env);
 	if (!path || (ft_strchr1(cmd[0], '/') || cmd[0][0] == '/'))
 		path = args[0];
-	if (path == NULL || access(path, X_OK) == -1)
+	if (path == NULL || access(path, F_OK) == -1)
 	{
 		write(STDERR_FILENO, "minishell: ", 12);
 		write(STDERR_FILENO, cmd[0], ft_strchr1(cmd[0], 0));
@@ -72,7 +72,10 @@ void	exec(char **cmd, char **env)
 		exit(127);
 	}
 	if (execve(path, args, env) < 0)
+	{
+		perror(args[0]);
 		exit(errno + 128);
+	}
 }
 
 void	exec1(char *cmd, char **env)

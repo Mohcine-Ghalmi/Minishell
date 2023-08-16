@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 01:10:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/15 09:09:58 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 16:46:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,12 @@ void	update_and_wait(int ifcond, int status, t_env *envp)
 	else if (ifcond < 2)
 		update_status(ifcond, envp, 1);
 	else
-		update_status(WEXITSTATUS(status), envp, 1);
+	{
+		if (WEXITSTATUS(status) == 141)
+			update_status(126, envp, 1);
+		else
+			update_status(WEXITSTATUS(status), envp, 1);
+	}
 }
 
 void	close_all_fd(void)

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 22:25:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:13:53 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct env
 {
 	char		*key;
 	char		*value;
+	char		*saved_pwd;
 	int			option;
 	struct env	*next;
 }		t_env;
