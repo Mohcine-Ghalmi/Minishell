@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 18:48:53 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 21:45:13 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 19:23:23 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,16 @@ t_env	*empty_env(t_env *new_env)
 	if (!find_key("?=", new_env))
 		ft_lstadd_back_env(&new_env,
 			ft_lstnew_env(ft_strdup("?="), ft_strdup("0"), 3));
-	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PWD="),
-			ft_strdup(pwd), 1));
+	if (pwd)
+		ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PWD="),
+				ft_strdup(pwd), 1));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("SHLVL="),
 			ft_strdup("1"), 1));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("_="),
-			ft_strdup("/user/bin/env"), 1));
+			ft_strdup("/user/bin/env/./minishell"), 1));
 	ft_lstadd_back_env(&env, ft_lstnew_env(ft_strdup("PATH="),
 			ft_strdup("/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:."), 3));
+	new_env->saved_pwd = NULL;
 	free(pwd);
 	return (env);
 }

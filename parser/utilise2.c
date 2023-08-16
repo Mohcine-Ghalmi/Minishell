@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/30 17:01:03 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/11 16:13:45 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 18:31:00 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_strjoin_word(char *s1, char *s2)
 
 int	ft_isalpha(int c)
 {
-	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90))
+	if ((c >= 97 && c <= 122) || (c >= 65 && c <= 90) || c == '_')
 		return (1);
 	return (0);
 }

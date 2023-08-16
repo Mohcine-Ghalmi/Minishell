@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 17:28:24 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 20:46:38 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	dir(char *cmd)
 	}
 }
 
-void	piper(t_node *cmd, t_env *new_env)
+int	piper(t_node *cmd, t_env *new_env)
 {
 	pid_t	pid;
 	int		pipefd[2];
@@ -60,9 +60,17 @@ void	piper(t_node *cmd, t_env *new_env)
 
 	b = 0;
 	signal(SIGINT, SIG_IGN);
-	if (pipe(pipefd) < 0)
-		return ;
+	if (pipe(pipefd) == -1 && ft_lstsize_node(cmd) == 1)
+	{
+		perror("Pipe ");
+		return -1;
+	}
 	pid = fork();
+	if (pid == -1)
+	{
+		perror("fork");
+		return -1;
+	}
 	if (pid)
 		piper_dup(cmd, pipefd);
 	else
@@ -78,6 +86,7 @@ void	piper(t_node *cmd, t_env *new_env)
 	}
 	closepipe(pipefd);
 	close_files(cmd->fdin, cmd->fdout);
+	return 0;
 }
 
 void	execution(t_node *new, t_env *envp)
@@ -91,14 +100,16 @@ void	execution(t_node *new, t_env *envp)
 	status = 0;
 	in = dup(0);
 	out = dup(1);
-	if (ft_lstsize_node(new) == 1)
+	if (ft_lstsize_node(new) == 0)
 		ifcond = first_built(new, envp);
 	if (new && ifcond == 2)
 	{
 		dup2(new->fdin, STDIN_FILENO);
 		while (new)
 		{
-			piper(new, envp);
+			status = piper(new, envp);
+			if (status == -1)
+				break;
 			new = new->next;
 		}
 	}

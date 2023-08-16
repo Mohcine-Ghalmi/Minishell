@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/14 13:01:36 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 18:12:57 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/16 19:03:46 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ int	pwd_clone(char **cmd, t_env *new_env)
 	}
 	else
 	{
-		if (!pwd_env(new_env, 1))
-			printf("%s\n", new_env->saved_pwd);
+		printf("%s\n", new_env->saved_pwd);
 		return (0);
 	}
 	free(ret);
