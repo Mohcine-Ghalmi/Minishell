@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 18:13:53 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 02:28:33 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ char					*her_qudes(char *text, char **envp);
 void					for_exec(t_node *node, t_env *new_envp);
 void					replace_pwd(t_env **envp);
 void					free_tree(char *s1, char *s2, char **s3);
+char					*get_oldpwd(t_env *env);
 
 #endif

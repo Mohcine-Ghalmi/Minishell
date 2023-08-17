@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 00:38:42 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 02:24:16 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,10 @@ void	show_exit(char *cmd)
 	{
 		write(STDERR_FILENO, cmd, ft_strchr1(cmd, 0));
 		write(STDERR_FILENO, ": command not found\n", 20);
+		exit(127);
 	}
-	else
-		perror(cmd);
-	exit(127);
+	perror(cmd);
+	exit(126);
 }
 
 void	exec(char **cmd, char **env)
@@ -77,7 +77,7 @@ void	exec(char **cmd, char **env)
 		path = getpath(args[0], env);
 	if (!path || (ft_strchr1(cmd[0], '/') || cmd[0][0] == '/'))
 		path = args[0];
-	if (path == NULL || access(path, F_OK) == -1)
+	if (path == NULL || access(path, X_OK) == -1)
 		show_exit(cmd[0]);
 	if (execve(path, args, env) < 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:34:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/16 22:21:30 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 02:28:50 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,16 @@ void	free_tree(char *s1, char *s2, char **s3)
 	free(s1);
 	free(s2);
 	free_double(s3);
+}
+
+char	*get_oldpwd(t_env *env)
+{
+	char	*oldpwd;
+
+	oldpwd = NULL;
+	if (pwd_env(env, 0))
+		oldpwd = ft_strdup(pwd_env(env, 0));
+	if (!oldpwd)
+		oldpwd = getcwd(NULL, 0);
+	return (oldpwd);
 }

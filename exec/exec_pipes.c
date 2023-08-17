@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 00:31:52 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/17 01:22:43 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void	dir(char *cmd)
 {
 	DIR	*direct;
 
+	if (!ft_strncmp(cmd, ".", 2))
+	{
+		ft_putstr_fd(".: filename argument required\n", 2);
+		exit(2);
+	}
+	if (!ft_strncmp(cmd, "..", 2))
+		return ;
 	direct = opendir(cmd);
 	if (direct)
 	{
