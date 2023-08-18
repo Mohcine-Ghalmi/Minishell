@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/18 10:26:47 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 11:15:28 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,12 @@ int	piper(t_node *cmd, t_env *new_env)
 
 void	execution(t_node *new, t_env *envp)
 {
-	int				status;
 	unsigned int	ifcond;
 	int				in;
 	int				out;
 	pid_t			pid;
 
 	ifcond = 2;
-	status = 0;
 	pid = 0;
 	in = dup(0);
 	out = dup(1);
@@ -116,5 +114,5 @@ void	execution(t_node *new, t_env *envp)
 	}
 	clone_std(in, out);
 	close_files(in, out);
-	return (close_all_fd(), update_and_wait(ifcond, status, envp, pid));
+	return (close_all_fd(), update_and_wait(ifcond, envp, pid));
 }

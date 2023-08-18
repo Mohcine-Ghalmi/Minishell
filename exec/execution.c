@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 01:10:42 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/18 10:27:16 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 11:15:14 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ void	status_seg(int status, t_env *envp)
 	}
 }
 
-void	update_and_wait(int ifcond, int status, t_env *envp, pid_t	pid)
+void	update_and_wait(int ifcond, t_env *envp, pid_t	pid)
 {
 	int  last;
 
 	last = 0;
 	waitpid(pid, &last, 0);
-	while (wait(&status) != -1)
+	while (wait(NULL) != -1)
 		;
 	if (WTERMSIG(last))
 		status_seg(last, envp);
