@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 00:21:37 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 14:33:19 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,9 @@ void	execute_minishell(t_env	*new_envp)
 			update_status(258, new_envp, 0);
 			continue ;
 		}
-		for_exec(node, new_envp);
 		for_stats(new_envp, node, ret);
+		if (ret != -1)
+			for_exec(node, new_envp);
 		free_node(node);
 		ft___pwd(new_envp);
 	}

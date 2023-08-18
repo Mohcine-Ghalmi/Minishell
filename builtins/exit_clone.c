@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 15:33:05 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 00:22:05 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 16:08:56 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	exit_clone(t_env *env, char **cmd)
 	ret = 0;
 	if (cmd[2] && !find_char(cmd[1]))
 	{
+		printf("exit\n");
 		put_msg("", "exit: too many arguments"); 
 		return (update_status(1, env, 1), 1);
 	}
