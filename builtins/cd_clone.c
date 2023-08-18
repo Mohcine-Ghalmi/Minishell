@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 02:27:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:31:02 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	cd_old(t_env **env)
 	if (!find_value(*env, "OLDPWD=") && return_value(*env, "OLDPWD="))
 	{
 		chdir(return_value(*env, "OLDPWD="));
+		if (errno == ENOENT)
+			return (perror(return_value(*env, "OLDPWD=")), 1);
 		if (!pwd_env(*env, 0))
 		{
 			spliter = ft_split("unset OLDPWD=", ' ');
@@ -106,6 +108,8 @@ int	cd_clone(char **cmd, t_env *env)
 				ft_lstnew_env(ft_strdup("OLDPWD="), oldpwd, 1));
 		replace_pwd(&env);
 		chdir(return_value(env, "HOME="));
+		if (errno == ENOENT)
+			return (perror(return_value(env, "HOME=")),free(oldpwd), 1);
 		return (0);
 	}
 	else if (!chdir(cmd[1]))

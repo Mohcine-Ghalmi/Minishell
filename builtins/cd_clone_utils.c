@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/03 17:34:15 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/17 02:28:50 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:23:07 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ char	*get_oldpwd(t_env *env)
 	if (!oldpwd)
 		oldpwd = getcwd(NULL, 0);
 	return (oldpwd);
+}
+
+void	check_dir(char *dir)
+{
+	DIR	*direct;
+
+	direct = opendir(dir);
+	if (!direct)
+	{
+		ft_putstr_fd("minishell:", 2);
+		ft_putstr_fd(dir, 2);
+		ft_putstr_fd(": is a directory\n", 2);
+	}
 }

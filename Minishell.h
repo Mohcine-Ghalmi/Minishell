@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 02:28:33 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 17:00:42 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "parser/parsing.h"
 # include <sys/errno.h>
 # include <sys/ioctl.h>
+# include <signal.h>
 
 typedef struct env
 {
