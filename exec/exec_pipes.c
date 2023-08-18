@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/24 18:34:15 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 01:22:43 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/18 10:26:47 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	piper(t_node *cmd, t_env *new_env)
 		exec(cmd->cmd, env_exec(new_env));
 	}
 	closepipe(pipefd);
-	return (close_files(cmd->fdin, cmd->fdout), 0);
+	return (close_files(cmd->fdin, cmd->fdout), pid);
 }
 
 void	execution(t_node *new, t_env *envp)
@@ -94,9 +94,11 @@ void	execution(t_node *new, t_env *envp)
 	unsigned int	ifcond;
 	int				in;
 	int				out;
+	pid_t			pid;
 
 	ifcond = 2;
 	status = 0;
+	pid = 0;
 	in = dup(0);
 	out = dup(1);
 	if (ft_lstsize_node(new) == 1)
@@ -106,13 +108,13 @@ void	execution(t_node *new, t_env *envp)
 		dup2(new->fdin, STDIN_FILENO);
 		while (new)
 		{
-			status = piper(new, envp);
-			if (status == -1)
+			pid = piper(new, envp);
+			if (pid == -1)
 				break ;
 			new = new->next;
 		}
 	}
 	clone_std(in, out);
 	close_files(in, out);
-	return (close_all_fd(), update_and_wait(ifcond, status, envp));
+	return (close_all_fd(), update_and_wait(ifcond, status, envp, pid));
 }
