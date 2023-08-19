@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/05 03:16:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/18 16:38:30 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/19 20:05:07 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	for_qudespars(t_env *new_envp, char *input)
 
 t_node	*in_hist(char *input, t_env *new_envp, int	*ret)
 {
-	add_history(input);
 	return (inputs(input, env_exec(new_envp), ret));
 }
 
@@ -37,6 +36,7 @@ int	to_con(char *input, t_env *new_envp)
 	int	i;
 
 	i = 0;
+	add_history(input);
 	if (input[0] == '\0')
 	{
 		free(input);

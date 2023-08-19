@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/22 16:24:34 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/17 02:24:16 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/19 19:58:58 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ void	show_exit(char *cmd)
 		write(STDERR_FILENO, ": command not found\n", 20);
 		exit(127);
 	}
-	perror(cmd);
-	exit(126);
 }
 
 void	exec(char **cmd, char **env)
@@ -82,6 +80,8 @@ void	exec(char **cmd, char **env)
 	if (execve(path, args, env) < 0)
 	{
 		perror(args[0]);
+		if (errno == 2)
+			exit(127);
 		exit(errno + 128);
 	}
 }

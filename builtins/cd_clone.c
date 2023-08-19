@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/08 14:17:50 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/18 17:31:02 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/19 20:42:27 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ int	cd_clone(char **cmd, t_env *env)
 		replace_pwd(&env);
 		chdir(return_value(env, "HOME="));
 		if (errno == ENOENT)
-			return (perror(return_value(env, "HOME=")),free(oldpwd), 1);
-		return (0);
+			return (perror(return_value(env, "HOME=")), free(oldpwd), 1);
+		return (free(oldpwd), 0);
 	}
 	else if (!chdir(cmd[1]))
 		return (fail_cd(env, oldpwd));

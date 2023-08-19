@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/18 13:30:26 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/19 20:07:53 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	dollar_length(char *text, int i)
 	j = 0;
 	l = i + 1;
 	if ((text[l] == '\'') || (text[l] == '\"' ))
-        return (-1);
+		return (-1);
 	while (text[l] && ft_isalnum(text[l]) && text[l] != '$')
 	{
 		j += 1;
@@ -49,15 +49,11 @@ char	*creat_table(char *text, int *i, int *flag)
 	if (text[l] && (ft_isalpha(text[l]) || text[l] == '?'))
 	{
 		while (text[l] && text[l] != '$' && ft_isalnum(text[l]))
-		{
-			table[j] = text[l];
-			j += 1;
-			l += 1;
-		}
+			table[j++] = text[l++];
 		table[j] = '\0';
 	}
 	if (dollar_length(text, k) == -1)
-        *flag = 1;
+		*flag = 1;
 	return (*i = l, table);
 }
 
