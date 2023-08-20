@@ -28,6 +28,7 @@ SRC =   exec/exec_pipes.c \
 		builtins/cd_clone_utils.c \
 		builtins/export_clone.c \
 		builtins/exit_clone.c \
+		builtins/export_utils.c \
 		builtins/unset_clone.c \
 		builtins/export_clone_utils.c \
 		builtins/echo_clone.c \

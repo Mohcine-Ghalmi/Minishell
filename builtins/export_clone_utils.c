@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/20 12:28:36 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 13:45:45 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	checking_dash(char *cmd)
 	int	i;
 	int	len;
 
-	i = -1;
+	i = 0;
 	len = first_equale(cmd) - 1;
 	if (cmd[first_equale(cmd) - 2] == '+')
 		len -= 1;
@@ -92,9 +92,9 @@ int	checking_dash(char *cmd)
 		len = ft_strlen1(cmd);
 	while (++i < len)
 	{
-		if ((cmd[0] >= 33 && cmd[0] <= 43) || (cmd[0] > 43 && cmd[0] <= 64)
-			|| (cmd[0] >= 91 && cmd[0] <= 94) || cmd[0] == 96
-			|| cmd[0] >= 123 || (i < len - 1 && cmd[i] == '+'
+		if ((cmd[i] > 0 && cmd[i] <= 47) || (cmd[i] >= 58 && cmd[i] <= 64)
+			|| (cmd[i] >= 91 && cmd[i] <= 94) || cmd[i] > 122
+			|| (i < len - 1 && cmd[i] == '+'
 				&& cmd[i + 1] != '='))
 		{
 			ft_putstr_fd("minishell: export: `", 2);
@@ -105,7 +105,7 @@ int	checking_dash(char *cmd)
 		if (cmd[0] == 95 && !cmd[1])
 			return (1);
 	}
-	return (0);
+	return (check_first(cmd));
 }
 
 void	export_helper(char *cmd, t_env *env, int *ret)
