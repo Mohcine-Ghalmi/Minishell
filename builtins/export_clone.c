@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 22:34:08 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/18 14:55:10 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 12:27:59 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,35 @@ int	export_fail(char *cmd)
 	ft_putstr_fd(cmd, 2);
 	ft_putstr_fd("` not valid identifier\n", 2);
 	return (1);
+}
+
+int	find_key1(char *key, t_env *env)
+{
+	t_env	*tmp;
+	char	*key1;
+	char	*key2;
+
+	tmp = env;
+	key1 = ft_substr(key, 0, ft_strlen1(key) - 1);
+	key2 = ft_strjoin1(key, "=");
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->key, key, ft_strlen1(tmp->key)))
+		{
+			free(key1);
+			free(key2);
+			return (1);
+		}
+		if (!ft_strncmp(tmp->key, key1, ft_strlen(tmp->key))
+			|| !ft_strncmp(tmp->key, key2, ft_strlen(tmp->key)))
+		{
+			free(key1);
+			free(key2);
+			return (1);
+		}
+		tmp = tmp->next;
+	}
+	free(key1);
+	free(key2);
+	return (0);
 }

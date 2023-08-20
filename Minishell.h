@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/18 17:00:42 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 12:28:32 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void					for_exec(t_node *node, t_env *new_envp);
 void					replace_pwd(t_env **envp);
 void					free_tree(char *s1, char *s2, char **s3);
 char					*get_oldpwd(t_env *env);
+int						find_key1(char *key, t_env *env);
 
 #endif

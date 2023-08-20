@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/09 13:56:39 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 12:29:35 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	delete_key(char *key, t_env **env)
 
 	prev = NULL;
 	tmp = *env;
-	while (tmp && ft_strncmp(tmp->key, key, ft_strlen1(tmp->key) - 1))
+	while (tmp && ft_strncmp(tmp->key, key, ft_strlen1(key)))
 	{
 		prev = tmp;
 		tmp = tmp->next;

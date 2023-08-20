@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 20:17:25 by selhilal          #+#    #+#             */
-/*   Updated: 2023/08/19 20:07:53 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 12:33:08 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ char	*dollar(char *text, int *i, char **envp)
 		return (free(table), ft_strdup("$"));
 	if (!ft_strlen(table) && flag == 1)
 		return (free(table), ft_strdup(""));
+	if (ft_strlen(table) && flag == 1)
+		return (table);
 	dolar = out_dollars(table, envp);
 	return (dolar);
 }

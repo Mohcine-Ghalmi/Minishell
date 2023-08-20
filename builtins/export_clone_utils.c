@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/23 11:21:31 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/18 16:25:46 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 12:28:36 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	export_helper(char *cmd, t_env *env, int *ret)
 		}
 		else
 		{
-			if (!checking_dash(cmd))
+			if (!checking_dash(cmd) && !find_key1(cmd, env))
 				ft_lstadd_back_env(&env,
 					ft_lstnew_env(ft_strdup(cmd), ft_strdup(""), 2));
 			else

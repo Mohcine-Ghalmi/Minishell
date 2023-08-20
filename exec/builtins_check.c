@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/09 14:15:43 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/16 21:13:29 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 11:57:13 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	check_builtins(char **cmd, t_env *env, int fd)
 	while (i < 7)
 	{
 		if (cmd[0] != NULL && cmd[0][0] != '\0')
-			if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(cmd[0])))
+			if (!ft_strncmp(cmd[0], builtins[i], ft_strlen1(builtins[i])))
 				return (shoose_builtins(cmd, env, fd));
 		i++;
 	}
