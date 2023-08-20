@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/21 14:45:48 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/20 12:29:35 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 15:48:49 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	checking_args(char *cmd)
 	int	i;
 
 	i = 0;
-	if (cmd[i] < 48 & cmd[i] > 57)
-		i++;
+	if (check_first1(cmd))
+		return (1);
 	while (cmd[i])
 	{
 		if ((cmd[i] >= 33 && cmd[i] <= 42) || (cmd[i] > 43 && cmd[i] <= 47)

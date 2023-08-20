@@ -6,7 +6,7 @@
 /*   By: mghalmi <mghalmi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/10 16:22:38 by mghalmi           #+#    #+#             */
-/*   Updated: 2023/08/20 13:33:07 by mghalmi          ###   ########.fr       */
+/*   Updated: 2023/08/20 14:42:19 by mghalmi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,6 @@ void					free_tree(char *s1, char *s2, char **s3);
 char					*get_oldpwd(t_env *env);
 int						find_key1(char *key, t_env *env);
 int						check_first(char *cmd);
+int						check_first1(char *cmd);
 
 #endif
